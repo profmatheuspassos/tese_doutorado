@@ -83,21 +83,16 @@ item de lista conta como uma frase.
 
 ### Capítulo 1 (17/11/2026)
 
-**Resultado (versão enviada para aprovação):** índice 62,1, acima da referência de 50. Média
-de 11,5 palavras por frase (limite: 20). Maior frase: 25 palavras; nenhuma acima de 25.
-Tamanho: 1.680 palavras visíveis, dentro da faixa do CLAUDE.md (1.200 a 1.800) e acima do alvo
-do plano para esta página (1.200 a 1.400).
+**Resultado (versão aprovada sem ajustes de texto):** índice 62,1, acima da referência de 50.
+Média de 11,5 palavras por frase (limite: 20). Maior frase: 25 palavras; nenhuma acima de 25.
+Tamanho: 1.680 palavras visíveis, dentro da faixa de 1.200 a 1.800 por página de capítulo (D16).
 
 **Histórico da medição.** Primeira versão: 1.946 palavras, índice 60,1, três frases acima de 25
 palavras. Os cortes foram feitos por tamanho, não por legibilidade: causas da expansão do voto
 condensadas, partidos de massa em uma frase, idades do voto brasileiro só no quadro, cassação de
-direitos políticos retirada. As três frases longas foram divididas.
-
-**Por que ficou acima do alvo do plano.** A lista das nove regras e o quadro "lado a lado" são
-elementos fixos do plano e somam cerca de 280 palavras. Cortar mais exigiria tirar itens da
-lista "Entra" do plano. Conta do site: home (1.770) + capítulo 1 (1.680) deixam cerca de 6.550
-palavras para os capítulos 2 a 5 e "Sobre a tese", dentro do teto de 10 mil se cada capítulo
-seguinte ficar perto de 1.500.
+direitos políticos retirada. As três frases longas foram divididas. A versão enviada estava
+acima do alvo antigo do plano (1.200 a 1.400); o autor manteve o tamanho e eliminou o teto do
+site inteiro (D16).
 
 **Conferência manual (o que o índice não mede).**
 - Termos técnicos explicados na primeira ocorrência: democracia representativa, governo

@@ -157,19 +157,21 @@ Dados do capítulo **não usados**: 25 partidos antes de 2006, mais 9 depois, 34
 em formação (decisão D4; somar 25 e 9 daria o total de 34 por outro caminho); valores do Fundo
 Partidário de 2018 (nota 165); 7.500 a 15.000 proponentes de candidatura presidencial em PT;
 regras de inelegibilidade, de cassação de direitos políticos e de fidelidade partidária.
+**Confirmado pelo autor (D18).**
 
 ### Escolhas de interpretação
 
 1. **Comparecimento facultativo em Portugal.** O capítulo 1 só diz que o sufrágio é "direito e
    dever" cívico. O corpo de 2.1 diz expressamente que, no caso português, "o comparecimento no
    dia da eleição [é] facultativo". A linha "Voto" do quadro usa as duas informações.
+   **Confirmado pelo autor (D17).**
 2. **Causas da expansão do voto.** A tese lista cinco. O site cita três (organização dos
    trabalhadores, prêmio a quem sobreviveu às guerras, queda do analfabetismo) e deixa de fora a
    aceitação das elites para evitar distúrbios e a coerência com a ideologia liberal, por
    tamanho.
 3. **Exemplo dos 55%.** É um exemplo hipotético, criado para ilustrar a diferença entre ganhar a
    eleição e poder tudo. Não vem da tese; o raciocínio, sim (1.1, maioria numérica e direitos
-   fundamentais da minoria).
+   fundamentais da minoria). **Mantido pelo autor (D19).**
 4. **Regra 9.** A tese diz "chefe do poder Executivo, por sua vez, eleito pelo povo". O site diz
    "presidente eleito pelo povo", que é o caso dos regimes presidencialistas.
 5. **Definições de referendo, petição e ação popular (B3).** São simplificações que valem para os
@@ -187,6 +189,7 @@ regras de inelegibilidade, de cassação de direitos políticos e de fidelidade 
    que a Justiça Eleitoral repassa aos partidos".
 10. **"Para o autor" (B7).** A ligação entre a mudança de 2006 e a multiplicação de partidos é
     uma leitura da tese ("Um dos resultados práticos"), por isso aparece como posição do autor.
+    **Confirmado pelo autor (D20).**
 11. **Ficou de fora, conforme o plano:** o histórico das revisões da constituição portuguesa; a
     ambiguidade da palavra "povo" (nota 140); inelegibilidades e cassação de direitos políticos;
     fidelidade partidária; sistemas eleitorais cargo a cargo; a tipologia completa de Dahl; a

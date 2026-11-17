@@ -66,7 +66,8 @@ Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch pri
 - Frases com média de até 20 palavras; voz ativa; um assunto por parágrafo.
 - Todo termo técnico explicado na primeira vez que aparece; exemplos concretos.
 - Sem latim, sem juridiquês, sem notas de rodapé.
-- Tamanho: 8 a 10 mil palavras no site inteiro; cada página de capítulo entre 1.200 e 1.800.
+- Tamanho: cada página de capítulo entre 1.200 e 1.800 palavras. Não há teto para o site
+  inteiro (D16).
 - Legibilidade medida pelo Flesch adaptado ao português (Martins et al., 1996), com
   `scripts/legibilidade.py`; método em `docs/LEGIBILIDADE.md`. Referência de conferência:
   **índice de 50 ou mais** (faixa "fácil"). O índice é conferência, não meta: não piorar o
@@ -110,19 +111,20 @@ se as 880 notas de rodapé foram distribuídas.
 ## Estado atual (17 de novembro de 2026)
 
 - **Fase 1 concluída e aprovada.**
-- **Fase 2 em andamento.** Decisões D1 a D15 registradas (D15 estendida a todas as páginas);
+- **Fase 2 em andamento.** Decisões D1 a D20 registradas (D15 estendida a todas as páginas);
   nenhum ponto em aberto. Script de legibilidade pronto.
 - **Home aprovada** (`src/content/pt-br/home.md`, 1.770 palavras, índice 62,1) e enviada à
   `main` por pull request.
-- **Capítulo 1 escrito** (`src/content/pt-br/capitulo-1.md`, 1.680 palavras, índice 62,1), com
-  rastreabilidade e relatório; **aguardando aprovação do autor**. Pull request só depois dela.
+- **Capítulo 1 aprovado** sem ajustes de texto (`src/content/pt-br/capitulo-1.md`, 1.680
+  palavras, índice 62,1), com rastreabilidade e relatório; enviado à `main` por pull request.
+  Decisões D16 a D20 registradas.
 - Ainda não existe código de site.
 
 ## Próximo passo
 
-1. Aplicar os ajustes do autor ao capítulo 1 e, aprovado, abrir pull request para a `main`.
+1. Em sessão nova, partindo da `main` (depois do merge do capítulo 1): recriar `conteudo/` com
+   `bash scripts/converter.sh`.
 2. Capítulos 2 a 5 e "Sobre a tese", uma página por vez, cada uma a partir da releitura
    integral do capítulo original (ver "Protocolo de leitura"). Para cada página: escrever,
    medir, rastrear, push na branch da sessão, parar para aprovação e, aprovada, abrir pull
-   request para a `main`. Orçamento de tamanho: cerca de 1.500 palavras por capítulo, para o
-   site caber em 10 mil.
+   request para a `main`. Tamanho: 1.200 a 1.800 palavras por página de capítulo (D16).
