@@ -55,6 +55,7 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 |---|---|---|---|---|---|---|---|
 | Home | 1.770 | 1.585 | 149 | 10,6 | 2,08 | 62,1 | fácil |
 | Capítulo 1 | 1.680 | 1.488 | 129 | 11,5 | 2,07 | 62,1 | fácil |
+| Capítulo 2 | 1.797 | 1.714 | 157 | 10,9 | 2,05 | 63,9 | fácil |
 
 ### Home (17/11/2026)
 
@@ -107,4 +108,33 @@ site inteiro (D16).
 - Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela
   tese.
 - "A tese" aparece duas vezes (D15).
+
+### Capítulo 2 (17/11/2026)
+
+**Resultado (versão aprovada sem ajustes de texto):** índice 63,9, acima da referência de 50. Média de
+10,9 palavras por frase (limite: 20). Maior frase: 23 palavras; nenhuma acima de 25. Tamanho:
+1.797 palavras visíveis, dentro da faixa de 1.200 a 1.800 por página de capítulo (D16), mas
+perto do teto.
+
+**Histórico da medição.** Primeira versão: 2.092 palavras, índice 66,1, uma frase de 27 palavras.
+Os cortes foram feitos por tamanho, não por legibilidade: picos de confiança em Portugal, dois dos
+quatro motivos para não votar nas europeias, abstenção brasileira de 1998, a frase dos "três em
+cada quatro" sobre os partidos e várias frases de transição. Na revisão de fidelidade, algumas
+frases ganharam palavras (base dos 59%, punições só no Brasil, "podem" nos acordos entre
+partidos). O índice caiu de 66,1 para 63,9 com os cortes, porque saíram frases curtas de ligação.
+
+**Conferência manual (o que o índice não mede).**
+- Termos técnicos explicados na primeira ocorrência: abstenção, oligarquização, fragmentação
+  política, bem comum, voto válido (pelo exemplo). Latinobarómetro e Portal de Opinião Pública
+  aparecem como fontes, com uma linha de explicação para o primeiro. "Tribunal Superior Eleitoral"
+  aparece só no quadro e é retomado como "Justiça Eleitoral".
+- Os termos "apatia", "abulia", "acracia", "cartelização", "democracia de audiência" (só no
+  título "A política virou audiência"), "concorrencial" e "comunitarista" não aparecem: as ideias
+  são explicadas por situações.
+- Voz ativa predominante. Passivas que ficaram: "pode ser lido como protesto" e "são ouvidos de
+  verdade" (o sujeito é óbvio). "Vota-se na pessoa" é sujeito indeterminado, natural em português.
+- Sem latim, sem notas de rodapé, sem número de lei ou de artigo.
+- Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela
+  tese. "Salvadores da pátria" vem com a ressalva de que existem de qualquer lado.
+- "A tese" aparece duas vezes (D15); "para o autor", uma.
 

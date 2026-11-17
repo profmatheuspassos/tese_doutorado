@@ -111,20 +111,23 @@ se as 880 notas de rodapé foram distribuídas.
 ## Estado atual (17 de novembro de 2026)
 
 - **Fase 1 concluída e aprovada.**
-- **Fase 2 em andamento.** Decisões D1 a D20 registradas (D15 estendida a todas as páginas);
+- **Fase 2 em andamento.** Decisões D1 a D21 registradas (D15 estendida a todas as páginas);
   nenhum ponto em aberto. Script de legibilidade pronto.
 - **Home aprovada** (`src/content/pt-br/home.md`, 1.770 palavras, índice 62,1) e enviada à
   `main` por pull request.
 - **Capítulo 1 aprovado** sem ajustes de texto (`src/content/pt-br/capitulo-1.md`, 1.680
   palavras, índice 62,1), com rastreabilidade e relatório; enviado à `main` por pull request.
   Decisões D16 a D20 registradas.
+- **Capítulo 2 aprovado** sem ajustes de texto (`src/content/pt-br/capitulo-2.md`, 1.797
+  palavras, índice 63,9), com rastreabilidade e relatório; enviado à `main` por pull request.
+  Decisão D21 registrada.
 - Ainda não existe código de site.
 
 ## Próximo passo
 
-1. Em sessão nova, partindo da `main` (depois do merge do capítulo 1): recriar `conteudo/` com
+1. Em sessão nova, partindo da `main` (depois do merge do capítulo 2): recriar `conteudo/` com
    `bash scripts/converter.sh`.
-2. Capítulos 2 a 5 e "Sobre a tese", uma página por vez, cada uma a partir da releitura
+2. Capítulos 3 a 5 e "Sobre a tese", uma página por vez, cada uma a partir da releitura
    integral do capítulo original (ver "Protocolo de leitura"). Para cada página: escrever,
    medir, rastrear, push na branch da sessão, parar para aprovação e, aprovada, abrir pull
    request para a `main`. Tamanho: 1.200 a 1.800 palavras por página de capítulo (D16).

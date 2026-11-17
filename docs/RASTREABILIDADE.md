@@ -199,3 +199,129 @@ regras de inelegibilidade, de cassação de direitos políticos e de fidelidade 
 12. **Menções a "a tese" (D15).** Duas: o dever de participação mais amplo que o voto (B3) e a
     resposta negativa no fecho (B9). Uma terceira posição do autor aparece como "para o autor"
     (B7).
+
+---
+
+## Capítulo 2 (`src/content/pt-br/capitulo-2.md`)
+
+Releitura feita em 17/11/2026: corpo do capítulo 2 por inteiro (abertura, 2.1, 2.2 e 2.3, com os
+Quadros 1 a 5). Notas de rodapé abertas só quando trazem dado ou argumento: 172, 184, 185, 186,
+206, 207, 209, 210, 225, 226, 238, 254, 257, 260, 278, 279, 283, 284, 295, 296, 301, 302, 303, 310
+e 311. Os números citados nas demais notas de dado (187–204, 211–224, 325–327) vêm do corpo do
+texto, que os repete.
+
+### Blocos
+
+| Bloco | O que o site diz | Origem na tese | Âncora no original |
+|---|---|---|---|
+| B0 Abertura | PT e BR são democracias no papel; regras são metade; o outro lado é o cidadão; três problemas (desinteresse, partidos fechados, sociedade partida) em círculo vicioso | Abertura do cap. 2; 2.1, § 3 | "apontamentos em relação a três aspectos específicos"; "em um círculo vicioso, aumenta o desinteresse"; "o 'outro lado' do ideal democrático"; "De nada adianta a existência de toda uma estrutura normativa robusta" |
+| B1 Participar não é se envolver | Eleitor que vota em qualquer um porque "todos são iguais": participou, não se envolveu; participação além do voto (militância, manifestação, acompanhar notícias); visão ampla: reunião de pais (educação), reunião de condomínio (saneamento); pertencimento; povo dono do poder; responsabilidade dividida | 2.1 (participação x envolvimento; conceito de participação; cidadania em sentido amplo) | "pressupõe efetivo *envolvimento*"; "\"todos são iguais\""; "o simples ato de ouvir algo que se refira à política"; "*também se caracterizam como participação política*"; "A presença (ou ausência) de pais em reuniões escolares"; "política pública de saneamento básico"; "sentimento de pertencimento a uma coletividade"; "responsabilidade partilhada" |
+| B2 Três degraus | Estar presente (notícia, TV, reunião de condomínio; não contribui); ativar-se (trabalhar para partido, campanha, protesto); decidir: direto (centenas ou milhares: parlamentares, governantes, juízes, prefeitos, vereadores) e indireto (voto); maioria no primeiro degrau; "para que participar…" | 2.1 (três níveis de participação; cidadãos permanecem na presença) | "*presença política*"; "*ativação política*"; "*participação política stricto sensu*"; "contam-se na casa das centenas"; "ou no máximo dos milhares"; "permanecem no nível da *presença política*"; "*para que participar se o resultado nunca é diferente?*" |
+| B3 Portugal | Fonte: Portal de Opinião Pública (FFMS); governo 10% e parlamento 13% (maio 2013); 43% e 37% (nov. 2018); partidos: 34 pesquisas desde nov. 2000, só 7 acima de 20%, 17% em nov. 2018; gravidade (partidos devem representar); abstenção na Assembleia da República 36,91% (1999), 32,80% (2005, ponto fora da curva), 40,42% (2015); europeias de 2019, 69,27%; motivos (maio 2018): 59% falta de confiança, 54% voto não muda nada | 2.1 (Portal de Opinião Pública; Eurobarómetro 89.2; resultados oficiais) | "em maio de 2013, quando apenas 10%"; "apenas 13% dos entrevistados"; "voltou a cair para 43%"; "voltou a cair para 37%"; "Considerando-se os 34 levantamentos"; "apenas 17% dos entrevistados confiavam nos partidos"; "Em 1999 36,91%"; "\"ponto fora da curva\""; "chegou-se à máxima de 40,42%"; "69,27%"; "59% dos entrevistados indicaram"; "54% disseram acreditar" |
+| B4 Brasil | Fonte: Latinobarómetro (pesquisa em vários países); 2017: 6,8% confiam na maioria, 92,9% não; sem confiança mútua, confiança política mais frágil; pergunta dos Quadros; quadro de "nenhuma confiança" nas cinco instituições, 2006/2010/2017; pouca mudança 2006–2010 na maioria dos casos, queda forte 2010–2017; abstenção para presidente 16,77% (2006), 22,13% (2010, a maior desde 1994), 20,33% (2018) | 2.1 (confiança interpessoal; Quadros 1–5; Eleições Gerais); nota 207 | "Apenas 6,8% dos entrevistados"; "92,9% dos entrevistados responderam que nunca se deve confiar"; "a confiança política fica ainda mais fragilizada"; "*Quanta confiança você tem nesta instituição?*"; Quadros 1–5, linha "Nenhuma confiança"; "16,77% do eleitorado total"; "o número mais alto de abstenções no Brasil para tal cargo desde a Eleição Geral de 1994"; "chegou-se a 20,33%" |
+| B5 Uma eleição vazia | Abstenção, branco e nulo como protesto; PT: comparecer é facultativo, protesto como abstenção; BR: voto obrigatório, protesto como branco e nulo; Senado 2018, 17,88% nulos; exemplo dos três eleitores (A solteiro; B e a esposa; B vence no 1º turno com 67% dos válidos); legalmente incontestável; vontade do povo não realizada; regras necessárias, não suficientes | 2.1 (voto de protesto; exemplo hipotético; condição necessária); nota 209 | "uma espécie de *voto de protesto*"; "como é o caso português devido ao comparecimento no dia da eleição ser facultativo"; "como é o caso brasileiro devido ao comparecimento ser obrigatório"; "17,88% de votos nulos para o cargo de Senador"; "o candidato \"A\", que é solteiro"; "com 67% dos votos válidos"; "Do ponto de vista legal não haveria possibilidade de questionamento"; "condição *necessária* […] não sendo condição *suficiente*" |
+| B6 Por que as pessoas desistem | Três caminhos: não vê canal (representantes distantes, inclusive no mapa, na capital); tentou (A, B, C, nada muda; abstenção, branco, nulo); não sabe como funciona (proposta na reunião do partido; "para os outros"; falta de educação formal); cidadão deve informar-se, Estado garante condições mínimas; cultura política centrada no dever de votar e, no BR, nas sanções; saída: sentido positivo, partidos democráticos e responsivos, mecanismos diretos revitalizados | 2.1 (apatia, abulia, acracia; distância geográfica; responsabilidade partilhada; cultura política); nota 238 | "não percebe a existência de canais efetivamente disponíveis"; "em um sentido propriamente geográfico"; "vota no Partido \"A\" […] no Partido \"B\" […] no Partido \"C\""; "deixando tal processo \"para os outros\""; "é a falta de educação formal do cidadão"; "a responsabilidade é partilhada entre cidadão e Estado"; "ao dever cívico do voto e às eventuais sanções"; "Ao menos no caso brasileiro" (nota 238); "incluir um caráter positivo na participação política" |
+| B7 Partidos fechados | Partido como porta de entrada; deve ser democrático por dentro; partido antidemocrático em regime democrático é contradição; PT: exigência explícita (constituição e lei: eleição dos órgãos por todos os filiados, renovação dos cargos, voto secreto); BR: exigência implícita; lei cita a democracia duas vezes; mudança de 2019: órgãos provisórios até 8 anos = 4 eleições; para o autor, 2 anos; o provisório se cristaliza; PT: prática aquém, estatutos passam imagem; maioria que segue, minoria que decide propostas e candidatos; oligarquização; acordos entre rivais nas reformas; ex-adversários aliados; cortina de fumaça; base também responsável | 2.2 (partidos; exigência constitucional e legal em PT e BR; alteração de 2019; prática portuguesa; Michels; cartelização; base partidária); notas 257 e 260 | "completamente contraditório imaginar"; "de maneira bem mais explícita que a CF"; "eleitos *democraticamente* por todos os filiados"; "obrigatoriedade de renovação política"; "sufrágio pessoal e secreto"; "cita a democracia em apenas dois momentos" (nota 260); "*de até 8 (oito) anos*"; "no período de 8 anos são realizadas 4 eleições"; "seria razoável o estabelecimento de um prazo de vigência de 2 anos"; "à teoria não corresponde a prática"; "buscam passar uma *imagem*"; "uma maioria de seguidores"; "uma minoria de verdadeiros *profissionais da política*"; "*oligarquização* do partido político"; "acordos realizados às escondidas"; "competidores ferozes hoje coligam-se"; "grande cortina de fumaça"; "as bases partidárias dividem com a elite do partido este peso" |
+| B8 Política de audiência | Rádio, TV e internet aproximam o candidato, "um de nós"; voto na pessoa, não no programa; ganha cada vez mais quem vai bem nas câmeras; propostas vagas ("mais investimento em educação"); prestação de contas pela mídia; cômodo e passivo; personalização gera "salvadores da pátria" de direita, esquerda e centro; lealdade a pessoas; partidos enfraquecidos; privilégios; participação popular como última opção; acomodação mútua; participação direta pontual em temas que não mexem no status quo; sensação de democracia | 2.2 (democracia de audiência; personalização; salvadores da pátria; autoengano); nota 278 | "democracia *de audiência*"; "como sendo *um de nós*"; "grande desenvoltura frente às câmeras"; "cada vez mais vagas"; "\"haverá mais investimentos na educação\": quem é contra"; "de maneira absolutamente passiva"; "*salvadores da pátria*"; "há *salvadores da pátria* de direita, de esquerda e do centro" (nota 278); "lealdade política a *indivíduos*, não a *instituições*"; "não querem perder os privilégios"; "algo relevado a uma última opção"; "situação de *autoengano*"; "não possuem a força necessária para alterar o *status quo*"; "passarem a *sensação*" |
+| B9 Cada um por si | Bem comum como condição da democracia; Atenas: individualismo e participação pelo pagamento; bem comum não é altruísmo: rotatividade, hoje decido, amanhã sou afetado; cuidado e reciprocidade; desconfiança mútua e participação em proveito próprio e da família; PT: desconfiança menor, 4,1 de 0 a 10 (dez. 2018); fragmentação: peças soltas, incapazes de propósito coletivo, impotência; "um voto não decide"; voto só para si; representação numérica; grupos organizados (sindicatos, ONGs) obtêm resultados; "tudo ou nada" | 2.3 (bem comum; Atenas; fragmentação; representação numérica); notas 295 e 310 | "dedicação ao *bem comum*"; "o individualismo exacerbado"; "apenas devido às compensações financeiras"; "*altruísmo*"; "critério de *rotatividade*"; "agisse com parcimônia"; "para si mesmas e/ou para os seus familiares mais próximos"; "ainda que menos pessimista" e "4,1" (nota 295); "*fragmentação política*"; "cada vez menos capazes de formular um propósito coletivo e de concretizá-lo"; "*impotência política*"; "*não será apenas um único voto*"; "*numericamente* estabelecida"; "grupos de interesse, *lobbies*, organizações não governamentais e mesmo sindicatos"; "\"ou meu grupo ganha tudo ou não ganha nada\"" |
+| B10 Dois jeitos de ver a democracia | Visão da democracia só como método de escolher governo: eleger e manter ou remover; passividade entre eleições; não procurar o eleito; quem estiver insatisfeito que se candidate; visão da construção em comum: três condições; não é democracia direta (cidadãos: o quê; representantes: como); constituições de PT e BR mais perto da primeira, nenhuma à risca, sem mecanismos de estímulo entre eleições; prática igual; BR 2013: 85,1% nunca procuraram um político; o modelo gera a fragmentação; apelo de "o povo voltará a ser ouvido"; democracia digital como gancho | 2.3 (democracia concorrencial; modelo comunitarista; CRP e CF; prática; fecho do capítulo); notas 301 e 327 | "um *método de escolha* dos mais aptos"; "eleger representantes e removê-los do poder"; "*permaneçam em atitude passiva*"; "\"conselheiros indesejáveis\""; "poderia, a qualquer momento, candidatar-se"; "exige a presença de três condições sociais"; "*não corresponde* a uma qualquer perspectiva de democracia direta" (nota 301); "deixando o *como* para seus representantes" (nota 301); "ambas seguem na direção da democracia concorrencial"; "nenhuma das duas Constituições segue o modelo à risca"; "não há a preocupação […] em estabelecer mecanismos"; "85,1% disseram nunca ter realizado tal ação"; "efetivamente gera a fragmentação política"; "\"O povo voltará a ser ouvido\""; "*democracia digital*" |
+
+### Dados usados no capítulo 2
+
+| Dado | Valor no site | Ano | Fonte citada pela tese | Onde na tese |
+|---|---|---|---|---|
+| Confiança no governo (PT) | 10%; 43% | maio 2013; nov. 2018 | Portal de Opinião Pública (FFMS), com base no Eurobarómetro | 2.1 |
+| Confiança no parlamento (PT) | 13%; 37% | maio 2013; nov. 2018 | Idem | 2.1 |
+| Confiança nos partidos (PT) | 34 pesquisas, 7 acima de 20%; 17% | nov. 2000 a nov. 2018; nov. 2018 | Idem | 2.1 |
+| Abstenção, Assembleia da República | 36,91%; 32,80%; 40,42% | 1999; 2005; 2015 | Resultados oficiais (mapas citados nas notas 198–204) | 2.1 |
+| Abstenção, Parlamento Europeu (PT) | 69,27% | 2019 | Resultados oficiais (nota 197) | 2.1 |
+| Motivos para não votar nas europeias (PT) | 59% falta de confiança no sistema; 54% voto não muda nada | maio 2018 | Eurobarómetro 89.2 | 2.1 |
+| Confiança interpessoal (BR) | 6,8% sim; 92,9% não | 2017 | Latinobarómetro | 2.1 |
+| "Nenhuma confiança" nas instituições (BR) | Congresso 28,7 / 20,4 / 60,2; Governo 17,6 / 16,1 / 66,1; Judiciário 16,8 / 17,9 / 37,2; TSE 10,1 / 17,9 / 40,2; Partidos 40,1 / 40,3 / 72,4 | 2006 / 2010 / 2017 | Latinobarómetro (Quadros 1–5; 1.204, 1.204 e 1.200 entrevistas) | 2.1 |
+| Abstenção para presidente (BR), 1º turno | 16,77%; 22,13% (maior desde 1994); 20,33% | 2006; 2010; 2018 | TSE | 2.1 |
+| Votos nulos para senador (BR) | 17,88% | 2018 | TSE | 2.1 |
+| Exemplo dos três eleitores | 67% dos votos válidos | hipotético | — | 2.1 |
+| Prazo dos órgãos provisórios (BR) | até 8 anos (4 eleições); 2 anos como razoável, para o autor | alteração de 2019 | Lei dos partidos | 2.2 |
+| Menções à democracia na lei dos partidos (BR) | duas | lei em vigor no momento da tese | Salgado e Hualde (nota 260) | 2.2; nota 260 |
+| Confiança nas pessoas (PT) | 4,1 (escala de 0 a 10) | dez. 2018 | Portal de Opinião Pública | 2.3; nota 295 |
+| Contato com políticos (BR) | 85,1% nunca | 2013 | Latinobarómetro | 2.3 |
+
+Dados do capítulo **não usados**: brancos e nulos de Portugal; abstenção de 1998, 2002 e 2014 para
+presidente e todos os números para deputado e para os demais cargos (o quadro de abstenção do
+Brasil fica para o gráfico da Fase 3); picos de confiança em PT (56% no governo em maio de 2017;
+48% no parlamento em março de 2018); Justiça 44%, sindicatos 39% e satisfação com a democracia
+2,6 (nov. 2018); motivos de 50% e 46% e desinteresse de 52% nas europeias; 52% "por dever" e 29%
+"por se sentir europeus" (nota 302); confiança interpessoal no BR em 2006, 2010 e 1996 (nota 207);
+participação não eleitoral em PT (petição e contato, dez. 2016) e no BR (petição, 2015); 4% e
+10,6% de contato com políticos no BR (2013); volatilidade eleitoral (nota 232).
+
+### Escolhas de interpretação
+
+1. **Queda da confiança no Brasil (D2).** A tese diz que a queda "é constante ao longo do tempo".
+   O site descreve o que os Quadros mostram: entre 2006 e 2010, os números de "nenhuma confiança"
+   mudaram pouco na maioria dos casos (Governo, Judiciário e Partidos variam até 1,5 ponto;
+   Congresso cai 8,3; TSE sobe 7,8); a queda forte vem entre 2010 e 2017.
+2. **Quadro só com "nenhuma confiança".** O site mostra uma linha de cada Quadro, a mesma
+   destacada na home. Os seis níveis de resposta ficam para o explorador interativo da Fase 3.
+3. **Maioria no primeiro degrau.** A tese diz que, na prática, os cidadãos "permanecem no nível da
+   presença política", embora votem (o voto é formalmente o degrau de decisão indireta). O site
+   escreve "a maioria fica no primeiro degrau e vota de tempos em tempos", que é a leitura da tese:
+   o voto apenas formal não conta como envolvimento.
+4. **Apatia, abulia e acracia sem os nomes.** Conforme o plano, as três formas de não participação
+   aparecem como situações ("três caminhos"), sem os termos técnicos. A distância geográfica, que
+   a tese liga ao aumento da apatia, foi posta no primeiro caminho. No segundo, o site lista
+   abstenção, branco e nulo, como a tese.
+5. **Punições só no Brasil.** A tese fala da cultura do "dever cívico do voto e [d]as eventuais
+   sanções"; a nota 238 restringe as sanções ao Brasil. O site escreve "e, no Brasil, das punições
+   para quem não vota".
+6. **Motivos para não votar nas europeias.** A tese escreve "59% dos entrevistados indicaram que
+   não votariam porque não confiam no sistema político" sem dizer a base exata da pergunta. O site
+   diz que "os portugueses apontaram motivos para não votar" e dá as duas porcentagens, sem afirmar
+   a base.
+7. **Nulos para o Senado.** A tese informa que, de 2006 em diante, brancos e nulos são porcentagem
+   "daqueles que compareceram". O site diz "17,88% dos votos para o Senado foram nulos".
+8. **Confiança nas pessoas em Portugal.** A nota 295 diz que a situação portuguesa é "não tão
+   diferente, ainda que menos pessimista" que a brasileira. As escalas são diferentes (sim ou não no
+   Brasil; 0 a 10 em Portugal), por isso o site não compara os números: diz que a desconfiança é
+   menor e dá o 4,1.
+9. **"Direção provisória".** A lei fala em "órgãos provisórios". O site usa "direção provisória de
+   um partido" para o leitor leigo.
+10. **"Só menciona a democracia duas vezes".** A nota 260 diz que a lei "cita a democracia em apenas
+    dois momentos" (as duas passagens falam em "regime democrático"). O site evita dizer "a
+    palavra 'democracia'", que seria mais literal que o original.
+11. **Eleição dos órgãos em Portugal.** A lei portuguesa prevê a assembleia eleita por todos os
+    filiados e os demais órgãos nacionais eleitos com participação "direta ou indireta" de todos.
+    O site resume: "todos os filiados participam da eleição dos órgãos do partido". Dos demais
+    direitos (impugnação, referendos internos, igualdade de gênero e de oportunidades), nenhum
+    entrou, por tamanho.
+12. **Acordos entre partidos.** A tese fala em "eventuais acordos" (cartelização). O site usa
+    "podem fazer acordos discretos" e não usa o termo "cartelização". "Oligarquização" é usado e
+    explicado, porque volta no capítulo 4.
+13. **Salvadores da pátria.** O site mantém a ressalva da nota 278 (direita, esquerda e centro) e
+    deixa de fora a passagem dos salvadores para o Judiciário, por tamanho e para não sugerir caso
+    concreto.
+14. **Constituições "mais perto da primeira visão".** A tese diz que a CRP e a CF "seguem na
+    direção da democracia concorrencial", que "nenhuma das duas […] segue o modelo à risca" e que
+    não há preocupação em "estabelecer mecanismos" nem "comandos constitucionais explícitos" para
+    estimular a participação entre eleições. O capítulo 1 (página aprovada, B9) diz que a
+    constituição portuguesa manda o Estado "incentivar a participação". Para não haver
+    contradição entre as páginas, o site fala em "mecanismos claros" e mantém o "nenhuma a segue à
+    risca". **Aceito pelo autor (D21).**
+15. **Nomes dos modelos.** "Democracia concorrencial" e "modelo comunitarista" não aparecem; o site
+    usa "um método para escolher quem governa" e "uma construção em comum", como no plano.
+16. **Grupos organizados.** A tese lista "grupos de interesse, *lobbies*, organizações não
+    governamentais e mesmo sindicatos". O site cita sindicatos e organizações não governamentais,
+    para não usar "lobbies" sem explicação.
+17. **Ficou de fora, conforme o plano:** a abertura filosófica de 2.3 (Aristóteles, Hobbes, Locke,
+    Rousseau); as quatro condições do modelo concorrencial; os números de 1998 por cargo; a
+    volatilidade eleitoral; o exemplo da nota 237; as menções nominais das notas 217 e 269; o
+    detalhe artigo por artigo das leis dos partidos; a distinção entre legitimidade e legalidade
+    (nota 172); os nomes dos autores citados (Sani, Santos e Magalhães, Michels, Manin, Taylor,
+    Schumpeter).
+18. **Dado com redação contraditória na tese, não usado.** Em 2.3, a tese diz que "apenas 21%" dos
+    portugueses assinaram petição em dez. 2016 e, na mesma frase, que é "um valor elevado" diante
+    da média de 7% (2005–2015). Como o número não é necessário ao argumento da página, ficou de
+    fora (ver "Dados não usados").
+19. **Menções a "a tese" (D15).** Duas: o conceito amplo de participação (B1) e o modelo que gera a
+    fragmentação (B10). Uma terceira posição do autor aparece como "para o autor" (B7, prazo de dois
+    anos).

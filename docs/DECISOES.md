@@ -31,8 +31,9 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D18 | Contagem de partidos no capítulo 1 | **Aceito** não usar nenhum número de partidos do capítulo 1 (25 antes de 2006, mais 9, 34 registrados, 75 em formação), em linha com a D4. Decidido em 17/11/2026. |
 | D19 | Exemplo hipotético dos 55% (capítulo 1) | **Manter.** O número é ilustrativo e não vem da tese; o raciocínio sobre maioria e direitos da minoria, sim. Decidido em 17/11/2026. |
 | D20 | "Para o autor" (capítulo 1) | **Aceito** atribuir ao autor a ligação entre a mudança de 2006 nas alianças e a multiplicação dos partidos. Decidido em 17/11/2026. |
+| D21 | Constituições e estímulo à participação (capítulo 2, B10; era A8) | **Aceita** a formulação "Nenhuma a segue à risca, mas nenhuma cria mecanismos claros para estimular a participação entre as eleições", apoiada em "não há a preocupação […] em estabelecer mecanismos" (2.3). Evita contradição com o capítulo 1, que diz que a constituição portuguesa manda o Estado "incentivar a participação". Decidido em 17/11/2026. |
 
 ## Em aberto
 
 Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
-Fase 2 (D13 a D20) foram decididos. Novos pontos entram aqui.
+Fase 2 (D13 a D21) foram decididos. Novos pontos entram aqui.
