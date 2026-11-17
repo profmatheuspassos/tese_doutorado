@@ -111,8 +111,9 @@ se as 880 notas de rodapé foram distribuídas.
 ## Estado atual (17 de novembro de 2026)
 
 - **Fase 1 concluída e aprovada.**
-- **Fase 2 em andamento.** Decisões D1 a D35 registradas (D15 estendida a todas as páginas);
-  nenhum ponto em aberto. Script de legibilidade pronto.
+- **Fase 2 concluída e aprovada** (17/11/2026): home, capítulos 1 a 5 e "Sobre a tese" escritos e
+  aprovados. Decisões D1 a D42 registradas (D15 estendida a todas as páginas); nenhum ponto em
+  aberto. Script de legibilidade pronto.
 - **Home aprovada** (`src/content/pt-br/home.md`, 1.770 palavras, índice 62,1) e enviada à
   `main` por pull request.
 - **Capítulo 1 aprovado** (`src/content/pt-br/capitulo-1.md`, 1.680 palavras, índice 61,9),
@@ -130,11 +131,14 @@ se as 880 notas de rodapé foram distribuídas.
 - **Capítulo 5 aprovado** com um ajuste (`src/content/pt-br/capitulo-5.md`, 1.800 palavras, índice
   57,8), com rastreabilidade e relatório; enviado à `main` por pull request. Decisões D32 a D35
   registradas (D32: as 1.473.063 assinaturas são 1% do eleitorado de 2018).
+- **"Sobre a tese" aprovada** com um ajuste (`src/content/pt-br/sobre.md`, 446 palavras, índice
+  54,4), com rastreabilidade e relatório; enviada à `main` por pull request. Decisões D36 a D42
+  registradas (D36: versão oficial = link do depósito, sem "documento provisório"; D37: linha sobre
+  uso de IA; D38: links com https; D41: lembrete da Fase 5).
 - Ainda não existe código de site.
 
 ## Próximo passo
 
-1. Em sessão nova, partindo da `main` (depois do merge do capítulo 5): recriar `conteudo/` com
-   `bash scripts/converter.sh` e escrever "Sobre a tese" a partir da releitura dos pré-textuais e
-   da metodologia (ver "Protocolo de leitura"): escrever, medir, rastrear, push na branch da
-   sessão, parar para aprovação e, aprovada, abrir pull request para a `main`.
+1. **Fase 3 (código do site): não começar sem aprovação explícita do autor.**
+2. Lembrete para a Fase 5 (D41): na publicação, conferir que o link do repositório na página
+   "Sobre a tese" abre para o público.

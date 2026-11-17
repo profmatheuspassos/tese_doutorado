@@ -835,3 +835,93 @@ consultas em 31 anos" (nota 730; ver D3).
     como tradução da cidadania ativa (B9). "O autor" aparece em cinco pontos de posição pessoal: a
     resposta às travas do referendo, as sugestões para a iniciativa popular, a escolha da Califórnia,
     a frase "uma pessoa passiva à espera da próxima eleição" e o ponto fraco das ferramentas.
+
+---
+
+## Sobre a tese (`src/content/pt-br/sobre.md`)
+
+Releitura feita em 17/11/2026: pré-textuais por inteiro (capa, folha de rosto, nota prévia,
+dedicatória, agradecimentos, epígrafe, resumo, abstract, sumário) e Introdução por inteiro, com
+atenção à seção "Breves apontamentos sobre a metodologia". Notas 24 a 28 abertas: são só referência
+bibliográfica. Para a agenda de pesquisa, o penúltimo parágrafo das Considerações finais. As âncoras
+abaixo foram conferidas uma a uma contra `conteudo/` (23 trechos, todos encontrados). Versão aprovada
+pelo autor em 17/11/2026, com o ajuste da D38 (links com https).
+
+Dois blocos não vêm da tese, e sim de pedidos do autor: a versão oficial (D7, D36) e a linha sobre
+o uso de inteligência artificial (D37).
+
+### Blocos
+
+| Bloco | O que o site diz | Origem na tese | Âncora no original |
+|---|---|---|---|
+| B0 Abertura | Tese de doutorado em Direito, Universidade de Lisboa, 2022; compara PT e BR, duas democracias representativas; a pergunta é se o cidadão pode ganhar peso real nas decisões sem trocar o sistema | Capa e folha de rosto; D7; Introdução (Contextualização, problema de pesquisa); Resumo | "Tese especialmente elaborada para obtenção do grau de Doutor em Direito, na especialidade de Ciências Jurídico-Políticas"; "a proposta de cidadania ativa garante aos cidadãos mecanismos de controle suficientemente fortes"; "efetivo revigoramento -- e não a substituição" |
+| B1 O que o site é e o que não é | Versão de divulgação; sem mudar o sentido; sem citações, notas e discussão detalhada com outros autores; versão oficial no repositório da Universidade de Lisboa; textos adaptados com apoio de IA e revisados pelo autor; rastreabilidade no repositório do projeto | Não vem da tese: CLAUDE.md (objetivo do projeto e regras de fidelidade); D7; D36; D37 | — |
+| B2 Ficha | Título, autor, orientador, instituição, grau e especialidade, ano, defesa, financiamento CAPES (processo, 2015 a 2018), versão oficial | Capa e folha de rosto; Agradecimentos; D7 | "Orientador: Professor Doutor Jorge Manuel Moura Loureiro de Miranda"; "o Professor Doutor Jorge Miranda"; "Instituição financiadora: CAPES -- Proc. Nº BEX 1791/15-0"; "fundação do Ministério da Educação (MEC) do Brasil"; "pelo apoio financeiro a mim dispensado de 2015 a 2018" |
+| B3 Como a pesquisa foi feita | Primeiro constituições, leis e decisões judiciais, com leitura própria; depois os outros autores, inclusive os contrários; comparação PT–BR como base; Portugal como referência por ser mais aberto; objetivo: soluções para o Brasil; Direito, ciência política e sociologia; números de opinião, eleições e participação | Introdução (Metodologia; Contextualização; Objetivos); Resumo | "utiliza-se exclusivamente de fontes objetivas primárias"; "Constituição, a legislação e a jurisprudência"; "o primeiro contato do pesquisador for com este mesmo texto jurídico"; "outros contributos que se apresentam como contrários à tese desenvolvida"; "método comparativo, dada ser esta a estrutura básica do texto"; "abertura jurídico institucional maior ao conceito"; "com ênfase para a busca de soluções para o sistema brasileiro"; "envolve as áreas do Direito, da Ciência Política e da Sociologia"; "método estatístico, já que alguns fenômenos jurídico-políticos serão reduzidos a termos quantitativos" |
+| B4 O que fica para depois | Seis temas para pesquisas futuras; três citados: qualidade da democracia, prestação de contas dos partidos, tecnologia como meio de participação sem democracia direta | Considerações finais (penúltimo parágrafo, eixos a, b e c) | "aventam-se alguns eixos centrais"; "a verificação da melhoria da qualidade da democracia"; "a necessária *accountability* de suas ações para com o eleitorado"; "não em sua vertente análoga à democracia direta"; "efetivamente utilizada como meio de participação política do cidadão" |
+| B5 Sobre os números | Números da tese, com o ano; não atualizados; mostram o período estudado | Não vem da tese: CLAUDE.md (fidelidade à tese) | — |
+| B6 Como citar | ABNT, APA e BibTeX, sempre pela versão oficial | Capa e folha de rosto; D7 | "Tese especialmente elaborada para obtenção do grau de Doutor em Direito, na especialidade de Ciências Jurídico-Políticas" |
+| B7 Contato | contato@profmatheus.com | D7 | — |
+
+### Dados usados na página "Sobre"
+
+| Dado | Valor no site | Fonte |
+|---|---|---|
+| Ano da tese | 2022 | Capa e folha de rosto |
+| Data da defesa | 18 de novembro de 2022 | D7 |
+| Versão oficial | https://hdl.handle.net/10451/57093 | D7; D38 |
+| Processo CAPES | BEX 1791/15-0 | Folha de rosto; Agradecimentos |
+| Período do apoio da CAPES | 2015 a 2018 | Agradecimentos |
+| Contato | contato@profmatheus.com | D7 |
+
+### Escolhas de interpretação
+
+1. **A pergunta da pesquisa (B0).** "Ganhar peso real nas decisões públicas" traduz "mecanismos de
+   controle suficientemente fortes [...] para influir efetivamente na governança". "Sem trocar esse
+   sistema por outro" vem da conclusão do Resumo (revigorar, não substituir), não do problema de
+   pesquisa. As duas ideias foram juntadas numa frase.
+2. **Versão oficial (B1, B2, B6; D36).** O link do depósito da D7 é a única versão indicada. A
+   menção "Documento provisório", que está na capa do arquivo, não entra. O nome "repositório da
+   Universidade de Lisboa" foi deduzido do prefixo do link (10451), porque a rede da sessão bloqueia
+   hdl.handle.net; o autor confirmou que o link abre o registro da tese em repositorio.ulisboa.pt
+   (D39). Links com https (D38).
+3. **Linha sobre inteligência artificial (B1; D37).** Pedido do autor, não vem da tese. O link aponta
+   para o repositório no GitHub, onde está esta Rastreabilidade. O repositório já é público; conferir
+   o link na publicação (D41, lembrete para a Fase 5).
+4. **"Ficam de fora [...] a discussão detalhada com outros autores" (B1).** Descreve as regras do
+   site: sem notas de rodapé e sem nome de autor citado pela tese. O argumento dos autores entra,
+   resumido, sem o nome.
+5. **Orientador (B2).** "Prof. Doutor Jorge Miranda", forma usada nos agradecimentos e no
+   CLAUDE.md. O nome completo (Jorge Manuel Moura Loureiro de Miranda) está na capa.
+6. **Financiamento (B2).** "Apoio de 2015 a 2018" resume "apoio financeiro a mim dispensado de 2015 a
+   2018". O número do processo entra porque está na folha de rosto.
+7. **Metodologia (B3).** O plano pedia três frases; ficaram seis curtas, com os mesmos três pontos
+   (texto da lei antes dos autores; comparação; dados) e a interdisciplinaridade. "Decisões
+   judiciais" traduz "jurisprudência"; "formou a própria leitura" traduz a visão "formada de
+   maneira independente"; "outros autores" traduz "doutrina"; "inclusive os que pensam diferente"
+   traduz os "contributos [...] contrários à tese". Ficam de fora: método dedutivo, monográfico e
+   tipológico; conceitos apresentados conforme a necessidade; a crítica ao "manualismo"; os nomes
+   dos autores de metodologia citados.
+8. **"Suas leis são mais abertas à participação do cidadão" (B3).** Traduz "abertura jurídico
+   institucional maior ao conceito" de cidadania ativa (Contextualização).
+9. **Tipos de dados (B3).** A Introdução fala em "método estatístico", sem listar os dados. "Pesquisas
+   de opinião, resultados de eleições e dados oficiais sobre participação" descreve o que os
+   capítulos 2 e 5 usam (Latinobarómetro, Portal de Opinião Pública, abstenção, petições, pedidos
+   pela Lei de Acesso à Informação).
+10. **Agenda de pesquisa (B4).** Três dos seis eixos (a, b e c). Ficam de fora, por tamanho: tecido
+    social (d); outros países com recall (e), que pediria explicar o termo; Direito ligado à ciência
+    política e à sociologia (f). "Estudar formas de fazer os partidos prestarem contas" traduz o
+    estudo de "mecanismos que estimulem a atuação cívica também dos partidos [...]
+    *accountability*". O plano pedia uma frase; ficaram três curtas.
+11. **Sobre os números (B5).** Regra do projeto, não da tese. "Período estudado" não traz datas,
+    porque os dados variam de ano conforme o capítulo.
+12. **Como citar (B6).** Referências montadas a partir da capa, da folha de rosto e da D7, nos
+    formatos ABNT (NBR 6023), APA (7ª edição) e BibTeX (`@phdthesis`). No ABNT, o título segue a
+    grafia da capa; no APA, vai em caixa baixa de frase, como pede a norma. Sem número de folhas,
+    que não foi conferido na versão depositada. "Acesso em: [data de acesso]" é marcador: na Fase 3,
+    o botão de copiar preenche a data do dia. Negrito (ABNT) e itálico (APA) do título ficam para a
+    exibição na Fase 3; o texto copiado é simples. O sobrenome segue a regra ABNT (SILVA, Matheus
+    Passos), mantida pelo autor, sem número de folhas (D40).
+13. **Menções a "a tese" (D15).** Três no corpo (duas em B1, uma em B5), além do título da página e
+    de "uma tese de doutorado" na abertura. No resto, "o trabalho" e "a pesquisa". "O autor"
+    aparece duas vezes (B1, B3).
