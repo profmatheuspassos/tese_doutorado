@@ -1,0 +1,36 @@
+---
+/**
+ * Bloco de texto de uma página interna: a fatia exata do .md, em coluna de leitura.
+ * - `transformar(el, i)` só pode acrescentar atributos ou envoltórios (helpers de lib/blocos).
+ * - Slots `antes` e `apos-N` (N = índice do elemento) recebem visuais sem texto do bloco;
+ *   o que for figura larga leva a classe `largo`.
+ */
+import type { Bloco } from '../../lib/blocos';
+
+interface Props {
+  bloco: Bloco;
+  tema?: 'clara' | 'nevoa' | 'escura';
+  transformar?: (elemento: string, indice: number) => string;
+  class?: string;
+}
+const { bloco, tema = 'clara', transformar = (el: string) => el, class: classe } = Astro.props;
+const antes = Astro.slots.has('antes') ? await Astro.slots.render('antes') : '';
+const itens: { html: string; extra: string }[] = [];
+for (const [i, el] of bloco.elementos.entries()) {
+  const nome = `apos-${i}`;
+  itens.push({ html: transformar(el, i), extra: Astro.slots.has(nome) ? await Astro.slots.render(nome) : '' });
+}
+---
+<section data-bloco={bloco.id} class:list={['bloco', `secao-${tema}`, classe]}>
+  <div class="margem mx-auto max-w-(--container-figura)">
+    <div class="coluna texto">
+      {antes && <Fragment set:html={antes} />}
+      {itens.map(({ html, extra }) => (
+        <>
+          <Fragment set:html={html} />
+          {extra && <Fragment set:html={extra} />}
+        </>
+      ))}
+    </div>
+  </div>
+</section>

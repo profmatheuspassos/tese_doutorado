@@ -1,0 +1,84 @@
+---
+/**
+ * Capítulo 2 — O que não está funcionando (modelo da Fase 4, D54).
+ * B0: abertura com o círculo vicioso ao lado. B2: os três parágrafos dos degraus viram uma
+ * escada (só layout). B4: 92,9% em destaque e o explorador dos Quadros 1 a 5 (D44).
+ */
+import Capitulo from '../../layouts/Capitulo.astro';
+import BlocoTexto from '../capitulo/BlocoTexto.astro';
+import Circulo from '../diagramas/Circulo.astro';
+import NumeroGrande from '../graficos/NumeroGrande.astro';
+import Explorador from '../interativos/Explorador.astro';
+import { pagina } from '../../lib/paginas';
+import { comAtributos, prefixar, usarBlocos } from '../../lib/blocos';
+import { dados, uso } from '../../lib/dados';
+
+const { dados: meta, blocos } = await pagina('capitulo-2');
+const { b, conferir } = usarBlocos(blocos, 'capitulo-2');
+const B0 = b('B0');
+const [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10'].map(b);
+conferir();
+
+// B2 — escada: ícone do degrau (1 a 3) no início de cada parágrafo; o primeiro, onde fica a
+// maioria, ganha o acento.
+if (B2.elementos.length !== 5 || !B2.elementos.slice(1, 4).every((p) => p.startsWith('<p>')) || !B2.elementos[1].includes('<strong>estar presente</strong>')) {
+  throw new Error('capitulo-2 B2 fora do formato esperado (h2 + três degraus + fecho).');
+}
+const iconeDegrau = (k: number) => {
+  const barras = [1, 2, 3].map((i) => {
+    const h = i * 6;
+    const cheia = i <= k;
+    return `<rect x="${(i - 1) * 8 + 1}" y="${21 - h}" width="6" height="${h}" rx="1" ${cheia ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="1.25" opacity="0.45"'}/>`;
+  }).join('');
+  return `<svg class="degrau-icone" viewBox="0 0 24 22" aria-hidden="true" focusable="false">${barras}</svg>`;
+};
+const degrau = (el: string, i: number) => {
+  if (i < 1 || i > 3) return el;
+  return comAtributos(prefixar(el, iconeDegrau(i)), { class: i === 1 ? 'degrau degrau-maioria' : 'degrau' });
+};
+
+// B4 — tabela do texto alinhada pelos números; o explorador entra depois do comentário sobre ela.
+if (!B4.elementos[3]?.startsWith('<table') || !B4.elementos[4]?.startsWith('<p')) throw new Error('capitulo-2 B4 fora do formato esperado.');
+uso('capitulo-2', 'B4', 'numero-grande');
+const tabelaB4 = (el: string, i: number) => (i === 3 ? comAtributos(el, { class: 'tabela-numeros' }) : el);
+---
+<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={meta.titulo_original} imagem="cap2-abertura.webp" tema="escuro">
+  <Circulo slot="lateral" estado="vicioso" tema="escuro" class="circulo-abertura" />
+
+  <BlocoTexto bloco={B1} />
+  <BlocoTexto bloco={B2} transformar={degrau} />
+  <BlocoTexto bloco={B3} />
+  <BlocoTexto bloco={B4} transformar={tabelaB4}>
+    <NumeroGrande slot="apos-0" valor={dados.confianca_interpessoal_br.nao_pode_confiar} class="mb-6 text-semente" />
+    <Explorador slot="apos-4" />
+  </BlocoTexto>
+  <BlocoTexto bloco={B5} />
+  <BlocoTexto bloco={B6} />
+  <BlocoTexto bloco={B7} />
+  <BlocoTexto bloco={B8} />
+  <BlocoTexto bloco={B9} />
+  <BlocoTexto bloco={B10} />
+</Capitulo>
+
+<style is:global>
+  .circulo-abertura { max-width: 24rem; }
+  .texto p.degrau {
+    position: relative;
+    padding: 1rem 1.25rem 1rem 3.75rem;
+    background: var(--color-nevoa);
+    border-radius: var(--radius-cartao);
+    border-left: 3px solid var(--color-linha);
+    margin-bottom: 0.75rem;
+  }
+  .texto p.degrau-maioria { border-left-color: var(--color-semente); }
+  .degrau-icone {
+    position: absolute;
+    left: 1.1rem;
+    top: 1.15rem;
+    width: 1.6rem;
+    height: auto;
+    color: var(--color-tinta-2);
+  }
+  .degrau-maioria .degrau-icone { color: var(--color-semente); }
+  .texto p.degrau + p:not(.degrau) { margin-top: 1.75rem; }
+</style>

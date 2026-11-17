@@ -21,6 +21,8 @@ const pares = [
   ...['tinta', 'tinta-2', 'ramo', 'semente'].flatMap((t) => claros.map((f) => [t, f, 4.5])),
   ...['linha'].flatMap((t) => claros.map((f) => [t, f, 3])),
   ...['gelo', 'gelo-2', 'ramo-escuro', 'semente-escuro', 'linha-escuro'].flatMap((t) => escuros.map((f) => [t, f, 4.5])),
+  // Fase 4: valores em branco sobre os segmentos do explorador (capítulo 2) e botão escolhido.
+  ...['tinta', 'tinta-2', 'linha', 'semente'].map((f) => ['branco', f, 4.5]),
 ];
 const erros = [];
 const linhas = pares.map(([t, f, min]) => {

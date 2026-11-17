@@ -1,0 +1,21 @@
+---
+/**
+ * Rotas dos capítulos, lidas do campo `rota` de cada .md aprovado. Só ganham página os
+ * capítulos que já têm composição (a Fase 4 entrega um capítulo por vez).
+ */
+import Capitulo2 from '../../components/capitulos/Capitulo2.astro';
+import { capitulos } from '../../lib/paginas';
+
+export async function getStaticPaths() {
+  const composicoes = { 2: Capitulo2 } as Record<number, typeof Capitulo2>;
+  const caps = await capitulos();
+  return caps.filter((c) => composicoes[c.n]).map((c) => {
+    const m = c.rota.match(/^\/capitulos\/([\w-]+)\/$/);
+    if (!m) throw new Error(`Rota de capítulo fora do padrão: ${c.rota}`);
+    return { params: { slug: m[1] }, props: { Composicao: composicoes[c.n] } };
+  });
+}
+
+const { Composicao } = Astro.props;
+---
+<Composicao />

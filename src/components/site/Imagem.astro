@@ -1,0 +1,36 @@
+---
+/**
+ * Imagem ilustrativa de public/img com srcset (840, 1680 e a largura original), a partir das
+ * variantes geradas por scripts/variantes-imagens.mjs. Sempre alt="" (D47): as imagens são
+ * decorativas e o texto ao lado diz o que importa.
+ */
+import { url } from '../../lib/paginas';
+
+interface Props {
+  nome: string; // "cap2-abertura.webp"
+  largura: number;
+  altura: number;
+  sizes?: string;
+  prioridade?: boolean; // imagem do topo da página
+  class?: string;
+}
+const { nome, largura, altura, sizes = '100vw', prioridade = false, class: classe } = Astro.props;
+const base = nome.replace(/\.webp$/, '');
+const srcset = [840, 1680]
+  .filter((w) => w < largura)
+  .map((w) => `${url(`/img/variantes/${base}-${w}.webp`)} ${w}w`)
+  .concat(`${url(`/img/${nome}`)} ${largura}w`)
+  .join(', ');
+---
+<img
+  src={url(`/img/${nome}`)}
+  srcset={srcset}
+  sizes={sizes}
+  width={largura}
+  height={altura}
+  alt=""
+  loading={prioridade ? 'eager' : 'lazy'}
+  fetchpriority={prioridade ? 'high' : undefined}
+  decoding="async"
+  class={classe}
+/>

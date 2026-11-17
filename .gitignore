@@ -13,3 +13,6 @@ dist/
 
 # Sistema
 .DS_Store
+
+# Variantes de imagem geradas no build (scripts/variantes-imagens.mjs)
+public/img/variantes/

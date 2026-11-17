@@ -4,15 +4,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "prebuild": "node scripts/conferir-dados.mjs && node scripts/conferir-contraste.mjs",
+    "dev": "node scripts/variantes-imagens.mjs && astro dev",
+    "prebuild": "node scripts/conferir-dados.mjs && node scripts/conferir-contraste.mjs && node scripts/variantes-imagens.mjs",
     "build": "astro check && astro build",
-    "postbuild": "node scripts/conferir-texto.mjs && node scripts/conferir-terceiros.mjs",
+    "postbuild": "node scripts/conferir-texto.mjs && node scripts/conferir-terceiros.mjs && node scripts/conferir-links.mjs",
     "preview": "astro preview",
     "conferir": "npm run build",
-    "capturas": "node scripts/capturas.mjs B0,B1,B2,B3,B4,B5,B6,B7,B8,rodape",
+    "capturas": "node scripts/capturas.mjs",
     "imagens": "node scripts/reservar-imagens.mjs",
-    "lighthouse": "node scripts/lighthouse.mjs"
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "capturas:salvar": "node scripts/capturas.mjs --salvar"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "0.4.10",

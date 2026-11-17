@@ -194,6 +194,61 @@
     color: var(--color-gelo);
   }
 
+  /*
+   * Páginas internas (Fase 4): cada bloco é uma seção com coluna de leitura. Visuais largos
+   * (classe "largo") ocupam a largura de figura, sem sair da página.
+   */
+  .bloco {
+    padding-block: clamp(3rem, 7vw, 5rem);
+  }
+  .bloco + .bloco.secao-clara,
+  .abertura-pagina.secao-clara + .bloco.secao-clara {
+    padding-top: clamp(1rem, 3vw, 2rem);
+  }
+  .coluna {
+    display: grid;
+    /* Os nomes das linhas precisam terminar em -start e -end para "grid-column: texto" funcionar. */
+    grid-template-columns: [largo-start] minmax(0, 1fr) [texto-start] minmax(0, var(--container-texto)) [texto-end] minmax(0, 1fr) [largo-end];
+  }
+  .coluna > * {
+    grid-column: texto;
+    min-width: 0;
+  }
+  .coluna > .largo {
+    grid-column: largo;
+    justify-self: center;
+    width: 100%;
+    max-width: 56rem;
+    margin-block: 2rem 2.5rem;
+  }
+  .texto ol {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.25rem;
+    counter-reset: item;
+  }
+  .texto ol > li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.5rem;
+    counter-increment: item;
+  }
+  .texto ol > li::before {
+    content: counter(item) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-tinta-2);
+  }
+  .tabela-numeros td:not(:first-child),
+  .tabela-numeros th:not(:first-child) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    padding-right: 0;
+    padding-left: 0.75rem;
+  }
+
   /* Link "Leia o capítulo N" ao fim dos blocos (T5) */
   .link-capitulo {
     display: inline;
