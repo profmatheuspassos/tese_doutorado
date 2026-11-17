@@ -23,7 +23,7 @@ mkdirSync(saida, { recursive: true });
 
 const PORTA = 4329;
 const BASE = `http://127.0.0.1:${PORTA}/`;
-const servidor = spawn('npx', ['astro', 'preview', '--host', '127.0.0.1', '--port', String(PORTA)], { cwd: raiz, stdio: ['ignore', 'pipe', 'pipe'] });
+const servidor = spawn(process.execPath, [join(raiz, 'node_modules/astro/bin/astro.mjs'), 'preview', '--ignore-lock', '--host', '127.0.0.1', '--port', String(PORTA)], { cwd: raiz, stdio: ['ignore', 'pipe', 'pipe'] });
 await new Promise((ok, erro) => {
   const t = setTimeout(() => erro(new Error('preview não subiu')), 30000);
   servidor.stdout.on('data', (d) => { if (String(d).includes(String(PORTA))) { clearTimeout(t); ok(); } });
@@ -103,13 +103,14 @@ for (const c of cenarios) {
       const p2 = await ctx2.newPage();
       await p2.goto(BASE, { waitUntil: 'networkidle' });
       await p2.evaluate(() => document.fonts.ready.then(() => true));
-      // Nas capturas por bloco, o cabeçalho fixo se repetiria no meio da imagem.
-      await p2.addStyleTag({ content: 'header{position:static!important}' });
       for (const b of destaques) {
         const loc = p2.locator(`[data-bloco="${b}"]`);
-        await loc.scrollIntoViewIfNeeded();
-        await p2.waitForTimeout(c.nome === 'normal' ? 2600 : 300);
-        await loc.screenshot({ path: join(saida, `${b}-${c.nome}-${w}.jpg`), type: 'jpeg', quality: 82 });
+        // Percorre o bloco inteiro antes da captura, para que todas as animações tenham disparado.
+        const caixa = await loc.evaluate((el) => { const r = el.getBoundingClientRect(); return { topo: r.top + scrollY, altura: r.height }; });
+        for (let y = caixa.topo - 200; y <= caixa.topo + caixa.altura; y += 300) { await p2.evaluate((v) => scrollTo(0, v), y); await p2.waitForTimeout(c.nome === 'normal' ? 150 : 0); }
+        await p2.waitForTimeout(c.nome === 'normal' ? 2600 : 200);
+        // O cabeçalho fixo se repetiria no meio da imagem do bloco.
+        await loc.screenshot({ path: join(saida, `${b}-${c.nome}-${w}.jpg`), type: 'jpeg', quality: 82, style: 'header{position:static!important}' });
       }
       await ctx2.close();
     }

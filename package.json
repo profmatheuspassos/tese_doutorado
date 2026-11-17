@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "conferir": "npm run build",
     "capturas": "node scripts/capturas.mjs",
-    "imagens": "node scripts/reservar-imagens.mjs"
+    "imagens": "node scripts/reservar-imagens.mjs",
+    "lighthouse": "node scripts/lighthouse.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "0.4.10",

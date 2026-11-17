@@ -193,9 +193,7 @@
 
   /* Link "Leia o capítulo N" ao fim dos blocos (T5) */
   .link-capitulo {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+    display: inline;
     font-weight: 600;
     font-size: var(--text-pequeno);
     color: var(--color-ramo);
@@ -209,6 +207,9 @@
     color: var(--color-ramo-escuro);
   }
   .link-capitulo svg {
+    display: inline-block;
+    vertical-align: -0.15em;
+    margin-left: 0.4rem;
     transition: transform 0.2s ease;
   }
   .link-capitulo:hover svg {
