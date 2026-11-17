@@ -27,7 +27,7 @@ o dado depende delas, nas notas de rodapé.
 | B4 O círculo | Votar ≠ envolver-se; partidos como porta de entrada, decididos por poucos; PT exige democracia interna, mas a prática fica aquém; BR não exige de forma explícita; fragmentação política; círculo vicioso sem estímulo para mudar; a raiz está nas instituições | 2.1; 2.2; 2.3; Considerações finais (§ 3) | "votar em qualquer um" (2.1); "à teoria não corresponde a prática" (2.2); "nenhum dos envolvidos dá e/ou recebe estímulos suficientemente fortes" (2.2); "cada vez menos capazes de formular um propósito coletivo" (2.3); "a estrutura institucional apresentada acaba por provocar esta ruptura no tecido social" (CF) |
 | B5 O atalho | Democracia digital como decisão direta pela internet; acesso: PT 63,9% (16–74 anos, 1º trimestre de 2018), BR 74,8% em domicílios com acesso (2017); curtidas e bolhas (exemplo vegetariano); adversário x inimigo; populismo como degeneração; quantidade ≠ qualidade; complemento, não salvação; "algo mais" | 3.1; 3.2; 3.3; Considerações finais (§ 4) | "Cerca de 63,9% dos habitantes com idade entre 16 e 74 anos"; "74,8% da população residia em domicílios"; "cozinha vegetariana"; "o inimigo precisa necessária e completamente destruído"; "O populismo, portanto, é inegavelmente uma degeneração"; "é necessário *algo mais*"; "*salvadora da pátria*" |
 | B6 O cidadão no centro | Identificação patriótica (corresponsabilidade pela comunidade; local); racional, não moral (cinco pessoas); cidadania ativa (decidir políticas locais com os outros, responder pelo resultado, ao lado do Estado); governança centrada no governo x nos cidadãos; apatia por impotência; partidos que se abrem; PT: abertura frágil, 0,22% da população, propostas sem voto; BR: 30 possibilidades, nenhuma direta, Estatuto da Cidade consultivo; presença x decisão; propostas para constituição, lei e cultura | 4.1; 4.2; 4.2.1; 4.2.2; 4.2.3; 4.3 | "corresponsáveis pelo empreendimento que têm em comum"; "se houver 5 pessoas"; "de maneira subsidiária ao Estado -- e não em oposição e/ou em substituição a este"; "de *cidadão observador* passa-se ao *cidadão atuante*"; "apáticas na esfera política porque se sentem impotentes"; "aplica-se efetivamente a apenas 0,22% da população"; "30 possibilidades constitucionais"; "muito mais em termos *consultivos* do que *decisórios*"; "abertura à *presença* dos cidadãos […] mas não necessariamente favorecem a *tomada de decisão*" |
-| B7 As ferramentas | Referendo, iniciativa popular, petição e ação popular; referendo e iniciativa quase não usados e dependentes dos eleitos; referendo "só se o Parlamento quiser"; recall: definição, Califórnia, adoção gradual e local; complementos; risco de aventuras políticas e limites | Abertura do cap. 5; 5.1; 5.2; 5.3; 5.4; 5.5 | "democracia semidireta"; "o referendo só irá ocorrer *se o Parlamento assim quiser*"; "remoção de seus representantes dos cargos eletivos *antes* da próxima eleição"; "mecanismos *complementares* à democracia representativa, não que a substituam" |
+| B7 As ferramentas | Referendo, iniciativa popular, petição e ação popular (termo como título, descrição com maiúscula e ponto final, D46); referendo e iniciativa quase não usados e dependentes dos eleitos; referendo "só se o Parlamento quiser"; recall: definição, Califórnia, adoção gradual e local; complementos; risco de aventuras políticas e limites | Abertura do cap. 5; 5.1; 5.2; 5.3; 5.4; 5.5 | "democracia semidireta"; "o referendo só irá ocorrer *se o Parlamento assim quiser*"; "remoção de seus representantes dos cargos eletivos *antes* da próxima eleição"; "mecanismos *complementares* à democracia representativa, não que a substituam" |
 | B8 As conclusões | Eleições essenciais, mas insuficientes; o raciocínio do um quarto; petições em PT: 5,4% (2003–2011) → 21% (2016), dois terços coletivas, 91,5% de interesse coletivo; 93,7% e 84,3% (pesquisa com quem enviou petições; tese de doutorado do ISCTE, 2017, citada na nota 808); ser ouvido > ser atendido; desencanto com a eleição, não com a participação; interesse local; PT à frente, com falhas; tabela dos sete problemas; sem fórmula mágica | Considerações finais (conclusões e itens a–g); 5.3; 5.5 | "escolhido por apenas um quarto dos eleitores"; "entre 2003 e 2011 apenas 5,4%"; "dois terços das petições"; "91,5% de todos os tipos de petições"; "36,4% […] 57,3%"; "32,5% […] 51,8%"; "o cidadão não tem interesse na participação eleitoral, mas isto não significa"; "não há uma *fórmula mágica*"; "havendo oportunidades, os cidadãos irão participar" |
 | B9 Rodapé | Versão de divulgação; dados da tese, defendida em 2022, sem atualização | Decisão D7; regra do CLAUDE.md | — |
 
@@ -117,6 +117,49 @@ o dado depende delas, nas notas de rodapé.
     problema está nas instituições; o populismo é uma degeneração da democracia; a proposta de
     deixar a abertura clara na constituição); e no link "Sobre a tese". O resto é afirmado
     diretamente. O conteúdo continua sendo o da tese, bloco a bloco, conforme a tabela acima.
+22. **Formato da lista das ferramentas (D46, 17/11/2026).** No B7, os quatro itens passaram de
+    "**referendo:** a população vota…;" para "**Referendo** A população vota… .". Só pontuação e
+    maiúsculas mudaram; nenhuma palavra. O sentido das definições é o mesmo do item 14.
+
+### Escolhas de apresentação visual (Fase 3)
+
+O texto publicado é o do `home.md`, palavra por palavra (conferido a cada build por
+`scripts/conferir-texto.mjs`). As escolhas abaixo são de apresentação; nenhuma acrescenta
+afirmação ao texto.
+
+1. **Gráfico do B3 (D44).** O gráfico de halteres mostra só o que o texto diz: "nenhuma
+   confiança" em partidos, governo e Congresso Nacional, de 2010 a 2017 (Quadros 5, 2 e 1). Os
+   números vêm de `src/data/dados.json`, conferido contra as tabelas do plano (seção 4.1) e contra
+   as frases do texto. O "92,9%" em destaque repete o dado da frase seguinte.
+2. **Marcas do checklist (B2).** As duas marcas de "cumpre" em cada regra (Portugal e Brasil)
+   representam a frase do texto "Portugal e Brasil cumprem todas essas regras".
+3. **Correspondência dos nós dos dois círculos (B4 e B6).** Os nós são os mesmos elementos nos
+   dois estados, como prevê o plano (seção 2, ajuste 3): no alto, o cidadão ("O cidadão se
+   afasta" ↔ "Cidadania ativa"); à direita, os partidos ("Os partidos se fecham" ↔ "Partidos mais
+   abertos"); à esquerda, o vínculo entre as pessoas ("Fragmentação política" ↔ "Sentir-se parte
+   da comunidade"). A ordem dos rótulos do vicioso segue os três parágrafos do B4; a do virtuoso
+   segue as três peças do B6. A tese não desenha os círculos; ela descreve os dois ciclos com
+   esses elementos (2.2, 2.3, 4.3).
+4. **Sentido das setas (D50).** Nos dois círculos as setas giram no sentido horário. Com os nós
+   nas posições do item anterior, a ordem do texto do B6 (vínculo → cidadania ativa → partidos)
+   também é horária; inverter as setas mudaria o encadeamento descrito. O que "gira ao
+   contrário" é o conteúdo do ciclo, que passa de problema a proposta.
+5. **Ramo e sementes (D1).** O ramo fino fica no cartão de Portugal e as sementes em solo rachado
+   no do Brasil, conforme a leitura da D1. Quando o texto chega a "A tese propõe deixar essa
+   abertura clara…", o ramo engrossa e uma semente brota: é a ilustração da proposta, não a
+   afirmação de um resultado. O broto do fecho é pequeno e sem flor, em linha com "Sem fórmula
+   mágica".
+6. **Frases em destaque.** "Não basta." (B1), "No papel, são democracias." (B2), "Não resolve." e
+   "É preciso algo mais." (B5) e "Falta uma ferramenta nos dois países: o recall." (B7) ganham
+   ênfase tipográfica. Na quinta conclusão do B8, só o trecho que já está em negrito no `.md`
+   aparece em negrito (D51).
+7. **Cartão tracejado do recall (B7).** O contorno tracejado indica a ferramenta que falta, sem
+   rótulo novo.
+8. **Tabela dos sete problemas no celular (B8).** Cada linha vira um cartão. Acima de cada
+   resposta aparece o cabeçalho da coluna ("O digital resolve?", "A resposta da cidadania
+   ativa"), repetido por CSS e escondido do leitor de tela, que lê a tabela normalmente.
+9. **Rótulos de interface (D43).** Navegação, links "Leia o capítulo N", rótulos dos gráficos e
+   dos círculos e a página 404 usam só os textos aprovados em `src/i18n/pt-br.json`.
 
 ---
 

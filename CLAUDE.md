@@ -104,9 +104,42 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
 | `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
+| `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
+| `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e relatórios do Lighthouse |
+| `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: home (`index.astro`), 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
+| `src/lib/blocos.ts` | Divide o HTML de cada `.md` nos blocos `Bn`; só acrescenta atributos e envoltórios, nunca texto |
+| `src/lib/plugin-sem-quebra.mjs` | Impede quebra de linha em palavras com hífen, sem trocar caractere |
+| `src/data/dados.json` | Único arquivo de números do site (Quadros 1 a 5 e outros), com os usos por página |
+| `src/i18n/pt-br.json` | Rótulos de interface aprovados (D43); nenhum outro texto de interface |
+| `src/styles/global.css` | Tokens de design (D45) |
+| `src/scripts/home.ts` | Animações GSAP da home (só com `prefers-reduced-motion: no-preference`) |
+| `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, contraste, texto (palavras, aspas, rótulos) e recursos de terceiros |
+| `scripts/capturas.mjs`, `scripts/lighthouse.mjs` | Testes no navegador (3 larguras x 3 cenários, axe, teclado) e Lighthouse |
+| `scripts/reservar-imagens.mjs` | Cria os espaços reservados em `public/img/` sem sobrescrever imagens finais |
 | `scripts/converter.sh` | Recria `conteudo/` a partir de `fonte/` |
 | `scripts/legibilidade.py` | Mede tamanho e legibilidade de uma página |
 | `fonte/`, `conteudo/` | Fora do Git |
+
+## Comandos do site
+
+```bash
+npm install
+```
+
+```bash
+npm run build
+```
+
+O build roda antes e depois as conferências de dados, contraste, texto e terceiros; qualquer
+diferença em relação aos textos aprovados ou aos dados faz o build falhar.
+
+```bash
+npm run capturas
+```
+
+```bash
+npm run lighthouse
+```
 
 ## Estado atual (17 de novembro de 2026)
 
@@ -135,10 +168,19 @@ se as 880 notas de rodapé foram distribuídas.
   54,4), com rastreabilidade e relatório; enviada à `main` por pull request. Decisões D36 a D42
   registradas (D36: versão oficial = link do depósito, sem "documento provisório"; D37: linha sobre
   uso de IA; D38: links com https; D41: lembrete da Fase 5).
-- Ainda não existe código de site.
+- **Fase 3 concluída e aprovada** (17/11/2026): projeto Astro, sistema de design e home completa
+  (blocos B0 a B9) e página 404, em três etapas. Decisões D43 a D51 registradas (D43: rótulos de
+  interface; D44: gráfico da home; D45: paleta; D46: lista das ferramentas no `home.md`, só
+  pontuação e maiúsculas; D47: imagens não fotográficas; D48: aspas tipográficas e hífen sem
+  quebra; D49: capturas versionadas; D50: setas do círculo virtuoso; D51: conclusão da fase).
+  Home: 1.770 palavras, índice 62,1. Lighthouse acima de 90 em tudo. Enviada à `main` por pull
+  request.
+- As imagens ilustrativas ainda são espaços reservados (cor lisa) em `public/img/`.
 
 ## Próximo passo
 
-1. **Fase 3 (código do site): não começar sem aprovação explícita do autor.**
+1. **Fase 4 (capítulos 1 a 5 e "Sobre a tese", com os interativos de cada página): não começar sem
+   aprovação explícita do autor.** Os links da home para os capítulos só passam a funcionar nela.
 2. Lembrete para a Fase 5 (D41): na publicação, conferir que o link do repositório na página
-   "Sobre a tese" abre para o público.
+   "Sobre a tese" abre para o público. Também na Fase 5: link canônico, tags de compartilhamento
+   (`og-home.png` já existe) e `SITE_URL`/`BASE_PATH` do domínio final.
