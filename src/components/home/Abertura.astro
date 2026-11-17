@@ -1,0 +1,36 @@
+---
+import type { Bloco } from '../../lib/blocos';
+import { comAtributos } from '../../lib/blocos';
+import Ramo from '../motivo/Ramo.astro';
+import Sementes from '../motivo/Sementes.astro';
+
+interface Props { bloco: Bloco }
+const { bloco } = Astro.props;
+const [h1, p1, p2, ...resto] = bloco.elementos;
+if (!h1?.startsWith('<h1') || !p1 || !p2 || resto.length) throw new Error('B0 fora do formato esperado (h1 + 2 parágrafos).');
+---
+<section class="secao-clara relative overflow-hidden" data-bloco="B0">
+  <div class="margem mx-auto grid min-h-[calc(100svh-3rem)] max-w-(--container-figura) grid-cols-1 content-center gap-8 pb-28 pt-12 lg:grid-cols-[minmax(0,1fr)_14rem] lg:gap-16 lg:py-24">
+    <div class="order-2 lg:order-1">
+      <Fragment set:html={comAtributos(h1, { class: 'abertura-titulo text-display font-extrabold text-tinta text-balance', 'data-titulo': '' })} />
+      <div class="mt-8 max-w-[34rem] space-y-5 text-destaque md:mt-10">
+        <Fragment set:html={comAtributos(p1, { class: 'text-tinta-2 text-pretty', 'data-revelar': '' })} />
+        <Fragment set:html={comAtributos(p2, { class: 'font-medium text-tinta text-pretty', 'data-revelar': '' })} />
+      </div>
+    </div>
+    <div class="order-1 flex justify-end lg:order-2 lg:justify-center">
+      <Ramo class="h-36 w-auto text-ramo sm:h-44 lg:h-[min(34rem,62svh)]" />
+    </div>
+  </div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-8 flex justify-center">
+    <Sementes class="abertura-sementes h-6 w-28 text-semente" />
+  </div>
+</section>
+
+<style is:global>
+  .abertura-titulo {
+    font-size: var(--text-display);
+    line-height: 0.98;
+    letter-spacing: var(--text-display--letter-spacing);
+  }
+</style>

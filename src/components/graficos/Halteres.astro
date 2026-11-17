@@ -1,0 +1,131 @@
+---
+/**
+ * Gráfico "de X para Y" (halteres): um ponto por ano, ligado por uma barra.
+ * Lê tudo de dados.json (uso registrado para a página e o bloco). Repete os
+ * números da lista do texto, por isso fica fora da leitura de tela.
+ */
+import { t } from '../../i18n';
+import { uso, valorQuadro } from '../../lib/dados';
+import { formatarPct } from '../../lib/numeros';
+
+interface Props { pagina: string; bloco: string; class?: string }
+const { pagina, bloco, class: classe } = Astro.props;
+const u = uso(pagina, bloco, 'halteres');
+if (!('itens' in u) || !('anos' in u) || !u.anos || !u.resposta) throw new Error('Uso de halteres incompleto.');
+const [anoA, anoB] = u.anos;
+const linhas = u.itens!.map((item) => {
+  const a = valorQuadro(item.instituicao, u.resposta!, anoA);
+  const b = valorQuadro(item.instituicao, u.resposta!, anoB);
+  return { rotulo: t((item as { rotulo: string }).rotulo), a, b };
+});
+---
+<figure class:list={['halteres', classe]} aria-hidden="true" data-halteres>
+  <div class="halteres-legenda">
+    <span><i class="ponto ponto-a"></i>{anoA}</span>
+    <span><i class="ponto ponto-b"></i>{anoB}</span>
+  </div>
+  {linhas.map((l) => (
+    <div class="halteres-linha" data-linha>
+      <div class="halteres-rotulo">{l.rotulo}</div>
+      <div class="halteres-trilho">
+        <span class="halteres-barra" data-barra style={`left:${l.a}%;width:${l.b - l.a}%`}></span>
+        <span class="valor valor-a" style={`left:${l.a}%`}>{formatarPct(l.a)}</span>
+        <span class="valor valor-b" data-valor-b style={`left:${l.b}%`}>{formatarPct(l.b)}</span>
+        <i class="ponto ponto-a" style={`left:${l.a}%`}></i>
+        <i class="ponto ponto-b" data-ponto-b data-de={l.a} data-para={l.b} style={`left:${l.b}%`}></i>
+      </div>
+    </div>
+  ))}
+</figure>
+
+<style>
+  .halteres {
+    --cor-a: var(--color-gelo-2);
+    --cor-b: var(--color-semente-escuro);
+    --trilho: color-mix(in srgb, var(--color-linha-escuro) 45%, transparent);
+    margin: 0;
+    padding: 1.5rem 1.25rem 0.5rem;
+    border-radius: var(--radius-cartao);
+    background: var(--color-grafite-2);
+  }
+  .halteres-legenda {
+    display: flex;
+    gap: 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--color-gelo-2);
+    margin-bottom: 1.25rem;
+  }
+  .halteres-legenda span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .halteres-legenda .ponto {
+    position: static;
+    transform: none;
+  }
+  .halteres-linha {
+    padding-bottom: 1.25rem;
+  }
+  .halteres-rotulo {
+    font-size: var(--text-pequeno);
+    font-weight: 600;
+    color: var(--color-gelo);
+  }
+  .halteres-trilho {
+    position: relative;
+    height: 3.25rem;
+    margin-inline: 0.75rem;
+  }
+  .halteres-trilho::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.6rem;
+    height: 1px;
+    background: var(--trilho);
+  }
+  .halteres-barra {
+    position: absolute;
+    bottom: calc(0.6rem - 1.5px);
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--cor-a), var(--cor-b));
+    opacity: 0.85;
+    transform-origin: left center;
+  }
+  .ponto {
+    display: inline-block;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 999px;
+  }
+  .halteres-trilho .ponto {
+    position: absolute;
+    bottom: calc(0.6rem - 0.4375rem);
+    transform: translateX(-50%);
+  }
+  .ponto-a {
+    background: var(--color-grafite-2);
+    border: 2px solid var(--cor-a);
+  }
+  .ponto-b {
+    background: var(--cor-b);
+  }
+  .valor {
+    position: absolute;
+    top: 0.2rem;
+    transform: translateX(-50%);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .valor-a {
+    color: var(--color-gelo-2);
+  }
+  .valor-b {
+    color: var(--cor-b);
+    font-weight: 700;
+  }
+</style>

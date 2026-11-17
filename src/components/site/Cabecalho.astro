@@ -1,0 +1,67 @@
+---
+import { getEntry } from 'astro:content';
+import { t } from '../../i18n';
+import { capitulos, sobre, url } from '../../lib/paginas';
+
+const home = await getEntry('paginas', 'home');
+const caps = await capitulos();
+const pSobre = await sobre();
+const atual = Astro.url.pathname;
+const itens: { rota: string; curto: string; longo: string; prefixo?: string }[] = [
+  { rota: '/', curto: t('inicio'), longo: t('inicio') },
+  ...caps.map((c) => ({ rota: c.rota, curto: t('capitulo', { n: c.n }), longo: c.titulo, prefixo: t('capitulo', { n: c.n }) })),
+  { rota: pSobre.rota, curto: pSobre.titulo, longo: pSobre.titulo },
+];
+const ehAtual = (rota: string) => atual === url(rota);
+---
+<header
+  data-ui
+  class="sticky top-0 z-40 border-b border-tinta/10 bg-branco/85 backdrop-blur-xl backdrop-saturate-150"
+>
+  <div class="margem mx-auto flex h-12 max-w-(--container-figura) items-center justify-between gap-4">
+    <a href={url('/')} class="text-[0.9375rem] font-semibold tracking-tight text-tinta">{home!.data.titulo}</a>
+
+    <nav aria-label={t('menu')} class="hidden lg:block">
+      <ul class="flex items-center gap-5 text-[0.8125rem] text-tinta-2">
+        {itens.map((i) => (
+          <li>
+            <a
+              href={url(i.rota)}
+              aria-current={ehAtual(i.rota) ? 'page' : undefined}
+              class:list={['transition-colors hover:text-tinta', ehAtual(i.rota) && 'font-semibold text-tinta']}
+            >{i.curto}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <details class="menu relative lg:hidden">
+      <summary
+        class="flex cursor-pointer list-none items-center gap-2 rounded-full px-3 py-1.5 text-[0.875rem] font-medium text-tinta hover:bg-nevoa"
+      >
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 5h12M2 11h12" /></svg>
+        {t('menu')}
+      </summary>
+      <nav aria-label={t('menu')} class="absolute right-0 mt-2 w-[min(22rem,calc(100vw-2rem))] rounded-cartao border border-tinta/10 bg-branco p-2 shadow-[0_12px_40px_-12px_rgb(15_17_20/0.25)]">
+        <ul>
+          {itens.map((i) => (
+            <li>
+              <a
+                href={url(i.rota)}
+                aria-current={ehAtual(i.rota) ? 'page' : undefined}
+                class="block rounded-lg px-3 py-2.5 hover:bg-nevoa"
+              >
+                {i.prefixo && <span class="block text-[0.8125rem] text-tinta-2">{i.prefixo}</span>}
+                <span class="block text-[0.9375rem] font-medium text-tinta">{i.longo}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .menu summary::-webkit-details-marker { display: none; }
+</style>

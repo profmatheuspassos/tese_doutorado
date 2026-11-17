@@ -1,0 +1,35 @@
+---
+import { t } from '../../i18n';
+import { capitulos, sobre, url } from '../../lib/paginas';
+import Sementes from '../motivo/Sementes.astro';
+
+const caps = await capitulos();
+const pSobre = await sobre();
+// Contato aprovado na decisão D7.
+const contato = 'contato@profmatheus.com';
+---
+<footer class="secao-escura">
+  <div class="margem mx-auto max-w-(--container-figura) py-16 md:py-20">
+    <Sementes class="mb-10 h-6 w-28 text-semente-escuro" />
+    <div class="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+      <div class="max-w-(--container-texto)">
+        <slot />
+      </div>
+      <nav data-ui aria-label={t('menu')} class="text-pequeno">
+        <ul class="grid gap-2.5 sm:grid-cols-2">
+          <li><a class="text-gelo-2 hover:text-gelo" href={url('/')}>{t('inicio')}</a></li>
+          {caps.map((c) => (
+            <li>
+              <a class="text-gelo-2 hover:text-gelo" href={url(c.rota)}>
+                <span class="block text-[0.8125rem] text-linha-escuro">{t('capitulo', { n: c.n })}</span>
+                {c.titulo}
+              </a>
+            </li>
+          ))}
+          <li><a class="text-gelo-2 hover:text-gelo" href={url(pSobre.rota)}>{pSobre.titulo}</a></li>
+        </ul>
+        <p class="mt-8"><a class="text-gelo underline underline-offset-4" href={`mailto:${contato}`}>{contato}</a></p>
+      </nav>
+    </div>
+  </div>
+</footer>
