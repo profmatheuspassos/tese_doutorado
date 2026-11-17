@@ -15,9 +15,11 @@ O índice é conferência, não meta (ver CLAUDE.md). A contagem de sílabas é
 feita por regras e erra em alguns hiatos e ditongos; o desvio é pequeno no
 total de um texto, mas o número deve ser lido como aproximado.
 
-O que é medido: só o texto corrido. Ficam de fora títulos (linhas com #),
-comentários HTML (<!-- -->, usados para marcar a origem de cada bloco),
-blocos de código e linhas de tabela.
+O que é medido: o índice usa só o texto corrido; cada item de lista conta
+como uma frase. Ficam de fora o cabeçalho YAML, títulos (linhas com #),
+comentários HTML (<!-- -->, que marcam a origem de cada bloco), blocos de
+código e tabelas. O tamanho da página é dado à parte, contando todo o texto
+visível, inclusive títulos e tabelas.
 """
 import re
 import sys
@@ -69,21 +71,34 @@ def silabas(palavra: str) -> int:
     return max(n, 1)
 
 
-def texto_corrido(md: str) -> str:
+def limpar(md: str) -> str:
+    """Tira cabeçalho YAML, comentários HTML e blocos de código."""
+    md = re.sub(r"\A---\n.*?\n---\n", "", md, flags=re.S)
     md = re.sub(r"<!--.*?-->", " ", md, flags=re.S)
-    md = re.sub(r"```.*?```", " ", md, flags=re.S)
+    return re.sub(r"```.*?```", " ", md, flags=re.S)
+
+
+def texto_visivel(md: str) -> str:
+    """Todo o texto que o leitor vê, inclusive títulos e tabelas (para o tamanho)."""
+    md = limpar(md)
+    md = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", md)
+    md = re.sub(r"^\|?[-| :]+\|?$", " ", md, flags=re.M)  # linhas separadoras de tabela
+    return re.sub(r"[#*_`>|]", " ", md)
+
+
+def texto_corrido(md: str) -> str:
+    """Só o texto corrido (para o índice). Cada item de lista conta como uma frase."""
     linhas = []
-    for linha in md.splitlines():
+    for linha in limpar(md).splitlines():
         s = linha.strip()
-        if not s or s.startswith("#") or s.startswith("|") or s.startswith("---"):
+        if not s or s.startswith("#") or s.startswith("|"):
             linhas.append("")
             continue
-        s = re.sub(r"^([-*]|\d+\.)\s+", "", s)  # marcadores de lista
+        if re.match(r"^([-*]|\d+\.)\s+", s):
+            linhas.append("")  # cada item de lista abre um bloco próprio
+            s = re.sub(r"^([-*]|\d+\.)\s+", "", s)
         s = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)  # links
         s = re.sub(r"[*_`>]", "", s)
-        # Itens de lista sem ponto final contam como frase.
-        if re.match(r"^([-*]|\d+\.)\s+", linha.strip()) and not re.search(r"[.!?…:]$", s):
-            s += "."
         linhas.append(s)
     return unicodedata.normalize("NFC", "\n".join(linhas))
 
@@ -121,7 +136,8 @@ def faixa(indice: float) -> str:
 
 def medir(caminho: str) -> dict:
     with open(caminho, encoding="utf-8") as f:
-        texto = texto_corrido(f.read())
+        md = f.read()
+    texto = texto_corrido(md)
     fs = frases(texto)
     por_frase = [palavras(f) for f in fs]
     toks = [t for ws in por_frase for t in ws]
@@ -134,6 +150,7 @@ def medir(caminho: str) -> dict:
     longas = [(len(ws), f) for ws, f in zip(por_frase, fs) if len(ws) > LIMITE_FRASE_LONGA]
     return {
         "arquivo": caminho,
+        "visiveis": len(palavras(texto_visivel(md))),
         "palavras": n_pal,
         "frases": n_fr,
         "silabas": n_sil,
@@ -153,7 +170,8 @@ def main(args):
     for caminho in args:
         r = medir(caminho)
         print(f"# {r['arquivo']}")
-        print(f"Palavras: {r['palavras']}")
+        print(f"Palavras visíveis (com títulos e tabelas): {r['visiveis']}")
+        print(f"Palavras no texto corrido (base do índice): {r['palavras']}")
         print(f"Frases: {r['frases']}")
         print(f"Palavras por frase (média): {r['palavras_por_frase']:.1f}")
         print(f"Sílabas por palavra (média): {r['silabas_por_palavra']:.2f}")
