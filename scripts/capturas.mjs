@@ -11,6 +11,11 @@
  *  - nenhum erro no console e nenhuma requisição para fora do site;
  *  - testes próprios de cada página (interativos, com e sem JS; barra de progresso).
  *
+ * Cabeçalhos (Fase 5): no servidor local, cada resposta recebe os cabeçalhos de segurança do
+ * dist/.htaccess (CSP por hash incluída), e qualquer violação da CSP é erro. Com BASE_URL
+ * (ex.: BASE_URL=https://tese.profmatheuspassos.com.br npm run capturas), os testes rodam no
+ * endereço publicado, com os cabeçalhos reais do servidor, sem subir o servidor local.
+ *
  * Capturas versionadas (cenário normal, 375 e 1440 px, densidade 2x, JPEG 70) só com --salvar:
  *   node scripts/capturas.mjs --salvar home,capitulo-2
  * Home em docs/capturas/fase-3/ (D49); páginas novas em docs/capturas/fase-4/ (D56), com os
@@ -44,21 +49,48 @@ const CAPTURAS = {
   sobre: { pasta: 'fase-4', prefixo: 'sobre-', alvos: ['B0', 'B2', 'B6', 'B7', 'navegacao'] },
 };
 
-// Páginas: lidas dos .md aprovados; entram as que existem no build.
+// Endereço publicado (opcional). Sem ele, os testes rodam no build local.
+const NO_AR = process.env.BASE_URL?.replace(/\/$/, '');
+
+// Páginas: lidas dos .md aprovados; entram as que existem no build (ou todas, no endereço publicado).
 const paginas = readdirSync(join(raiz, 'src/content/pt-br')).filter((f) => f.endsWith('.md')).map((f) => {
   const fm = readFileSync(join(raiz, 'src/content/pt-br', f), 'utf8').match(/^---\n([\s\S]*?)\n---/)[1];
   const rota = fm.match(/^rota:\s*"?(.*?)"?$/m)[1];
   return { nome: f.replace(/\.md$/, ''), rota };
-}).filter((p) => existsSync(join(raiz, 'dist', p.rota, 'index.html')))
+}).filter((p) => NO_AR || existsSync(join(raiz, 'dist', p.rota, 'index.html')))
   .sort((a, b) => (a.rota === '/' ? -1 : b.rota === '/' ? 1 : a.rota.localeCompare(b.rota)));
 
 const PORTA = 4329;
-const BASE = `http://127.0.0.1:${PORTA}`;
-const servidor = spawn(process.execPath, [join(raiz, 'node_modules/astro/bin/astro.mjs'), 'preview', '--ignore-lock', '--host', '127.0.0.1', '--port', String(PORTA)], { cwd: raiz, stdio: ['ignore', 'pipe', 'pipe'] });
-await new Promise((ok, erro) => {
-  const t = setTimeout(() => erro(new Error('preview não subiu')), 30000);
-  servidor.stdout.on('data', (d) => { if (String(d).includes(String(PORTA))) { clearTimeout(t); ok(); } });
-});
+const BASE = NO_AR || `http://127.0.0.1:${PORTA}`;
+const servidor = NO_AR ? null : spawn(process.execPath, [join(raiz, 'node_modules/astro/bin/astro.mjs'), 'preview', '--ignore-lock', '--host', '127.0.0.1', '--port', String(PORTA)], { cwd: raiz, stdio: ['ignore', 'pipe', 'pipe'] });
+if (servidor) {
+  await new Promise((ok, erro) => {
+    const t = setTimeout(() => erro(new Error('preview não subiu')), 30000);
+    servidor.stdout.on('data', (d) => { if (String(d).includes(String(PORTA))) { clearTimeout(t); ok(); } });
+  });
+}
+
+// Cabeçalhos de segurança do dist/.htaccess, aplicados às respostas do servidor local para testar
+// a CSP real antes da publicação. HSTS fica de fora (o servidor local é http).
+const CABECALHOS = NO_AR ? {} : Object.fromEntries([...readFileSync(join(raiz, 'dist/.htaccess'), 'utf8').matchAll(/^\s*Header always set (\S+) "(.*)"$/gm)]
+  .map((m) => [m[1].toLowerCase(), m[2]]).filter(([k]) => k !== 'strict-transport-security'));
+if (!NO_AR && !CABECALHOS['content-security-policy']) throw new Error('dist/.htaccess sem CSP: rode npm run build antes.');
+// O axe entra como arquivo do próprio site (/__axe.js), que a CSP aceita, e não como script em linha.
+const AXE = readFileSync(join(raiz, 'node_modules/axe-core/axe.min.js'), 'utf8');
+async function novoContexto(opcoes) {
+  const ctx = await navegador.newContext(opcoes);
+  await ctx.route(`${BASE}/__axe.js`, (r) => r.fulfill({ status: 200, contentType: 'text/javascript', body: AXE }));
+  if (!NO_AR) {
+    await ctx.route(`${BASE}/**`, async (r) => {
+      if (r.request().url() === `${BASE}/__axe.js`) return r.fallback();
+      const resposta = await r.fetch();
+      await r.fulfill({ response: resposta, headers: { ...resposta.headers(), ...CABECALHOS } });
+    });
+  }
+  // Toda violação da CSP vira erro no console, que os testes já tratam como erro.
+  await ctx.addInitScript(() => document.addEventListener('securitypolicyviolation', (e) => console.error(`CSP bloqueou: ${e.violatedDirective} ${e.blockedURI || 'em linha'} (${e.sourceFile || ''}:${e.lineNumber || ''})`)));
+  return ctx;
+}
 
 const larguras = [375, 768, 1440];
 const cenarios = [
@@ -70,7 +102,7 @@ const altura = (w) => (w < 500 ? 812 : 900);
 const erros = [];
 const resumo = [];
 const navegador = await chromium.launch();
-const axe = (pagina) => pagina.addScriptTag({ path: join(raiz, 'node_modules/axe-core/axe.min.js') })
+const axe = (pagina) => pagina.addScriptTag({ url: `${BASE}/__axe.js` })
   .then(() => pagina.evaluate(async () => (await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } })).violations.map((v) => `${v.id}: ${v.help} (${v.nodes.length}: ${v.nodes.slice(0, 2).map((n) => n.target.join(' ')).join(' | ')})`)));
 
 // Testes próprios de cada página. Recebem a página já carregada e rolada.
@@ -344,7 +376,7 @@ for (const pg of paginas) {
   const URL_ = `${BASE}${pg.rota}`;
   for (const c of cenarios) {
     for (const w of larguras) {
-      const ctx = await navegador.newContext({ viewport: { width: w, height: altura(w) }, deviceScaleFactor: 1, ...c.opcoes });
+      const ctx = await novoContexto({ viewport: { width: w, height: altura(w) }, deviceScaleFactor: 1, ...c.opcoes });
       const pagina = await ctx.newPage();
       const rotulo = `${pg.nome} ${c.nome} ${w}px`;
       pagina.on('console', (m) => { if (m.type() === 'error') erros.push(`${rotulo}: erro no console: ${m.text()}`); });
@@ -384,7 +416,7 @@ for (const pg of paginas) {
 
       // Salto direto para cada bloco: o texto na tela precisa aparecer.
       if (c.nome === 'normal') {
-        const ctxSalto = await navegador.newContext({ viewport: { width: w, height: altura(w) } });
+        const ctxSalto = await novoContexto({ viewport: { width: w, height: altura(w) } });
         const ps = await ctxSalto.newPage();
         await ps.goto(URL_, { waitUntil: 'networkidle' });
         const ids = await ps.evaluate(() => [...document.querySelectorAll('[data-bloco]')].map((b) => b.dataset.bloco));
@@ -432,6 +464,8 @@ for (const pg of paginas) {
       if (versionada) {
         const pasta = join(raiz, 'docs/capturas', config.pasta);
         mkdirSync(pasta, { recursive: true });
+        // Só aparência: sem os cabeçalhos, porque a CSP barraria o estilo que tira o cabeçalho fixo da
+        // imagem. A CSP já foi testada no contexto principal desta mesma combinação.
         const ctx2 = await navegador.newContext({ viewport: { width: w, height: altura(w) }, deviceScaleFactor: 2 });
         const p2 = await ctx2.newPage();
         await p2.goto(URL_, { waitUntil: 'networkidle' });
@@ -456,7 +490,7 @@ for (const pg of paginas) {
 // Página 404: status, sem rolagem horizontal, sem violação do axe; captura versionada com a home.
 for (const w of larguras) {
   for (const c of cenarios) {
-    const ctx = await navegador.newContext({ viewport: { width: w, height: altura(w) }, deviceScaleFactor: salvar.has('home') && c.nome === 'normal' && w !== 768 ? 2 : 1, ...c.opcoes });
+    const ctx = await novoContexto({ viewport: { width: w, height: altura(w) }, deviceScaleFactor: salvar.has('home') && c.nome === 'normal' && w !== 768 ? 2 : 1, ...c.opcoes });
     const pagina = await ctx.newPage();
     const rotulo = `404 ${c.nome} ${w}px`;
     pagina.on('pageerror', (e) => erros.push(`${rotulo}: erro de JS: ${e.message}`));
@@ -471,7 +505,7 @@ for (const w of larguras) {
 }
 resumo.push('404: 9 combinações testadas (status, rolagem horizontal, axe)');
 await navegador.close();
-servidor.kill();
+servidor?.kill();
 
 console.log(resumo.join('\n'));
 if (erros.length) { console.error(`capturas: ${erros.length} problema(s)`); erros.forEach((e) => console.error(' - ' + e)); process.exit(1); }

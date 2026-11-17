@@ -1,33 +1,22 @@
 #!/usr/bin/env node
 /**
  * Cria os espaços reservados das imagens ilustrativas em public/img, com nome e tamanho
- * exatos (lista em docs/PROMPTS-IMAGENS.md). Cor lisa, sem texto. Nunca sobrescreve um
- * arquivo que já exista: as imagens finais do autor ficam preservadas.
+ * exatos (lista única em src/lib/imagens.mjs; prompts em docs/PROMPTS-IMAGENS.md). Cor lisa,
+ * sem texto. Nunca sobrescreve um arquivo que já exista: as imagens finais do autor ficam
+ * preservadas.
  * Gera também og-home.png a partir do desenho do motivo (feito no projeto, sem IA).
  */
 import { createRequire } from 'node:module';
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { IMAGENS } from '../src/lib/imagens.mjs';
 
 const exigir = createRequire(import.meta.url);
 const sharp = exigir('sharp');
 const pasta = new URL('../public/img', import.meta.url).pathname;
 mkdirSync(pasta, { recursive: true });
 
-const NEVOA = '#f3f5f7';
-const GRAFITE = '#0f1114';
-const imagens = [
-  ['home-cena-2013.webp', 1200, 1500, GRAFITE],
-  ['home-bairro.webp', 1800, 1200, NEVOA],
-  ['cap1-abertura.webp', 2520, 1080, NEVOA],
-  ['cap2-abertura.webp', 2520, 1080, GRAFITE],
-  ['cap3-abertura.webp', 2520, 1080, GRAFITE],
-  ['cap3-estadio.webp', 2400, 1350, NEVOA],
-  ['cap4-abertura.webp', 2520, 1080, NEVOA],
-  ['cap5-abertura.webp', 2520, 1080, NEVOA],
-];
-
-for (const [nome, w, h, cor] of imagens) {
+for (const { nome, largura: w, altura: h, fundo: cor } of IMAGENS) {
   const destino = join(pasta, nome);
   if (existsSync(destino)) { console.log(`  mantido (já existe): ${nome}`); continue; }
   await sharp({ create: { width: w, height: h, channels: 3, background: cor } }).webp({ quality: 80 }).toFile(destino);

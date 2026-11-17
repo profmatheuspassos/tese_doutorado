@@ -119,9 +119,17 @@ se as 880 notas de rodapé foram distribuídas.
 | `src/i18n/pt-br.json` | Rótulos de interface aprovados (D43, D52); nenhum outro texto de interface |
 | `src/styles/global.css` | Tokens de design (D45) |
 | `src/scripts/home.ts`, `src/scripts/home-resto.ts` | Animações GSAP da home (só com `prefers-reduced-motion: no-preference`): a abertura na carga; o resto (ScrollTrigger e blocos B1 a B8) quando o navegador fica ocioso, um bloco por tarefa (D67) |
-| `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, contraste, texto (palavras, aspas, rótulos, atributos), recursos de terceiros e links internos (link quebrado faz o build falhar) |
+| `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, contraste, imagens (nome, tamanho, peso), texto (palavras, aspas, rótulos, atributos), recursos de terceiros, links internos (link quebrado faz o build falhar) e publicação (canonical, Open Graph, sitemap, robots, CSP, `.htaccess` da pasta principal) |
+| `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74) e cache (D75) |
+| `scripts/conferir-publicado.mjs` | Testes no endereço real depois de publicar (`npm run conferir:publicado`) |
+| `src/lib/site.mjs`, `src/lib/imagens.mjs` | Endereço final do site (D72); lista única das imagens com nome, tamanho e teto de peso |
+| `src/pages/sitemap.xml.ts`, `src/pages/robots.txt.ts` | Sitemap e robots, gerados no build |
+| `.github/workflows/publicar.yml` | Build com as conferências em todo PR e, a cada merge na `main`, publicação na branch `publicacao` (D71) |
+| `hospedagem/htaccess-dominio-principal` | `.htaccess` da pasta principal do domínio na Hostinger: redireciona o domínio principal para profmatheus.com (D77) |
+| `docs/PUBLICACAO.md` | Como o site chega ao ar, passo a passo do hPanel, troca de imagens e testes depois de publicar |
+| `LICENSE`, `LICENSE-CONTEUDO.md` | Código sob MIT; textos e imagens sob CC BY-NC-ND 4.0 (D76) |
 | `scripts/variantes-imagens.mjs` | Gera as larguras 840 e 1680 das imagens para o `srcset` (em `public/img/variantes/`, fora do Git) |
-| `scripts/capturas.mjs`, `scripts/lighthouse.mjs` | Testes no navegador em todas as páginas do build (3 larguras x 3 cenários, salto para cada bloco, axe, teclado, interativos, botão copiar) e Lighthouse (home no celular em cinco rodadas, registrada a pior; D67) |
+| `scripts/capturas.mjs`, `scripts/lighthouse.mjs` | Testes no navegador em todas as páginas do build (3 larguras x 3 cenários, salto para cada bloco, axe, teclado, interativos, botão copiar, com os cabeçalhos do `.htaccess` e zero violações de CSP) e Lighthouse (home no celular em cinco rodadas, registrada a pior; D67). Com `BASE_URL` / `LIGHTHOUSE_URL`, rodam no endereço publicado |
 | `scripts/reservar-imagens.mjs` | Cria os espaços reservados em `public/img/` sem sobrescrever imagens finais |
 | `scripts/converter.sh` | Recria `conteudo/` a partir de `fonte/` |
 | `scripts/legibilidade.py` | Mede tamanho e legibilidade de uma página |
@@ -137,8 +145,9 @@ npm install
 npm run build
 ```
 
-O build roda antes e depois as conferências de dados, contraste, texto e terceiros; qualquer
-diferença em relação aos textos aprovados ou aos dados faz o build falhar.
+O build roda antes e depois as conferências de dados, contraste, imagens, texto, terceiros, links
+e publicação, e gera o `dist/.htaccess`; qualquer diferença em relação aos textos aprovados ou aos
+dados faz o build falhar.
 
 ```bash
 npm run capturas
@@ -152,6 +161,12 @@ npm run capturas:salvar -- home,sobre
 
 ```bash
 npm run lighthouse
+```
+
+Depois de publicar (detalhes em `docs/PUBLICACAO.md`):
+
+```bash
+NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 ```
 
 ## Estado atual (17 de novembro de 2026)
@@ -226,12 +241,24 @@ npm run lighthouse
 - **Fase 4 concluída e aprovada** (17/11/2026, D70): capítulos 1 a 5 e "Sobre a tese" publicados,
   com os interativos e visuais aprovados. Decisões D52 a D70 registradas; nenhum ponto em aberto.
 
+- **Fase 5 aprovada como plano** (17/11/2026), com as decisões D71 a D77 (publicação por branch
+  `publicacao` e Git do hPanel; endereço canônico; compartilhamento; cabeçalhos de segurança; cache;
+  licenças CC BY-NC-ND 4.0 e MIT, com o T49 no rodapé; domínio principal sem WordPress, redirecionado
+  para profmatheus.com). Entrega em três etapas, com parada ao fim de cada uma.
+- **Fase 5, Etapa 1 (código da publicação) feita, aguardando aprovação:** endereço final no build,
+  canonical e Open Graph, sitemap e robots, `.htaccess` gerado com CSP por hash, conferências novas
+  (imagens e publicação), testes no navegador com os cabeçalhos reais, workflow de publicação,
+  `.htaccess` da pasta principal, licenças e linha T49 no rodapé, `docs/PUBLICACAO.md`. Textos
+  aprovados idênticos.
+
 ## Próximo passo
 
-1. **Merge do pull request da Etapa 4** (PR #12), feito pelo autor no GitHub. Não começar a Fase 5
-   antes de o autor confirmar. A sessão seguinte parte da `main` atualizada.
-2. Imagens ilustrativas finais: ainda são espaços reservados em `public/img/` (prompts em
-   `docs/PROMPTS-IMAGENS.md`).
-3. Lembrete para a Fase 5 (D41): na publicação, conferir que o link do repositório na página
-   "Sobre a tese" abre para o público. Também na Fase 5: link canônico, tags de compartilhamento
-   (`og-home.png` já existe) e `SITE_URL`/`BASE_PATH` do domínio final.
+1. **Aprovação e merge da Etapa 1 da Fase 5**, feito pelo autor no GitHub. O merge dispara o
+   workflow, que cria a branch `publicacao`.
+2. **Etapa 2:** o autor faz, em sequência, os passos A e B de `docs/PUBLICACAO.md` (remover o
+   WordPress, redirecionar o domínio principal) e depois C e D (subdomínio, SSL, Git, webhook).
+   A sessão roda os testes no endereço real (`conferir:publicado`, `capturas` e `lighthouse` com o
+   endereço publicado) e corrige o que aparecer, por pull request. Inclui o lembrete da D41.
+3. **Etapa 3:** README final e conclusão da Fase 5 neste arquivo.
+4. Imagens ilustrativas finais: ainda são espaços reservados em `public/img/`; a troca segue
+   `docs/PUBLICACAO.md`.

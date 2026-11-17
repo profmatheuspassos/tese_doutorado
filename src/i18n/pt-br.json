@@ -1,5 +1,5 @@
 {
-  "_sobre": "Rótulos de interface aprovados pelo autor: T1 a T12 (decisão D43) e T13 a T48 da Fase 4 (decisão D52; T19 e T20 retirados). Nenhum outro texto de interface pode aparecer no site. {n} = número do capítulo; {titulo} = campo titulo do .md da página; {d:caminho} = valor do src/data/dados.json, conferido no build.",
+  "_sobre": "Rótulos de interface aprovados pelo autor: T1 a T12 (decisão D43) e T13 a T48 da Fase 4 (decisão D52; T19 e T20 retirados) e T49, linha de licença do rodapé (decisão D76). Nenhum outro texto de interface pode aparecer no site. {n} = número do capítulo; {titulo} = campo titulo do .md da página; {d:caminho} = valor do src/data/dados.json, conferido no build.",
   "pular": "Pular para o conteúdo",
   "menu": "Menu",
   "inicio": "Início",
@@ -26,6 +26,7 @@
   ],
   "nao_encontrada": "Página não encontrada",
   "voltar_inicio": "Voltar ao início",
+  "licenca": "Textos e imagens sob licença CC BY-NC-ND 4.0. Código sob licença MIT.",
   "titulo_home": "{titulo} · Matheus Passos Silva",
   "titulo_pagina": "{titulo} · Revigorar, não substituir",
   "titulo_na_tese": "Título na tese",
