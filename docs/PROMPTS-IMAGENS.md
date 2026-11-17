@@ -5,6 +5,12 @@ imagem. Em `public/img/` há um espaço reservado para cada uma, com o nome e o 
 lisa e sem texto. Para usar a imagem final, basta substituir o arquivo, mantendo o nome. O script
 `npm run imagens` nunca sobrescreve um arquivo que já existe.
 
+**Como trocar depois da publicação (Fase 5):** passo a passo em `docs/PUBLICACAO.md`, seção "Como
+trocar as imagens ilustrativas". Em resumo: mesmo nome, mesmo tamanho, WebP com até 600 KB
+(`og-home.png`, PNG com até 1.000 KB), enviado por pull request; o build confere tudo
+(`scripts/conferir-imagens.mjs`, com a lista única de `src/lib/imagens.mjs`) e o merge publica.
+As imagens ficam sob CC BY-NC-ND 4.0, como os textos (D76).
+
 Plano aprovado na Fase 3 (17/11/2026), item 6.
 
 ---
@@ -24,7 +30,7 @@ ao lado de um fato histórico: ela representa a ideia de um protesto de rua, nã
 | Pessoas | Silhuetas simplificadas, sem traço facial, sem roupa ou objeto que identifique alguém. Nunca uma pessoa real. |
 | Enquadramento | Plano amplo, ponto de vista um pouco elevado, bastante espaço vazio. O assunto fica no terço central, para o recorte vertical do celular. |
 | Sempre fora | Texto, letras ou números legíveis; logotipos; marcas de produto, incluindo a forma reconhecível de aparelhos de marcas conhecidas; bandeiras; símbolos de partido; pontos turísticos ou prédios reconhecíveis. |
-| Formato | WebP, no tamanho exato da tabela. |
+| Formato | WebP, no tamanho exato da tabela, com até 600 KB (a `og-home.png`: PNG, até 1.000 KB). |
 
 **Sufixo comum (acrescentar ao fim de todo prompt):**
 
