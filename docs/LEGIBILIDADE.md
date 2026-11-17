@@ -51,6 +51,28 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 
 ## Resultados por página
 
-| Página | Palavras | Frases | Palavras/frase | Sílabas/palavra | Índice | Faixa |
-|---|---|---|---|---|---|---|
-| Home | — | — | — | — | — | — |
+| Página | Palavras visíveis | Palavras no texto corrido | Frases | Palavras/frase | Sílabas/palavra | Índice | Faixa |
+|---|---|---|---|---|---|---|---|
+| Home | 1.792 | 1.610 | 150 | 10,7 | 2,07 | 62,6 | fácil |
+
+### Home (17/11/2026)
+
+**Resultado:** índice 62,6, acima da referência de 50. Média de 10,7 palavras por frase (limite:
+20). Maior frase: 25 palavras. Tamanho dentro do alvo do plano (1.500 a 1.800 palavras).
+
+**Histórico da medição.** A primeira versão tinha 2.135 palavras visíveis e índice 61,6. O
+índice já estava na faixa; o corte foi feito por tamanho, não por legibilidade. Na mesma rodada,
+o script foi corrigido: ele somava uma lista inteira como uma frase de 65 palavras. Agora cada
+item de lista conta como uma frase.
+
+**Conferência manual (o que o índice não mede).**
+- Termos técnicos explicados na primeira ocorrência: democracia representativa, constituição,
+  fragmentação política, democracia digital, populismo, identificação patriótica, cidadania
+  ativa, políticas públicas, governança centrada nos cidadãos, freguesia, referendo, iniciativa
+  popular, petição, ação popular, recall. Latinobarómetro e Portal de Opinião Pública aparecem
+  como fontes.
+- Rótulos da tabela dos sete problemas reescritos para leigos (ver Rastreabilidade, item 18).
+- Voz ativa predominante. Passivas que ficaram: "parte dos pedidos foi atendida" e "o cidadão é
+  ouvido, mas não decide". As duas estão mantidas porque o sujeito (o poder público) é óbvio.
+- Sem latim, sem notas de rodapé, sem número de lei ou de artigo.
+- Nenhum nome de governante, partido ou caso concreto (D6). Ver ponto A6 sobre a cena de 2013.

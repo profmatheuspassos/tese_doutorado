@@ -26,5 +26,9 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os doze pontos da seção 5 do plano foram decididos (D1 a D12).
-Novos pontos que surgirem na Fase 2 entram aqui.
+Os doze pontos da seção 5 do plano foram decididos (D1 a D12). Pontos surgidos na Fase 2:
+
+| # | Ponto | Problema | Proposta em uso até decisão |
+|---|---|---|---|
+| A6 | Cena de 2013 na home | A decisão D6 proíbe "caso concreto". O plano aprovado abre a home com os protestos de junho de 2013. A Introdução cita, entre os temas, uma proposta de emenda constitucional numerada e os gastos com dois torneios de futebol. | Manter a cena, só com o motivo inicial (passagem de ônibus) e o resultado ligado a ele (redução do preço). Sem a emenda, sem os torneios. |
+| A7 | Lapso em 4.2 (governança centrada nos cidadãos) | O texto diz que os atores exercem "não apenas uma simples influência […], mas **sem** um efetivo poder de decisão no resultado final". Pelo contexto (cidadania ativa como poder de decidir, em 4.2 e nas Considerações finais), o sentido é "mas **sim** um efetivo poder de decisão". | Tratar pelo sentido correto ("com poder real de decisão"), como em D12. A home não depende desse trecho. |
