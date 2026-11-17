@@ -1,0 +1,62 @@
+---
+/**
+ * Capítulo 1 — No papel, está tudo certo. Sem interativo próprio (D53).
+ * B1: linha do tempo (T18). B4: checklist estático das nove regras, com as marcas de Portugal e
+ * do Brasil. B8: tabela "Lado a lado" com Portugal (ramo) e Brasil (semente), que vira cartões
+ * no celular.
+ */
+import Capitulo from '../../layouts/Capitulo.astro';
+import BlocoTexto from '../capitulo/BlocoTexto.astro';
+import LinhaDoTempo from '../graficos/LinhaDoTempo.astro';
+import ChecklistLegenda from '../graficos/ChecklistLegenda.astro';
+import { pagina } from '../../lib/paginas';
+import { comAtributos, rotularCelulas, usarBlocos } from '../../lib/blocos';
+import { comMarcas } from '../../lib/checklist';
+
+const { dados: meta, blocos } = await pagina('capitulo-1');
+const { b, conferir } = usarBlocos(blocos, 'capitulo-1');
+const B0 = b('B0');
+const [B1, B2, B3, B4, B5, B6, B7, B8, B9] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9'].map(b);
+conferir();
+
+// B4 — a lista numerada das nove regras ganha as duas marcas por regra.
+const iLista = B4.elementos.findIndex((el) => el.startsWith('<ol'));
+if (iLista < 1 || (B4.elementos[iLista].match(/<li[\s>]/g) ?? []).length !== 9) throw new Error('capitulo-1 B4: esperada uma lista numerada com nove regras.');
+const checklist = (el: string, i: number) => (i === iLista ? comMarcas(el) : el);
+
+// B8 — tabela de três colunas (Tema, Portugal, Brasil).
+const iTabela = B8.elementos.findIndex((el) => el.startsWith('<table'));
+if (iTabela < 1) throw new Error('capitulo-1 B8: tabela não encontrada.');
+const tabela = (el: string, i: number) => (i === iTabela ? comAtributos(rotularCelulas(el), { 'data-lado-a-lado': '' }) : el);
+---
+<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={meta.titulo_original} imagem="cap1-abertura.webp" tema="nevoa">
+  <BlocoTexto bloco={B1}>
+    <LinhaDoTempo slot="apos-0" />
+  </BlocoTexto>
+  <BlocoTexto bloco={B2} />
+  <BlocoTexto bloco={B3} />
+  <BlocoTexto bloco={B4} transformar={checklist}>
+    <ChecklistLegenda slot={`apos-${iLista - 1}`} />
+  </BlocoTexto>
+  <BlocoTexto bloco={B5} />
+  <BlocoTexto bloco={B6} />
+  <BlocoTexto bloco={B7} />
+  <BlocoTexto bloco={B8} transformar={tabela} />
+  <BlocoTexto bloco={B9} />
+</Capitulo>
+
+<style is:global>
+  /* "Lado a lado": cada coluna é de fato um país (D45), por isso o fio do cabeçalho leva a cor dele. */
+  .texto table[data-lado-a-lado] thead th:nth-child(2) { border-bottom-color: var(--color-ramo); }
+  .texto table[data-lado-a-lado] thead th:nth-child(3) { border-bottom-color: var(--color-semente); }
+  .texto table[data-lado-a-lado] td[data-col='0'] { width: 22%; }
+  @media (max-width: 767.98px) {
+    .texto table[data-lado-a-lado] td[data-col='1'],
+    .texto table[data-lado-a-lado] td[data-col='2'] {
+      padding-left: 0.75rem;
+      margin-top: 0.4rem;
+      border-left: 3px solid var(--color-ramo);
+    }
+    .texto table[data-lado-a-lado] td[data-col='2'] { border-left-color: var(--color-semente); }
+  }
+</style>

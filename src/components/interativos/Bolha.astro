@@ -1,0 +1,201 @@
+---
+/**
+ * A bolha (capítulo 3, B6). Grade de 12 cartões neutros com quatro formas abstratas (T27): o
+ * exemplo vegetariano fica no texto; aqui não se cria exemplo novo nem tema político. Cada
+ * curtida faz a forma mais curtida ocupar mais cartões (6, 9, 11, 12), até a grade ficar de uma
+ * forma só. Tons de cinza da paleta, sem verde nem terracota (cores dos países, D45).
+ * Sem JS: o bloco interativo fica escondido e aparece uma tira estática com três momentos.
+ * Todo texto vem dos rótulos aprovados (T27 a T32); o script não tem texto próprio.
+ */
+import { mapa, t } from '../../i18n';
+import { grade, FORMAS, type Forma } from '../../lib/bolha';
+
+const nomes = mapa('bolha.formas');
+if (Object.keys(nomes).join() !== FORMAS.join()) throw new Error('Bolha: formas dos rótulos e do cálculo não batem.');
+const desenho: Record<Forma, string> = {
+  circulo: '<circle cx="20" cy="20" r="13"/>',
+  quadrado: '<rect x="8" y="8" width="24" height="24" rx="2"/>',
+  triangulo: '<path d="M20 6L34 32H6Z"/>',
+  losango: '<path d="M20 5L35 20L20 35L5 20Z"/>',
+};
+const svg = (f: Forma) => `<svg class="bl-forma bl-${f}" viewBox="0 0 40 40" aria-hidden="true" focusable="false">${desenho[f]}</svg>`;
+const coracao = '<svg class="bl-coracao" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 13.5S2.5 10.2 2.5 6.4C2.5 4.6 3.9 3.3 5.5 3.3c1.1 0 2 .6 2.5 1.5.5-.9 1.4-1.5 2.5-1.5 1.6 0 3 1.3 3 3.1 0 3.8-5.5 7.1-5.5 7.1Z"/></svg>';
+const inicial = grade('circulo', 0);
+const tira = [grade('circulo', 0), grade('circulo', 2), grade('circulo', 4)];
+---
+<div class="bolha largo" data-ui>
+  <div class="bl-interativo" data-bolha hidden>
+    <p class="bl-dica">{t('bolha.dica')}</p>
+    <ul class="bl-grade">
+      {inicial.map((f) => (
+        <li>
+          <button type="button" class="bl-cartao" data-forma={f} aria-label={t('bolha.curtir', { forma: nomes[f] })}>
+            <Fragment set:html={svg(f)} /><Fragment set:html={coracao} />
+          </button>
+        </li>
+      ))}
+    </ul>
+    <p class="bl-contador" aria-live="polite" data-contador data-modelo={t('bolha.contador', { n: '{n}' })}>{t('bolha.contador', { n: 4 })}</p>
+    <div class="bl-acoes">
+      <button type="button" class="bl-botao" data-mostrar disabled>{t('bolha.mostrar')}</button>
+      <button type="button" class="bl-botao" data-recomecar>{t('bolha.recomecar')}</button>
+    </div>
+    <ul class="bl-sumidas" data-sumidas hidden>
+      {FORMAS.map((f) => <li data-forma={f}><span role="img" aria-label={nomes[f]}><Fragment set:html={svg(f)} /></span></li>)}
+    </ul>
+    <template data-desenhos>
+      {FORMAS.map((f) => <span data-forma={f} data-rotulo={t('bolha.curtir', { forma: nomes[f] })}><Fragment set:html={svg(f)} /></span>)}
+    </template>
+  </div>
+
+  <div class="bl-tira" aria-hidden="true" data-bolha-tira>
+    {tira.map((g) => (
+      <div class="bl-mini">{g.map((f) => <span class="bl-mini-cartao"><Fragment set:html={svg(f)} /></span>)}</div>
+    ))}
+  </div>
+</div>
+
+<style is:global>
+  .bolha {
+    background: var(--color-nevoa);
+    border-radius: var(--radius-cartao);
+    padding: clamp(1.25rem, 4vw, 2.25rem);
+    max-width: 40rem !important;
+  }
+  .texto .bl-dica { font-size: var(--text-pequeno); font-weight: 600; margin-bottom: 1rem; }
+  .texto ul.bl-grade {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+  }
+  .texto ul.bl-grade > li { padding: 0; margin: 0; }
+  .texto ul.bl-grade > li::before, .texto ul.bl-sumidas > li::before { display: none; }
+  .bl-cartao {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    border: 1px solid color-mix(in srgb, var(--color-tinta) 14%, transparent);
+    background: var(--color-branco);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .bl-cartao:hover { border-color: var(--color-tinta-2); box-shadow: 0 6px 18px -12px rgb(15 17 20 / 0.35); }
+  .bl-cartao:focus-visible { outline: 3px solid var(--color-ramo); outline-offset: 2px; }
+  .bl-forma { width: 52%; height: auto; }
+  .bl-coracao {
+    position: absolute;
+    right: 0.4rem;
+    bottom: 0.4rem;
+    width: 0.9rem;
+    fill: none;
+    stroke: var(--color-linha);
+    stroke-width: 1.4;
+  }
+  .bl-cartao:hover .bl-coracao { stroke: var(--color-tinta); }
+  /* Forma e preenchimento diferentes, não só a cor (contraste de 3:1 ou mais sobre o branco). */
+  .bl-circulo { fill: var(--color-tinta); }
+  .bl-quadrado { fill: var(--color-tinta-2); }
+  .bl-triangulo { fill: var(--color-linha); }
+  .bl-losango { fill: none; stroke: var(--color-tinta); stroke-width: 3; }
+  @media (prefers-reduced-motion: no-preference) {
+    .bl-cartao.mudou .bl-forma { animation: bl-surge 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  }
+  @keyframes bl-surge { from { opacity: 0; transform: scale(0.6); } }
+  .texto .bl-contador { font-size: var(--text-pequeno); font-weight: 650; margin-bottom: 1rem; font-variant-numeric: tabular-nums; }
+  .bl-acoes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .bl-botao {
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-tinta) 22%, transparent);
+    background: var(--color-branco);
+    font-size: var(--text-pequeno);
+    font-weight: 600;
+    color: var(--color-tinta);
+    cursor: pointer;
+  }
+  .bl-botao:hover:not(:disabled) { border-color: var(--color-tinta-2); }
+  .bl-botao:disabled { color: var(--color-tinta-2); cursor: default; opacity: 0.75; }
+  .bl-botao:focus-visible { outline: 3px solid var(--color-ramo); outline-offset: 2px; }
+  .texto ul.bl-sumidas {
+    display: flex;
+    gap: 0.6rem;
+    margin: 1.25rem 0 0;
+  }
+  .texto ul.bl-sumidas[hidden] { display: none; }
+  .texto ul.bl-sumidas > li { padding: 0; margin: 0; }
+  .bl-sumidas li > span {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    border: 1.5px dashed var(--color-linha);
+  }
+  .bl-sumidas .bl-forma { opacity: 0.4; }
+  .bl-tira { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .bl-mini { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.25rem; }
+  .bl-mini-cartao { display: grid; place-items: center; aspect-ratio: 1; border-radius: 4px; background: var(--color-branco); }
+  .bl-mini-cartao .bl-forma { width: 60%; }
+  .bl-mini-cartao .bl-losango { stroke-width: 4; }
+</style>
+
+<script>
+  import { grade, FORMAS, type Forma } from '../../lib/bolha';
+
+  document.querySelectorAll<HTMLElement>('[data-bolha]').forEach((raiz) => {
+    const tira = raiz.parentElement?.querySelector<HTMLElement>('[data-bolha-tira]');
+    const cartoes = [...raiz.querySelectorAll<HTMLButtonElement>('.bl-cartao')];
+    const contador = raiz.querySelector<HTMLElement>('[data-contador]')!;
+    const mostrar = raiz.querySelector<HTMLButtonElement>('[data-mostrar]')!;
+    const sumidas = raiz.querySelector<HTMLElement>('[data-sumidas]')!;
+    const desenhos = raiz.querySelector<HTMLTemplateElement>('[data-desenhos]')!.content;
+    const curtidas: Record<Forma, number> = { circulo: 0, quadrado: 0, triangulo: 0, losango: 0 };
+    let ultima: Forma = 'circulo';
+    let total = 0;
+
+    const desenhar = () => {
+      // A forma preferida é a mais curtida (no empate, a última curtida).
+      const preferida = FORMAS.reduce((a, f) => (curtidas[f] > curtidas[a] || (curtidas[f] === curtidas[a] && f === ultima) ? f : a), ultima);
+      const formas = grade(preferida, total);
+      cartoes.forEach((botao, i) => {
+        const f = formas[i];
+        if (botao.dataset.forma === f) return;
+        const modelo = desenhos.querySelector<HTMLElement>(`[data-forma="${f}"]`)!;
+        botao.dataset.forma = f;
+        botao.setAttribute('aria-label', modelo.dataset.rotulo!);
+        botao.querySelector('.bl-forma')!.replaceWith(modelo.querySelector('svg')!.cloneNode(true));
+        botao.classList.remove('mudou');
+        void botao.offsetWidth;
+        botao.classList.add('mudou');
+      });
+      const presentes = new Set(formas);
+      contador.textContent = contador.dataset.modelo!.replace('{n}', String(presentes.size));
+      mostrar.disabled = presentes.size === FORMAS.length;
+      sumidas.querySelectorAll<HTMLElement>('li').forEach((li) => { li.hidden = presentes.has(li.dataset.forma as Forma); });
+      if (mostrar.disabled) sumidas.hidden = true;
+    };
+
+    cartoes.forEach((botao) => botao.addEventListener('click', () => {
+      const f = botao.dataset.forma as Forma;
+      curtidas[f]++;
+      ultima = f;
+      total++;
+      desenhar();
+    }));
+    mostrar.addEventListener('click', () => { sumidas.hidden = false; });
+    raiz.querySelector('[data-recomecar]')!.addEventListener('click', () => {
+      FORMAS.forEach((f) => { curtidas[f] = 0; });
+      total = 0;
+      ultima = 'circulo';
+      sumidas.hidden = true;
+      desenhar();
+    });
+
+    raiz.hidden = false;
+    if (tira) tira.hidden = true;
+  });
+</script>

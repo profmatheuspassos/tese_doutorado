@@ -53,5 +53,24 @@
     "ver_tabela": "Ver os números em tabela",
     "resposta": "Resposta",
     "legenda_tabela": "{instituicao}, em %"
-  }
+  },
+  "linha_do_tempo": [
+    "Súdito",
+    "Governo representativo",
+    "Democracia representativa"
+  ],
+  "bolha": {
+    "dica": "Toque no que você curtiria e veja o que a tela passa a mostrar.",
+    "formas": {
+      "circulo": "círculo",
+      "quadrado": "quadrado",
+      "triangulo": "triângulo",
+      "losango": "losango"
+    },
+    "curtir": "Curtir: {forma}",
+    "contador": "Tipos de cartão na tela: {n} de 4",
+    "mostrar": "Mostrar o que deixou de aparecer",
+    "recomecar": "Recomeçar"
+  },
+  "estadio_legenda": "Imagine 30 mil pessoas num estádio, sem microfone, todas com direito de propor leis e opinar. Discutir uma única proposta já seria difícil."
 }

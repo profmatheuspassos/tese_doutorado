@@ -111,7 +111,8 @@ se as 880 notas de rodapé foram distribuídas.
 | `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: home (`index.astro`), 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
 | `src/pages/capitulos/[slug].astro`, `src/layouts/Capitulo.astro` | Rotas dos capítulos (lidas dos `.md`) e modelo das páginas internas |
 | `src/components/capitulo/`, `src/components/capitulos/`, `src/components/interativos/` | Abertura, bloco de texto, progresso e navegação; composição de cada capítulo; interativos (explorador etc.) |
-| `src/lib/blocos.ts` | Divide o HTML de cada `.md` nos blocos `Bn`; só acrescenta atributos, envoltórios e desenhos sem texto, nunca texto |
+| `src/lib/blocos.ts` | Divide o HTML de cada `.md` nos blocos `Bn`; só acrescenta atributos, envoltórios e desenhos sem texto, nunca texto (inclui `rotularCelulas`, tabela em cartões no celular) |
+| `src/lib/checklist.ts`, `src/styles/checklist.css`, `src/scripts/comum/` | Peças comuns à home e aos capítulos: marcas do checklist, observadores de entrada na tela, animação do checklist, revelação dos visuais |
 | `src/lib/rotulos.mjs` | Marcadores `{d:caminho}` nos rótulos, trocados pelos valores do `dados.json` (usado pelo site e pelas conferências) |
 | `src/lib/plugin-sem-quebra.mjs` | Impede quebra de linha em palavras com hífen, sem trocar caractere |
 | `src/data/dados.json` | Único arquivo de números do site (Quadros 1 a 5 e outros), com os usos por página |
@@ -146,7 +147,7 @@ npm run capturas
 Para salvar as capturas versionadas de uma ou mais páginas:
 
 ```bash
-npm run capturas:salvar -- capitulo-2
+npm run capturas:salvar -- capitulo-1,capitulo-3
 ```
 
 ```bash
@@ -195,13 +196,20 @@ npm run lighthouse
   degraus, 92,9% em destaque e explorador dos Quadros 1 a 5, que funciona sem JavaScript.
   Conferências e testes estendidos a várias páginas. Texto idêntico ao aprovado (1.797 palavras);
   Lighthouse 99 a 100; axe sem violações.
+  Enviada à `main` (PR #9, com merge).
+- **Fase 4, Etapa 2 entregue, aguardando aprovação:** **capítulos 1 e 3**
+  (`/capitulos/1-no-papel/`, `/capitulos/3-o-atalho-digital/`). Capítulo 1 sem interativo (D53):
+  linha do tempo, checklist das nove regras e "Lado a lado" em cartões no celular. Capítulo 3:
+  estádio com a legenda T33, a bolha (interativo) e os sete problemas. Home: folga do "92,9%"
+  (D60). Checklist, tabela em cartões e revelação dos visuais viraram peças comuns. Textos
+  idênticos aos aprovados; Lighthouse 99 a 100 nas quatro páginas; axe sem violações.
 
 ## Próximo passo
 
-1. **Merge do pull request da Etapa 1** (capítulo 2), feito pelo autor no GitHub. Não começar a
-   Etapa 2 antes de o autor confirmar o merge. A sessão seguinte parte da `main` atualizada.
-2. Etapa 2: capítulos 1 e 3. Etapa 3: capítulos 4 e 5. Etapa 4: "Sobre a tese", links internos como
-   erro (`LINKS_ESTRITO=1`), Lighthouse e capturas das sete páginas. Cada etapa para e espera
+1. **Merge do pull request da Etapa 2** (capítulos 1 e 3), feito pelo autor no GitHub. Não começar
+   a Etapa 3 antes de o autor confirmar o merge. A sessão seguinte parte da `main` atualizada.
+2. Etapa 3: capítulos 4 e 5. Etapa 4: "Sobre a tese", links internos como erro
+   (`LINKS_ESTRITO=1`), Lighthouse e capturas das sete páginas. Cada etapa para e espera
    aprovação.
 3. Lembrete para a Fase 5 (D41): na publicação, conferir que o link do repositório na página
    "Sobre a tese" abre para o público. Também na Fase 5: link canônico, tags de compartilhamento

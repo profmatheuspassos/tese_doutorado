@@ -36,6 +36,8 @@ function lerMd(arquivo) {
   corpo = corpo
     .replace(/<!--[\s\S]*?-->/g, ' ')
     .replace(/^```.*$/gm, ' ')
+    // Marcador de lista numerada ("1. "): na página vira número da lista, não texto.
+    .replace(/^(\s*)\d{1,2}\.\s+/gm, '$1')
     .replace(/\]\([^)]*\)/g, ']');
   return { meta, marcas, tokens: tokens(corpo), aspas: aspas(corpo) };
 }

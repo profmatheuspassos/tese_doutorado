@@ -249,6 +249,57 @@
     padding-left: 0.75rem;
   }
 
+  /*
+   * Tabela que vira cartões no celular (capítulos 1 e 3; helper rotularCelulas). O cabeçalho da
+   * coluna é repetido por CSS acima de cada célula e fica fora da leitura de tela.
+   */
+  .texto table.tabela-cartoes thead th {
+    font-size: var(--text-pequeno);
+    color: var(--color-tinta-2);
+    border-bottom: 1.5px solid var(--color-tinta);
+  }
+  .tabela-cartoes td[data-col='0'] {
+    font-weight: 600;
+  }
+  @media (max-width: 767.98px) {
+    .tabela-cartoes thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .tabela-cartoes,
+    .tabela-cartoes tbody,
+    .tabela-cartoes tr,
+    .tabela-cartoes td {
+      display: block;
+      width: 100% !important;
+    }
+    .tabela-cartoes tr {
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 0.75rem;
+      border-radius: var(--radius-cartao);
+      background: var(--color-nevoa);
+    }
+    .texto .tabela-cartoes td {
+      border: 0;
+      padding: 0.35rem 0;
+    }
+    .tabela-cartoes td[data-col='0'] {
+      font-size: var(--text-corpo);
+      padding-bottom: 0.5rem;
+    }
+    .tabela-cartoes td:not([data-col='0'])::before {
+      content: attr(data-label) " " / "";
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-tinta-2);
+    }
+  }
+
   /* Link "Leia o capítulo N" ao fim dos blocos (T5) */
   .link-capitulo {
     display: inline;
@@ -282,6 +333,23 @@
 @media (prefers-reduced-motion: no-preference) {
   .js:not(.anim-falhou) [data-revelar] {
     opacity: 0;
+  }
+}
+
+/*
+ * Visuais das páginas internas (D57: só visuais, nunca o texto). Os filhos de [data-anima]
+ * aparecem em sequência quando o visual entra na tela (src/scripts/comum/visuais.ts).
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .js:not(.anim-falhou) [data-anima] > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--i, 0) * 180ms);
+  }
+  .js:not(.anim-falhou) [data-anima].visivel > * {
+    opacity: 1;
+    transform: none;
   }
 }
 

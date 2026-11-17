@@ -249,6 +249,30 @@ regras de inelegibilidade, de cassação de direitos políticos e de fidelidade 
     "os cidadãos podiam tomar parte diretamente nas decisões da cidade", que serve às duas
     passagens e fica coerente com a página do capítulo 3.
 
+### Escolhas de apresentação visual (Fase 4)
+
+O texto publicado é o do `capitulo-1.md`, palavra por palavra (conferido a cada build por
+`scripts/conferir-texto.mjs`; o "1." da lista numerada do Markdown vira número da lista, não
+texto). O modelo da página é o do capítulo 2 (itens 1 e 2 da seção dele). Nenhuma escolha abaixo
+acrescenta afirmação ao texto.
+
+1. **Sem interativo próprio (D53).** O resultado da conferência das nove regras é fixo; um
+   interativo de "tocar para conferir" não revelaria nada.
+2. **Linha do tempo (B1).** Três nós ligados por traço com seta: "Súdito" → "Governo
+   representativo" → "Democracia representativa" (T18), na ordem do texto do bloco (súdito no
+   Estado absolutista; governo representativo do fim do século XVIII ao começo do XX; democracia
+   representativa depois da virada). Sem datas, para não acrescentar marcos que o texto não dá.
+   Cor neutra (tinta): vale para os dois países. `aria-hidden`; os nós aparecem em sequência ao
+   entrar na tela, só com movimento normal.
+3. **Checklist das nove regras (B4).** Cada regra da lista recebe as duas marcas de "cumpre"
+   (Portugal em verde, Brasil em terracota, D45), com a legenda T7, como no B2 da home. As marcas
+   representam a frase do texto "No papel, Portugal e Brasil cumprem as nove regras". Sem
+   explicação por regra: o texto aprovado não diz como cada país cumpre cada regra (D53).
+4. **"Lado a lado" (B8).** O fio sob o cabeçalho "Portugal" é verde e sob "Brasil" é terracota,
+   porque aqui cada coluna é de fato um país (D45). No celular, cada linha vira cartão: "Tema"
+   como título e "Portugal"/"Brasil" repetidos acima de cada célula (o cabeçalho que já está na
+   tabela, repetido por CSS e fora da leitura de tela).
+
 ---
 
 ## Capítulo 2 (`src/content/pt-br/capitulo-2.md`)
@@ -563,6 +587,31 @@ das três ondas de democratização (nota 330); limite de 280 caracteres de uma 
 27. **Menções a "a tese" (D15).** Quatro: a proposta que não se confunde com os dois modelos (B3),
     a fragmentação como problema central (B9), o populismo como degeneração (B10) e os quatro
     caminhos (B11). "Daí a conclusão" (B2) marca a posição do autor sem repetir "a tese".
+
+### Escolhas de apresentação visual (Fase 4)
+
+O texto publicado é o do `capitulo-3.md`, palavra por palavra (conferido a cada build). O modelo
+da página é o do capítulo 2. Nenhuma escolha abaixo acrescenta afirmação ao texto, exceto a
+legenda do estádio, aprovada pelo autor como rótulo (D55).
+
+1. **Estádio (B2; D24, D55).** A imagem `cap3-estadio.webp` (`alt=""`, D47; ainda espaço
+   reservado) entra depois de "Reunir todos, sempre, para resolver os problemas do dia a dia é
+   impossível", com a legenda T33 ("Imagine 30 mil pessoas num estádio, sem microfone, todas com
+   direito de propor leis e opinar. Discutir uma única proposta já seria difícil."). A legenda
+   vem da nota 363 da tese, registrada no plano (3.3) como ideia visual; os 30 mil são os cidadãos
+   de Atenas do B1.
+2. **A bolha (B6), interativo.** Doze cartões com quatro formas abstratas (círculo, quadrado,
+   triângulo, losango; T27). Formas, e não receitas ou notícias, para não criar exemplo novo nem
+   tema político: o exemplo da cozinha vegetariana e o "de esquerda ou de direita, tanto faz"
+   ficam no texto. Cada curtida faz a forma mais curtida ocupar mais cartões (6, 9, 11, 12 de 12),
+   e o contador (T30) desce até "1 de 4": é a imagem de "passam a mostrar só" e "quase não verá
+   nada diferente". "Mostrar o que deixou de aparecer" (T31) traz, apagadas, as formas que sumiram
+   ("A pessoa deixa de ver…"). Tons de cinza, sem verde nem terracota, que são as cores dos países
+   (D45). Sem JS, uma tira estática mostra os três momentos (variada, quase uniforme, uniforme).
+3. **Sete problemas (B8).** A tabela do texto ganha o mesmo estilo da home, sem revelação por
+   etapas: coluna "Problema" em negrito; no celular, cada linha vira cartão, com "A democracia
+   digital resolve?" repetido acima da resposta (cabeçalho da própria tabela, fora da leitura de
+   tela).
 
 ---
 

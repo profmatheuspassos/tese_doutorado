@@ -9,6 +9,8 @@
  */
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { aoEntrar, desligar, revelarEmLote } from './comum/observar';
+import { animarChecklists } from './comum/checklist';
 
 gsap.registerPlugin(ScrollTrigger);
 document.documentElement.classList.add('anim-pronto');
@@ -17,32 +19,6 @@ document.fonts?.ready.then(() => ScrollTrigger.refresh());
 
 const formato = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const sobe = { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' };
-const MARGEM = '0px 0px -8% 0px';
-
-/** Chama fn uma vez, quando o elemento entra na tela (inclusive depois de um salto). */
-function aoEntrar(alvo: Element | null, fn: () => void, observadores: IntersectionObserver[]) {
-  if (!alvo) return;
-  const io = new IntersectionObserver((entradas) => {
-    if (entradas.some((e) => e.isIntersecting)) { io.disconnect(); fn(); }
-  }, { rootMargin: MARGEM });
-  io.observe(alvo);
-  observadores.push(io);
-}
-
-/** Revela elementos em lotes, à medida que entram na tela. */
-function revelarEmLote(alvos: Element[], animar: (lote: Element[]) => void, observadores: IntersectionObserver[]) {
-  if (!alvos.length) return;
-  const io = new IntersectionObserver((entradas) => {
-    const lote = entradas.filter((e) => e.isIntersecting).map((e) => e.target);
-    lote.forEach((t) => io.unobserve(t));
-    if (lote.length) animar(lote);
-  }, { rootMargin: MARGEM });
-  alvos.forEach((a) => io.observe(a));
-  observadores.push(io);
-}
-
-const desligar = (observadores: IntersectionObserver[]) => () => observadores.forEach((io) => io.disconnect());
-
 const mm = gsap.matchMedia();
 
 mm.add('(prefers-reduced-motion: no-preference)', (ctx) => {
@@ -119,22 +95,7 @@ mm.add('(prefers-reduced-motion: no-preference)', (ctx) => {
   }
 
   // B2 — as marcas de "cumpre" se desenham, regra a regra (Portugal e depois Brasil).
-  document.querySelectorAll<HTMLElement>('[data-checklist]').forEach((ul) => {
-    const tl = gsap.timeline({ paused: true });
-    ul.querySelectorAll('li').forEach((li, i) => {
-      li.querySelectorAll('.marca').forEach((marca, j) => {
-        const circulo = marca.querySelector('.marca-circulo');
-        const visto = marca.querySelector('.marca-visto');
-        if (!circulo || !visto) return;
-        gsap.set(circulo, { opacity: 0, scale: 0.6, transformOrigin: '50% 50%' });
-        gsap.set(visto, { strokeDasharray: 1, strokeDashoffset: 1 });
-        const t = i * 0.16 + j * 0.08;
-        tl.to(circulo, { opacity: 1, scale: 1, duration: 0.3, ease: 'back.out(2)' }, t)
-          .to(visto, { strokeDashoffset: 0, duration: 0.35, ease: 'power2.out' }, t + 0.12);
-      });
-    });
-    aoEntrar(ul, () => tl.play(), obs);
-  });
+  animarChecklists(obs);
 
   // B5 — na bolha, os pontos coloridos se reduzem a uma cor só.
   const pontos = gsap.utils.toArray<SVGCircleElement>('.bolha-ponto');
