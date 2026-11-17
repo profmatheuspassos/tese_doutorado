@@ -73,6 +73,11 @@ a 1.770 palavras e índice 62,1. A primeira versão tinha 2.135 palavras visíve
 o script foi corrigido: ele somava uma lista inteira como uma frase de 65 palavras. Agora cada
 item de lista conta como uma frase.
 
+**Remedição após a D46 (17/11/2026).** Na lista das quatro ferramentas (bloco B7), o termo virou
+título com inicial maiúscula e sem dois-pontos, e cada descrição passou a começar com maiúscula e
+terminar com ponto final. Nenhuma palavra mudou. Resultado igual: 1.770 palavras, 149 frases,
+índice 62,1 (cada item de lista já contava como uma frase).
+
 **Conferência manual (o que o índice não mede).**
 - Termos técnicos explicados na primeira ocorrência: democracia representativa, constituição,
   fragmentação política, democracia digital, populismo, identificação patriótica, cidadania
