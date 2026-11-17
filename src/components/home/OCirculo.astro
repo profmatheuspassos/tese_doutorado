@@ -1,0 +1,55 @@
+---
+import type { Bloco } from '../../lib/blocos';
+import { comAtributos } from '../../lib/blocos';
+import Circulo from '../diagramas/Circulo.astro';
+import LinkCapitulo from './LinkCapitulo.astro';
+
+interface Props { bloco: Bloco }
+const { bloco } = Astro.props;
+const [h2, pIntro, p0, p1, p2, pFinal, ...resto] = bloco.elementos;
+const comNegrito = [p0, p1, p2].every((p) => p?.startsWith('<p><strong>'));
+if (!h2?.startsWith('<h2') || !comNegrito || !pFinal || resto.length) throw new Error('B4 fora do formato esperado.');
+const r = (el: string, extra: Record<string, string> = {}) => comAtributos(el, { 'data-revelar': '', ...extra });
+---
+<section class="secao-escura respiro" data-bloco="B4">
+  <div class="margem mx-auto grid max-w-(--container-figura) gap-x-20 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+    <div class="texto lg:col-start-2 lg:row-start-1">
+      <Fragment set:html={r(h2)} />
+      <Fragment set:html={r(pIntro, { class: 'circulo-intro' })} />
+    </div>
+    <div class="lg:col-start-1 lg:row-span-2 lg:row-start-1">
+      <div class="lg:sticky lg:top-[max(5rem,calc(50svh-17rem))]">
+        <Circulo estado="vicioso" />
+      </div>
+    </div>
+    <div class="texto circulo-passos lg:col-start-2 lg:row-start-2">
+      <Fragment set:html={r(p0, { 'data-passo-no': '0' })} />
+      <Fragment set:html={r(p1, { 'data-passo-no': '1' })} />
+      <Fragment set:html={r(p2, { 'data-passo-no': '2' })} />
+      <Fragment set:html={r(pFinal, { 'data-passo-final': '' })} />
+      <LinkCapitulo n={2} class="mt-10" />
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .circulo-intro {
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+    color: var(--color-gelo) !important;
+  }
+  .circulo-passos strong {
+    display: block;
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+    margin-bottom: 0.35rem;
+  }
+  @media (min-width: 1024px) {
+    .circulo-passos [data-passo-no] {
+      margin-bottom: 18vh;
+    }
+    .circulo-passos [data-passo-no='0'] {
+      margin-top: 8vh;
+    }
+  }
+</style>

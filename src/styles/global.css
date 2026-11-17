@@ -165,6 +165,9 @@
   .texto a:hover {
     text-decoration-thickness: 2px;
   }
+  .texto a.link-capitulo {
+    text-decoration: none;
+  }
   .texto table {
     width: 100%;
     border-collapse: collapse;

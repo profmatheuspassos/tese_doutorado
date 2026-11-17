@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import Abertura from '../components/home/Abertura.astro';
 import NaPratica from '../components/home/NaPratica.astro';
+import Cena from '../components/home/Cena.astro';
+import NoPapel from '../components/home/NoPapel.astro';
+import OCirculo from '../components/home/OCirculo.astro';
 import BlocoSimples from '../components/home/BlocoSimples.astro';
 import { pagina } from '../lib/paginas';
 import { t } from '../i18n';
@@ -20,10 +23,10 @@ if (sobrando.length) throw new Error(`Blocos da home sem lugar na página: ${sob
 ---
 <Base titulo={t('titulo_home', { titulo: dados.titulo })} descricao={dados.subtitulo}>
   <Abertura bloco={B.B0} />
-  <BlocoSimples bloco={B.B1} tom="escura" />
-  <BlocoSimples bloco={B.B2} tom="nevoa" capitulo={1} />
+  <Cena bloco={B.B1} />
+  <NoPapel bloco={B.B2} />
   <NaPratica bloco={B.B3} />
-  <BlocoSimples bloco={B.B4} tom="escura" capitulo={2} />
+  <OCirculo bloco={B.B4} />
   <BlocoSimples bloco={B.B5} tom="escura" capitulo={3} />
   <BlocoSimples bloco={B.B6} tom="clara" capitulo={4} />
   <BlocoSimples bloco={B.B7} tom="nevoa" capitulo={5} />
