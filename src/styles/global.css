@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+/*
+ * Tokens de design (Fase 3, plano aprovado em 17/11/2026).
+ * Neutros frios na base; dois acentos de país, sem cores de bandeira.
+ * O contraste de cada par é conferido por scripts/conferir-contraste.mjs antes do build.
+ */
+@theme {
+  --font-sans: "Inter Variable", Arial, sans-serif;
+
+  --color-branco: #ffffff;
+  --color-nevoa: #f3f5f7;
+  --color-grafite: #0f1114;
+  --color-grafite-2: #1a1d21;
+  --color-tinta: #16181b;
+  --color-tinta-2: #50565e;
+  --color-gelo: #f1f4f7;
+  --color-gelo-2: #a7aeb6;
+  --color-ramo: #3d7a47;
+  --color-ramo-escuro: #7fc08a;
+  --color-semente: #b4532a;
+  --color-semente-escuro: #f0956a;
+  --color-linha: #6b727a;
+  --color-linha-escuro: #8c939b;
+
+  --text-display: clamp(2.75rem, 8vw, 6rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.035em;
+  --text-titulo: clamp(2rem, 4.5vw, 3.25rem);
+  --text-titulo--line-height: 1.08;
+  --text-titulo--letter-spacing: -0.025em;
+  --text-subtitulo: clamp(1.375rem, 2.5vw, 1.75rem);
+  --text-subtitulo--line-height: 1.25;
+  --text-destaque: clamp(1.25rem, 2.2vw, 1.5rem);
+  --text-destaque--line-height: 1.4;
+  --text-corpo: 1.125rem;
+  --text-corpo--line-height: 1.65;
+  --text-pequeno: 0.9375rem;
+  --text-pequeno--line-height: 1.5;
+
+  --radius-cartao: 12px;
+  --container-texto: 38rem;
+  --container-figura: 72rem;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 4rem;
+  }
+
+  body {
+    background: var(--color-branco);
+    color: var(--color-tinta);
+    font-size: var(--text-corpo);
+    line-height: var(--text-corpo--line-height);
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ramo);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .secao-escura :focus-visible {
+    outline-color: var(--color-ramo-escuro);
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-ramo) 25%, transparent);
+  }
+}
+
+/* Margens laterais: 16 px até 640, 24 px até 1024, 32 px acima. */
+@utility margem {
+  padding-inline: 1rem;
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility respiro {
+  padding-block: clamp(4rem, 12vw, 9rem);
+}
+
+@layer components {
+  /* Seções */
+  .secao-clara {
+    background: var(--color-branco);
+    color: var(--color-tinta);
+  }
+  .secao-nevoa {
+    background: var(--color-nevoa);
+    color: var(--color-tinta);
+  }
+  .secao-escura {
+    background: var(--color-grafite);
+    color: var(--color-gelo);
+  }
+
+  /*
+   * Texto vindo do Markdown aprovado: os elementos não têm classe própria,
+   * então o estilo é dado pelo contexto.
+   */
+  .texto h2 {
+    font-size: var(--text-titulo);
+    line-height: var(--text-titulo--line-height);
+    letter-spacing: var(--text-titulo--letter-spacing);
+    font-weight: 750;
+    margin-bottom: 1.5rem;
+    text-wrap: balance;
+  }
+  .texto h3 {
+    font-size: var(--text-subtitulo);
+    line-height: var(--text-subtitulo--line-height);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    text-wrap: balance;
+  }
+  .texto p,
+  .texto ul,
+  .texto table {
+    margin-bottom: 1.25rem;
+  }
+  .texto p {
+    text-wrap: pretty;
+  }
+  .texto ul {
+    list-style: none;
+    padding: 0;
+  }
+  .texto ul > li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .texto ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.45;
+  }
+  .texto strong {
+    font-weight: 650;
+  }
+  .texto a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  .texto a:hover {
+    text-decoration-thickness: 2px;
+  }
+  .texto table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-pequeno);
+  }
+  .texto th,
+  .texto td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.75rem 0.75rem 0.75rem 0;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  }
+  .texto th {
+    font-weight: 650;
+  }
+
+  .secao-escura .texto p,
+  .secao-escura .texto li {
+    color: var(--color-gelo-2);
+  }
+  .secao-escura .texto strong,
+  .secao-escura .texto h2,
+  .secao-escura .texto h3 {
+    color: var(--color-gelo);
+  }
+
+  /* Link "Leia o capítulo N" ao fim dos blocos (T5) */
+  .link-capitulo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: var(--text-pequeno);
+    color: var(--color-ramo);
+    text-decoration: none;
+  }
+  .link-capitulo:hover span {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .secao-escura .link-capitulo {
+    color: var(--color-ramo-escuro);
+  }
+  .link-capitulo svg {
+    transition: transform 0.2s ease;
+  }
+  .link-capitulo:hover svg {
+    transform: translateX(3px);
+  }
+}
+
+/*
+ * Estados iniciais das animações. Só valem com JS ativo, sem pedido de movimento
+ * reduzido e enquanto o script não falhou. Sem JS, tudo aparece no estado final.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .js:not(.anim-falhou) [data-revelar] {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "_sobre": "Rótulos de interface aprovados pelo autor (T1 a T12, decisão D43). Nenhum outro texto de interface pode aparecer no site. {n} = número do capítulo; {titulo} = campo titulo do .md da página.",
+  "pular": "Pular para o conteúdo",
+  "menu": "Menu",
+  "inicio": "Início",
+  "capitulo": "Capítulo {n}",
+  "leia_capitulo": "Leia o capítulo {n}: {titulo}",
+  "grafico": {
+    "partidos": "Partidos",
+    "governo": "Governo",
+    "congresso": "Congresso Nacional"
+  },
+  "paises": {
+    "portugal": "Portugal",
+    "brasil": "Brasil"
+  },
+  "circulo_vicioso": ["O cidadão se afasta", "Os partidos se fecham", "Fragmentação política"],
+  "circulo_virtuoso": ["Sentir-se parte da comunidade", "Cidadania ativa", "Partidos mais abertos"],
+  "nao_encontrada": "Página não encontrada",
+  "voltar_inicio": "Voltar ao início",
+  "titulo_home": "{titulo} · Matheus Passos Silva",
+  "titulo_pagina": "{titulo} · Revigorar, não substituir"
+}

@@ -1,0 +1,132 @@
+{
+  "_sobre": "Único arquivo de números do site. Fonte de conferência: docs/PLANO-CONTEUDO.md, seção 4.1 (conferida contra a tese na Fase 1). Conferido a cada build por scripts/conferir-dados.mjs contra o plano e contra os textos aprovados. Valores em %, com uma casa decimal.",
+  "confianca_instituicoes_br": {
+    "fonte": "Latinobarómetro",
+    "pergunta": "Quanta confiança você tem nesta instituição?",
+    "origem": "Tese, 2.1, Quadros 1 a 5",
+    "anos": [2006, 2010, 2017],
+    "entrevistas": [1204, 1204, 1200],
+    "respostas": {
+      "muita": "Muita confiança",
+      "um_pouco": "Um pouco de confiança",
+      "pouca": "Pouca confiança",
+      "nenhuma": "Nenhuma confiança",
+      "nao_sabe": "Não sei responder",
+      "nao_responde": "Não quero responder"
+    },
+    "instituicoes": {
+      "congresso": {
+        "quadro": 1,
+        "nome_no_plano": "Congresso Nacional",
+        "valores": {
+          "muita": [7.9, 7.8, 1.9],
+          "um_pouco": [22.9, 35.9, 8.8],
+          "pouca": [34.7, 31.9, 26.1],
+          "nenhuma": [28.7, 20.4, 60.2],
+          "nao_sabe": [4.2, 3.4, 3.0],
+          "nao_responde": [1.5, 0.6, 0.1]
+        }
+      },
+      "governo": {
+        "quadro": 2,
+        "nome_no_plano": "Governo",
+        "valores": {
+          "muita": [15.9, 13.8, 0.8],
+          "um_pouco": [31.5, 41.2, 7.3],
+          "pouca": [34.1, 26.7, 25.1],
+          "nenhuma": [17.6, 16.1, 66.1],
+          "nao_sabe": [0.4, 1.5, 0.8],
+          "nao_responde": [0.5, 0.7, 0.0]
+        }
+      },
+      "judiciario": {
+        "quadro": 3,
+        "nome_no_plano": "Poder Judiciário",
+        "valores": {
+          "muita": [14.2, 11.8, 4.5],
+          "um_pouco": [30.4, 39.3, 22.4],
+          "pouca": [35.3, 27.5, 32.8],
+          "nenhuma": [16.8, 17.9, 37.2],
+          "nao_sabe": [2.9, 3.1, 2.9],
+          "nao_responde": [0.4, 0.5, 0.2]
+        }
+      },
+      "tse": {
+        "quadro": 4,
+        "nome_no_plano": "Tribunal Superior Eleitoral",
+        "valores": {
+          "muita": [27.9, 14.3, 5.9],
+          "um_pouco": [33.9, 37.8, 19.4],
+          "pouca": [22.9, 26.8, 31.2],
+          "nenhuma": [10.1, 17.9, 40.2],
+          "nao_sabe": [3.9, 2.9, 3.1],
+          "nao_responde": [1.2, 0.2, 0.1]
+        }
+      },
+      "partidos": {
+        "quadro": 5,
+        "nome_no_plano": "Partidos políticos",
+        "valores": {
+          "muita": [4.1, 4.9, 0.5],
+          "um_pouco": [18.1, 19.1, 6.2],
+          "pouca": [35.2, 32.8, 19.8],
+          "nenhuma": [40.1, 40.3, 72.4],
+          "nao_sabe": [2.1, 2.2, 1.1],
+          "nao_responde": [0.4, 0.7, 0.1]
+        }
+      }
+    }
+  },
+  "confianca_interpessoal_br": {
+    "fonte": "Latinobarómetro",
+    "origem": "Tese, 2.1, nota 207",
+    "ano": 2017,
+    "pode_confiar": 6.8,
+    "nao_pode_confiar": 92.9
+  },
+  "usos": [
+    {
+      "pagina": "home",
+      "bloco": "B3",
+      "grafico": "halteres",
+      "decisao": "D44",
+      "serie": "confianca_instituicoes_br",
+      "resposta": "nenhuma",
+      "anos": [2010, 2017],
+      "itens": [
+        { "instituicao": "partidos", "rotulo": "grafico.partidos", "frase": "nos partidos passou de {2010}% para {2017}%" },
+        { "instituicao": "governo", "rotulo": "grafico.governo", "frase": "no governo, de {2010}% para {2017}%" },
+        { "instituicao": "congresso", "rotulo": "grafico.congresso", "frase": "no Congresso Nacional, de {2010}% para {2017}%" }
+      ]
+    },
+    {
+      "pagina": "home",
+      "bloco": "B3",
+      "grafico": "numero-grande",
+      "serie": "confianca_interpessoal_br",
+      "frases": ["No Brasil, em {ano}, {nao_pode_confiar}% dos entrevistados disseram que não se pode confiar"]
+    },
+    {
+      "pagina": "capitulo-2",
+      "bloco": "B4",
+      "grafico": "tabela",
+      "serie": "confianca_instituicoes_br",
+      "resposta": "nenhuma",
+      "anos": [2006, 2010, 2017],
+      "itens": [
+        { "instituicao": "congresso", "frase": "| Congresso Nacional | {2006}% | {2010}% | {2017}% |" },
+        { "instituicao": "governo", "frase": "| Governo | {2006}% | {2010}% | {2017}% |" },
+        { "instituicao": "judiciario", "frase": "| Poder Judiciário | {2006}% | {2010}% | {2017}% |" },
+        { "instituicao": "tse", "frase": "| Tribunal Superior Eleitoral | {2006}% | {2010}% | {2017}% |" },
+        { "instituicao": "partidos", "frase": "| Partidos políticos | {2006}% | {2010}% | {2017}% |" }
+      ]
+    },
+    {
+      "pagina": "capitulo-2",
+      "bloco": "B4",
+      "grafico": "texto",
+      "serie": "confianca_interpessoal_br",
+      "frases": ["Em {ano}, só {pode_confiar}% dos entrevistados", "Outros {nao_pode_confiar}% disseram que não"]
+    }
+  ]
+}
