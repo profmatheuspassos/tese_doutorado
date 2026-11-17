@@ -7,19 +7,26 @@
  *  - acessibilidade com axe-core (WCAG 2.2 A/AA), sem violações;
  *  - teclado: o primeiro Tab leva ao link "Pular para o conteúdo", visível;
  *  - nenhum erro no console e nenhuma requisição para fora do site.
- * Uso: node scripts/capturas.mjs [pasta-de-saida] [blocos-em-destaque, ex.: B0,B3]
+ * Salva no repositório (docs/capturas/fase-3/) só o cenário normal, em 375 e 1440 px, uma
+ * captura por bloco desenhado (JPEG 70, densidade 2x). As capturas de página inteira e as dos
+ * outros cenários vão para uma pasta de rascunho fora do repositório (CAPTURAS_RASCUNHO).
+ * Uso: node scripts/capturas.mjs B0,B1,B2,B3,B4
  */
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 
 const exigir = createRequire(import.meta.url);
 const { chromium } = exigir('playwright');
 const raiz = new URL('..', import.meta.url).pathname;
-const saida = join(raiz, process.argv[2] || 'docs/capturas/fase-3');
-const destaques = (process.argv[3] || '').split(',').filter(Boolean);
+const saida = join(raiz, 'docs/capturas/fase-3');
+const rascunho = process.env.CAPTURAS_RASCUNHO || join(tmpdir(), 'capturas-fase-3');
+const destaques = (process.argv[2] || '').split(',').filter(Boolean);
 mkdirSync(saida, { recursive: true });
+mkdirSync(rascunho, { recursive: true });
+const versionada = (cenario, w) => cenario === 'normal' && (w === 375 || w === 1440);
 
 const PORTA = 4329;
 const BASE = `http://127.0.0.1:${PORTA}/`;
@@ -97,9 +104,9 @@ for (const c of cenarios) {
       await pagina.evaluate(() => document.activeElement.blur());
     }
 
-    await pagina.screenshot({ path: join(saida, `pagina-${c.nome}-${w}.jpg`), fullPage: true, type: 'jpeg', quality: 72 });
+    await pagina.screenshot({ path: join(rascunho, `pagina-${c.nome}-${w}.jpg`), fullPage: true, type: 'jpeg', quality: 70 });
     if (destaques.length) {
-      const ctx2 = await navegador.newContext({ viewport: { width: w, height: w < 500 ? 812 : 900 }, deviceScaleFactor: 2, ...c.opcoes });
+      const ctx2 = await navegador.newContext({ viewport: { width: w, height: w < 500 ? 812 : 900 }, deviceScaleFactor: versionada(c.nome, w) ? 2 : 1, ...c.opcoes });
       const p2 = await ctx2.newPage();
       await p2.goto(BASE, { waitUntil: 'networkidle' });
       await p2.evaluate(() => document.fonts.ready.then(() => true));
@@ -110,7 +117,8 @@ for (const c of cenarios) {
         for (let y = caixa.topo - 200; y <= caixa.topo + caixa.altura; y += 300) { await p2.evaluate((v) => scrollTo(0, v), y); await p2.waitForTimeout(c.nome === 'normal' ? 150 : 0); }
         await p2.waitForTimeout(c.nome === 'normal' ? 2600 : 200);
         // O cabeçalho fixo se repetiria no meio da imagem do bloco.
-        await loc.screenshot({ path: join(saida, `${b}-${c.nome}-${w}.jpg`), type: 'jpeg', quality: 82, style: 'header{position:static!important}' });
+        const destino = versionada(c.nome, w) ? join(saida, `${b}-${w}.jpg`) : join(rascunho, `${b}-${c.nome}-${w}.jpg`);
+        await loc.screenshot({ path: destino, type: 'jpeg', quality: 70, style: 'header{position:static!important}' });
       }
       await ctx2.close();
     }
@@ -123,4 +131,4 @@ servidor.kill();
 
 console.log(resumo.join('\n'));
 if (erros.length) { console.error(`capturas: ${erros.length} problema(s)`); erros.forEach((e) => console.error(' - ' + e)); process.exit(1); }
-console.log(`capturas: ok (${cenarios.length * larguras.length} combinações; arquivos em ${saida})`);
+console.log(`capturas: ok (${cenarios.length * larguras.length} combinações testadas; versionadas em ${saida}; rascunho em ${rascunho})`);
