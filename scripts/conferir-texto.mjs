@@ -20,8 +20,11 @@ const pastaMd = join(raiz, 'src/content/pt-br');
 const i18n = JSON.parse(readFileSync(join(raiz, 'src/i18n/pt-br.json'), 'utf8'));
 const dados = JSON.parse(readFileSync(join(raiz, 'src/data/dados.json'), 'utf8'));
 
-const TOKEN = /[\p{L}\p{N}]+(?:[,.'’-][\p{L}\p{N}]+)*%?/gu;
-const tokens = (s) => s.match(TOKEN) ?? [];
+const TOKEN = /[\p{L}\p{N}]+(?:[,.'-][\p{L}\p{N}]+)*%?/gu;
+// Aspas retas e tipográficas contam como iguais (o Astro converte as retas do .md em curvas).
+const normalizar = (s) => s.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'");
+const tokens = (s) => normalizar(s).match(TOKEN) ?? [];
+const aspas = (s) => (normalizar(s).match(/"/g) ?? []).length;
 
 function lerMd(arquivo) {
   const bruto = readFileSync(join(pastaMd, arquivo), 'utf8');
@@ -33,7 +36,7 @@ function lerMd(arquivo) {
     .replace(/<!--[\s\S]*?-->/g, ' ')
     .replace(/^```.*$/gm, ' ')
     .replace(/\]\([^)]*\)/g, ']');
-  return { meta, marcas, tokens: tokens(corpo) };
+  return { meta, marcas, tokens: tokens(corpo), aspas: aspas(corpo) };
 }
 
 const paginas = readdirSync(pastaMd).filter((f) => f.endsWith('.md')).map((f) => ({ arquivo: f, ...lerMd(f) }));
@@ -71,7 +74,7 @@ for (const p of paginas) {
       const fora = [];
       for (let n = w.nextNode(); n; n = w.nextNode()) {
         const el = n.parentElement;
-        if (!el || el.closest('script, style, template')) continue;
+        if (!el || el.closest('script, style, template, [data-rotulo]')) continue;
         const t = n.textContent;
         if (!t.trim()) continue;
         if (dentroBloco && !pular(el)) partes.push(t);
@@ -79,6 +82,8 @@ for (const p of paginas) {
       }
       return { texto: partes.join(' '), fora };
     };
+    // Rótulos divididos em vários nós (ex.: última palavra presa à seta) são conferidos inteiros.
+    const rotulos = [...document.querySelectorAll('[data-rotulo]')].map((el) => el.textContent.replace(/\s+/g, ' ').trim());
     const blocos = [...document.querySelectorAll('[data-bloco]')];
     const porBloco = blocos.map((b) => ({ id: b.dataset.bloco, ...textoDe(b, true) }));
     // Texto fora de qualquer bloco.
@@ -86,10 +91,10 @@ for (const p of paginas) {
     const foraDosBlocos = [];
     for (let n = w.nextNode(); n; n = w.nextNode()) {
       const el = n.parentElement;
-      if (!el || el.closest('script, style, template, [data-bloco]') || !n.textContent.trim()) continue;
+      if (!el || el.closest('script, style, template, [data-bloco], [data-rotulo]') || !n.textContent.trim()) continue;
       foraDosBlocos.push(n.textContent.trim());
     }
-    return { porBloco, foraDosBlocos, titulo: document.title };
+    return { porBloco, foraDosBlocos, rotulos, titulo: document.title };
   });
   await pagina.close();
 
@@ -106,11 +111,14 @@ for (const p of paginas) {
     }
   }
 
-  const soltos = [...r.foraDosBlocos, ...r.porBloco.flatMap((b) => b.fora)];
+  const aspasPublicadas = r.porBloco.reduce((n, b) => n + aspas(b.texto), 0);
+  if (aspasPublicadas !== p.aspas) erros.push(`${p.arquivo}: número de aspas diferente. .md: ${p.aspas} | página: ${aspasPublicadas}`);
+
+  const soltos = [...r.foraDosBlocos, ...r.porBloco.flatMap((b) => b.fora), ...r.rotulos];
   for (const s of soltos) {
     if (!permitidos.has(s) && !numeroDosDados.test(s)) erros.push(`${p.arquivo}: texto de interface não aprovado: "${s}"`);
   }
-  console.log(`  ${p.arquivo}: ${publicados.length} palavras conferidas em ${ids.length} blocos; ${soltos.length} rótulos de interface conferidos; <title>: ${r.titulo}`);
+  console.log(`  ${p.arquivo}: ${publicados.length} palavras e ${aspasPublicadas} aspas conferidas em ${ids.length} blocos; ${soltos.length} rótulos de interface conferidos; <title>: ${r.titulo}`);
 }
 await navegador.close();
 

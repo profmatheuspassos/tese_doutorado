@@ -199,7 +199,7 @@
     color: var(--color-ramo);
     text-decoration: none;
   }
-  .link-capitulo:hover span {
+  .link-capitulo:hover .link-capitulo-texto {
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
@@ -234,4 +234,9 @@
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Palavras com hífen não quebram de linha (plugin-sem-quebra). */
+.sem-quebra {
+  white-space: nowrap;
 }

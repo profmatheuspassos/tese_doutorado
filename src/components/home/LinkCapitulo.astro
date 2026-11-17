@@ -5,10 +5,14 @@ interface Props { n: number; class?: string }
 const { n, class: classe } = Astro.props;
 const cap = (await capitulos()).find((c) => c.n === n);
 if (!cap) throw new Error(`Capítulo ${n} inexistente`);
+// A última palavra e a seta ficam juntas, para a seta nunca cair sozinha na linha de baixo.
+const rotulo = t('leia_capitulo', { n, titulo: cap.titulo });
+const corte = rotulo.lastIndexOf(' ');
+const inicio = rotulo.slice(0, corte + 1);
+const ultima = rotulo.slice(corte + 1);
 ---
 <p class={classe} data-ui>
-  <a class="link-capitulo" href={url(cap.rota)}>
-    <span>{t('leia_capitulo', { n, titulo: cap.titulo })}</span>
-    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+  <a class="link-capitulo" data-rotulo href={url(cap.rota)}>
+    <span class="link-capitulo-texto">{inicio}<span class="whitespace-nowrap">{ultima}<svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span></span>
   </a>
 </p>

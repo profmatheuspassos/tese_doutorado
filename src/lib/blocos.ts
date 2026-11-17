@@ -61,3 +61,19 @@ export function comAtributos(elemento: string, atributos: Record<string, string>
     .join('');
   return elemento.replace(/^<([a-zA-Z][\w-]*)/, `<$1${extra}`);
 }
+
+/**
+ * Envolve um trecho exato de um elemento num <span class="...">, sem mudar o texto.
+ * O trecho precisa aparecer exatamente uma vez; se não, o build falha.
+ */
+export function envolverTrecho(elemento: string, trecho: string, classe: string): string {
+  const partes = elemento.split(trecho);
+  if (partes.length !== 2) throw new Error(`Trecho "${trecho}" aparece ${partes.length - 1} vez(es) no elemento; esperado: 1.`);
+  return `${partes[0]}<span class="${classe}">${trecho}</span>${partes[1]}`;
+}
+
+/** Acrescenta um trecho de HTML sem texto antes do fechamento de cada <li> de uma lista. */
+export function anexarEmCadaItem(lista: string, html: string): string {
+  if (/>[^<\s][^<]*</.test(html.replace(/<svg[\s\S]*?<\/svg>/g, ''))) throw new Error('anexarEmCadaItem aceita só HTML sem texto.');
+  return lista.replace(/<\/li>/g, `${html}</li>`);
+}
