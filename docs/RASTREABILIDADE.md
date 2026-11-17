@@ -132,7 +132,7 @@ rodapé abertas só quando trazem dado ou argumento: 42, 53, 62, 65, 72, 74, 88,
 | Bloco | O que o site diz | Origem na tese | Âncora no original |
 |---|---|---|---|
 | B0 Abertura | O capítulo monta a régua (democracia representativa, cidadania) e confere as leis de PT e BR; resposta: democracias no papel; dúvida sobre a vida real | Abertura do cap. 1; 1.2 (conclusão) | "uma apresentação teórica dos conceitos de democracia e de cidadania"; "A resposta, antecipa-se, é negativa" |
-| B1 De súdito a cidadão | Atenas: todo cidadão decidia; inviável com milhões; representação necessária; súdito no Estado absolutista; Declaração de 1789 (lei = vontade dos cidadãos); governo representativo (fim do séc. XVIII ao início do XX); voto restrito por sexo e renda; Inglaterra do séc. XIX, cerca de 10% eleitores; eleição dos "notáveis", sem laço de representação, eleito vota como quer; virada no fim do XIX e início do XX, com a Primeira Guerra; voto como poder real, laço criado por lei, troca do eleito; expansão do voto (trabalhadores, prêmio aos sobreviventes das guerras, queda do analfabetismo); "pouco mais de cem anos" | 1.1, §§ 1–9; nota 42 | "nos moldes da Atenas antiga"; "sendo este período intermédio chamado de *governo representativo*"; "o gênero (direito de voto para homens, não para mulheres) ou o censo"; "cerca de 10% da população era considerado como eleitor" (nota 42); "apenas os notáveis eram 'eleitos'"; "inclusive em consequência da Primeira Guerra Mundial"; "o eleitor, caso estivesse insatisfeito com o eleito, poderia realmente substituí-lo"; "em pouco mais de 100 anos" |
+| B1 De súdito a cidadão | Atenas: os cidadãos podiam tomar parte diretamente nas decisões (D22); inviável com milhões; representação necessária; súdito no Estado absolutista; Declaração de 1789 (lei = vontade dos cidadãos); governo representativo (fim do séc. XVIII ao início do XX); voto restrito por sexo e renda; Inglaterra do séc. XIX, cerca de 10% eleitores; eleição dos "notáveis", sem laço de representação, eleito vota como quer; virada no fim do XIX e início do XX, com a Primeira Guerra; voto como poder real, laço criado por lei, troca do eleito; expansão do voto (trabalhadores, prêmio aos sobreviventes das guerras, queda do analfabetismo); "pouco mais de cem anos" | 1.1, §§ 1–9; nota 42; 3.1 (D22) | "nos moldes da Atenas antiga"; "tinham a *possibilidade* de participar" (3.1); "sendo este período intermédio chamado de *governo representativo*"; "o gênero (direito de voto para homens, não para mulheres) ou o censo"; "cerca de 10% da população era considerado como eleitor" (nota 42); "apenas os notáveis eram 'eleitos'"; "inclusive em consequência da Primeira Guerra Mundial"; "o eleitor, caso estivesse insatisfeito com o eleito, poderia realmente substituí-lo"; "em pouco mais de 100 anos" |
 | B2 Os partidos | Democracia partidária; sindicatos e ONGs influenciam, o partido é o único que a constituição deixa entrar no Estado em nome do cidadão; objetivo acima de todos: votos; partidos de notáveis (só no parlamento) → partidos de massa (estrutura, propaganda contínua); voto no programa, não na pessoa; eleito segue o partido, que presta contas ao eleitor; governabilidade e alianças | 1.1 (partidos políticos); notas 53 e 65 | "verdadeira *democracia partidária*"; "a única instituição que tem a prerrogativa de formalmente se inserir no aparelho do Estado" (nota 65); "o de *obter votos*"; "*partidos de notáveis*"; "*partido de massa*"; "não mais na pessoa do candidato 'A' ou do candidato 'B'"; "o mandato pertence ao partido"; "o de garantir a governabilidade" |
 | B3 Maioria é contagem | Sociedade plural, nenhum grupo sufoca os outros; maioria = critério numérico, não verdade nem justiça; exemplo dos 55%; maioria de hoje, minoria de amanhã; tirania da maioria = autoritarismo disfarçado; dever de participação mais amplo que o voto; referendo, petição e ação popular para controle entre eleições, a estimular; definição das três ferramentas | 1.1 (pluralismo; maioria; controle pelo cidadão); notas 72 e 74 | "nenhum destes polos de poder existentes na sociedade será suficientemente forte a ponto de sufocar os demais"; "não há como correlacionar […] a vontade da maioria a concepções quaisquer de verdade ou de justiça"; "a maioria de hoje poderá vir a se tornar a minoria do futuro"; "um autoritarismo travestido de democracia"; "dever fundamental de participação política"; "tais como referendos, ações populares ou petições" |
 | B4 As regras do jogo | As nove regras (a a i), em linguagem simples; capacidade de resposta e prestação de contas; formular, expressar e ver consideradas as preferências, sem discriminação; regimes mais ou menos democráticos; PT e BR cumprem as nove no papel | 1.1 (conjunto de regras de procedimento; poliarquia); 1.2 (conclusão) | "(a) o poder Legislativo deve ser composto por membros eleitos"; "(i) o órgão do Governo deve gozar de confiança do Parlamento ou do chefe do poder Executivo"; "um governo democrático deve prestar contas aos seus cidadãos"; "(a) formular livremente suas preferências"; "serão, nesta visão, mais ou menos democráticos"; "por estarem previstas em sua Constituição todas as *regras de procedimento*" |
@@ -199,6 +199,12 @@ regras de inelegibilidade, de cassação de direitos políticos e de fidelidade 
 12. **Menções a "a tese" (D15).** Duas: o dever de participação mais amplo que o voto (B3) e a
     resposta negativa no fecho (B9). Uma terceira posição do autor aparece como "para o autor"
     (B7).
+13. **Atenas: possibilidade, não obrigação (D22, 17/11/2026).** A tese diz, em 1.1, que os
+    cidadãos atenienses "tinham a obrigatoriedade" de tomar parte nas decisões e, em 3.1, que
+    "tinham a *possibilidade* de participar, caso assim desejassem". A frase aprovada ("todo
+    cidadão tinha de tomar parte nas decisões da cidade") foi trocada, por decisão do autor, por
+    "os cidadãos podiam tomar parte diretamente nas decisões da cidade", que serve às duas
+    passagens e fica coerente com a página do capítulo 3.
 
 ---
 
@@ -381,13 +387,14 @@ das três ondas de democratização (nota 330); limite de 280 caracteres de uma 
 
 ### Escolhas de interpretação
 
-1. **Atenas no capítulo 1 e no capítulo 3 (ponto A9, em aberto).** A tese diz, em 1.1, que os
+1. **Atenas no capítulo 1 e no capítulo 3 (D22; era A9).** A tese diz, em 1.1, que os
    cidadãos de Atenas "tinham a obrigatoriedade" de tomar parte nas decisões, e a página do
    capítulo 1 (aprovada) escreve "todo cidadão tinha de tomar parte". Em 3.1, a tese diz que
    Atenas era considerada direta "não porque os cidadãos efetivamente participavam", mas porque
    "tinham a *possibilidade* de participar, caso assim desejassem". A página do capítulo 3 não fala
    em obrigação: diz que a imagem de "todos decidindo tudo" não corresponde à prática (20% de
-   presença, maioria só ouvindo). Ver `docs/DECISOES.md`, A9.
+   presença, maioria só ouvindo). O autor aceitou trocar a frase do capítulo 1 por "os cidadãos
+   podiam tomar parte diretamente nas decisões da cidade" (D22).
 2. **Sorteio entre voluntários.** A tese diz que, no sorteio, "só concorreriam [...] aqueles
    cidadãos que se voluntariassem" e cita a idade de 30 anos. O site escreve "sorteio entre
    voluntários" e omite a idade, por tamanho.
@@ -410,7 +417,7 @@ das três ondas de democratização (nota 330); limite de 280 caracteres de uma 
    só dentro do seu grupo".
 9. **Porto Alegre e Lisboa.** O plano manda citar os dois orçamentos participativos. São cidades e
    programas públicos, não governantes, partidos ou casos concretos (D6). O reconhecimento
-   internacional de Porto Alegre ficou de fora, por tamanho.
+   internacional de Porto Alegre ficou de fora, por tamanho. **Aceito pelo autor (D25).**
 10. **Deliberativa "impraticável hoje".** A tese: "impossibilitado de ser concretizado na prática
     devido às condicionantes da sociedade contemporânea". Das três propostas que faltam, o site
     cita duas (incluir os menos favorecidos, garantir igualdade) e omite a terceira (canal para o
@@ -433,7 +440,7 @@ das três ondas de democratização (nota 330); limite de 280 caracteres de uma 
     compara com um salário médio de 922 EUR em Portugal (e menos da metade no Brasil), sem dar o
     ano do salário. Como todo dado do site precisa do ano, e a estimativa é do próprio autor, o
     site diz só que "o aparelho e o plano de internet ainda pesam no bolso de muita gente", que é a
-    conclusão da tese ("longe de parcela razoável dos cidadãos").
+    conclusão da tese ("longe de parcela razoável dos cidadãos"). **Aceito pelo autor (D23).**
 17. **Perguntas sobre os cargos.** A tese pergunta se haveria cargos, como seriam escolhidos, se
     teriam privilégios, mandato curto e remuneração. O site resume em "quem ocuparia os cargos
     públicos, e como seria escolhido?". A pergunta sobre o controle da constituição vem da nota
@@ -464,11 +471,12 @@ das três ondas de democratização (nota 330); limite de 280 caracteres de uma 
     clareza".
 25. **Ficou de fora, conforme o plano ou por tamanho:** as onze críticas da abertura; a lista de
     protestos (D11); as ondas de democratização; a crítica às visões radicais; a imagem do estádio
-    sem microfone (nota 363), que pode voltar como visual na Fase 3; teoria da escolha racional;
+    sem microfone (nota 363), registrada no plano como ideia visual para a Fase 3 (D24); teoria da escolha racional;
     a promessa populista de "democratizar a democracia"; o exemplo hipotético do diário oficial e
     a discussão sobre validade das normas; os quatro aspectos do populismo; o estado de exceção; a
     democracia iliberal e a tipologia de "democracias autoritárias"; o e-Cidadania (nota 469);
     nomes de plataformas, empresas, governantes e autores (notas 472, 475, 477, 478, 496, 531).
+    **Cortes mantidos pelo autor (D24).**
 26. **Quatro caminhos.** "Identificação patriótica" não aparece; o termo é apresentado no
     capítulo 4. O primeiro caminho vira "criar vínculos reais entre as pessoas e a comunidade onde
     vivem"; o segundo, "entender a cidadania como ação, e não só como direito de votar".

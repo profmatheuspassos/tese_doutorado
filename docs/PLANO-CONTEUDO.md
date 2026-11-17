@@ -220,6 +220,9 @@ cartões neutros (o exemplo vegetariano da tese); a cada escolha a grade mostra 
 variedade, até ficar de uma cor só. Um botão revela o que deixou de aparecer.
 
 **Outros visuais:** Atenas em números (30 mil → 6 mil → 600 por sorteio → 500 no conselho);
+**30 mil pessoas num estádio, sem microfone** (nota 363 da tese: todas com direito de propor leis
+e opinar; mesmo uma única proposta seria difícil de discutir), ideia visual para a Fase 3 que
+não entrou no texto da página (D24);
 pares promessa/problema que viram; tabela dos sete problemas (primeira coluna de respostas);
 anatomia do populismo em três peças; dados de acesso.
 

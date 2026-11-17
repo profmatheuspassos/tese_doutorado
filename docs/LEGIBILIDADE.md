@@ -54,7 +54,7 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 | Página | Palavras visíveis | Palavras no texto corrido | Frases | Palavras/frase | Sílabas/palavra | Índice | Faixa |
 |---|---|---|---|---|---|---|---|
 | Home | 1.770 | 1.585 | 149 | 10,6 | 2,08 | 62,1 | fácil |
-| Capítulo 1 | 1.680 | 1.488 | 129 | 11,5 | 2,07 | 62,1 | fácil |
+| Capítulo 1 | 1.680 | 1.488 | 129 | 11,5 | 2,07 | 61,9 | fácil |
 | Capítulo 2 | 1.797 | 1.714 | 157 | 10,9 | 2,05 | 63,9 | fácil |
 | Capítulo 3 | 1.794 | 1.615 | 144 | 11,2 | 2,12 | 58,2 | fácil |
 
@@ -85,9 +85,13 @@ item de lista conta como uma frase.
 
 ### Capítulo 1 (17/11/2026)
 
-**Resultado (versão aprovada sem ajustes de texto):** índice 62,1, acima da referência de 50.
+**Resultado (versão aprovada, com o ajuste da D22):** índice 61,9, acima da referência de 50.
 Média de 11,5 palavras por frase (limite: 20). Maior frase: 25 palavras; nenhuma acima de 25.
 Tamanho: 1.680 palavras visíveis, dentro da faixa de 1.200 a 1.800 por página de capítulo (D16).
+
+**Nova medição (17/11/2026, D22).** A frase sobre Atenas foi trocada ("todo cidadão tinha de
+tomar parte" → "os cidadãos podiam tomar parte diretamente"). O tamanho não mudou (1.680
+palavras visíveis); o índice passou de 62,1 para 61,9, porque "diretamente" é palavra longa.
 
 **Histórico da medição.** Primeira versão: 1.946 palavras, índice 60,1, três frases acima de 25
 palavras. Os cortes foram feitos por tamanho, não por legibilidade: causas da expansão do voto
@@ -141,7 +145,7 @@ partidos). O índice caiu de 66,1 para 63,9 com os cortes, porque saíram frases
 
 ### Capítulo 3 (17/11/2026)
 
-**Resultado (versão enviada para aprovação):** índice 58,2, acima da referência de 50. Média de
+**Resultado (versão aprovada sem ajustes de texto):** índice 58,2, acima da referência de 50. Média de
 11,2 palavras por frase (limite: 20). Maior frase: 24 palavras; nenhuma acima de 25. Tamanho:
 1.794 palavras visíveis, dentro da faixa de 1.200 a 1.800 por página de capítulo (D16), perto do
 teto.

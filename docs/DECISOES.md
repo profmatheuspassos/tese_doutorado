@@ -32,12 +32,13 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D19 | Exemplo hipotético dos 55% (capítulo 1) | **Manter.** O número é ilustrativo e não vem da tese; o raciocínio sobre maioria e direitos da minoria, sim. Decidido em 17/11/2026. |
 | D20 | "Para o autor" (capítulo 1) | **Aceito** atribuir ao autor a ligação entre a mudança de 2006 nas alianças e a multiplicação dos partidos. Decidido em 17/11/2026. |
 | D21 | Constituições e estímulo à participação (capítulo 2, B10; era A8) | **Aceita** a formulação "Nenhuma a segue à risca, mas nenhuma cria mecanismos claros para estimular a participação entre as eleições", apoiada em "não há a preocupação […] em estabelecer mecanismos" (2.3). Evita contradição com o capítulo 1, que diz que a constituição portuguesa manda o Estado "incentivar a participação". Decidido em 17/11/2026. |
+| D22 | Atenas nos capítulos 1 e 3 (era A9) | **Aceito.** A tese diz, em 1.1, que os atenienses "tinham a obrigatoriedade" de tomar parte nas decisões e, em 3.1, que tinham "a *possibilidade* de participar, caso assim desejassem". No capítulo 1, "todo cidadão tinha de tomar parte nas decisões da cidade" passa a "os cidadãos podiam tomar parte diretamente nas decisões da cidade". Capítulo 1 remedido (índice 61,9; 1.680 palavras). Decidido em 17/11/2026. |
+| D23 | Custo do acesso à internet (capítulo 3) | **Aceito** escrever o custo sem números ("o aparelho e o plano de internet ainda pesam no bolso de muita gente"). A estimativa de 200 EUR pelo aparelho e 20 EUR por mês é do autor, e o salário médio de 922 EUR não tem ano na tese. Decidido em 17/11/2026. |
+| D24 | Cortes do capítulo 3 | **Mantidos** fora do texto: o exemplo hipotético do diário oficial, a imagem do estádio sem microfone, a democracia iliberal e a promessa populista de "democratizar a democracia". A imagem do estádio fica registrada em `docs/PLANO-CONTEUDO.md` (3.3) como ideia visual para a Fase 3. Decidido em 17/11/2026. |
+| D25 | Porto Alegre e Lisboa (capítulo 3) | **Aceito** citar as duas cidades pelo nome, nos orçamentos participativos. São cidades e programas públicos, fora do alcance da D6. Decidido em 17/11/2026. |
+| D26 | Aprovação do capítulo 3 | **Aprovado sem ajustes de texto** (`src/content/pt-br/capitulo-3.md`, 1.794 palavras, índice 58,2). Decidido em 17/11/2026. |
 
 ## Em aberto
 
-Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na Fase 2 até o capítulo 2
-(D13 a D21) foram decididos. Novos pontos entram aqui.
-
-| # | Ponto | Situação e proposta |
-|---|---|---|
-| A9 | Atenas: obrigação ou possibilidade de participar (capítulos 1 e 3) | A tese se contradiz. Em 1.1, os cidadãos atenienses "tinham a obrigatoriedade de tomar parte" nas decisões; a página do capítulo 1 (aprovada) escreve "todo cidadão tinha de tomar parte nas decisões da cidade". Em 3.1, Atenas era considerada direta "não porque os cidadãos efetivamente participavam", mas porque "tinham a *possibilidade* de participar, caso assim desejassem"; a presença média era de 20%. A página do capítulo 3 não fala em obrigação e não contradiz o capítulo 1 ao pé da letra, mas os dois textos puxam em direções diferentes. **Proposta:** trocar, no capítulo 1, "todo cidadão tinha de tomar parte nas decisões da cidade" por "os cidadãos podiam tomar parte diretamente nas decisões da cidade", que serve às duas passagens. Até a decisão, o capítulo 1 fica como aprovado e o capítulo 3 segue como escrito. |
+Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
+Fase 2 (D13 a D26) foram decididos. Novos pontos entram aqui.
