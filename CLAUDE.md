@@ -112,12 +112,14 @@ se as 880 notas de rodapé foram distribuídas.
 
 - **Fase 1 concluída e aprovada.**
 - **Fase 2 em andamento.** Decisões D1 a D20 registradas (D15 estendida a todas as páginas);
-  nenhum ponto em aberto. Script de legibilidade pronto.
+  ponto em aberto A8 (capítulo 2). Script de legibilidade pronto.
 - **Home aprovada** (`src/content/pt-br/home.md`, 1.770 palavras, índice 62,1) e enviada à
   `main` por pull request.
 - **Capítulo 1 aprovado** sem ajustes de texto (`src/content/pt-br/capitulo-1.md`, 1.680
   palavras, índice 62,1), com rastreabilidade e relatório; enviado à `main` por pull request.
   Decisões D16 a D20 registradas.
+- **Capítulo 2 escrito, aguardando aprovação** (`src/content/pt-br/capitulo-2.md`, 1.797
+  palavras, índice 63,9), com rastreabilidade e relatório. Um ponto em aberto: A8.
 - Ainda não existe código de site.
 
 ## Próximo passo

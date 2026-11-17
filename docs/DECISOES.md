@@ -34,5 +34,9 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
-Fase 2 (D13 a D20) foram decididos. Novos pontos entram aqui.
+Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na Fase 2 (D13 a D20) foram
+decididos. Novos pontos entram aqui.
+
+| # | Ponto | Proposta seguida até a decisão |
+|---|---|---|
+| A8 | Constituições e estímulo à participação (capítulo 2, B10) | A tese diz em 2.3 que não há na CRP e na CF "comandos constitucionais explícitos que incentivem a participação política no período entre eleições". A página aprovada do capítulo 1 (B9) diz que a constituição portuguesa manda o Estado "incentivar a participação" (1.2). Proposta: no capítulo 2, escrever que "nenhuma a segue à risca, mas nenhuma cria mecanismos claros para estimular a participação entre as eleições", apoiado em "não há a preocupação […] em estabelecer mecanismos". Assim as duas páginas não se contradizem. Levantado em 17/11/2026. |
