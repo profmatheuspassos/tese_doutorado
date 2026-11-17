@@ -195,7 +195,8 @@ por página de capítulo (D16), perto do teto.
 
 **Histórico da medição.** Versão enviada para aprovação: 1.797 palavras, índice 58,8. O ajuste do
 autor (retirar a contagem 89 x 11 e refazer a frase sobre Portugal, D27) levou a 1.791 palavras e
-índice 58,9. Primeira versão: 2.475 palavras, índice 56,4, quatro frases acima de 25
+índice 58,9. Na Fase 4, a mudança só de pontuação e maiúsculas nas cinco etapas do B3 (D65) foi
+remedida: igual (1.791 palavras, 151 frases, índice 58,9). Primeira versão: 2.475 palavras, índice 56,4, quatro frases acima de 25
 palavras (a maior, de 36). Os cortes foram feitos por tamanho, não por legibilidade (ver
 Rastreabilidade, capítulo 4, item 35). Na revisão de fidelidade, sete frases foram ajustadas para
 não dizer mais que o original (itens 5, 12, 18, 23 e 32), o que acrescentou algumas palavras,

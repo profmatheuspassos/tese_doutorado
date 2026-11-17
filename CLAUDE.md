@@ -204,20 +204,21 @@ npm run lighthouse
   (D60). Checklist, tabela em cartões e revelação dos visuais viraram peças comuns. Textos
   idênticos aos aprovados; Lighthouse 99 a 100 nas quatro páginas; axe sem violações.
   Aprovada (D61) e enviada à `main` (PR #10, com merge).
-- **Fase 4, Etapa 3 entregue, aguardando aprovação:** **capítulos 4 e 5**
+- **Fase 4, Etapa 3 aprovada com um ajuste (D66):** **capítulos 4 e 5**
   (`/capitulos/4-o-cidadao-no-centro/`, `/capitulos/5-as-ferramentas/`). Capítulo 4: "quem decide
   o quê" (interativo, sem JS), 0,22% em destaque, ramo e semente no B9 e círculo virtuoso com a
   troca de rótulos no B11. Capítulo 5: caminho do referendo, barras na tabela das petições e cartões
   das ferramentas (interativo, sem JS; referendo de Portugal com as três travas, D52; recall com o
   funil da Califórnia). Novas séries no `dados.json`, cada uma conferida contra a frase do texto
-  (a conferência aceita números por extenso). Pontos em aberto A15 a A17 (apresentação). Textos
-  idênticos aos aprovados; Lighthouse 98 a 100 nas seis páginas; axe sem violações.
+  (a conferência aceita números por extenso). Escolhas de apresentação aprovadas (D62 a D64).
+  Ajuste: as cinco etapas do B3 do capítulo 4 com inicial maiúscula e sem pontuação no fim, só
+  pontuação e maiúsculas (D65; legibilidade igual, 1.791 palavras, índice 58,9). Textos idênticos
+  aos aprovados; Lighthouse 98 a 100 nas seis páginas; axe sem violações. PR #11, aguardando merge.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da Etapa 3** (capítulos 4 e 5), feito pelo autor no
-   GitHub, com decisão sobre os pontos em aberto A15 a A17. Não começar a Etapa 4 antes de o autor
-   confirmar o merge. A sessão seguinte parte da `main` atualizada.
+1. **Merge do pull request da Etapa 3** (capítulos 4 e 5; PR #11), feito pelo autor no GitHub.
+   Não começar a Etapa 4 antes de o autor confirmar o merge. A sessão seguinte parte da `main` atualizada.
 2. Etapa 4: "Sobre a tese", links internos como erro (`LINKS_ESTRITO=1`), Lighthouse e capturas
    das sete páginas. Para e espera aprovação.
 3. Lembrete para a Fase 5 (D41): na publicação, conferir que o link do repositório na página

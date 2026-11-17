@@ -67,11 +67,11 @@ vira ator. E divide a responsabilidade pelo resultado.
 
 Uma política pública tem cinco etapas:
 
-1. definir o que entra na pauta;
-2. planejar;
-3. decidir;
-4. executar;
-5. avaliar.
+1. Definir o que entra na pauta
+2. Planejar
+3. Decidir
+4. Executar
+5. Avaliar
 
 No primeiro modelo, o cidadão fica de fora de todas. No segundo, pode entrar em qualquer uma.
 
