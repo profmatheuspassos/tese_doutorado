@@ -255,10 +255,13 @@ legitimidade).
 
 ### Sobre a tese (17/11/2026)
 
-**Resultado (versão enviada para aprovação):** índice 54,4, acima da referência de 50. Média de 12,7
+**Resultado (versão aprovada, após o ajuste do autor):** índice 54,4, acima da referência de 50. Média de 12,7
 palavras por frase (limite: 20). Maior frase: 24 palavras; nenhuma acima de 25. Tamanho: 446
 palavras visíveis, dentro do alvo do plano para esta página (350 a 500). A D16 trata só das páginas
 de capítulo.
+
+**Ajuste do autor (D38).** Links de hdl.handle.net passaram de http para https. Tamanho e índice não
+mudaram: o endereço não entra na contagem, e as citações ficam em blocos de código.
 
 **O que entra na medição.** A ficha é tabela: conta no tamanho, fica fora do índice. As três
 referências (ABNT, APA, BibTeX) estão em blocos de código: ficam fora do tamanho e do índice, porque

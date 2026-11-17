@@ -20,7 +20,7 @@ sem trocar esse sistema por outro.
 O site é uma versão de divulgação. As páginas reescrevem o argumento com palavras do dia a dia, sem
 mudar o sentido. Não é a tese: ficam de fora as citações, as notas e a discussão detalhada com
 outros autores. Para estudar ou citar o trabalho, use a versão oficial, no
-[repositório da Universidade de Lisboa](http://hdl.handle.net/10451/57093).
+[repositório da Universidade de Lisboa](https://hdl.handle.net/10451/57093).
 
 Os textos do site foram adaptados para linguagem simples com apoio de inteligência artificial e
 revisados pelo autor. A ligação de cada trecho com a parte da tese de onde ele vem está documentada
@@ -39,7 +39,7 @@ no [repositório do projeto](https://github.com/profmatheuspassos/tese_doutorado
 | Grau | Doutor em Direito, especialidade de Ciências Jurídico-Políticas |
 | Ano | 2022 (defesa em 18 de novembro de 2022) |
 | Financiamento | CAPES, fundação do Ministério da Educação do Brasil (processo BEX 1791/15-0; apoio de 2015 a 2018) |
-| Versão oficial | [hdl.handle.net/10451/57093](http://hdl.handle.net/10451/57093) |
+| Versão oficial | [hdl.handle.net/10451/57093](https://hdl.handle.net/10451/57093) |
 
 <!-- B3 | Como a pesquisa foi feita | origem: Introdução, Metodologia (três passos; método de Monebhurrun; contraditório; métodos comparativo e estatístico); Introdução, Contextualização (interdisciplinar; abertura maior de Portugal); Introdução, Objetivos (ênfase em soluções para o Brasil) -->
 
@@ -77,13 +77,13 @@ Cite sempre a versão oficial. A referência vai abaixo em três formatos.
 **ABNT**
 
 ```text
-SILVA, Matheus Passos. Cidadania Ativa e Governança sob a perspectiva do Direito Eleitoral comparado. 2022. Tese (Doutorado em Direito, especialidade de Ciências Jurídico-Políticas) – Faculdade de Direito, Universidade de Lisboa, Lisboa, 2022. Disponível em: http://hdl.handle.net/10451/57093. Acesso em: [data de acesso].
+SILVA, Matheus Passos. Cidadania Ativa e Governança sob a perspectiva do Direito Eleitoral comparado. 2022. Tese (Doutorado em Direito, especialidade de Ciências Jurídico-Políticas) – Faculdade de Direito, Universidade de Lisboa, Lisboa, 2022. Disponível em: https://hdl.handle.net/10451/57093. Acesso em: [data de acesso].
 ```
 
 **APA**
 
 ```text
-Silva, M. P. (2022). Cidadania ativa e governança sob a perspectiva do direito eleitoral comparado [Tese de doutorado, Universidade de Lisboa]. Repositório da Universidade de Lisboa. http://hdl.handle.net/10451/57093
+Silva, M. P. (2022). Cidadania ativa e governança sob a perspectiva do direito eleitoral comparado [Tese de doutorado, Universidade de Lisboa]. Repositório da Universidade de Lisboa. https://hdl.handle.net/10451/57093
 ```
 
 **BibTeX**
@@ -96,7 +96,7 @@ Silva, M. P. (2022). Cidadania ativa e governança sob a perspectiva do direito 
   address = {Lisboa},
   year    = {2022},
   type    = {Tese de doutorado em Direito (Ciências Jurídico-Políticas)},
-  url     = {http://hdl.handle.net/10451/57093}
+  url     = {https://hdl.handle.net/10451/57093}
 }
 ```
 

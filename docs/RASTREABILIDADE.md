@@ -844,7 +844,8 @@ Releitura feita em 17/11/2026: pré-textuais por inteiro (capa, folha de rosto, 
 dedicatória, agradecimentos, epígrafe, resumo, abstract, sumário) e Introdução por inteiro, com
 atenção à seção "Breves apontamentos sobre a metodologia". Notas 24 a 28 abertas: são só referência
 bibliográfica. Para a agenda de pesquisa, o penúltimo parágrafo das Considerações finais. As âncoras
-abaixo foram conferidas uma a uma contra `conteudo/` (23 trechos, todos encontrados).
+abaixo foram conferidas uma a uma contra `conteudo/` (23 trechos, todos encontrados). Versão aprovada
+pelo autor em 17/11/2026, com o ajuste da D38 (links com https).
 
 Dois blocos não vêm da tese, e sim de pedidos do autor: a versão oficial (D7, D36) e a linha sobre
 o uso de inteligência artificial (D37).
@@ -868,7 +869,7 @@ o uso de inteligência artificial (D37).
 |---|---|---|
 | Ano da tese | 2022 | Capa e folha de rosto |
 | Data da defesa | 18 de novembro de 2022 | D7 |
-| Versão oficial | http://hdl.handle.net/10451/57093 | D7 |
+| Versão oficial | https://hdl.handle.net/10451/57093 | D7; D38 |
 | Processo CAPES | BEX 1791/15-0 | Folha de rosto; Agradecimentos |
 | Período do apoio da CAPES | 2015 a 2018 | Agradecimentos |
 | Contato | contato@profmatheus.com | D7 |
@@ -881,11 +882,12 @@ o uso de inteligência artificial (D37).
    pesquisa. As duas ideias foram juntadas numa frase.
 2. **Versão oficial (B1, B2, B6; D36).** O link do depósito da D7 é a única versão indicada. A
    menção "Documento provisório", que está na capa do arquivo, não entra. O nome "repositório da
-   Universidade de Lisboa" foi deduzido do prefixo do link (10451); o link não pôde ser aberto nesta
-   sessão, porque a rede bloqueia hdl.handle.net. Ver A12.
+   Universidade de Lisboa" foi deduzido do prefixo do link (10451), porque a rede da sessão bloqueia
+   hdl.handle.net; o autor confirmou que o link abre o registro da tese em repositorio.ulisboa.pt
+   (D39). Links com https (D38).
 3. **Linha sobre inteligência artificial (B1; D37).** Pedido do autor, não vem da tese. O link aponta
-   para o repositório no GitHub, onde está esta Rastreabilidade. Pressupõe que o repositório seja
-   público quando o site for publicado. Ver A14.
+   para o repositório no GitHub, onde está esta Rastreabilidade. O repositório já é público; conferir
+   o link na publicação (D41, lembrete para a Fase 5).
 4. **"Ficam de fora [...] a discussão detalhada com outros autores" (B1).** Descreve as regras do
    site: sem notas de rodapé e sem nome de autor citado pela tese. O argumento dos autores entra,
    resumido, sem o nome.
@@ -919,7 +921,7 @@ o uso de inteligência artificial (D37).
     que não foi conferido na versão depositada. "Acesso em: [data de acesso]" é marcador: na Fase 3,
     o botão de copiar preenche a data do dia. Negrito (ABNT) e itálico (APA) do título ficam para a
     exibição na Fase 3; o texto copiado é simples. O sobrenome segue a regra ABNT (SILVA, Matheus
-    Passos). Ver A13.
+    Passos), mantida pelo autor, sem número de folhas (D40).
 13. **Menções a "a tese" (D15).** Três no corpo (duas em B1, uma em B5), além do título da página e
     de "uma tese de doutorado" na abertura. No resto, "o trabalho" e "a pesquisa". "O autor"
     aparece duas vezes (B1, B3).
