@@ -117,3 +117,82 @@ o dado depende delas, nas notas de rodapé.
     problema está nas instituições; o populismo é uma degeneração da democracia; a proposta de
     deixar a abertura clara na constituição); e no link "Sobre a tese". O resto é afirmado
     diretamente. O conteúdo continua sendo o da tese, bloco a bloco, conforme a tabela acima.
+
+---
+
+## Capítulo 1 (`src/content/pt-br/capitulo-1.md`)
+
+Releitura feita em 17/11/2026: corpo do capítulo 1 por inteiro (abertura, 1.1 e 1.2). Notas de
+rodapé abertas só quando trazem dado ou argumento: 42, 53, 62, 65, 72, 74, 88, 98, 111, 112,
+117, 118, 123, 127, 141, 142, 143, 155 e 161. Fora do capítulo, um ponto conferido no corpo de
+2.1 (comparecimento facultativo em Portugal).
+
+### Blocos
+
+| Bloco | O que o site diz | Origem na tese | Âncora no original |
+|---|---|---|---|
+| B0 Abertura | O capítulo monta a régua (democracia representativa, cidadania) e confere as leis de PT e BR; resposta: democracias no papel; dúvida sobre a vida real | Abertura do cap. 1; 1.2 (conclusão) | "uma apresentação teórica dos conceitos de democracia e de cidadania"; "A resposta, antecipa-se, é negativa" |
+| B1 De súdito a cidadão | Atenas: todo cidadão decidia; inviável com milhões; representação necessária; súdito no Estado absolutista; Declaração de 1789 (lei = vontade dos cidadãos); governo representativo (fim do séc. XVIII ao início do XX); voto restrito por sexo e renda; Inglaterra do séc. XIX, cerca de 10% eleitores; eleição dos "notáveis", sem laço de representação, eleito vota como quer; virada no fim do XIX e início do XX, com a Primeira Guerra; voto como poder real, laço criado por lei, troca do eleito; expansão do voto (trabalhadores, prêmio aos sobreviventes das guerras, queda do analfabetismo); "pouco mais de cem anos" | 1.1, §§ 1–9; nota 42 | "nos moldes da Atenas antiga"; "sendo este período intermédio chamado de *governo representativo*"; "o gênero (direito de voto para homens, não para mulheres) ou o censo"; "cerca de 10% da população era considerado como eleitor" (nota 42); "apenas os notáveis eram 'eleitos'"; "inclusive em consequência da Primeira Guerra Mundial"; "o eleitor, caso estivesse insatisfeito com o eleito, poderia realmente substituí-lo"; "em pouco mais de 100 anos" |
+| B2 Os partidos | Democracia partidária; sindicatos e ONGs influenciam, o partido é o único que a constituição deixa entrar no Estado em nome do cidadão; objetivo acima de todos: votos; partidos de notáveis (só no parlamento) → partidos de massa (estrutura, propaganda contínua); voto no programa, não na pessoa; eleito segue o partido, que presta contas ao eleitor; governabilidade e alianças | 1.1 (partidos políticos); notas 53 e 65 | "verdadeira *democracia partidária*"; "a única instituição que tem a prerrogativa de formalmente se inserir no aparelho do Estado" (nota 65); "o de *obter votos*"; "*partidos de notáveis*"; "*partido de massa*"; "não mais na pessoa do candidato 'A' ou do candidato 'B'"; "o mandato pertence ao partido"; "o de garantir a governabilidade" |
+| B3 Maioria é contagem | Sociedade plural, nenhum grupo sufoca os outros; maioria = critério numérico, não verdade nem justiça; exemplo dos 55%; maioria de hoje, minoria de amanhã; tirania da maioria = autoritarismo disfarçado; dever de participação mais amplo que o voto; referendo, petição e ação popular para controle entre eleições, a estimular; definição das três ferramentas | 1.1 (pluralismo; maioria; controle pelo cidadão); notas 72 e 74 | "nenhum destes polos de poder existentes na sociedade será suficientemente forte a ponto de sufocar os demais"; "não há como correlacionar […] a vontade da maioria a concepções quaisquer de verdade ou de justiça"; "a maioria de hoje poderá vir a se tornar a minoria do futuro"; "um autoritarismo travestido de democracia"; "dever fundamental de participação política"; "tais como referendos, ações populares ou petições" |
+| B4 As regras do jogo | As nove regras (a a i), em linguagem simples; capacidade de resposta e prestação de contas; formular, expressar e ver consideradas as preferências, sem discriminação; regimes mais ou menos democráticos; PT e BR cumprem as nove no papel | 1.1 (conjunto de regras de procedimento; poliarquia); 1.2 (conclusão) | "(a) o poder Legislativo deve ser composto por membros eleitos"; "(i) o órgão do Governo deve gozar de confiança do Parlamento ou do chefe do poder Executivo"; "um governo democrático deve prestar contas aos seus cidadãos"; "(a) formular livremente suas preferências"; "serão, nesta visão, mais ou menos democráticos"; "por estarem previstas em sua Constituição todas as *regras de procedimento*" |
+| B5 Dois jeitos de ser cidadão | Declaração de 1789: de súdito a sujeito de direitos; sentido amplo (todo ser humano, vida digna, todos os direitos, sem depender de nacionalidade); sentido restrito (votar e ser votado, após inscrição como eleitor); exemplo dos 15 e 25 anos; democracia atual apoiada no sentido restrito; liberdade de expressão e educação mínima; democracia e cidadania andam juntas | 1.1 (cidadania); nota 98 | "de *súdito* vinculado diretamente ao governante"; "*cidadania em sentido amplo*"; "sem dependência explícita de qualquer tipo de vínculo de nacionalidade"; "*cidadania em sentido restrito*"; "um adolescente de 15 anos é cidadão em sentido amplo, mas não em sentido restrito" (nota 98); "se não houver uma educação mínima"; "uma não pode subsistir sem a outra" |
+| B6 Portugal | Constituição de 1976, após a ditadura; vontade popular e dignidade; Estado deve "assegurar e incentivar a participação democrática dos cidadãos"; igualdade real; voto como direito e dever cívico; direitos "cívicos e políticos"; democracia interna nos partidos (que não ocorre na prática, cap. 2); referendo por iniciativa de cidadãos; candidaturas de grupos de cidadãos nas eleições locais; referendo local por iniciativa de eleitores; plenário de eleitores nas freguesias pequenas | 1.2 (Constituição portuguesa); notas 111, 118 e 123 | "após o período de ditadura"; "a *vontade popular* e a *dignidade da pessoa humana*"; "assegurar e incentivar a participação democrática dos cidadãos na resolução dos problemas nacionais"; "*igualdade real* entre os portugueses"; "o sufrágio é não apenas um *direito*, mas também um *dever*"; "direitos *cívicos* e políticos" (nota 123); "O que infelizmente não ocorre" (nota 118); "em iniciativas próprias dos cidadãos, dirigidas à Assembleia da República"; "ou ainda por grupos de eleitores"; "o referendo local pode ocorrer em decorrência da iniciativa de eleitores"; "substituída por um plenário composto pelos eleitores" |
+| B7 Brasil | Constituição de 1988; cidadania, dignidade e pluralismo como fundamentos; "Todo o poder emana do povo…"; a ordem mostra preferência pela representação; liberdades, petição, ação popular, plebiscito, referendo, iniciativa popular; voto obrigatório para a maior parte dos adultos; multa de R$ 3,51 (2019) e sanções (passaporte, posse em concurso); alianças sem coerência desde 2006 e, para o autor, multiplicação de partidos; 2017: fim das alianças nas eleições para deputado e vereador e cláusula de barreira (votos ou deputados eleitos; rádio e TV; fundo partidário), gradual até 2030 | 1.2 (Constituição Federal e leis eleitorais, incluindo a definição do Fundo Partidário no corpo); nota 143 | "inciso II que a *cidadania*"; "Todo o poder emana do povo"; "certa *hierarquia*"; "a soberania popular é também exercida […] por plebiscito, por referendo e por iniciativa popular"; "R\$ 3,51" e "obter passaporte" (nota 143); "*sem obrigatoriedade de vinculação entre as candidaturas*"; "Um dos resultados práticos da Emenda Constitucional Nº 52 foi a proliferação"; "vedada a sua celebração nas eleições proporcionais"; "estabelecer uma *cláusula de barreira*"; "apenas em 2030" |
+| B8 Lado a lado | Seis linhas de comparação: voto; lista fechada x aberta; quem apresenta candidatos; cláusula de barreira; referendo; calendário | 1.2; notas 127 e 142; 2.1 (comparecimento facultativo em PT) | "o comparecimento no dia da eleição ser facultativo" (2.1); "dos maiores de 18 (dezoito) anos"; "sistema de *lista fechada*" (nota 127); "apresentadas exclusivamente por partidos políticos"; "deve obrigatoriamente ser filiado a algum partido político"; "veda explicitamente qualquer possibilidade de implantação de uma eventual cláusula de barreira"; "pelo menos 50% + 1 do número de eleitores inscritos"; "é obtido por meio de maioria simples"; "não pode haver coincidência de datas"; "serão realizadas simultaneamente eleições" |
+| B9 E na prática? | PT e BR têm regras e princípios; democracias do ponto de vista das leis; a CRP é mais incisiva sobre igualdade real e participação; a CF é mais vaga e não usa "cívicos"; a democracia formal vira substancial? A tese responde que não | 1.2 (conclusão); notas 112 e 123 | "não apenas as *regras* […] mas também os *princípios*"; "uma democracia do ponto de vista normativo"; "a CF […] é muito mais *vaga*" (nota 112); "A resposta, antecipa-se, é negativa" |
+
+### Dados usados no capítulo 1
+
+| Dado | Valor no site | Ano | Fonte citada pela tese | Onde na tese |
+|---|---|---|---|---|
+| Eleitores na Inglaterra da era vitoriana | cerca de 10% da população | século XIX (estimativa) | Borón | 1.1; nota 42 |
+| Multa por não votar (BR) | R$ 3,51 | 2019 (data da cotação citada) | Código Eleitoral; cotação em xe.com | 1.2; nota 143 |
+| Quórum do referendo vinculativo (PT) | mais da metade dos eleitores inscritos | regra em vigor no momento da tese | Constituição portuguesa | 1.2 |
+| Mudança nas alianças (BR) | 2006 | 2006 | Emenda constitucional | 1.2 |
+| Fim das alianças nas eleições proporcionais e cláusula de barreira (BR) | 2017, gradual até 2030 | 2017–2030 | Emenda constitucional | 1.2 |
+| Constituições | Portugal, 1976; Brasil, 1988 | — | — | 1.2 |
+
+Dados do capítulo **não usados**: 25 partidos antes de 2006, mais 9 depois, 34 registrados e 75
+em formação (decisão D4; somar 25 e 9 daria o total de 34 por outro caminho); valores do Fundo
+Partidário de 2018 (nota 165); 7.500 a 15.000 proponentes de candidatura presidencial em PT;
+regras de inelegibilidade, de cassação de direitos políticos e de fidelidade partidária.
+
+### Escolhas de interpretação
+
+1. **Comparecimento facultativo em Portugal.** O capítulo 1 só diz que o sufrágio é "direito e
+   dever" cívico. O corpo de 2.1 diz expressamente que, no caso português, "o comparecimento no
+   dia da eleição [é] facultativo". A linha "Voto" do quadro usa as duas informações.
+2. **Causas da expansão do voto.** A tese lista cinco. O site cita três (organização dos
+   trabalhadores, prêmio a quem sobreviveu às guerras, queda do analfabetismo) e deixa de fora a
+   aceitação das elites para evitar distúrbios e a coerência com a ideologia liberal, por
+   tamanho.
+3. **Exemplo dos 55%.** É um exemplo hipotético, criado para ilustrar a diferença entre ganhar a
+   eleição e poder tudo. Não vem da tese; o raciocínio, sim (1.1, maioria numérica e direitos
+   fundamentais da minoria).
+4. **Regra 9.** A tese diz "chefe do poder Executivo, por sua vez, eleito pelo povo". O site diz
+   "presidente eleito pelo povo", que é o caso dos regimes presidencialistas.
+5. **Definições de referendo, petição e ação popular (B3).** São simplificações que valem para os
+   dois países, iguais em sentido às da home. A ação popular portuguesa é mais ampla (saúde
+   pública, consumidores, qualidade de vida); o detalhe fica para o capítulo 5.
+6. **Lista aberta.** A tese só nomeia a lista aberta brasileira (nota 127) e explica a lista
+   fechada portuguesa. A definição "a ordem dos eleitos depende dos votos de cada candidato" é o
+   contraponto da definição que a tese dá para a lista fechada.
+7. **Plebiscito e referendo no Brasil.** A lei fala em "ato legislativo ou administrativo". O
+   quadro diz "antes da lei" e "depois", por simplicidade.
+8. **Freguesia.** A tese não define freguesia no capítulo 1. O site usa a mesma definição da home
+   ("a menor divisão do poder local").
+9. **Fundo partidário.** A tese o define como fundo de assistência financeira disponibilizado
+   pela Justiça Eleitoral aos partidos registrados e em dia com as contas. O site diz "o dinheiro
+   que a Justiça Eleitoral repassa aos partidos".
+10. **"Para o autor" (B7).** A ligação entre a mudança de 2006 e a multiplicação de partidos é
+    uma leitura da tese ("Um dos resultados práticos"), por isso aparece como posição do autor.
+11. **Ficou de fora, conforme o plano:** o histórico das revisões da constituição portuguesa; a
+    ambiguidade da palavra "povo" (nota 140); inelegibilidades e cassação de direitos políticos;
+    fidelidade partidária; sistemas eleitorais cargo a cargo; a tipologia completa de Dahl; a
+    discussão sobre direito fundamental formal e material; a crítica à "câmara corporativa de
+    partidos" (nota 62), que reaparece no argumento do capítulo 2; os nomes dos autores citados
+    (Bobbio, Dahl, Tocqueville, Constant), em linha com a home.
+12. **Menções a "a tese" (D15).** Duas: o dever de participação mais amplo que o voto (B3) e a
+    resposta negativa no fecho (B9). Uma terceira posição do autor aparece como "para o autor"
+    (B7).
