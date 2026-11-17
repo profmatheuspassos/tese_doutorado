@@ -54,6 +54,7 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 | Página | Palavras visíveis | Palavras no texto corrido | Frases | Palavras/frase | Sílabas/palavra | Índice | Faixa |
 |---|---|---|---|---|---|---|---|
 | Home | 1.770 | 1.585 | 149 | 10,6 | 2,08 | 62,1 | fácil |
+| Capítulo 1 | 1.680 | 1.488 | 129 | 11,5 | 2,07 | 62,1 | fácil |
 
 ### Home (17/11/2026)
 
@@ -79,3 +80,31 @@ item de lista conta como uma frase.
   ouvido, mas não decide". As duas estão mantidas porque o sujeito (o poder público) é óbvio.
 - Sem latim, sem notas de rodapé, sem número de lei ou de artigo.
 - Nenhum nome de governante, partido ou caso concreto (D6). Ver ponto A6 sobre a cena de 2013.
+
+### Capítulo 1 (17/11/2026)
+
+**Resultado (versão aprovada sem ajustes de texto):** índice 62,1, acima da referência de 50.
+Média de 11,5 palavras por frase (limite: 20). Maior frase: 25 palavras; nenhuma acima de 25.
+Tamanho: 1.680 palavras visíveis, dentro da faixa de 1.200 a 1.800 por página de capítulo (D16).
+
+**Histórico da medição.** Primeira versão: 1.946 palavras, índice 60,1, três frases acima de 25
+palavras. Os cortes foram feitos por tamanho, não por legibilidade: causas da expansão do voto
+condensadas, partidos de massa em uma frase, idades do voto brasileiro só no quadro, cassação de
+direitos políticos retirada. As três frases longas foram divididas. A versão enviada estava
+acima do alvo antigo do plano (1.200 a 1.400); o autor manteve o tamanho e eliminou o teto do
+site inteiro (D16).
+
+**Conferência manual (o que o índice não mede).**
+- Termos técnicos explicados na primeira ocorrência: democracia representativa, governo
+  representativo, notáveis, democracia partidária, partidos de massa, tirania da maioria,
+  referendo, petição, ação popular, cidadania em sentido amplo e restrito, constituição,
+  freguesia, iniciativa popular, cláusula de barreira, fundo partidário, lista fechada e
+  aberta. "Plebiscito" é explicado no quadro.
+- Voz ativa predominante. Passivas que ficaram: "são eleitos" (regras 1 e 2 e quadro), por
+  serem a forma natural de falar de eleição.
+- Sem latim, sem notas de rodapé, sem número de lei ou de artigo. As duas citações literais
+  (constituição portuguesa e brasileira) são curtas e em linguagem comum.
+- Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela
+  tese.
+- "A tese" aparece duas vezes (D15).
+

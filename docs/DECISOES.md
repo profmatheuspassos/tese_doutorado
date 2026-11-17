@@ -25,9 +25,14 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D12 | Lapsos de redação (ponto 10; era A5) | **Aceitos os cinco**, tratados pelo sentido correto: (a) "no máximo cerca de 215 habitantes"; (b) Lei 75/2013; (c) LGPD = Lei 13.709; (d) a definição de referendo está no § 2º; (e) a análise das petições está na seção 5.3. Como o site não cita artigos nem números de lei, (b), (c) e (d) só importam se algum dia forem citados. |
 | D13 | Cena de 2013 na home (era A6) | **Manter como está**: só o motivo inicial (passagem de ônibus) e o resultado ligado a ele (redução do preço). Sem a emenda constitucional e sem os gastos com os torneios. Decidido em 17/11/2026. |
 | D14 | Lapso em 4.2 (era A7) | **Aceito**: "mas sem um efetivo poder de decisão" é tratado pelo sentido correto, "mas sim um efetivo poder de decisão". Decidido em 17/11/2026. |
-| D15 | Menções a "a tese" (home) | **Na home, no máximo cinco**, só onde marcam uma posição do autor; no resto, afirmar diretamente. Nome do autor na abertura da home. Decidido em 17/11/2026. |
+| D15 | Menções a "a tese" (todas as páginas) | **No máximo cinco por página**, só onde marcam uma posição do autor; no resto, afirmar diretamente. Nome do autor na abertura da home. Decidido para a home em 17/11/2026; estendido a todas as páginas em 17/11/2026. |
+| D16 | Tamanho das páginas | **Cada página de capítulo tem entre 1.200 e 1.800 palavras.** Eliminado o teto de 8 a 10 mil palavras para o site inteiro; deixam de valer os alvos menores do plano por página. Capítulo 1 mantido com 1.680 palavras. Decidido em 17/11/2026. |
+| D17 | Voto em Portugal (capítulo 1) | **Aceito** usar "comparecer é facultativo" para Portugal, com base no corpo de 2.1, ao lado de "direito e dever cívico" (capítulo 1). Decidido em 17/11/2026. |
+| D18 | Contagem de partidos no capítulo 1 | **Aceito** não usar nenhum número de partidos do capítulo 1 (25 antes de 2006, mais 9, 34 registrados, 75 em formação), em linha com a D4. Decidido em 17/11/2026. |
+| D19 | Exemplo hipotético dos 55% (capítulo 1) | **Manter.** O número é ilustrativo e não vem da tese; o raciocínio sobre maioria e direitos da minoria, sim. Decidido em 17/11/2026. |
+| D20 | "Para o autor" (capítulo 1) | **Aceito** atribuir ao autor a ligação entre a mudança de 2006 nas alianças e a multiplicação dos partidos. Decidido em 17/11/2026. |
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os dois pontos surgidos
-na Fase 2 (D13 e D14) foram decididos. Novos pontos entram aqui.
+Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
+Fase 2 (D13 a D20) foram decididos. Novos pontos entram aqui.

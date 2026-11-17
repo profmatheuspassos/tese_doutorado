@@ -45,18 +45,18 @@ estão em `docs/DECISOES.md`.
 
 Mantenho a estrutura proposta, com três ajustes que a leitura pediu.
 
-| # | Página | Rota | Origem na tese | Palavras (alvo) |
+| # | Página | Rota | Origem na tese | Palavras |
 |---|---|---|---|---|
 | 0 | Home — o argumento inteiro em scroll | `/` | Introdução, sínteses dos caps. 1–5, Considerações finais | 1.500–1.800 |
-| 1 | No papel, está tudo certo | `/capitulos/1-no-papel/` | Cap. 1 | 1.200–1.400 |
-| 2 | O que não está funcionando | `/capitulos/2-o-que-nao-funciona/` | Cap. 2 | 1.500–1.800 |
-| 3 | O atalho que não resolve | `/capitulos/3-o-atalho-digital/` | Cap. 3 | 1.400–1.700 |
-| 4 | O cidadão no centro | `/capitulos/4-o-cidadao-no-centro/` | Cap. 4 | 1.500–1.800 |
-| 5 | As ferramentas que já existem (e uma que falta) | `/capitulos/5-as-ferramentas/` | Cap. 5 | 1.500–1.800 |
+| 1 | No papel, está tudo certo | `/capitulos/1-no-papel/` | Cap. 1 | 1.200–1.800 |
+| 2 | O que não está funcionando | `/capitulos/2-o-que-nao-funciona/` | Cap. 2 | 1.200–1.800 |
+| 3 | O atalho que não resolve | `/capitulos/3-o-atalho-digital/` | Cap. 3 | 1.200–1.800 |
+| 4 | O cidadão no centro | `/capitulos/4-o-cidadao-no-centro/` | Cap. 4 | 1.200–1.800 |
+| 5 | As ferramentas que já existem (e uma que falta) | `/capitulos/5-as-ferramentas/` | Cap. 5 | 1.200–1.800 |
 | 6 | Sobre a tese | `/sobre/` | Pré-textuais, metodologia, agenda de pesquisa | 350–500 |
 
-Total previsto: 8.950–10.800 no teto; o alvo de trabalho é **cerca de 9.300 palavras**,
-dentro do limite de 8 a 10 mil.
+Regra de tamanho (decisão D16, 17/11/2026): cada página de capítulo tem entre 1.200 e 1.800
+palavras. Não há teto para o site inteiro.
 
 Os títulos das páginas são propostas em linguagem simples; cada página traz também o título
 original do capítulo, em tamanho menor.
