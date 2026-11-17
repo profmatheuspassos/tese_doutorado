@@ -151,3 +151,25 @@ export function rotularCelulas(tabela: string): string {
   }));
   return comAtributos(corpo, { class: 'tabela-cartoes' });
 }
+
+/**
+ * Acrescenta HTML sem texto ao fim de uma célula de cada linha do corpo de uma tabela (coluna
+ * contada a partir de 0). `html(i, texto)` recebe o índice da linha e o texto da célula, para o
+ * chamador conferir o número antes de desenhar. O texto da célula não muda.
+ */
+export function anexarEmCelulas(tabela: string, coluna: number, html: (linha: number, texto: string) => string): string {
+  if (!tabela.startsWith('<table')) throw new Error('anexarEmCelulas: o elemento precisa ser uma tabela.');
+  let linha = 0;
+  return tabela.replace(/<tbody>[\s\S]*<\/tbody>/, (tbody) => tbody.replace(/<tr>([\s\S]*?)<\/tr>/g, (_l, dentro: string) => {
+    let c = 0;
+    const celulas = dentro.replace(/(<td[^>]*>)([\s\S]*?)(<\/td>)/g, (m, abre: string, conteudo: string, fecha: string) => {
+      if (c++ !== coluna) return m;
+      const extra = html(linha, textoSimples(conteudo));
+      semTexto(extra, 'anexarEmCelulas');
+      return `${abre}${conteudo}${extra}${fecha}`;
+    });
+    if (c <= coluna) throw new Error(`anexarEmCelulas: linha ${linha + 1} sem a coluna ${coluna}.`);
+    linha++;
+    return `<tr>${celulas}</tr>`;
+  }));
+}

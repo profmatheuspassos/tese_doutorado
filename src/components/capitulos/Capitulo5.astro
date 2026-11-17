@@ -1,0 +1,78 @@
+---
+/**
+ * Capítulo 5 — As ferramentas que já existem (e uma que falta).
+ * B1: caminho do referendo (Portugal em cinco passos, Brasil em um; T37). B5: barra proporcional
+ * ao lado de cada número da tabela das petições. Entre B9 e B10, antes de "Nenhuma dessas
+ * ferramentas": os cartões das ferramentas (interativo; T38 a T42).
+ */
+import Capitulo from '../../layouts/Capitulo.astro';
+import BlocoTexto from '../capitulo/BlocoTexto.astro';
+import CaminhoReferendo from '../graficos/CaminhoReferendo.astro';
+import Cartoes from '../interativos/Cartoes.astro';
+import { pagina } from '../../lib/paginas';
+import { anexarEmCelulas, comAtributos, usarBlocos } from '../../lib/blocos';
+import { dados, uso } from '../../lib/dados';
+import { formatarInteiro } from '../../lib/numeros';
+
+const { dados: meta, blocos } = await pagina('capitulo-5');
+const { b, conferir } = usarBlocos(blocos, 'capitulo-5');
+const B0 = b('B0');
+const [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10', 'B11'].map(b);
+conferir();
+
+// B1 — o caminho entra depois de "Só o Congresso Nacional convoca a consulta."
+const iBrasil = B1.elementos.findIndex((el) => el.includes('Só o Congresso Nacional convoca'));
+if (iBrasil < 1) throw new Error('capitulo-5 B1: parágrafo do Brasil não encontrado.');
+
+// B5 — tabela das petições: cada número ganha uma barra do mesmo tamanho relativo. O número da
+// célula é conferido contra o dados.json; se diferir, o build para.
+uso('capitulo-5', 'B5', 'barras-tabela');
+const peticoes = dados.peticoes_ar_pt.valores;
+const maximo = Math.max(...peticoes);
+const iTabela = B5.elementos.findIndex((el) => el.startsWith('<table'));
+if (iTabela < 1) throw new Error('capitulo-5 B5: tabela das petições não encontrada.');
+const barra = (linha: number, texto: string) => {
+  const v = peticoes[linha];
+  if (v === undefined || texto !== formatarInteiro(v)) throw new Error(`capitulo-5 B5: linha ${linha + 1} da tabela ("${texto}") difere do dados.json (${v}).`);
+  return `<span class="peticoes-barra" style="--p:${(v / maximo).toFixed(4)}" aria-hidden="true"></span>`;
+};
+const tabela = (el: string, i: number) => (i === iTabela ? comAtributos(anexarEmCelulas(el, 1, barra), { class: 'tabela-peticoes' }) : el);
+---
+<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={meta.titulo_original} imagem="cap5-abertura.webp" tema="nevoa">
+  <BlocoTexto bloco={B1}>
+    <CaminhoReferendo slot={`apos-${iBrasil}`} />
+  </BlocoTexto>
+  <BlocoTexto bloco={B2} />
+  <BlocoTexto bloco={B3} />
+  <BlocoTexto bloco={B4} />
+  <BlocoTexto bloco={B5} transformar={tabela} />
+  <BlocoTexto bloco={B6} />
+  <BlocoTexto bloco={B7} />
+  <BlocoTexto bloco={B8} />
+  <BlocoTexto bloco={B9} />
+  <BlocoTexto bloco={B10}>
+    <Cartoes slot="antes" />
+  </BlocoTexto>
+  <BlocoTexto bloco={B11} />
+</Capitulo>
+
+<style is:global>
+  /* Petições por legislatura: número e barra lado a lado, na cor de Portugal. */
+  .texto table.tabela-peticoes td:nth-child(2) {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    width: 50%;
+  }
+  .peticoes-barra {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(var(--p) * clamp(4rem, 22vw, 12rem));
+    height: 0.6rem;
+    margin-left: 0.75rem;
+    border-radius: 999px;
+    background: var(--color-ramo);
+  }
+  .texto table.tabela-peticoes td:nth-child(2) {
+    padding-right: 0;
+  }
+</style>
