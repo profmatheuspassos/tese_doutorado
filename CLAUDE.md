@@ -215,13 +215,22 @@ npm run lighthouse
   pontuação e maiúsculas (D65; legibilidade igual, 1.791 palavras, índice 58,9). Textos idênticos
   aos aprovados; Lighthouse 98 a 100 nas seis páginas; axe sem violações. Enviada à `main` (PR #11,
   com merge).
+- **Fase 4, Etapa 4 entregue, aguardando aprovação:** página **"Sobre a tese"** (`/sobre/`): ficha em
+  cartão, referências ABNT, APA e BibTeX com botão de copiar (data do dia no ABNT; sem JS, sem
+  botões) e contato em cartão. Links internos quebrados passam a derrubar o build. Home: oscilação
+  do Lighthouse no celular investigada e corrigida, com as animações abaixo da primeira tela
+  carregadas depois (D67; mesma aparência, nenhuma palavra muda); a home no celular roda cinco vezes
+  e o resumo registra a pior. Testes nas sete páginas, 3 larguras x 3 cenários, axe sem violações;
+  Lighthouse 99 a 100 em tudo (pior rodada da home no celular: 99). Ponto em aberto A18 (nome
+  acessível do botão copiar).
 
 ## Próximo passo
 
-1. **Merge do pull request da Etapa 3** (capítulos 4 e 5; PR #11), feito pelo autor no GitHub.
-   Não começar a Etapa 4 antes de o autor confirmar o merge. A sessão seguinte parte da `main` atualizada.
-2. Etapa 4: "Sobre a tese", links internos como erro (`LINKS_ESTRITO=1`), Lighthouse e capturas
-   das sete páginas. Para e espera aprovação.
+1. **Aprovação e merge do pull request da Etapa 4**, feito pelo autor no GitHub, com decisão sobre o
+   ponto em aberto A18. Com a aprovação, a Fase 4 está concluída. Não começar a Fase 5 antes de o
+   autor confirmar. A sessão seguinte parte da `main` atualizada.
+2. Imagens ilustrativas finais: ainda são espaços reservados em `public/img/` (prompts em
+   `docs/PROMPTS-IMAGENS.md`).
 3. Lembrete para a Fase 5 (D41): na publicação, conferir que o link do repositório na página
    "Sobre a tese" abre para o público. Também na Fase 5: link canônico, tags de compartilhamento
    (`og-home.png` já existe) e `SITE_URL`/`BASE_PATH` do domínio final.
