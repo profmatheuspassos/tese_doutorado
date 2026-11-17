@@ -7,6 +7,10 @@
  * notas de desempenho de todas. Só o resumo vai para o repositório
  * (docs/capturas/fase-4/lighthouse/resumo.md, D59); os relatórios JSON completos ficam numa pasta
  * de rascunho fora dele (LIGHTHOUSE_RASCUNHO).
+ *
+ * Com LIGHTHOUSE_URL (ex.: LIGHTHOUSE_URL=https://tese.profmatheuspassos.com.br npm run lighthouse),
+ * mede o endereço publicado, sem subir o servidor local, e grava o resumo em
+ * docs/capturas/fase-5/lighthouse/resumo.md.
  */
 import { spawn, execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, mkdirSync, writeFileSync } from 'node:fs';
@@ -16,10 +20,11 @@ import { tmpdir } from 'node:os';
 const raiz = new URL('..', import.meta.url).pathname;
 const PORTA = 4331;
 const RODADAS_HOME = Number(process.env.RODADAS_HOME || 5);
-const BASE = `http://127.0.0.1:${PORTA}`;
+const NO_AR = process.env.LIGHTHOUSE_URL?.replace(/\/$/, '');
+const BASE = NO_AR || `http://127.0.0.1:${PORTA}`;
 const chrome = ['/opt/pw-browsers/chromium-1243/chrome-linux64/chrome', process.env.CHROME_PATH].find((p) => p && existsSync(p));
 if (!chrome) throw new Error('Chromium não encontrado.');
-const pasta = join(raiz, 'docs/capturas/fase-4/lighthouse');
+const pasta = join(raiz, NO_AR ? 'docs/capturas/fase-5/lighthouse' : 'docs/capturas/fase-4/lighthouse');
 const rascunho = process.env.LIGHTHOUSE_RASCUNHO || join(tmpdir(), 'lighthouse');
 mkdirSync(pasta, { recursive: true });
 mkdirSync(rascunho, { recursive: true });
@@ -27,14 +32,16 @@ mkdirSync(rascunho, { recursive: true });
 const paginas = readdirSync(join(raiz, 'src/content/pt-br')).filter((f) => f.endsWith('.md')).map((f) => {
   const fm = readFileSync(join(raiz, 'src/content/pt-br', f), 'utf8').match(/^---\n([\s\S]*?)\n---/)[1];
   return { nome: f.replace(/\.md$/, ''), rota: fm.match(/^rota:\s*"?(.*?)"?$/m)[1] };
-}).filter((p) => existsSync(join(raiz, 'dist', p.rota, 'index.html')))
+}).filter((p) => NO_AR || existsSync(join(raiz, 'dist', p.rota, 'index.html')))
   .sort((a, b) => (a.rota === '/' ? -1 : b.rota === '/' ? 1 : a.rota.localeCompare(b.rota)));
 
-const servidor = spawn(process.execPath, [join(raiz, 'node_modules/astro/bin/astro.mjs'), 'preview', '--ignore-lock', '--host', '127.0.0.1', '--port', String(PORTA)], { cwd: raiz, stdio: ['ignore', 'pipe', 'pipe'] });
-await new Promise((ok, erro) => {
-  const t = setTimeout(() => erro(new Error('preview não subiu')), 30000);
-  servidor.stdout.on('data', (d) => { if (String(d).includes(String(PORTA))) { clearTimeout(t); ok(); } });
-});
+const servidor = NO_AR ? null : spawn(process.execPath, [join(raiz, 'node_modules/astro/bin/astro.mjs'), 'preview', '--ignore-lock', '--host', '127.0.0.1', '--port', String(PORTA)], { cwd: raiz, stdio: ['ignore', 'pipe', 'pipe'] });
+if (servidor) {
+  await new Promise((ok, erro) => {
+    const t = setTimeout(() => erro(new Error('preview não subiu')), 30000);
+    servidor.stdout.on('data', (d) => { if (String(d).includes(String(PORTA))) { clearTimeout(t); ok(); } });
+  });
+}
 
 const erros = [];
 const linhas = [];
@@ -65,8 +72,9 @@ try {
     }
   }
 } finally {
-  servidor.kill();
+  servidor?.kill();
 }
-writeFileSync(join(pasta, 'resumo.md'), `# Lighthouse (Fase 4)\n\nGerado por \`npm run lighthouse\` sobre o build local. Mínimo exigido: 90 em todas as categorias. A home no celular roda ${RODADAS_HOME} vezes; a linha dela é a pior rodada.\n\n${[`| Página | Modo | ${categorias.join(' | ')} | LCP | CLS | TBT |`, `|${'---|'.repeat(categorias.length + 5)}`, ...linhas].join('\n')}\n`);
+const origem = NO_AR ? `Fase 5)\n\nGerado por \`npm run lighthouse\` com \`LIGHTHOUSE_URL=${NO_AR}\`, no endereço publicado.` : 'Fase 4)\n\nGerado por `npm run lighthouse` sobre o build local.';
+writeFileSync(join(pasta, 'resumo.md'), `# Lighthouse (${origem} Mínimo exigido: 90 em todas as categorias. A home no celular roda ${RODADAS_HOME} vezes; a linha dela é a pior rodada.\n\n${[`| Página | Modo | ${categorias.join(' | ')} | LCP | CLS | TBT |`, `|${'---|'.repeat(categorias.length + 5)}`, ...linhas].join('\n')}\n`);
 if (erros.length) { console.error('lighthouse: abaixo de 90 -> ' + erros.join('; ')); process.exit(1); }
 console.log(`lighthouse: ok (${paginas.length} página(s), todas as categorias com 90 ou mais; resumo em ${join(pasta, 'resumo.md')}; JSON em ${rascunho})`);
