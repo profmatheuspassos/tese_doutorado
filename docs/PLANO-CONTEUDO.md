@@ -5,7 +5,8 @@ Eleitoral comparado"** (Matheus Passos Silva, FDUL, 2022; orientador: Prof. Dout
 Miranda). Este plano resulta da leitura integral da tese e orienta a Fase 2 (reescrita).
 
 Referências de seção (ex.: "2.1", "4.2.1") apontam para a tese. As notas de leitura
-detalhadas ficam em `conteudo/notas/` e não são versionadas.
+detalhadas ficam em `docs/notas-leitura/`. As decisões do autor sobre os pontos da seção 5
+estão em `docs/DECISOES.md`.
 
 ---
 
@@ -453,6 +454,9 @@ semente brota, quando a página chega às propostas). Ver ressalva na seção 5,
 ## 5. Pontos que precisam da sua decisão
 
 Encontrei estes pontos durante a leitura. Nenhum impede a Fase 2, mas todos mudam o texto.
+
+> **Atualização:** os pontos 1, 2, 4, 5, 6, 11 e 12 foram decididos pelo autor; os pontos 3,
+> 7, 8, 9 e 10 seguem em aberto. Ver `docs/DECISOES.md`, que prevalece sobre esta seção.
 
 1. **As metáforas existem só nos títulos.** "Os ramos são finos e precisam ser cuidados" e
    "as sementes estão plantadas, mas a terra é árida" aparecem nos títulos de 4.2.1 e 4.2.2
