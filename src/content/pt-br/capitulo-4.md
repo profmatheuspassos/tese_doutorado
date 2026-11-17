@@ -134,7 +134,7 @@ intrometer nas discussões, aplaudir ou reprovar. A lei, de 2013, prevê multa d
 O efeito é uma bola de neve: se nem no nível local minhas propostas são sequer analisadas, que dirá no
 nacional. A tese não pede que toda proposta seja aprovada. Pede que seja, ao menos, analisada.
 
-<!-- B8 | Brasil | origem: 4.2.2 ("ainda menos propícia"; 30 possibilidades, nota 644; nenhuma direta na formulação; capítulo dos municípios: só iniciativa popular com 5%; silêncio no nível local; mais de 5.500 leis orgânicas; Estatuto da Cidade: todas as etapas, gestão orçamentária participativa como condição de aprovação, plano diretor com audiências; consultivo e não decisório; audiências como prestação de contas; sem papel nem responsabilidade definidos; "bater o martelo"); nota 653 (Portugal bem mais avançado; seguir o exemplo); nota 643 (89 x 11) -->
+<!-- B8 | Brasil | origem: 4.2.2 ("ainda menos propícia"; 30 possibilidades, nota 644; nenhuma direta na formulação; capítulo dos municípios: só iniciativa popular com 5%; silêncio no nível local; mais de 5.500 leis orgânicas; Estatuto da Cidade: todas as etapas, gestão orçamentária participativa como condição de aprovação, plano diretor com audiências; consultivo e não decisório; audiências como prestação de contas; sem papel nem responsabilidade definidos; "bater o martelo"); nota 653 (Portugal bem mais avançado: participação na constituição, autogoverno das freguesias menores; seguir o exemplo); D27 -->
 
 ## Brasil: as sementes estão plantadas, mas a terra é árida
 
@@ -153,9 +153,9 @@ prestarem contas do que para os cidadãos apresentarem ideias. E a lei não diz 
 cada grupo. Nos dois países, o cidadão pode ouvir, refletir e se informar. Bater o martelo cabe só ao
 poder público.
 
-Ainda assim, para o autor, Portugal está bem mais avançado, e o Brasil deveria seguir, mais uma
-vez, o exemplo português. Um indício: a palavra "cidadão", no singular ou no plural, aparece 89
-vezes na constituição portuguesa e 11 na brasileira.
+Ainda assim, para o autor, Portugal está bem mais avançado. Lá, a participação ao menos está na
+constituição, e as freguesias pequenas se governam sozinhas. O Brasil deveria seguir, mais uma vez,
+o exemplo português.
 
 <!-- B9 | Presença não é decisão | origem: 4.2.3 (presença x tomada de decisão; reuniões locais: quem está dentro barra novidades, quem está fora entra com muito custo; preconceito do cidadão inculto; voto por renda no séc. XIX; democracia como processo; "iluminados"; três propostas: constituição, lei, cultura; expressões vagas; "não só, mas também"; não transfere responsabilidades do Estado; exemplo da proteção de dados, notas 659 e 660; problema e causa) -->
 

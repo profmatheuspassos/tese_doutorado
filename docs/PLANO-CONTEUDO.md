@@ -272,8 +272,8 @@ centrada no governo" e "centrada nos cidadãos"; as etapas acendem conforme o ci
 
 **Outros visuais:** o motivo ramos/sementes em tela cheia, com legendas; "presença x decisão"
 (linha do tempo de uma proposta numa assembleia de freguesia); números em destaque (0,22%;
-30 formas e nenhuma direta; "cidadão" aparece 89 vezes na constituição portuguesa e 11 na
-brasileira; 26 de 35 partidos; 8 anos de "provisório"); círculo virtuoso.
+30 formas e nenhuma direta; 26 de 35 partidos; 8 anos de "provisório"); círculo virtuoso. A contagem de "cidadão" nas
+constituições (89 x 11) não entra (D27).
 
 ### 3.5 Capítulo 5 — As ferramentas que já existem (e uma que falta)
 
@@ -419,7 +419,7 @@ confiança em escala ordenada e as duas não respostas em cinza. Na home, versã
 | Acesso à internet | Portugal: 63,9% das pessoas de 16 a 74 anos usaram nos 3 primeiros meses de 2018 · Brasil: 74,8% viviam em domicílio com acesso em 2017; 58,3% entre os mais pobres | INE; IBGE | Cap. 3 |
 | Plenário de eleitores, Portugal | 129 freguesias (total de freguesias fora do site, ver D10); 23.466 habitantes; 0,22% da população | Censos 2011; cálculo do autor | Cap. 4 |
 | Multa por intervir em sessão | 150 a 750 euros | Lei 75/2013 | Cap. 4 |
-| "Cidadão(s)" nas constituições | 89 ocorrências (Portugal); 11 (Brasil) | Contagem do autor | Cap. 4 |
+| "Cidadão(s)" nas constituições | 89 ocorrências (Portugal); 11 (Brasil) | Contagem do autor | **Não usar (D27)** |
 | Comissões provisórias, Brasil | Em 26 de 35 partidos, mais da metade da estrutura; duração de até 8 anos | Jun. 2019, reportagem citada; lei alterada em 2019 | Cap. 4 |
 | Pesquisa pós-eleição, Brasil | 36,6% não sabiam os cargos em disputa; 23% não lembravam o voto para deputado estadual; 41% não sabiam o que faz um senador | 2010, TSE | Cap. 4 |
 | Referendos e consultas | Portugal: 3 nacionais e 5 locais (1975–2019) · Brasil: 2 nacionais e 3 locais (1988–2019) | CNE; TSE | Cartão, cap. 5 |
