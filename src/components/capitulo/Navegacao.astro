@@ -1,0 +1,92 @@
+---
+/**
+ * Navegação ao fim das páginas internas: "Anterior" (T14) e "A seguir" (T15), cada uma com o
+ * título da página de destino. A ordem é a do site: Início, capítulos 1 a 5, "Sobre a tese".
+ * Em "Sobre", que é a última, o segundo link é "Voltar ao início" (T10).
+ */
+import { t } from '../../i18n';
+import { capitulos, sobre, url } from '../../lib/paginas';
+
+interface Props { rota: string }
+const { rota } = Astro.props;
+const caps = await capitulos();
+const pSobre = await sobre();
+const ordem: { rota: string; titulo: string; prefixo?: string }[] = [
+  { rota: '/', titulo: t('inicio') },
+  ...caps.map((c) => ({ rota: c.rota, titulo: c.titulo, prefixo: t('capitulo', { n: c.n }) })),
+  { rota: pSobre.rota, titulo: pSobre.titulo },
+];
+const i = ordem.findIndex((p) => p.rota === rota);
+if (i < 1) throw new Error(`Página fora da ordem de navegação: ${rota}`);
+const anterior = ordem[i - 1];
+const proxima = ordem[i + 1];
+const seta = (sentido: 'esq' | 'dir') => sentido === 'dir' ? 'M3 8h10M9 4l4 4-4 4' : 'M13 8H3M7 4L3 8l4 4';
+---
+<nav class="secao-nevoa" aria-label={t('continue_leitura')} data-ui data-navegacao>
+  <div class="margem mx-auto grid max-w-(--container-figura) gap-4 py-12 sm:grid-cols-2 md:py-16">
+    <a class="nav-pagina" href={url(anterior.rota)} rel="prev">
+      <span class="nav-pagina-rotulo">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={seta('esq')} /></svg>
+        {t('anterior')}
+      </span>
+      {anterior.prefixo && <span class="nav-pagina-prefixo">{anterior.prefixo}</span>}
+      <span class="nav-pagina-titulo">{anterior.titulo}</span>
+    </a>
+    {proxima ? (
+      <a class="nav-pagina sm:text-right" href={url(proxima.rota)} rel="next">
+        <span class="nav-pagina-rotulo sm:justify-end">
+          {t('a_seguir')}
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={seta('dir')} /></svg>
+        </span>
+        {proxima.prefixo && <span class="nav-pagina-prefixo">{proxima.prefixo}</span>}
+        <span class="nav-pagina-titulo">{proxima.titulo}</span>
+      </a>
+    ) : (
+      <a class="nav-pagina sm:text-right" href={url('/')}>
+        <span class="nav-pagina-rotulo sm:justify-end">
+          {t('voltar_inicio')}
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={seta('dir')} /></svg>
+        </span>
+      </a>
+    )}
+  </div>
+</nav>
+
+<style is:global>
+  .nav-pagina {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-cartao);
+    background: var(--color-branco);
+    border: 1px solid color-mix(in srgb, var(--color-tinta) 8%, transparent);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .nav-pagina:hover {
+    border-color: color-mix(in srgb, var(--color-tinta) 22%, transparent);
+    box-shadow: 0 8px 24px -16px rgb(15 17 20 / 0.25);
+  }
+  .nav-pagina-rotulo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--text-pequeno);
+    font-weight: 650;
+    color: var(--color-ramo);
+  }
+  .nav-pagina-prefixo {
+    font-size: 0.8125rem;
+    color: var(--color-tinta-2);
+    margin-top: 0.5rem;
+  }
+  .nav-pagina-titulo {
+    font-size: var(--text-destaque);
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-tinta);
+    text-wrap: balance;
+  }
+  .nav-pagina-rotulo + .nav-pagina-titulo { margin-top: 0.5rem; }
+</style>

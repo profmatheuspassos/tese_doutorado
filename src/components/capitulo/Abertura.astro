@@ -1,0 +1,101 @@
+---
+/**
+ * Abertura das páginas internas (bloco B0): imagem no topo (se houver), "Capítulo N", o h1 e
+ * os parágrafos do B0, e o título original do capítulo (T13). O h1 e os parágrafos são a fatia
+ * exata do .md; o que é interface fica marcado com data-ui.
+ */
+import type { Bloco } from '../../lib/blocos';
+import { comAtributos } from '../../lib/blocos';
+import { t } from '../../i18n';
+import Imagem from '../site/Imagem.astro';
+
+interface Props {
+  bloco: Bloco;
+  n?: number;
+  tituloOriginal?: string;
+  imagem?: string; // "cap2-abertura.webp" (2520×1080)
+  tema: 'claro' | 'nevoa' | 'escuro';
+  comLateral?: boolean;
+}
+const { bloco, n, tituloOriginal, imagem, tema, comLateral = false } = Astro.props;
+const [h1, ...paragrafos] = bloco.elementos;
+if (!h1?.startsWith('<h1') || !paragrafos.length || !paragrafos.every((p) => p.startsWith('<p'))) throw new Error('B0 fora do formato esperado (h1 + parágrafos).');
+const secao = { claro: 'secao-clara', nevoa: 'secao-nevoa', escuro: 'secao-escura' }[tema];
+---
+<section class:list={[secao, 'abertura-pagina']} data-bloco="B0">
+  {imagem && (
+    <div class="abertura-imagem">
+      <Imagem nome={imagem} largura={2520} altura={1080} prioridade class="h-full w-full object-cover" />
+    </div>
+  )}
+  <div class:list={['margem mx-auto grid max-w-(--container-figura) gap-x-16 gap-y-12 pb-[clamp(3.5rem,9vw,6rem)]', imagem ? 'pt-10 md:pt-14' : 'pt-[clamp(4rem,12vw,8rem)]', comLateral && 'lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:items-center']}>
+    <div class="max-w-[46rem]">
+      {n && <p class="abertura-capitulo" data-ui>{t('capitulo', { n })}</p>}
+      <Fragment set:html={comAtributos(h1, { class: 'abertura-pagina-titulo' })} />
+      {tituloOriginal && (
+        <p class="abertura-original" data-ui>
+          <span class="abertura-original-rotulo">{t('titulo_na_tese')}</span>
+          <span class="abertura-original-titulo">{tituloOriginal}</span>
+        </p>
+      )}
+      <div class="abertura-lead">
+        {paragrafos.map((p) => <Fragment set:html={p} />)}
+      </div>
+    </div>
+    {comLateral && <div><slot name="lateral" /></div>}
+  </div>
+</section>
+
+<style is:global>
+  .abertura-imagem {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: color-mix(in srgb, currentColor 6%, transparent);
+  }
+  @media (min-width: 768px) {
+    .abertura-imagem {
+      aspect-ratio: 21 / 9;
+      max-height: 60svh;
+      width: 100%;
+    }
+  }
+  .abertura-capitulo {
+    font-size: var(--text-pequeno);
+    font-weight: 650;
+    letter-spacing: 0.01em;
+    color: var(--color-tinta-2);
+    margin-bottom: 0.75rem;
+  }
+  .secao-escura .abertura-capitulo { color: var(--color-gelo-2); }
+  .abertura-pagina-titulo {
+    font-size: clamp(2.5rem, 6.5vw, 4.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+  .abertura-original {
+    margin-top: 1.5rem;
+    max-width: 40rem;
+    font-size: var(--text-pequeno);
+    line-height: 1.45;
+    color: var(--color-tinta-2);
+  }
+  .secao-escura .abertura-original { color: var(--color-gelo-2); }
+  .abertura-original-rotulo {
+    display: block;
+    font-weight: 650;
+    margin-bottom: 0.15rem;
+  }
+  .abertura-original-titulo { font-style: italic; }
+  .abertura-lead {
+    margin-top: 2.25rem;
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+  }
+  .abertura-lead p { text-wrap: pretty; }
+  .abertura-lead p + p { margin-top: 1.1rem; }
+  .abertura-lead p:last-child { font-weight: 550; }
+  .secao-escura .abertura-lead p { color: var(--color-gelo-2); }
+  .secao-escura .abertura-lead p:last-child { color: var(--color-gelo); }
+</style>

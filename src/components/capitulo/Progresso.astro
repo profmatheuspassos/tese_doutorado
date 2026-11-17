@@ -1,0 +1,55 @@
+---
+/**
+ * Barra de progresso da leitura, na base do cabeçalho fixo. Decorativa (aria-hidden).
+ * CSS puro onde o navegador tem animation-timeline: scroll(); nos demais, um script curto faz
+ * o mesmo. Sem JS e sem esse suporte, a barra não aparece. Acompanha a rolagem do próprio leitor,
+ * por isso continua com movimento reduzido.
+ */
+---
+<div class="progresso" aria-hidden="true" data-progresso></div>
+
+<style is:global>
+  .progresso {
+    position: fixed;
+    top: calc(3rem - 2px);
+    left: 0;
+    right: 0;
+    z-index: 45;
+    height: 2px;
+    background: var(--color-tinta);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    pointer-events: none;
+    display: none;
+  }
+  .js .progresso { display: block; }
+  /* animation-timeline fica numa regra separada: se o minificador a juntar ao atalho
+     "animation", o navegador descarta a declaração inteira. */
+  @supports (animation-timeline: scroll()) {
+    .progresso {
+      display: block;
+      animation: progresso-leitura linear both;
+    }
+    .progresso[data-progresso] {
+      animation-timeline: scroll(root);
+    }
+  }
+  @keyframes progresso-leitura {
+    to { transform: scaleX(1); }
+  }
+</style>
+
+<script>
+  if (!CSS.supports('animation-timeline: scroll()')) {
+    const barra = document.querySelector<HTMLElement>('[data-progresso]');
+    let pedido = 0;
+    const atualizar = () => {
+      pedido = 0;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      if (barra) barra.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+    };
+    addEventListener('scroll', () => { if (!pedido) pedido = requestAnimationFrame(atualizar); }, { passive: true });
+    addEventListener('resize', atualizar);
+    atualizar();
+  }
+</script>

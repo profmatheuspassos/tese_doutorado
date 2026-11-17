@@ -1,0 +1,38 @@
+---
+/**
+ * Modelo das páginas internas (capítulos e "Sobre a tese"): abertura com o B0, barra de
+ * progresso, os blocos do texto (slot padrão) e a navegação "Anterior" / "A seguir".
+ * <title> = T11; meta description = primeiro parágrafo do B0 (T17).
+ */
+import Base from './Base.astro';
+import Abertura from '../components/capitulo/Abertura.astro';
+import Progresso from '../components/capitulo/Progresso.astro';
+import Navegacao from '../components/capitulo/Navegacao.astro';
+import type { Bloco } from '../lib/blocos';
+import { textoSimples } from '../lib/blocos';
+import { t } from '../i18n';
+
+interface Props {
+  rota: string;
+  titulo: string;
+  abertura: Bloco;
+  n?: number;
+  tituloOriginal?: string;
+  imagem?: string;
+  tema: 'claro' | 'nevoa' | 'escuro';
+}
+const { rota, titulo, abertura, n, tituloOriginal, imagem, tema } = Astro.props;
+const descricao = textoSimples(abertura.elementos[1] ?? '');
+if (!descricao) throw new Error(`Sem parágrafo no B0 para a descrição: ${rota}`);
+const comLateral = Astro.slots.has('lateral');
+---
+<Base titulo={t('titulo_pagina', { titulo })} descricao={descricao}>
+  <Progresso />
+  <article>
+    <Abertura bloco={abertura} n={n} tituloOriginal={tituloOriginal} imagem={imagem} tema={tema} comLateral={comLateral}>
+      <slot name="lateral" slot="lateral" />
+    </Abertura>
+    <slot />
+  </article>
+  <Navegacao rota={rota} />
+</Base>

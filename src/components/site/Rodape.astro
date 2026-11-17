@@ -3,6 +3,8 @@ import { t } from '../../i18n';
 import { capitulos, sobre, url } from '../../lib/paginas';
 import Sementes from '../motivo/Sementes.astro';
 
+interface Props { comTexto?: boolean }
+const { comTexto = false } = Astro.props;
 const caps = await capitulos();
 const pSobre = await sobre();
 // Contato aprovado na decisão D7.
@@ -11,10 +13,12 @@ const contato = 'contato@profmatheus.com';
 <footer class="secao-escura">
   <div class="margem mx-auto max-w-(--container-figura) py-16 md:py-20">
     <Sementes class="mb-10 h-6 w-28 text-semente-escuro" />
-    <div class="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-      <div class="max-w-(--container-texto)">
-        <slot />
-      </div>
+    <div class:list={['grid gap-12', comTexto && 'md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]']}>
+      {comTexto && (
+        <div class="max-w-(--container-texto)">
+          <slot />
+        </div>
+      )}
       <nav data-ui aria-label={t('menu')} class="text-pequeno">
         <ul class="grid gap-2.5 sm:grid-cols-2">
           <li><a class="text-gelo-2 hover:text-gelo" href={url('/')}>{t('inicio')}</a></li>

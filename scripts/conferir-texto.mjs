@@ -12,6 +12,7 @@ import { createRequire } from 'node:module';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { expandirDados, formatarValor } from '../src/lib/rotulos.mjs';
 
 const exigir = createRequire(import.meta.url);
 const { chromium } = exigir('playwright');
@@ -41,19 +42,47 @@ function lerMd(arquivo) {
 
 const paginas = readdirSync(pastaMd).filter((f) => f.endsWith('.md')).map((f) => ({ arquivo: f, ...lerMd(f) }));
 
-// Textos permitidos fora dos blocos.
+// Textos permitidos fora dos blocos: rótulos aprovados (com os marcadores {d:...} trocados pelos
+// valores do dados.json), títulos e títulos originais das páginas, o contato da D7 e os números
+// do dados.json, formatados como o site os mostra.
 const permitidos = new Set();
+const padroes = [];
 const juntar = (v) => (typeof v === 'string' ? [v] : Array.isArray(v) ? v.flatMap(juntar) : typeof v === 'object' ? Object.values(v).flatMap(juntar) : []);
 const caps = paginas.filter((p) => p.meta.capitulo).map((p) => ({ n: p.meta.capitulo, titulo: p.meta.titulo }));
-for (const s of juntar(i18n)) {
-  if (s === i18n._sobre) continue;
-  if (s.includes('{n}')) caps.forEach((c) => permitidos.add(s.replace('{n}', c.n).replace('{titulo}', c.titulo)));
-  else if (!s.includes('{')) permitidos.add(s);
+const escapar = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// Valores possíveis de cada variável de interface (as demais variáveis fazem o build falhar).
+const variaveis = {
+  instituicao: Object.values(i18n.explorador?.instituicoes ?? {}),
+  forma: Object.values(i18n.bolha?.formas ?? {}),
+  formato: ['ABNT', 'APA', 'BibTeX'],
+  titulo: [...paginas.map((p) => p.meta.titulo), i18n.nao_encontrada],
+  n: null, // número inteiro
+};
+for (const bruto of juntar(i18n)) {
+  if (bruto === i18n._sobre) continue;
+  const s = expandirDados(bruto, dados);
+  if (s.includes('{n}') && s.includes('{titulo}')) { caps.forEach((c) => permitidos.add(s.replace('{n}', c.n).replace('{titulo}', c.titulo))); continue; }
+  if (!s.includes('{')) { permitidos.add(s); continue; }
+  const re = escapar(s).replace(/\\\{(\w+)\\\}/g, (_, k) => {
+    if (!(k in variaveis)) throw new Error(`Variável sem valores conhecidos no rótulo "${bruto}": {${k}}`);
+    return variaveis[k] ? `(?:${variaveis[k].map(escapar).join('|')})` : '\\d+';
+  });
+  padroes.push(new RegExp(`^${re}$`));
 }
-paginas.forEach((p) => permitidos.add(p.meta.titulo));
+paginas.forEach((p) => { permitidos.add(p.meta.titulo); if (p.meta.titulo_original) permitidos.add(p.meta.titulo_original); });
 permitidos.add('contato@profmatheus.com'); // D7
-dados.confianca_instituicoes_br.anos.forEach((a) => permitidos.add(String(a)));
-const numeroDosDados = /^\d{1,3}(,\d)?%?$|^%$/;
+permitidos.add('%');
+const numeros = new Set();
+const andarDados = (v, chave = '') => {
+  if (typeof v === 'number') {
+    const f = formatarValor(v, chave);
+    const umaCasa = v.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    [f, umaCasa].forEach((x) => { numeros.add(x); numeros.add(`${x}%`); });
+  } else if (Array.isArray(v)) v.forEach((x) => andarDados(x, chave));
+  else if (v && typeof v === 'object') Object.entries(v).forEach(([k, x]) => andarDados(x, k));
+};
+andarDados(dados);
+const aprovado = (s) => permitidos.has(s) || numeros.has(s) || padroes.some((r) => r.test(s));
 
 const navegador = await chromium.launch();
 const contexto = await navegador.newContext({ javaScriptEnabled: false });
@@ -84,6 +113,9 @@ for (const p of paginas) {
     };
     // Rótulos divididos em vários nós (ex.: última palavra presa à seta) são conferidos inteiros.
     const rotulos = [...document.querySelectorAll('[data-rotulo]')].map((el) => el.textContent.replace(/\s+/g, ' ').trim());
+    // Atributos que o leitor de tela lê também são texto de interface. Imagens: alt="" (D47).
+    const atributos = [...document.querySelectorAll('body [aria-label], body [title]')].flatMap((el) => [el.getAttribute('aria-label'), el.getAttribute('title')]).filter(Boolean);
+    const alts = [...document.querySelectorAll('img')].map((i) => i.getAttribute('alt'));
     const blocos = [...document.querySelectorAll('[data-bloco]')];
     const porBloco = blocos.map((b) => ({ id: b.dataset.bloco, ...textoDe(b, true) }));
     // Texto fora de qualquer bloco.
@@ -94,7 +126,7 @@ for (const p of paginas) {
       if (!el || el.closest('script, style, template, [data-bloco], [data-rotulo]') || !n.textContent.trim()) continue;
       foraDosBlocos.push(n.textContent.trim());
     }
-    return { porBloco, foraDosBlocos, rotulos, titulo: document.title };
+    return { porBloco, foraDosBlocos, rotulos, atributos, alts, titulo: document.title };
   });
   await pagina.close();
 
@@ -114,9 +146,10 @@ for (const p of paginas) {
   const aspasPublicadas = r.porBloco.reduce((n, b) => n + aspas(b.texto), 0);
   if (aspasPublicadas !== p.aspas) erros.push(`${p.arquivo}: número de aspas diferente. .md: ${p.aspas} | página: ${aspasPublicadas}`);
 
-  const soltos = [...r.foraDosBlocos, ...r.porBloco.flatMap((b) => b.fora), ...r.rotulos];
+  r.alts.forEach((a) => { if (a !== '') erros.push(`${p.arquivo}: imagem com alt diferente de "" (D47): "${a}"`); });
+  const soltos = [...r.foraDosBlocos, ...r.porBloco.flatMap((b) => b.fora), ...r.rotulos, ...r.atributos];
   for (const s of soltos) {
-    if (!permitidos.has(s) && !numeroDosDados.test(s)) erros.push(`${p.arquivo}: texto de interface não aprovado: "${s}"`);
+    if (!aprovado(s)) erros.push(`${p.arquivo}: texto de interface não aprovado: "${s}"`);
   }
   console.log(`  ${p.arquivo}: ${publicados.length} palavras e ${aspasPublicadas} aspas conferidas em ${ids.length} blocos; ${soltos.length} rótulos de interface conferidos; <title>: ${r.titulo}`);
 }
@@ -143,7 +176,7 @@ for (const html of htmlDoBuild.filter((h) => !rotasMd.has(h))) {
   });
   await pagina.close();
   const nome = html.slice(join(raiz, 'dist').length + 1);
-  textos.saida.forEach((s) => { if (!permitidos.has(s) && !numeroDosDados.test(s)) erros.push(`${nome}: texto de interface não aprovado: "${s}"`); });
+  textos.saida.forEach((s) => { if (!aprovado(s)) erros.push(`${nome}: texto de interface não aprovado: "${s}"`); });
   console.log(`  ${nome}: ${textos.saida.length} textos de interface conferidos; <title>: ${textos.titulo}`);
 }
 await navegador.close();

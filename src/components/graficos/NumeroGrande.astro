@@ -1,11 +1,11 @@
 ---
 import { formatar } from '../../lib/numeros';
 /** Número em destaque. Repete um dado que já está no texto, por isso fica fora da leitura de tela. */
-interface Props { valor: number; class?: string }
-const { valor, class: classe } = Astro.props;
+interface Props { valor: number; casas?: number; class?: string }
+const { valor, casas = 1, class: classe } = Astro.props;
 ---
 <p class:list={['numero-grande', classe]} aria-hidden="true">
-  <span data-contador={valor}>{formatar(valor)}</span><span class="numero-grande-pct">%</span>
+  <span data-contador={valor} data-casas={casas}>{formatar(valor, casas)}</span><span class="numero-grande-pct">%</span>
 </p>
 
 <style>

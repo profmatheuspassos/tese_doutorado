@@ -1,5 +1,5 @@
 {
-  "_sobre": "Rótulos de interface aprovados pelo autor (T1 a T12, decisão D43). Nenhum outro texto de interface pode aparecer no site. {n} = número do capítulo; {titulo} = campo titulo do .md da página.",
+  "_sobre": "Rótulos de interface aprovados pelo autor: T1 a T12 (decisão D43) e T13 a T48 da Fase 4 (decisão D52; T19 e T20 retirados). Nenhum outro texto de interface pode aparecer no site. {n} = número do capítulo; {titulo} = campo titulo do .md da página; {d:caminho} = valor do src/data/dados.json, conferido no build.",
   "pular": "Pular para o conteúdo",
   "menu": "Menu",
   "inicio": "Início",
@@ -14,10 +14,44 @@
     "portugal": "Portugal",
     "brasil": "Brasil"
   },
-  "circulo_vicioso": ["O cidadão se afasta", "Os partidos se fecham", "Fragmentação política"],
-  "circulo_virtuoso": ["Sentir-se parte da comunidade", "Cidadania ativa", "Partidos mais abertos"],
+  "circulo_vicioso": [
+    "O cidadão se afasta",
+    "Os partidos se fecham",
+    "Fragmentação política"
+  ],
+  "circulo_virtuoso": [
+    "Sentir-se parte da comunidade",
+    "Cidadania ativa",
+    "Partidos mais abertos"
+  ],
   "nao_encontrada": "Página não encontrada",
   "voltar_inicio": "Voltar ao início",
   "titulo_home": "{titulo} · Matheus Passos Silva",
-  "titulo_pagina": "{titulo} · Revigorar, não substituir"
+  "titulo_pagina": "{titulo} · Revigorar, não substituir",
+  "titulo_na_tese": "Título na tese",
+  "anterior": "Anterior",
+  "a_seguir": "A seguir",
+  "continue_leitura": "Continue a leitura",
+  "explorador": {
+    "escolha": "Escolha a instituição",
+    "instituicoes": {
+      "congresso": "Congresso Nacional",
+      "governo": "Governo",
+      "judiciario": "Poder Judiciário",
+      "tse": "Tribunal Superior Eleitoral",
+      "partidos": "Partidos políticos"
+    },
+    "respostas": {
+      "muita": "Muita confiança",
+      "um_pouco": "Um pouco de confiança",
+      "pouca": "Pouca confiança",
+      "nenhuma": "Nenhuma confiança",
+      "nao_sabe": "Não sei responder",
+      "nao_responde": "Não quero responder"
+    },
+    "fonte": "Fonte: {d:confianca_instituicoes_br.fonte}. Pergunta: “{d:confianca_instituicoes_br.pergunta}” Entrevistas: {d:confianca_instituicoes_br.entrevistas.0} ({d:confianca_instituicoes_br.anos.0}), {d:confianca_instituicoes_br.entrevistas.1} ({d:confianca_instituicoes_br.anos.1}) e {d:confianca_instituicoes_br.entrevistas.2} ({d:confianca_instituicoes_br.anos.2}).",
+    "ver_tabela": "Ver os números em tabela",
+    "resposta": "Resposta",
+    "legenda_tabela": "{instituicao}, em %"
+  }
 }

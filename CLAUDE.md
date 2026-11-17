@@ -105,16 +105,22 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
 | `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
-| `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e relatórios do Lighthouse |
+| `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
+| `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e resumo do Lighthouse |
+| `docs/capturas/fase-4/` | Capturas das páginas novas (D56) e `lighthouse/resumo.md` de todas as páginas (só o resumo é versionado, D59) |
 | `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: home (`index.astro`), 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
-| `src/lib/blocos.ts` | Divide o HTML de cada `.md` nos blocos `Bn`; só acrescenta atributos e envoltórios, nunca texto |
+| `src/pages/capitulos/[slug].astro`, `src/layouts/Capitulo.astro` | Rotas dos capítulos (lidas dos `.md`) e modelo das páginas internas |
+| `src/components/capitulo/`, `src/components/capitulos/`, `src/components/interativos/` | Abertura, bloco de texto, progresso e navegação; composição de cada capítulo; interativos (explorador etc.) |
+| `src/lib/blocos.ts` | Divide o HTML de cada `.md` nos blocos `Bn`; só acrescenta atributos, envoltórios e desenhos sem texto, nunca texto |
+| `src/lib/rotulos.mjs` | Marcadores `{d:caminho}` nos rótulos, trocados pelos valores do `dados.json` (usado pelo site e pelas conferências) |
 | `src/lib/plugin-sem-quebra.mjs` | Impede quebra de linha em palavras com hífen, sem trocar caractere |
 | `src/data/dados.json` | Único arquivo de números do site (Quadros 1 a 5 e outros), com os usos por página |
-| `src/i18n/pt-br.json` | Rótulos de interface aprovados (D43); nenhum outro texto de interface |
+| `src/i18n/pt-br.json` | Rótulos de interface aprovados (D43, D52); nenhum outro texto de interface |
 | `src/styles/global.css` | Tokens de design (D45) |
 | `src/scripts/home.ts` | Animações GSAP da home (só com `prefers-reduced-motion: no-preference`) |
-| `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, contraste, texto (palavras, aspas, rótulos) e recursos de terceiros |
-| `scripts/capturas.mjs`, `scripts/lighthouse.mjs` | Testes no navegador (3 larguras x 3 cenários, axe, teclado) e Lighthouse |
+| `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, contraste, texto (palavras, aspas, rótulos, atributos), recursos de terceiros e links internos |
+| `scripts/variantes-imagens.mjs` | Gera as larguras 840 e 1680 das imagens para o `srcset` (em `public/img/variantes/`, fora do Git) |
+| `scripts/capturas.mjs`, `scripts/lighthouse.mjs` | Testes no navegador em todas as páginas do build (3 larguras x 3 cenários, salto para cada bloco, axe, teclado, interativos) e Lighthouse |
 | `scripts/reservar-imagens.mjs` | Cria os espaços reservados em `public/img/` sem sobrescrever imagens finais |
 | `scripts/converter.sh` | Recria `conteudo/` a partir de `fonte/` |
 | `scripts/legibilidade.py` | Mede tamanho e legibilidade de uma página |
@@ -135,6 +141,12 @@ diferença em relação aos textos aprovados ou aos dados faz o build falhar.
 
 ```bash
 npm run capturas
+```
+
+Para salvar as capturas versionadas de uma ou mais páginas:
+
+```bash
+npm run capturas:salvar -- capitulo-2
 ```
 
 ```bash
@@ -176,11 +188,21 @@ npm run lighthouse
   Home: 1.770 palavras, índice 62,1. Lighthouse acima de 90 em tudo. Enviada à `main` por pull
   request.
 - As imagens ilustrativas ainda são espaços reservados (cor lisa) em `public/img/`.
+- **Fase 4 aprovada como plano** (17/11/2026; `docs/PLANO-FASE-4.md`), com as decisões D52 a D58.
+  Entrega em quatro etapas, com parada para aprovação ao fim de cada uma.
+- **Fase 4, Etapa 1 aprovada com três ajustes (D59):** modelo das páginas internas e **capítulo 2**
+  completo (`/capitulos/2-o-que-nao-funciona/`): abertura com o círculo vicioso, escada dos três
+  degraus, 92,9% em destaque e explorador dos Quadros 1 a 5, que funciona sem JavaScript.
+  Conferências e testes estendidos a várias páginas. Texto idêntico ao aprovado (1.797 palavras);
+  Lighthouse 99 a 100; axe sem violações.
 
 ## Próximo passo
 
-1. **Fase 4 (capítulos 1 a 5 e "Sobre a tese", com os interativos de cada página): não começar sem
-   aprovação explícita do autor.** Os links da home para os capítulos só passam a funcionar nela.
-2. Lembrete para a Fase 5 (D41): na publicação, conferir que o link do repositório na página
+1. **Merge do pull request da Etapa 1** (capítulo 2), feito pelo autor no GitHub. Não começar a
+   Etapa 2 antes de o autor confirmar o merge. A sessão seguinte parte da `main` atualizada.
+2. Etapa 2: capítulos 1 e 3. Etapa 3: capítulos 4 e 5. Etapa 4: "Sobre a tese", links internos como
+   erro (`LINKS_ESTRITO=1`), Lighthouse e capturas das sete páginas. Cada etapa para e espera
+   aprovação.
+3. Lembrete para a Fase 5 (D41): na publicação, conferir que o link do repositório na página
    "Sobre a tese" abre para o público. Também na Fase 5: link canônico, tags de compartilhamento
    (`og-home.png` já existe) e `SITE_URL`/`BASE_PATH` do domínio final.

@@ -127,6 +127,21 @@
       "grafico": "texto",
       "serie": "confianca_interpessoal_br",
       "frases": ["Em {ano}, só {pode_confiar}% dos entrevistados", "Outros {nao_pode_confiar}% disseram que não"]
+    },
+    {
+      "pagina": "capitulo-2",
+      "bloco": "B4",
+      "grafico": "explorador",
+      "decisao": "D44",
+      "serie": "confianca_instituicoes_br",
+      "nota": "Os seis níveis de resposta dos cinco Quadros, de 2006 a 2017. Só a linha \"nenhuma\" está no texto aprovado (conferida no uso \"tabela\" acima); os demais níveis entram pela D44 e são conferidos contra o plano, seção 4.1."
+    },
+    {
+      "pagina": "capitulo-2",
+      "bloco": "B4",
+      "grafico": "numero-grande",
+      "serie": "confianca_interpessoal_br",
+      "frases": ["Outros {nao_pode_confiar}% disseram que não"]
     }
   ]
 }

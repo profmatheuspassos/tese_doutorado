@@ -1,0 +1,223 @@
+---
+/**
+ * Explorador da confiança nas instituições do Brasil, Quadros 1 a 5 (capítulo 2, B4; D44).
+ * Funciona sem JavaScript: a escolha da instituição é um grupo de botões de rádio, e as larguras
+ * das barras são variáveis CSS geradas aqui a partir do dados.json, trocadas por :has(). A troca
+ * anima por transição CSS (desligada com movimento reduzido). As barras são aria-hidden; a tabela
+ * equivalente fica num <details>. Sem suporte a :has(), o seletor some e as cinco tabelas aparecem.
+ */
+import { dados, uso } from '../../lib/dados';
+import { formatar } from '../../lib/numeros';
+import { mapa, t } from '../../i18n';
+
+uso('capitulo-2', 'B4', 'explorador');
+const serie = dados.confianca_instituicoes_br;
+const nomes = mapa('explorador.instituicoes');
+const rotulos = mapa('explorador.respostas');
+const instituicoes = Object.keys(serie.instituicoes) as (keyof typeof serie.instituicoes)[];
+const respostas = Object.keys(serie.respostas) as (keyof typeof serie.respostas)[];
+if (instituicoes.join() !== Object.keys(nomes).join()) throw new Error('Explorador: instituições do JSON e dos rótulos não batem.');
+if (respostas.join() !== Object.keys(rotulos).join()) throw new Error('Explorador: respostas do JSON e dos rótulos não batem.');
+respostas.forEach((r) => {
+  if (serie.respostas[r] !== rotulos[r]) throw new Error(`Explorador: rótulo "${rotulos[r]}" difere do dados.json ("${serie.respostas[r]}").`);
+});
+const valores = (i: (typeof instituicoes)[number]) => serie.instituicoes[i].valores as Record<string, number[]>;
+const PADRAO = 'congresso';
+
+// Variáveis CSS: --v-{resposta}-{ano} = valor em %. A instituição padrão vale também sem :has().
+const variaveis = (i: (typeof instituicoes)[number]) =>
+  respostas.flatMap((r) => serie.anos.map((_, a) => `--v-${r}-${a}:${valores(i)[r][a]}`)).join(';');
+const css = [
+  `.explorador{${variaveis(PADRAO)}}`,
+  ...instituicoes.map((i) => `.explorador:has(#exp-${i}:checked){${variaveis(i)}}`),
+  ...instituicoes.map((i) => `.explorador:has(#exp-${i}:checked) .exp-valor[data-i="${i}"],.explorador:has(#exp-${i}:checked) .exp-tabela[data-i="${i}"]{display:revert}`),
+  `@supports not selector(:has(*)){.exp-controles{display:none}.exp-valor[data-i="${PADRAO}"]{display:revert}.texto .exp-tabela{display:table}}`,
+].join('\n');
+// Valor escrito dentro do segmento só quando cabe: abaixo de 6% nunca; de 6% a 11% só a partir de 640 px.
+const classeValor = (v: number) => (v < 6 ? 'exp-valor-nunca' : v < 11 ? 'exp-valor-largo' : '');
+---
+<figure class="explorador largo" data-explorador data-ui>
+  <fieldset class="exp-controles">
+    <legend class="exp-legenda">{t('explorador.escolha')}</legend>
+    <div class="exp-opcoes">
+      {instituicoes.map((i) => (
+        <label class="exp-opcao">
+          <input type="radio" name="explorador-instituicao" id={`exp-${i}`} value={i} checked={i === PADRAO} />
+          <span>{nomes[i]}</span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  <div class="exp-grafico" aria-hidden="true">
+    <ul class="exp-chaves">
+      {respostas.map((r) => <li><i class={`exp-amostra exp-seg-${r}`}></i>{rotulos[r]}</li>)}
+    </ul>
+    {serie.anos.map((ano, a) => (
+      <div class="exp-linha">
+        <span class="exp-ano">{ano}</span>
+        <div class="exp-barra">
+          {respostas.map((r) => (
+            <span class={`exp-seg exp-seg-${r}`} style={`width:calc(var(--v-${r}-${a}) * 1%)`}>
+              {instituicoes.map((i) => {
+                const v = valores(i)[r][a];
+                return <span class:list={['exp-valor', classeValor(v)]} data-i={i}>{formatar(v)}</span>;
+              })}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <figcaption class="exp-fonte">{t('explorador.fonte')}</figcaption>
+
+  <details class="exp-detalhes">
+    <summary>{t('explorador.ver_tabela')}</summary>
+    {instituicoes.map((i) => (
+      <table class="exp-tabela tabela-numeros" data-i={i}>
+        <caption>{t('explorador.legenda_tabela', { instituicao: nomes[i] })}</caption>
+        <thead>
+          <tr><th scope="col">{t('explorador.resposta')}</th>{serie.anos.map((ano) => <th scope="col">{ano}</th>)}</tr>
+        </thead>
+        <tbody>
+          {respostas.map((r) => (
+            <tr><th scope="row">{rotulos[r]}</th>{valores(i)[r].map((v) => <td>{formatar(v)}</td>)}</tr>
+          ))}
+        </tbody>
+      </table>
+    ))}
+  </details>
+</figure>
+
+<style is:inline set:html={css}></style>
+
+<style is:global>
+  .explorador {
+    background: var(--color-nevoa);
+    border-radius: var(--radius-cartao);
+    padding: clamp(1.25rem, 4vw, 2.25rem);
+    color: var(--color-tinta);
+  }
+  .exp-controles { border: 0; padding: 0; margin: 0 0 1.75rem; min-width: 0; }
+  .exp-legenda {
+    font-size: var(--text-pequeno);
+    font-weight: 650;
+    margin-bottom: 0.75rem;
+  }
+  .exp-opcoes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .exp-opcao { position: relative; cursor: pointer; }
+  .exp-opcao input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .exp-opcao span {
+    display: inline-block;
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-tinta) 22%, transparent);
+    background: var(--color-branco);
+    font-size: var(--text-pequeno);
+    line-height: 1.3;
+    font-weight: 550;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .exp-opcao:hover span { border-color: var(--color-tinta-2); }
+  .exp-opcao input:checked + span {
+    background: var(--color-tinta);
+    border-color: var(--color-tinta);
+    color: var(--color-branco);
+  }
+  .exp-opcao input:focus-visible + span {
+    outline: 3px solid var(--color-ramo);
+    outline-offset: 2px;
+  }
+
+  .exp-chaves {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8125rem;
+    color: var(--color-tinta-2);
+  }
+  .texto .exp-chaves li { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0; margin: 0; }
+  .texto .exp-chaves li::before { display: none; }
+  .exp-amostra { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 3px; }
+
+  .exp-linha {
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .exp-ano {
+    font-size: var(--text-pequeno);
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+  }
+  .exp-barra {
+    display: flex;
+    height: 2.5rem;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--color-branco);
+  }
+  .exp-seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-branco);
+    box-shadow: inset -2px 0 0 var(--color-branco);
+    transition: width 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .exp-seg-muita { background: var(--color-tinta); }
+  .exp-seg-um_pouco { background: var(--color-tinta-2); }
+  .exp-seg-pouca { background: var(--color-linha); }
+  .exp-seg-nenhuma { background: var(--color-semente); }
+  .exp-seg-nao_sabe,
+  .exp-seg-nao_responde {
+    background: repeating-linear-gradient(135deg, var(--color-gelo-2) 0 3px, color-mix(in srgb, var(--color-gelo-2) 45%, var(--color-branco)) 3px 6px);
+  }
+  .exp-seg-nao_responde { box-shadow: none; }
+  .exp-valor { display: none; }
+  .exp-valor-nunca { display: none !important; }
+  @media (max-width: 639.98px) {
+    .exp-valor-largo { display: none !important; }
+  }
+
+  .exp-fonte {
+    margin-top: 1.25rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-tinta-2);
+  }
+  .exp-detalhes { margin-top: 1rem; font-size: var(--text-pequeno); }
+  .exp-detalhes summary {
+    cursor: pointer;
+    font-weight: 650;
+    color: var(--color-ramo);
+    width: max-content;
+    max-width: 100%;
+  }
+  .exp-detalhes summary:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+  .texto .exp-tabela { display: none; margin-top: 1rem; margin-bottom: 0; }
+  .exp-tabela caption {
+    caption-side: top;
+    text-align: left;
+    font-weight: 650;
+    padding-bottom: 0.5rem;
+  }
+  .exp-tabela th[scope='row'] { font-weight: 450; }
+</style>

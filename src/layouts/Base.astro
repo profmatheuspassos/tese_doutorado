@@ -42,8 +42,10 @@ const marcaJs = `document.documentElement.classList.add('js');setTimeout(functio
     <main id="conteudo" tabindex="-1">
       <slot />
     </main>
-    <Rodape>
-      <slot name="rodape" />
-    </Rodape>
+    {Astro.slots.has('rodape') ? (
+      <Rodape comTexto>
+        <slot name="rodape" />
+      </Rodape>
+    ) : <Rodape />}
   </body>
 </html>
