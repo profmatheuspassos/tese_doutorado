@@ -79,6 +79,33 @@ for (const c of cenarios) {
       }
       return { larguraExcedente, invisiveis, altura: document.body.scrollHeight };
     });
+    // Salto direto para cada bloco (tecla End, link de âncora): o texto na tela precisa aparecer.
+    if (c.nome === 'normal') {
+      const ctxSalto = await navegador.newContext({ viewport: { width: w, height: w < 500 ? 812 : 900 } });
+      const ps = await ctxSalto.newPage();
+      await ps.goto(BASE, { waitUntil: 'networkidle' });
+      const ids = await ps.evaluate(() => [...document.querySelectorAll('[data-bloco]')].map((b) => b.dataset.bloco));
+      for (const id of ids.reverse()) {
+        await ps.evaluate((a) => document.querySelector(`[data-bloco="${a}"]`).scrollIntoView(), id);
+        await ps.waitForTimeout(1800);
+        const escondidos = await ps.evaluate((a) => [...document.querySelectorAll(`[data-bloco="${a}"] :is(h1,h2,h3,p,li,td)`)]
+          .filter((e) => { const r = e.getBoundingClientRect(); return r.top < innerHeight * 0.85 && r.bottom > 0 && !e.closest('[aria-hidden="true"]'); })
+          .filter((e) => { let op = 1; for (let x = e; x; x = x.parentElement) op *= Number(getComputedStyle(x).opacity); return op < 0.99; })
+          .map((e) => e.textContent.trim().slice(0, 30)), id);
+        escondidos.forEach((t) => erros.push(`${rotulo}: depois de saltar para ${id}, texto ainda escondido: "${t}"`));
+      }
+      await ctxSalto.close();
+    }
+
+    // B8: a conclusão cujo negrito é só o começo da frase tem o mesmo tamanho dos títulos das outras.
+    const tamanhos = await pagina.evaluate(() => {
+      const ps = [...document.querySelectorAll('[data-bloco="B8"] .conclusoes > p')];
+      return ps.map((p) => ({ strong: getComputedStyle(p.querySelector('strong')).fontSize, p: getComputedStyle(p).fontSize, frase: p.classList.contains('conclusao-frase') }));
+    });
+    const tituloPadrao = tamanhos[0]?.strong;
+    tamanhos.forEach((t, i) => {
+      if (t.strong !== tituloPadrao || (t.frase && t.p !== tituloPadrao)) erros.push(`${rotulo}: B8, conclusão ${i + 1} com tamanho ${t.frase ? t.p : t.strong}, diferente dos títulos (${tituloPadrao})`);
+    });
     if (estado.larguraExcedente > 0) erros.push(`${rotulo}: rolagem horizontal de ${estado.larguraExcedente}px`);
     estado.invisiveis.forEach((i) => erros.push(`${rotulo}: texto invisível: ${i}`));
 
