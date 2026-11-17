@@ -132,7 +132,7 @@ rodapé abertas só quando trazem dado ou argumento: 42, 53, 62, 65, 72, 74, 88,
 | Bloco | O que o site diz | Origem na tese | Âncora no original |
 |---|---|---|---|
 | B0 Abertura | O capítulo monta a régua (democracia representativa, cidadania) e confere as leis de PT e BR; resposta: democracias no papel; dúvida sobre a vida real | Abertura do cap. 1; 1.2 (conclusão) | "uma apresentação teórica dos conceitos de democracia e de cidadania"; "A resposta, antecipa-se, é negativa" |
-| B1 De súdito a cidadão | Atenas: todo cidadão decidia; inviável com milhões; representação necessária; súdito no Estado absolutista; Declaração de 1789 (lei = vontade dos cidadãos); governo representativo (fim do séc. XVIII ao início do XX); voto restrito por sexo e renda; Inglaterra do séc. XIX, cerca de 10% eleitores; eleição dos "notáveis", sem laço de representação, eleito vota como quer; virada no fim do XIX e início do XX, com a Primeira Guerra; voto como poder real, laço criado por lei, troca do eleito; expansão do voto (trabalhadores, prêmio aos sobreviventes das guerras, queda do analfabetismo); "pouco mais de cem anos" | 1.1, §§ 1–9; nota 42 | "nos moldes da Atenas antiga"; "sendo este período intermédio chamado de *governo representativo*"; "o gênero (direito de voto para homens, não para mulheres) ou o censo"; "cerca de 10% da população era considerado como eleitor" (nota 42); "apenas os notáveis eram 'eleitos'"; "inclusive em consequência da Primeira Guerra Mundial"; "o eleitor, caso estivesse insatisfeito com o eleito, poderia realmente substituí-lo"; "em pouco mais de 100 anos" |
+| B1 De súdito a cidadão | Atenas: os cidadãos podiam tomar parte diretamente nas decisões (D22); inviável com milhões; representação necessária; súdito no Estado absolutista; Declaração de 1789 (lei = vontade dos cidadãos); governo representativo (fim do séc. XVIII ao início do XX); voto restrito por sexo e renda; Inglaterra do séc. XIX, cerca de 10% eleitores; eleição dos "notáveis", sem laço de representação, eleito vota como quer; virada no fim do XIX e início do XX, com a Primeira Guerra; voto como poder real, laço criado por lei, troca do eleito; expansão do voto (trabalhadores, prêmio aos sobreviventes das guerras, queda do analfabetismo); "pouco mais de cem anos" | 1.1, §§ 1–9; nota 42; 3.1 (D22) | "nos moldes da Atenas antiga"; "tinham a *possibilidade* de participar" (3.1); "sendo este período intermédio chamado de *governo representativo*"; "o gênero (direito de voto para homens, não para mulheres) ou o censo"; "cerca de 10% da população era considerado como eleitor" (nota 42); "apenas os notáveis eram 'eleitos'"; "inclusive em consequência da Primeira Guerra Mundial"; "o eleitor, caso estivesse insatisfeito com o eleito, poderia realmente substituí-lo"; "em pouco mais de 100 anos" |
 | B2 Os partidos | Democracia partidária; sindicatos e ONGs influenciam, o partido é o único que a constituição deixa entrar no Estado em nome do cidadão; objetivo acima de todos: votos; partidos de notáveis (só no parlamento) → partidos de massa (estrutura, propaganda contínua); voto no programa, não na pessoa; eleito segue o partido, que presta contas ao eleitor; governabilidade e alianças | 1.1 (partidos políticos); notas 53 e 65 | "verdadeira *democracia partidária*"; "a única instituição que tem a prerrogativa de formalmente se inserir no aparelho do Estado" (nota 65); "o de *obter votos*"; "*partidos de notáveis*"; "*partido de massa*"; "não mais na pessoa do candidato 'A' ou do candidato 'B'"; "o mandato pertence ao partido"; "o de garantir a governabilidade" |
 | B3 Maioria é contagem | Sociedade plural, nenhum grupo sufoca os outros; maioria = critério numérico, não verdade nem justiça; exemplo dos 55%; maioria de hoje, minoria de amanhã; tirania da maioria = autoritarismo disfarçado; dever de participação mais amplo que o voto; referendo, petição e ação popular para controle entre eleições, a estimular; definição das três ferramentas | 1.1 (pluralismo; maioria; controle pelo cidadão); notas 72 e 74 | "nenhum destes polos de poder existentes na sociedade será suficientemente forte a ponto de sufocar os demais"; "não há como correlacionar […] a vontade da maioria a concepções quaisquer de verdade ou de justiça"; "a maioria de hoje poderá vir a se tornar a minoria do futuro"; "um autoritarismo travestido de democracia"; "dever fundamental de participação política"; "tais como referendos, ações populares ou petições" |
 | B4 As regras do jogo | As nove regras (a a i), em linguagem simples; capacidade de resposta e prestação de contas; formular, expressar e ver consideradas as preferências, sem discriminação; regimes mais ou menos democráticos; PT e BR cumprem as nove no papel | 1.1 (conjunto de regras de procedimento; poliarquia); 1.2 (conclusão) | "(a) o poder Legislativo deve ser composto por membros eleitos"; "(i) o órgão do Governo deve gozar de confiança do Parlamento ou do chefe do poder Executivo"; "um governo democrático deve prestar contas aos seus cidadãos"; "(a) formular livremente suas preferências"; "serão, nesta visão, mais ou menos democráticos"; "por estarem previstas em sua Constituição todas as *regras de procedimento*" |
@@ -199,6 +199,12 @@ regras de inelegibilidade, de cassação de direitos políticos e de fidelidade 
 12. **Menções a "a tese" (D15).** Duas: o dever de participação mais amplo que o voto (B3) e a
     resposta negativa no fecho (B9). Uma terceira posição do autor aparece como "para o autor"
     (B7).
+13. **Atenas: possibilidade, não obrigação (D22, 17/11/2026).** A tese diz, em 1.1, que os
+    cidadãos atenienses "tinham a obrigatoriedade" de tomar parte nas decisões e, em 3.1, que
+    "tinham a *possibilidade* de participar, caso assim desejassem". A frase aprovada ("todo
+    cidadão tinha de tomar parte nas decisões da cidade") foi trocada, por decisão do autor, por
+    "os cidadãos podiam tomar parte diretamente nas decisões da cidade", que serve às duas
+    passagens e fica coerente com a página do capítulo 3.
 
 ---
 
@@ -325,3 +331,155 @@ participação não eleitoral em PT (petição e contato, dez. 2016) e no BR (pe
 19. **Menções a "a tese" (D15).** Duas: o conceito amplo de participação (B1) e o modelo que gera a
     fragmentação (B10). Uma terceira posição do autor aparece como "para o autor" (B7, prazo de dois
     anos).
+
+---
+
+## Capítulo 3 (`src/content/pt-br/capitulo-3.md`)
+
+Releitura feita em 17/11/2026: corpo do capítulo 3 por inteiro (abertura, 3.1, 3.2 e 3.3).
+Notas de rodapé abertas só quando trazem dado ou argumento: 336, 343, 346, 350, 355, 363, 364,
+365, 367, 372, 376, 378, 380, 420, 422, 427, 430, 432, 456, 457, 458, 460, 461, 462, 463, 464,
+465, 466, 467, 468, 470, 474, 476, 477, 478, 484, 485, 493, 495, 496, 504, 510, 528 e 530. As
+âncoras abaixo foram conferidas uma a uma contra `conteudo/03-capitulo-3.md` (160 trechos, todos
+encontrados).
+
+### Blocos
+
+| Bloco | O que o site diz | Origem na tese | Âncora no original |
+|---|---|---|---|
+| B0 Abertura | Democracia cansada; coro de que o poder não está com o povo e o cidadão perdeu a voz; insatisfação nas ruas (protestos) e nas urnas (líderes de discurso radical eleitos); tecnologia em toda parte; democracia digital; não resolve e pode agravar | Abertura do cap. 3; 3.1 (insatisfação; protestos; líderes eleitos) | "*resgate da democracia direta*"; "não está mais *nas mãos do povo*"; "*os cidadãos não têm mais voz*"; "estando os meios tecnológicos disseminados nas sociedades contemporâneas"; "por meio de manifestações populares"; "líderes no cenário político com discurso radical" |
+| B1 Atenas | Imagem de que todos decidiam tudo; não era bem assim; séc. IV a.C., cerca de 30 mil cidadãos (homens livres acima de 20 anos; sem mulheres, crianças, estrangeiros, escravos); assembleia ao menos 40 vezes por ano; em média 6 mil (20%); maioria só ouvia e votava; poder relevante em órgãos menores, sorteio entre voluntários; ~600 de ~700 magistraturas por sorteio, mandato de um ano; Conselho de 500 sorteados; cargos vitais (generais, finanças) eleitos; prestação de contas ao fim do mandato; pedido de afastamento por qualquer cidadão; pagamento para igualdade de condições; rodízio; cerca de metade passou por algum órgão; sorteio decide quando, não se; não tão direta; diferença é o método de escolha (sorteio x eleição), não o número de quem exerce o poder | 3.1 (Atenas); notas 346, 350, 355, 364, 367, 372 | "*também possuía instituições representativas*"; "cerca de 30 mil cidadãos"; "apenas homens livres acima de 20 anos" (nota 346); "por pelo menos 40 vezes ao ano"; "correspondido a 20% dos cidadãos, ou seja, por volta de 6000 pessoas"; "com a vasta maioria confinando-se aos atos de escutar e de votar"; "poderes políticos de peso considerável"; "*aqueles cidadãos que se voluntariassem para tal*"; "cerca de 600 eram preenchidas por meio de sorteio"; "mandatos tendo duração de um ano"; "as 500 vagas do Conselho"; "funções consideradas vitais para a cidade"; "prestar contas tão logo findo seu mandato"; "com o consequente pedido de sua suspensão"; "recebiam auxílio financeiro"; "cerca de 50% dos cidadãos"; "não *se*, mas *quando*"; "ela não era tão *direta* quanto se pensa"; "muito mais no *método de escolha*"; "número que historicamente sempre foi reduzido" |
+| B2 Por que não cabe hoje | Milhões de pessoas; reunir todos sempre é impossível; ausência seria maior que em Atenas; mais gente, menos chance de falar; desistência; minoria organizada no controle; difícil saber muito sobre tudo; democracia direta inviável na prática; mudar a forma de decidir não realiza a vontade do povo; no modelo digital, vontade da minoria excluída | 3.1 (quatro críticas à democracia direta; duas razões da inviabilidade); notas 376, 378, 380 | "dimensão territorial dos Estados modernos"; "o absenteísmo seria ainda maior"; "menor a possibilidade de intervenção nas deliberações"; "a minoria organizada efetivamente controlasse"; "saber *muito* sobre *todos* os assuntos"; "total inviabilidade prática de tal modelo"; "não seria concretizada com a mera mudança no processo"; "a vontade da minoria seria certamente excluída" |
+| B3 Duas alternativas | Democracia participativa: canais além do voto entre eleições; orçamento participativo (Porto Alegre desde 1989; Lisboa desde 2008, propostas e votação pelos cidadãos, vencedoras no orçamento do ano seguinte); ganho: educação política e vínculo eleitor–eleito; limite: grandes organizações, cada um fala no seu grupo, cidadão comum distante. Democracia deliberativa: diálogo antes da decisão; redes como lugar ideal; institucionalizar burocratiza e afasta; faltam propostas para incluir menos favorecidos e garantir igualdade; "interessante, talvez ideal", impraticável hoje. A proposta da tese não se confunde com nenhuma: recuperar os laços para a representação funcionar | 3.1 (democracia participativa e deliberativa) | "no período entre eleições"; "Porto Alegre, no Brasil, desde 1989"; "cidade de Lisboa, desde 2008"; "no ano subsequente"; "*educação política*"; "fortalecimento do vínculo entre eleito e eleitor"; "transformar em um modelo *corporativista*"; "*refeudalização*"; "em *corporações*, e não nas *pessoas*"; "*diálogo entre os participantes*"; "As *redes sociais* seriam, por excelência"; "implicaria em completa burocratização"; "facilitem a intervenção dos menos favorecidos"; "efetivem a necessária igualdade"; "algo interessante e talvez até mesmo ideal"; "a revitalização do *tecido social*" |
+| B4 A promessa | Evolução da web em uma frase (sites dos anos 1990 → redes, celular, conteúdo personalizado por inteligência artificial); promessas: todos falam, mais informação e consciência, fiscalização, governante ao vivo, votação pela internet; tecnologia não é "salvadora da pátria" | 3.1 (Web 1.0 a 4.0; argumentos dos defensores) | "*somente leitura*"; "*Web 4.0*"; "maneira quase personalizada"; "qualquer pessoa exprima sua voz"; "aumento do nível de conscientização"; "poder de fiscalização que todos agora podem exercer"; "em *lives*"; "realização de votações online"; "*salvadora da pátria*" |
+| B5 Na prática | Informação falsa ou distorcida, títulos chamativos, leitura só do título; curtidas espalham a mensagem; divulgação paga a milhões; mensagens para reação imediata ("escândalos"); muitos políticos usam o mecanismo; seguidores acham que cumprem papel cívico; comentários: elogio x grosseria, importa quem fala; ditaduras vigiam opositores; político banalizado, bate-boca, "nós contra eles" | 3.2 (seis problemas do ambiente digital); nota 422 | "falsas, deformadas ou manipuladas"; "títulos \"chamativos\""; "limitando-se a ler os títulos"; "número de *likes*"; "divulgação *orgânica*"; "divulgação *paga*"; "milhares ou mesmo milhões de pessoas"; "gerar reações impulsivas"; "\"escândalos\""; "não são poucos os políticos"; "*papel cívico*"; "menosprezar o \"oponente\""; "não importa o conteúdo da mensagem"; "por regimes ditatoriais"; "pegadas digitais"; "*só mais um cidadão*"; "*bate-bocas*"; "*nós* contra *eles*" |
+| B6 A bolha | Promessa de muitas fontes; bolhas; exemplo da cozinha vegetariana e da receita com carne adaptável com tofu; algoritmo (definido) aprende esquerda ou direita, "tanto faz"; pessoa e rede satisfeitas | 3.2 (bolhas ideológicas) | "círculo *virtuoso*"; "*bolhas ideológicas*"; "cozinha vegetariana"; "utilizando-se tofu"; "*de esquerda*, ou *de direita* -- tanto faz"; "A pessoa \"A\" se sente feliz"; "também a rede social fica satisfeita" |
+| B7 Nem todos estão conectados | PT: 63,9% de 16 a 74 anos usaram a internet nos três primeiros meses de 2018; BR: 74,8% em casas com acesso (2017); 58,3% nas famílias abaixo de 5,50 dólares por pessoa por dia; custo do aparelho e do plano; mesmo com todos conectados: vontade de participar sempre?; quem ocuparia cargos e como; quem controlaria a constitucionalidade; sem resposta, a democracia digital não ocupa o lugar da representação | 3.2 (dados do INE e do IBGE; custo; vontade; cargos); notas 462, 463, 465, 466 | "Cerca de 63,9% dos habitantes com idade entre 16 e 74 anos"; "74,8% da população residia"; "acesso domiciliar a internet, 58,3%" (nota 462); "inferior a US\$ 5,50 PPC 2011 por dia" (nota 462); "custo dos aparelhos de telefonia móvel"; "longe de parcela razoável dos cidadãos"; "a *vontade individual* de participar"; "Por sorteio ou por alguma outra *votação online*"; "controle de constitucionalidade" (nota 466); "a completa inviabilidade da democracia digital" |
+| B8 Sete problemas | Sete problemas apontados à representação; não se discute se são reais; tirania da maioria: lei penal não é tirania; tirania = perseguir oposição, negar liberdades básicas, eliminar controles; quadro com a resposta do digital para cada um | 3.2 (sete problemas; tirania da maioria; resposta do digital); nota 467 | "(a) a tirania da maioria"; "não busca verificar se tais problemas são reais" (nota 467); "aprovação de leis que buscam punir criminosos"; "quando esta persegue a oposição"; "*sensação* de empoderamento"; "*a qualquer custo*"; "aparente anonimato"; "polos de poder distintos"; "jogo de soma zero"; "o *povo* não governa"; "no mundo online que a disputa política ocorre"; "não traz em si mesma nenhuma garantia de fim da opressão"; "condicionantes econômicas"; "A irracionalidade está muito mais vinculada às próprias escolhas das pessoas" |
+| B9 Adversário e inimigo | Fragmentação como problema central (posição da tese); digital a aprofunda; cada um recebe o que supostamente é bom para si; decisões "de hoje para amanhã"; disputa saudável com limites; adversário vira inimigo; negociar x destruir; destruído ou ignorado; sem contar com altruísmo, mecanismos institucionais | 3.2 (fecho: fragmentação, opositor x inimigo, mecanismos institucionais); nota 476 | "o principal problema da democracia representativa, qual seja, a fragmentação política"; "apenas aprofunda a separação"; "supostamente é bom *para ele*"; "*de hoje para amanhã*"; "a competição pelo poder seja saudável"; "deve haver um limite a tal competição"; "*inimigos* em vez de *opositores*"; "com o opositor pode-se chegar a compromissos"; "destruído por meio da indiferença"; "não se pode esperar que as pessoas sejam altruístas"; "devem existir mecanismos institucionais" |
+| B10 Populismo | Redes como canal principal; boato com um clique, desmentido com efeito menor; força na segunda metade da década de 2010; democracias novas e antigas; populações que apoiam; fórmula, não ideologia; esquerda ou direita; "povo" puro e homogêneo; líder não define o povo; cada um se vê nele; representa todos e ninguém; elite corrupta a serviço de interesses de fora como inimigo; líder único, sempre em campanha; partidos, parlamento e Justiça como obstáculos; decretos; consultas como aval; degeneração (posição da tese); acima da lei; decisões impossíveis de questionar; participação vira apoio cego; massa de manobra | 3.3 (populismo); nota 484 | "canal de comunicação *por excelência* entre eleito e eleitor"; "está a um clique de distância"; "supera e muito o impacto negativo de uma eventual retratação"; "a partir da década de 2010, especialmente em sua segunda metade"; "*populações* que apoiam"; "fórmula política -- e não a uma ideologia política"; "populismos *de esquerda* e em populismos *de direita*" (nota 484); "agregado social homogêneo"; "depositário exclusivo de valores positivos"; "raramente definem com clareza"; "representa a todos e, consequentemente, não representa ninguém"; "elite cosmopolita, imperialista ou plutocrática que geralmente é corrupta"; "países estrangeiros ou de imigrantes"; "único capaz de enxergar a verdade"; "*está sempre em campanha*"; "desprezo de líderes populistas à intermediação política"; "menosprezam os outros poderes do Estado"; "fundamentadas em decretos"; "meros mecanismos plebiscitários"; "inegavelmente uma degeneração da democracia"; "*acima* da lei"; "imprevisíveis e inquestionáveis"; "mero apoio cego"; "massa de manobra" |
+| B11 Fecho | Votar todo dia: quantidade, não qualidade; não aumenta a confiança nas instituições e entre as pessoas; internet como espaço informal de debate, mais divulgação que decisão; o digital não cumpre a democracia direta, participativa nem deliberativa; complemento, não substituto; papel útil: cultura democrática; "algo mais"; quatro caminhos (vínculo com a comunidade, cidadania ativa, partidos democráticos por dentro, participação direta complementar); três no cap. 4, um no cap. 5 | 3.2 (fecho); 3.3 (fecho do capítulo); nota 478 sem nomes | "participação *quantitativa*"; "de 4 em 4 anos"; "é necessário *algo mais*"; "confiarem mais nas instituições políticas e em seus concidadãos"; "caráter positivo da internet"; "*espaço público* informal"; "muito mais identificado com o *liberalismo*"; "não apenas da democracia direta"; "*complemento*"; "*substituto*"; "disseminação de princípios fundamentais"; "*identificação patriótica*"; "a conceituação da cidadania de maneira ativa, não apenas passiva"; "a efetiva democratização interna dos partidos políticos"; "*efetivamente* complementares à democracia representativa"; "irá analisar os temas (a), (b) e (c)" |
+
+### Dados usados no capítulo 3
+
+| Dado | Valor no site | Ano | Fonte citada pela tese | Onde na tese |
+|---|---|---|---|---|
+| Cidadãos de Atenas | cerca de 30 mil (homens livres acima de 20 anos) | séc. IV a.C. | Manin; Held (nota 346) | 3.1 |
+| Reuniões da assembleia | pelo menos 40 por ano | idem | Held | 3.1 |
+| Presença média na assembleia | cerca de 6 mil, 20% dos cidadãos | idem | Held (nota 364) | 3.1 |
+| Magistraturas | cerca de 600 de 700 por sorteio; mandato de um ano | idem | Manin | 3.1 |
+| Conselho | 500 membros sorteados | idem | Manin (nota 351) | 3.1 |
+| Cidadãos que passaram por algum órgão | cerca de metade | idem | Manin (nota 367) | 3.1 |
+| Orçamento participativo | Porto Alegre desde 1989; Lisboa desde 2008 | 1989; 2008 | Notas 388 e 389 | 3.1 |
+| Uso da internet (PT) | 63,9% das pessoas de 16 a 74 anos | três primeiros meses de 2018 | INE (nota 458) | 3.2 |
+| Acesso à internet em casa (BR) | 74,8% da população | 2017 | IBGE (nota 462) | 3.2 |
+| Acesso à internet em casa, mais pobres (BR) | 58,3% (renda abaixo de US$ 5,50 PPC por pessoa por dia) | 2017 | IBGE (nota 462) | 3.2; nota 462 |
+| Força do populismo | segunda metade da década de 2010 | década de 2010 | — | 3.3 |
+
+Dados do capítulo **não usados**: população de Portugal (2011) e do Brasil (2010); renda líquida
+anual (11.063 EUR em PT; R$ 27.090 ou 6.242,50 EUR no BR, 2017); acesso por rede fixa (34,7%) e
+móvel (69%) em PT (D9); acesso por computador (40,7%) e por outro aparelho (73,7%) no BR, e os
+equivalentes entre os mais pobres (14,5% e 57,5%); estimativa de 200 EUR pelo aparelho e 20 EUR
+por mês de internet; salário médio de 922 EUR em PT; limite de duas vezes na vida no Conselho;
+idade mínima de 30 anos para o sorteio; reeleição de mais de 20 anos de um cargo eleito; Porto
+Alegre entre as 40 melhores práticas de gestão urbana e o reconhecimento do Banco Mundial; datas
+das três ondas de democratização (nota 330); limite de 280 caracteres de uma rede social.
+
+### Escolhas de interpretação
+
+1. **Atenas no capítulo 1 e no capítulo 3 (D22; era A9).** A tese diz, em 1.1, que os
+   cidadãos de Atenas "tinham a obrigatoriedade" de tomar parte nas decisões, e a página do
+   capítulo 1 (aprovada) escreve "todo cidadão tinha de tomar parte". Em 3.1, a tese diz que
+   Atenas era considerada direta "não porque os cidadãos efetivamente participavam", mas porque
+   "tinham a *possibilidade* de participar, caso assim desejassem". A página do capítulo 3 não fala
+   em obrigação: diz que a imagem de "todos decidindo tudo" não corresponde à prática (20% de
+   presença, maioria só ouvindo). O autor aceitou trocar a frase do capítulo 1 por "os cidadãos
+   podiam tomar parte diretamente nas decisões da cidade" (D22).
+2. **Sorteio entre voluntários.** A tese diz que, no sorteio, "só concorreriam [...] aqueles
+   cidadãos que se voluntariassem" e cita a idade de 30 anos. O site escreve "sorteio entre
+   voluntários" e omite a idade, por tamanho.
+3. **Quórum.** A tese diz que os cerca de 6 mil presentes eram também o quórum mínimo. O site dá
+   só a média, por tamanho.
+4. **Cargos eleitos.** O site diz que os cargos vitais "eram eleitos" e omite a reeleição sem
+   limite e o exemplo de mais de 20 anos no posto, que dependeria de nome próprio (D6) ou de uma
+   frase a mais.
+5. **"Muitos recebiam pagamento".** A tese diz "muitos dos que participavam recebiam auxílio
+   financeiro" para garantir "igualdade de *condições*". O site mantém "muitos".
+6. **Inviabilidade e minoria.** A tese diz que a vontade da minoria seria excluída "ao menos nos
+   moldes idealizados pela *democracia digital*". O site mantém a ressalva ("no modelo imaginado
+   pela democracia digital").
+7. **"Difícil alguém saber muito sobre todos os assuntos".** A tese fala em "muito baixa a
+   probabilidade". O site evita "ninguém sabe", que seria mais forte que o original.
+8. **Crítica à democracia participativa.** A tese diz que o modelo "tenderia" ao corporativismo se
+   buscasse substituir a representação e que o modelo existente "se fundamenta [...] em
+   *corporações*". O site resume: "na prática, participam sobretudo as grandes organizações". Os
+   termos "corporativismo" e "refeudalização" não aparecem; a ideia aparece como "cada pessoa fala
+   só dentro do seu grupo".
+9. **Porto Alegre e Lisboa.** O plano manda citar os dois orçamentos participativos. São cidades e
+   programas públicos, não governantes, partidos ou casos concretos (D6). O reconhecimento
+   internacional de Porto Alegre ficou de fora, por tamanho. **Aceito pelo autor (D25).**
+10. **Deliberativa "impraticável hoje".** A tese: "impossibilitado de ser concretizado na prática
+    devido às condicionantes da sociedade contemporânea". Das três propostas que faltam, o site
+    cita duas (incluir os menos favorecidos, garantir igualdade) e omite a terceira (canal para o
+    cidadão individual), já dita no parágrafo sobre a democracia participativa.
+11. **Fases da web.** Resumidas em uma frase, como manda o plano.
+12. **Promessas da democracia digital.** O site lista cinco das que a tese atribui aos
+    defensores; omite o cidadão como produtor de notícia e os meios técnicos de identificação do
+    eleitor (*blockchain*, certificados), por tamanho.
+13. **Problemas do ambiente digital.** O site traz os seis da tese em cinco itens, com cortes:
+    sai a checagem de notícias pelos jornais e a interferência de Estados em eleições de outros
+    países. "Regimes ditatoriais" vira "ditaduras". "Não são poucos os políticos" vira "muitos
+    políticos". "Milhares ou mesmo milhões" vira "milhões".
+14. **Algoritmo.** Explicado como "programa que escolhe o que aparece na tela".
+15. **Acesso à internet (D9).** Só os 63,9% de Portugal, com a data. No Brasil, os 74,8% e os
+    58,3% medem acesso no domicílio; o site escreve "vivia em casas com acesso". Os 58,3% valem
+    para quem tem renda domiciliar *per capita* abaixo de US$ 5,50 PPC 2011 por dia; o site escreve
+    "famílias com renda abaixo de 5,50 dólares por pessoa por dia" e omite "PPC 2011" (paridade de
+    poder de compra), que exigiria explicação longa.
+16. **Custo do acesso sem números.** A tese estima 200 EUR pelo aparelho e 20 EUR por mês e
+    compara com um salário médio de 922 EUR em Portugal (e menos da metade no Brasil), sem dar o
+    ano do salário. Como todo dado do site precisa do ano, e a estimativa é do próprio autor, o
+    site diz só que "o aparelho e o plano de internet ainda pesam no bolso de muita gente", que é a
+    conclusão da tese ("longe de parcela razoável dos cidadãos"). **Aceito pelo autor (D23).**
+17. **Perguntas sobre os cargos.** A tese pergunta se haveria cargos, como seriam escolhidos, se
+    teriam privilégios, mandato curto e remuneração. O site resume em "quem ocuparia os cargos
+    públicos, e como seria escolhido?". A pergunta sobre o controle da constituição vem da nota
+    466 (freios e contrapesos, controle de constitucionalidade). A conclusão "não consegue ocupar o
+    lugar da representação" traduz a "completa inviabilidade" da democracia digital como
+    realização da democracia direta.
+18. **Rótulos dos sete problemas.** Os mesmos da tabela da home (aprovada), para o leitor
+    reconhecer o fio condutor. A coluna da cidadania ativa fica na home e nas Considerações
+    finais. O autor da lista (Cunningham) não é citado. "Agrava", para a massificação da cultura,
+    segue a home e a tese ("gera exatamente tal massificação"). A distância entre as pessoas, que
+    a tese também cita nesse item, saiu da tabela por tamanho.
+19. **Demagogia no "espaço vazio".** O conceito é explicado sem o nome: "'O povo' não é ninguém em
+    particular, e é na internet que se disputa o direito de falar por ele".
+20. **Adversário e inimigo.** A tese usa "opositor"; o site usa "adversário", como a home. A
+    citação "precisa ser destruído" corrige o lapso do original ("precisa necessária e
+    completamente destruído"), como na home. "Derrotado ou ignorado" resume "destruído
+    politicamente" ou "por meio da indiferença e/ou do não reconhecimento de sua existência social".
+21. **Altruísmo e mecanismos institucionais.** Mantido, porque o site não pode apresentar a
+    proposta como dependente de altruísmo (CLAUDE.md).
+22. **Espaço público informal.** O reconhecimento do lado bom da internet foi para o fecho (B11),
+    sem os nomes de plataformas da nota 478.
+23. **"Não-povo".** O termo não aparece. A elite "cosmopolita, imperialista ou plutocrática que
+    geralmente é corrupta", acusada de defender interesses "de países estrangeiros ou de
+    imigrantes", vira "uma elite descrita como corrupta e a serviço de interesses de fora".
+24. **Populismo e consultas.** "Meros mecanismos plebiscitários para uma suposta legitimação" vira
+    "consultas populares [...] como aval ao próprio líder". "Imprevisíveis e inquestionáveis" vira
+    "impossíveis de questionar". "Raramente definem com clareza" vira "quase nunca diz com
+    clareza".
+25. **Ficou de fora, conforme o plano ou por tamanho:** as onze críticas da abertura; a lista de
+    protestos (D11); as ondas de democratização; a crítica às visões radicais; a imagem do estádio
+    sem microfone (nota 363), registrada no plano como ideia visual para a Fase 3 (D24); teoria da escolha racional;
+    a promessa populista de "democratizar a democracia"; o exemplo hipotético do diário oficial e
+    a discussão sobre validade das normas; os quatro aspectos do populismo; o estado de exceção; a
+    democracia iliberal e a tipologia de "democracias autoritárias"; o e-Cidadania (nota 469);
+    nomes de plataformas, empresas, governantes e autores (notas 472, 475, 477, 478, 496, 531).
+    **Cortes mantidos pelo autor (D24).**
+26. **Quatro caminhos.** "Identificação patriótica" não aparece; o termo é apresentado no
+    capítulo 4. O primeiro caminho vira "criar vínculos reais entre as pessoas e a comunidade onde
+    vivem"; o segundo, "entender a cidadania como ação, e não só como direito de votar".
+27. **Menções a "a tese" (D15).** Quatro: a proposta que não se confunde com os dois modelos (B3),
+    a fragmentação como problema central (B9), o populismo como degeneração (B10) e os quatro
+    caminhos (B11). "Daí a conclusão" (B2) marca a posição do autor sem repetir "a tese".

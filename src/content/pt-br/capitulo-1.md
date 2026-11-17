@@ -20,8 +20,8 @@ A resposta é sim. Os dois países são democracias no papel. A dúvida é se is
 
 ## De súdito a cidadão
 
-Na Atenas antiga, todo cidadão tinha de tomar parte nas decisões da cidade. Num país com milhões
-de pessoas, isso não é possível. Por isso as democracias de hoje são representativas: o povo
+Na Atenas antiga, os cidadãos podiam tomar parte diretamente nas decisões da cidade. Num país
+com milhões de pessoas, isso não é possível. Por isso as democracias de hoje são representativas: o povo
 elege pessoas que decidem em seu nome.
 
 No Estado absolutista, as pessoas eram súditas do governante. Em 1789, a Declaração dos Direitos
