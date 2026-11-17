@@ -171,9 +171,11 @@ for (const html of htmlDoBuild.filter((h) => !rotasMd.has(h))) {
     const saida = [];
     for (let n = w.nextNode(); n; n = w.nextNode()) {
       const el = n.parentElement;
-      if (!el || el.closest('script, style, template') || !n.textContent.trim()) continue;
+      if (!el || el.closest('script, style, template, [data-rotulo]') || !n.textContent.trim()) continue;
       saida.push(n.textContent.trim());
     }
+    // Rótulos divididos em vários nós (ex.: a linha de licença com links) são conferidos inteiros.
+    document.querySelectorAll('[data-rotulo]').forEach((el) => saida.push(el.textContent.replace(/\s+/g, ' ').trim()));
     return { saida, titulo: document.title };
   });
   await pagina.close();

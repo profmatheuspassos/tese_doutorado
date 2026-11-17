@@ -9,6 +9,21 @@ const caps = await capitulos();
 const pSobre = await sobre();
 // Contato aprovado na decisão D7.
 const contato = 'contato@profmatheus.com';
+
+// Linha de licença (T49, D76): os nomes das licenças viram links, sem mudar o texto aprovado.
+const LINKS_LICENCA: [string, string][] = [
+  ['CC BY-NC-ND 4.0', 'https://creativecommons.org/licenses/by-nc-nd/4.0/deed.pt-br'],
+  ['MIT', 'https://github.com/profmatheuspassos/tese_doutorado/blob/main/LICENSE'],
+];
+const licenca: { texto: string; href?: string }[] = [];
+let resto = t('licenca');
+for (const [nome, href] of LINKS_LICENCA) {
+  const i = resto.indexOf(nome);
+  if (i < 0) throw new Error(`T49 sem "${nome}"`);
+  licenca.push({ texto: resto.slice(0, i) }, { texto: nome, href });
+  resto = resto.slice(i + nome.length);
+}
+licenca.push({ texto: resto });
 ---
 <footer class="secao-escura">
   <div class="margem mx-auto max-w-(--container-figura) py-16 md:py-20">
@@ -33,6 +48,7 @@ const contato = 'contato@profmatheus.com';
           <li><a class="text-gelo-2 hover:text-gelo" href={url(pSobre.rota)}>{pSobre.titulo}</a></li>
         </ul>
         <p class="mt-8"><a class="text-gelo underline underline-offset-4" href={`mailto:${contato}`}>{contato}</a></p>
+        <p class="mt-6 text-[0.8125rem] text-gelo-2" data-rotulo>{licenca.map((p) => (p.href ? <a class="underline underline-offset-4 hover:text-gelo" href={p.href}>{p.texto}</a> : p.texto))}</p>
       </nav>
     </div>
   </div>
