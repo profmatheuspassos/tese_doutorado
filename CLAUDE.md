@@ -29,7 +29,10 @@ Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch pri
   repositório. Estão no `.gitignore`. Também ficam de fora `node_modules/`, a pasta de build
   e arquivos de ambiente.
 - Commits pequenos e descritivos ao longo do trabalho.
-- **Push só ao fim de cada fase, depois da aprovação do autor.** Direto na `main`.
+- **Push para a branch da sessão** (a branch de trabalho indicada pelo ambiente) a qualquer
+  momento e, no mínimo, ao fim de cada página, para não perder trabalho.
+- **Nada vai direto para a `main`.** Ao fim de cada fase, depois da aprovação do autor, o
+  trabalho segue por pull request; o autor faz o merge no GitHub.
 - **Nunca usar force push.**
 - Arquivos de trabalho versionados em `docs/`.
 
@@ -54,9 +57,10 @@ Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch pri
 - Todo termo técnico explicado na primeira vez que aparece; exemplos concretos.
 - Sem latim, sem juridiquês, sem notas de rodapé.
 - Tamanho: 8 a 10 mil palavras no site inteiro; cada página de capítulo entre 1.200 e 1.800.
-- Legibilidade medida por índice adaptado ao português (confirmar a fórmula em fonte
-  confiável antes de usar). O índice é conferência, não meta: não piorar o texto para
-  melhorar o número.
+- Legibilidade medida pelo Flesch adaptado ao português (Martins et al., 1996), com
+  `scripts/legibilidade.py`; método em `docs/LEGIBILIDADE.md`. Referência de conferência:
+  **índice de 50 ou mais** (faixa "fácil"). O índice é conferência, não meta: não piorar o
+  texto para melhorar o número.
 
 ### Site (Fases 3 a 5)
 - Astro + Tailwind + GSAP (ScrollTrigger); saída 100% estática; fonte Inter hospedada
@@ -108,4 +112,4 @@ se as 880 notas de rodapé foram distribuídas.
 3. Reescrever uma página por vez, começando pela home, sempre a partir da releitura do
    capítulo original: home, capítulos 1 a 5, "Sobre a tese".
 4. Escrever `docs/RASTREABILIDADE.md` e o relatório de legibilidade.
-5. Parar, mostrar e esperar aprovação antes do push e da Fase 3.
+5. Parar, mostrar e esperar aprovação antes do pull request e da Fase 3.
