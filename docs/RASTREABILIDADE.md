@@ -652,3 +652,186 @@ palavra "cidadão" nas constituições, 89 em Portugal e 11 no Brasil (nota 643)
     mudanças propostas (B9) e o juízo "extremamente não democrática" (B10). "O autor" aparece em
     quatro pontos de posição pessoal: o cálculo das freguesias, Portugal mais avançado, a antecipação
     das críticas e as "ideias que revelam a inquietação".
+
+---
+
+## Capítulo 5 (`src/content/pt-br/capitulo-5.md`)
+
+Releitura feita em 17/11/2026: corpo do capítulo 5 por inteiro (abertura, 5.1, 5.2, 5.3, 5.4, 5.5 e
+5.6). Notas de rodapé abertas só quando trazem dado ou argumento: 701, 705, 717, 719, 720, 721, 722,
+728, 730, 731, 732, 736, 737, 742, 745, 746, 747, 756, 766, 767, 768, 803 a 811, 825, 826, 827, 838,
+840 a 844, 846, 848, 849, 852 a 857, 863 a 865, 870 e 876 a 880. As âncoras abaixo foram conferidas
+uma a uma contra `conteudo/05-capitulo-5.md` (150 trechos, todos encontrados). Versão aprovada pelo
+autor em 17/11/2026, com o ajuste da D32.
+
+### Blocos
+
+| Bloco | O que o site diz | Origem na tese | Âncora no original |
+|---|---|---|---|
+| B0 Abertura | Democracias representativas e semidiretas; quatro ferramentas no papel; o capítulo testa cada uma e apresenta uma quinta; constituição portuguesa vai bem mais longe; a brasileira deixa quase tudo para as leis | Abertura do cap. 5 | "estão inseridas no modelo da democracia semidireta"; "sendo novamente a portuguesa bem mais avançada"; "extremamente *econômica*" |
+| B1 Referendo | PT: 60 mil assinaturas; Assembleia aprova; Tribunal Constitucional confere; Presidente pode recusar por razões políticas; só obriga com mais da metade dos inscritos; BR: cidadão não propõe, só o Congresso convoca; poder como fazer o outro agir; "só acontece se o Parlamento quiser"; travas contra populismo e manipulação; freios e contrapesos; filtrar, não bloquear; proposta direta ao tribunal constitucional, com mínimo de assinaturas | 5.1; notas 717, 719, 720 | "pelo menos 60.000 (sessenta mil) subscrições"; "é critério discricionário do Presidente da República"; "com base em algum juízo político próprio"; "pelo menos 50% + 1 do número de eleitores devidamente inscritos"; "aos cidadãos não é dado o direito de iniciativa referendária"; "o poder como sendo a capacidade de agir e de produzir efeitos"; "o referendo só irá ocorrer *se o Parlamento assim quiser*"; "evitar arroubos populistas ou manipulações"; "o sistema de freios e contrapesos"; "encaminhadas diretamente ao órgão do poder Judiciário com funções de controle constitucional"; "\"tirania da maioria\"" |
+| B2 Pouco uso | PT: 8 referendos (1975–2019), 3 nacionais (1998, 1998, 2007) e 5 locais; BR: 5 consultas (1988–2019), 2 nacionais (1993, 2005) e 3 locais; falta prática; mesmos males da eleição; consulta rara que parece eleição; não se resolve com os mesmos princípios; confiança depende de sentir-se parte | 5.1; notas 723 a 727 (só a fonte) | "de 1975 até 2019 ocorreram apenas oito referendos"; "de 1988 a 2019 foram realizados apenas cinco consultas populares"; "não têm verdadeira *prática democrática*"; "sofre dos mesmos males que acometem as eleições"; "não se consegue solucionar um problema buscando-se soluções"; "considerar-se a si mesmo como membro de uma coletividade" |
+| B3 Iniciativa popular | PT: 20 mil assinaturas, envio pela internet, grupo de cidadãos ouvido; BR: 1% do eleitorado em cinco estados, 1.473.063 assinaturas em papel, país 92 vezes maior; quatro leis federais (1988–2019); Câmara sem estrutura; "apadrinhamento"; formalmente nenhuma lei; desfiguração; PT: nove iniciativas (2003–2019), quatro leis; três problemas; desprestígio; desconfiança mútua; sugestões; causa de fundo | 5.2; notas 736, 737 | "no mínimo vinte mil assinaturas"; "de maneira impressa ou por via eletrônica"; "1.473.063 eleitores aderentes"; "corresponde a 92 vezes o tamanho de Portugal"; "apenas quatro projetos de lei de iniciativa popular foram aprovados"; "não ter não ter estrutura para conferir as assinaturas"; "\"apadrinhamento\""; "sob o aspecto formal nenhuma lei foi aprovada no Brasil"; "acabam por ser desfiguradas"; "deram entrada nove projetos de iniciativa legislativa dos cidadãos"; "eventuais dificuldades de arregimentação das assinaturas"; "não apenas desprestigiado por políticos"; "não têm condições -- culturais, principalmente"; "a facilitação da comprovação das assinaturas por meios digitais"; "dando a devida autoria aos cidadãos"; "Sem o sentimento de pertencimento não existem fundamentos para o trabalho em conjunto" |
+| B4 Petição e ação popular | Petição: pedido, proposta ou reclamação; gratuita; sem formato; direito a resposta, não a atendimento; ação popular: defender o que é de todos na Justiça; PT: direitos de participação política, lei própria; BR: direitos individuais, sem lei própria para a petição, ação popular por lei de 1965 | Abertura do cap. 5; 5.3; nota 773 | "correspondem a direitos, liberdades e garantias \"de participação política\""; "direitos e deveres individuais e coletivos"; "O exercício deste direito é universal e gratuito"; "Não há nenhuma forma a ser exigida"; "não corresponde ao mesmo que ter direito a ter seu pedido necessariamente concretizado"; "No caso brasileiro não há lei que regulamente o exercício do direito de petição"; "Lei nº 4.717, de 20 de junho de 1965" |
+| B5 O que as petições revelam | PT: 5,4% (2003–2011) → 21% (2016); petições por legislatura (113, 592, 181, 552, 632); estudo de 2017: dois terços coletivas, 91,5% interesse comum, crescimento em 2010–2012; 93,7% e 84,3%; confiança depende do tratamento, não do resultado; ser ouvido > ser atendido; desencanto com a eleição; quer participar se houver oportunidade e efeito; age em conjunto; "incentivo indireto à apatia"; divulgar ativamente | 5.3; notas 799, 802, 804, 805, 807, 808, 809 | "entre 2003 e 2011 apenas 5,4% dos cidadãos"; "a 21% em 2016"; "foram submetidas 113 petições"; "este número aumentou para 592 pedidos"; "caindo para 181 petições"; "houve 552 petições"; "foram submetidas 632 petições"; "dois terços das petições"; "em média 91,5% de todos os tipos de petições"; "nomeadamente entre 2010 e 2012"; "36,4% do universo dos entrevistados"; "57,3% responderam que concordavam totalmente"; "32,5% afirmaram concordar e 51,8%"; "mais importante *ser ouvido* do que *ter sua demanda concretizada*"; "o cidadão não tem interesse na participação eleitoral"; "o cidadão quer participar politicamente, e participará se houver oportunidade"; "incentivo indireto à apatia"; "efetivas campanhas de conscientização" |
+| B6 E no Brasil? | Em pesquisas, brasileiros dizem peticionar mais (25,4% em 2015); 5.570 municípios; LAI de 2011; pedidos ao governo federal de 102.423 (2015) a 129.309 (2018); 0,088% e 0,012% do eleitorado (2018); 19% até 30 anos (Câmara, 2018); envolvimento português bem maior; Portugal exemplo | 5.3; nota 811 | "em 2015 não se alteraram muito: 25,4%"; "o cidadão brasileiro exerce mais o direito de petição"; "existem 5.570 municípios no Brasil"; "*Lei de Acesso à Informação* (LAI)"; "em 2015 foram feitos 102.423 pedidos"; "em 2018 atingiu-se a marca de 129.309 pedidos"; "apenas 0,012% dos eleitores"; "0,088% no caso do poder Executivo federal"; "apenas 19% dos pedidos foram feitos por pessoas de até 30 anos"; "parece ser muito maior do que o envolvimento do cidadão brasileiro"; "como exemplo para o Brasil" |
+| B7 O recall | Definição; diferença para o impeachment; países onde existe; ausente em PT e BR; Califórnia, não Suíça; Suíça "adormecido", único sucesso em 1862; quatro etapas; 12% a 20% (estaduais), 10% a 30% (locais); maioria absoluta para sair, mais votado substitui, eleito não concorre; travas de 90 dias e seis meses; 172 tentativas (1913–2019), 9 votações, 6 remoções; sem revolução nem dano às minorias; mais confiança a longo prazo | 5.4; notas 827, 840, 841, 842 | "revogar o mandado de qualquer representante eleito antes do término"; "não se confunde com o instituto do *impeachment*"; "pode ser iniciado pela simples *incompetência*"; "nos Estados Unidos, na Suíça, no Equador, na Colômbia, na Argentina, no Canadá, na Alemanha e na Letônia"; "o *recall* não é recepcionado juridicamente nem em Portugal, nem no Brasil"; "encontra *adormecido*"; "foi em 1862"; "no mínimo 10 proponentes"; "sete dias corridos"; "12% do número de votos dados na última eleição"; "20% do número de votos obtidos na última eleição"; "(a) 30% se houver menos de 1.000 eleitores registrados"; "(e) 10% se houver acima de 100.001 eleitores registrados"; "decidido por maioria absoluta"; "o próximo candidato é eleito por maioria simples"; "atual incumbente não poderá se candidatar"; "se o mandato estiver ainda nos seus primeiros 90 dias"; "se mandato terminar dentro dos próximos seis meses"; "ocorreram 172 tentativas de *recall*"; "qualificaram-se para o *recall* apenas nove"; "em seis deles houve a remoção do incumbente"; "a sociedade daquele Estado americano não passou por revoluções"; "aumentar a confiança do cidadão no governo em longo prazo" |
+| B8 As críticas e as respostas | Críticas: curto prazo, medo de decisões difíceis, afasta os capazes, divide, confunde, custa, mais uma votação; respostas: prestação de contas contínua, menos peso dos financiadores, cidadão atento, saída pacífica para crises de legitimidade; impeachment e punição pelos pares: jurídicos, corporativismo, sem o cidadão | 5.4; notas 837, 838 | "encorajar uma visão de governo de curto prazo"; "daqueles que seriam os mais capacitados"; "dividem e polarizam a sociedade"; "criaria confusão junto aos eleitores"; "infla-se o orçamento público"; "mais uma eleição para além daquelas"; "contínua responsabilidade política do representante"; "como os financiadores das campanhas"; "a estarem a par dos assuntos públicos do momento"; "saída institucional e democrática para crises profundas de legitimidade"; "referem-se a uma punição jurídica, não política"; "razoável nível de corporativismo"; "não levam, necessariamente, a mais envolvimento do cidadão" |
+| B9 Por que o recall importa | Recall traduz a cidadania ativa; juntar-se, problema comum, assinaturas, convencer, responder pelo resultado; escolha pensada, não impulso; "uma pessoa passiva à espera da próxima eleição"; não é mandato imperativo; conversa entre eleitor e eleito; adoção gradual: constituição, depois lei, sobretudo no nível local | 5.4 | "participação política em sentido horizontal"; "a decisão de se juntar com os demais"; "sente-se diretamente responsável pelo resultado"; "com base em uma escolha racional do próprio cidadão"; "sem ser apenas uma pessoa passiva à espera da próxima eleição"; "Não se está aqui, em absoluto, em defesa de qualquer espécie de *mandato imperativo*"; "processo dialético que caracteriza a relação representante-representado"; "de maneira gradativa"; "nada impede que o *recall* viesse a ser constitucionalizado"; "especialmente em nível local" |
+| B10 Complemento, com limites | Complementam, não substituem; aproximam o cidadão da política; ponto fraco: aventuras políticas; sedução de "não os políticos"; maioria dentro da lei, minoria levada em conta; Justiça confere contra paixões do momento; eleições essenciais, não suficientes; autoritários votam; vontade com efeito político e guia de quem governa; "os menos ruins"; costume de participar | 5.5 | "mecanismos *complementares* à democracia representativa"; "maior aproximação do cidadão com a política"; "*calcanhar de Aquiles*"; "*aventuras políticas*"; "politicamente *sedutor*"; "não \"os políticos\""; "A maioria necessariamente precisa atuar dentro dos limites legais"; "considerar também a vontade da minoria"; "o poder Judiciário, com o objetivo de se evitar que as paixões momentâneas"; "componente *essencial*"; "condição *suficiente*"; "países autoritários geralmente têm eleições"; "**politicamente** eficaz"; "\"os menos ruins\""; "*costume democrático*" |
+| B11 Sem igualdade, não há democracia | Sem igualdade econômica e social, não há democracia; cinco princípios; os dois últimos esquecidos nas análises; desencanto por não vencer a exclusão; quatro vias da riqueza; semente da regeneração; precisa ser defendida; usar mais as ferramentas, sobretudo no nível local; regras necessárias, não suficientes | 5.6 | "se não houver igualdade econômica e social"; "*princípio eleitoral*"; "*princípio liberal*"; "*princípio da discussão*"; "*princípio da participação direta*"; "orçamento participativo"; "*princípio da igualdade*"; "acabam por não os levar em consideração"; "não foi capaz de lutar contra a exclusão econômica e social"; "dinheiro para gastar em campanhas políticas e em *lobby*"; "melhor posição de barganha"; "controlando a agenda do debate político"; "tendem a ser mais bem educados"; "traz a semente da sua própria regeneração"; "precisa ser defendido"; "utilização mais constante, e a nível local, dos mecanismos de democracia direta"; "condição necessária, mas não suficiente" |
+
+### Dados usados no capítulo 5
+
+| Dado | Valor no site | Ano | Fonte citada pela tese | Onde na tese |
+|---|---|---|---|---|
+| Assinaturas para propor referendo (PT) | 60 mil | regra legal | Lei 15-A/98 (não citada no site) | 5.1 |
+| Comparecimento para o referendo obrigar (PT) | mais da metade dos inscritos | regra constitucional e legal | Constituição e Lei 15-A/98 | Abertura; 5.1 |
+| Referendos em Portugal | 8: 3 nacionais (1998, 1998, 2007) e 5 locais | 1975–2019 | CNE (nota 723) | 5.1 |
+| Consultas populares no Brasil | 5: 2 nacionais (1993, 2005) e 3 locais | 1988–2019 | TSE (notas 724 a 727) | 5.1 |
+| Assinaturas para iniciativa popular (PT) | 20 mil | regra legal | Lei 17/2003, alterada em 2016 (não citada) | 5.2 |
+| Assinaturas para iniciativa popular (BR) | 1% do eleitorado em ao menos cinco estados; 1.473.063 | regra constitucional; número "atualmente", que é 1% do eleitorado de 2018 (D32) | Constituição Federal; cálculo da tese | 5.2 |
+| Tamanho do Brasil | 92 vezes Portugal | — | Reportagem de 2017 (nota 736) | 5.2 |
+| Leis de iniciativa popular (BR) | 4 federais | 1988–2019 | Estudo de 2017 (nota 737) | 5.2 |
+| Iniciativas legislativas de cidadãos (PT) | 9 apresentadas, 4 viraram lei | 2003–2019 | Parlamento português (notas 748 a 762) | 5.2 |
+| Portugueses que assinaram petição | 5,4% → 21% | 2003–2011 → 2016 | Portal de Opinião Pública (nota 799) | 5.3 |
+| Petições à Assembleia da República | 113; 592; 181; 552; 632 | legislaturas de 2002 a junho de 2019 | Parlamento português (nota 802) | 5.3 |
+| Petições coletivas; de interesse coletivo (PT) | dois terços; 91,5% | estudo de 2017 | Tese de doutorado do ISCTE (notas 804, 805) | 5.3 |
+| Crescimento na crise (PT) | cresceram em 2010–2012 | 2010–2012 | Mesmo estudo (nota 807) | 5.3 |
+| Confiança de quem peticiona (PT) | 93,7% esperavam tratamento adequado; 84,3% esperavam ser ouvidos | estudo de 2017 | Mesmo estudo (nota 808) | 5.3 |
+| Brasileiros que assinaram petição | 25,4% | 2015 | Latinobarómetro | 5.3 |
+| Municípios no Brasil | 5.570 | — | — | 5.3 |
+| Pedidos de acesso à informação ao governo federal (BR) | 102.423 → 129.309 | 2015 → 2018 | e-SIC (nota 819) | 5.3 |
+| Pedidos como parcela do eleitorado (BR) | 0,088% (governo federal); 0,012% (Câmara) | 2018 | Cálculo da tese | 5.3 |
+| Pedidos à Câmara por pessoas de até 30 anos | 19% | 2018 | Relatório da Câmara (nota 824) | 5.3 |
+| Recall na Suíça | único uso bem-sucedido | 1862 | Nota 831 | 5.4 |
+| Assinaturas para recall na Califórnia | 12% a 20% dos votos da última eleição (cargos estaduais); 10% a 30% dos eleitores registrados (locais) | regra legal | Constituição e código eleitoral da Califórnia | 5.4 |
+| Prazos de recall na Califórnia | aviso com 10 proponentes; resposta em 7 dias; sem recall nos primeiros 90 dias e nos últimos 6 meses | regra legal | Idem | 5.4 |
+| Recalls na Califórnia | 172 tentativas; 9 votações; 6 remoções | 1913–2019 | Secretaria de Estado da Califórnia (notas 840 a 842) | 5.4 |
+
+Dados do capítulo **não usados**: 8% (2013) e 14% (2014) de portugueses que assinaram petição, e
+os 47% da Suécia em 2016; Latinobarómetro de 2002 (23,9%) e 2008 (11,5%); um terço de petições
+individuais; pedidos à Câmara em 2015–2016 (28.071) e 2016–2017 (23.161) e o total de 2018 (16.941);
+99,27% de respostas, prazo médio de 14 dias e 7,48% de negativas no governo federal (2014–2019);
+temas dos pedidos; 98,7% e 94,95% de pessoas físicas; pedidos ao Supremo Tribunal Federal (nota
+825); 35 mil assinaturas exigidas em Portugal antes de 2016 (nota 747); comissão de 5 a 10 cidadãos
+e prazos de tramitação em Portugal; 5.000 membros para grupos de campanha no referendo português;
+prazos de 90 e 60 dias depois do "sim"; 6 de 26 cantões suíços e os números de Aargau (9.000
+assinaturas, mínimo de 6.000, 63%); recall de 2003 (55,4% contra 44,6%; 99 proponentes; sete pedidos
+contra o sucessor); 20% para juízes de cortes superiores; prazos de 160 dias e de 40 a 160 dias;
+participação de 52,19% nas legislativas portuguesas de 2022 (D5); "uma vez a cada dez anos" e "três
+consultas em 31 anos" (nota 730; ver D3).
+
+### Escolhas de interpretação
+
+1. **Base das 1.473.063 assinaturas (D32, era A11).** A tese diz que são necessários "atualmente"
+   1.473.063 eleitores, sem ano. O número é exatamente 1% do eleitorado brasileiro de 2018
+   (147.306.275 eleitores; 1.473.062,75 arredondado para cima), conferido pelo autor. A tese e as
+   notas não indicam outro eleitorado de referência (busca feita em todo `conteudo/`). O site
+   escreve "Com base no eleitorado de 2018, eram 1.473.063 assinaturas". A versão enviada para
+   aprovação dizia "Em 2019"; para caber no teto de 1.800 palavras, "espalhado por pelo menos cinco
+   estados" passou a "em pelo menos cinco estados", sem mudança de sentido.
+2. **Consultas nacionais no Brasil (D3).** O site usa duas (1993 e 2005), como o corpo de 5.1. A nota
+   730 ("três consultas populares de âmbito nacional em 31 anos") e a média "uma vez a cada dez
+   anos" ficam de fora. O site diz só "consulta rara".
+3. **"Democracias semidiretas".** A tese diz que as duas constituições "estão inseridas no modelo da
+   democracia semidireta". O site afirma diretamente.
+4. **Constituições.** "Vai bem mais longe" resume "bem mais avançada"; "deixa quase tudo para as
+   leis" resume "extremamente econômica" e a remessa "à norma infraconstitucional".
+5. **Conceito de poder.** A tese usa três requisitos (ter meios; o outro mudar de conduta por causa de
+   quem manda; alcançar o objetivo). O site resume em uma frase ("fazer o outro agir como se quer"),
+   como pede o plano, sem o nome do autor citado.
+6. **"As travas servem, diz-se".** Traduz "Tem-se, como argumento em defesa deste estado de
+   limitação". "Filtrar em vez de bloquear" resume "não no sentido de limitar a sua realização, mas
+   sim no sentido de evitar que os direitos e liberdades fundamentais [...] fossem eventualmente
+   infringidos".
+7. **Proposta do referendo.** "Tribunal que guarda a constituição" traduz "órgão do poder Judiciário
+   com funções de controle constitucional". "Sem depender da vontade de um político" traduz a
+   limitação dos intermediários à atuação do órgão de controle. O número mínimo de assinaturas vem
+   da nota 720. A nota 721 (o controle complementa o poder do cidadão) saiu por tamanho.
+8. **"Além de mudar as regras".** A tese: "para além de uma limitação dos intermediários [...]
+   faz-se necessário restabelecer a confiança".
+9. **"Uma consulta rara, que lhe parece mais uma eleição".** Resume o argumento de 5.1: o cidadão vê
+   a consulta como processo "eleitoral" (propaganda, mobilização partidária) e ela é rara.
+10. **Iniciativa popular em Portugal.** "Um grupo de cidadãos [...] é ouvido pelo Parlamento" resume a
+    comissão representativa ouvida pela comissão parlamentar. "Quatro viraram lei" não diz que uma
+    delas foi revogada depois (nota 756); as três rejeitadas ou vetadas e as duas em fase inicial
+    saíram por tamanho.
+11. **Desfiguração sem exemplo (D6).** A tese diz que as propostas "acabam por ser desfiguradas" e dá
+    um exemplo concreto. O site mantém a afirmação geral, sem o caso. O lado positivo do
+    apadrinhamento (nota 742: a votação no Parlamento legitima o texto perante todo o povo) e a falta
+    de registro nos estados saíram por tamanho.
+12. **"Nenhuma lei [...] como iniciativa popular".** O site mantém o "formalmente" da tese ("sob o
+    aspecto formal") ao lado das quatro leis, como ela faz.
+13. **Ação popular.** "Defender o que é de todos" cobre os dois países: no Brasil, anular ato lesivo
+    ao patrimônio público, à moralidade, ao meio ambiente e ao patrimônio cultural; em Portugal, um
+    campo mais amplo (saúde pública, consumo, qualidade de vida). Requisitos (título de eleitor,
+    isenção de custas) e a legitimidade de associações em Portugal saíram por tamanho.
+14. **Petição: resposta, não atendimento.** Em Portugal, o direito de ser informado do resultado; no
+    Brasil, a obrigação de responder, que "não corresponde ao mesmo que ter direito a ter seu pedido
+    necessariamente concretizado".
+15. **Legislaturas por ano.** A tabela usa anos (2002 a 2005 etc.) em vez dos números romanos (IX a
+    XIII). "Mais curta" resume a legislatura XI, de 2009 a 2011.
+16. **"Um estudo de 2017".** É a tese de doutorado do ISCTE citada nas notas 803 a 809, como na home
+    (aprovada). Sem nome do autor.
+17. **93,7% e 84,3%.** Somas de "concordo" e "concordo totalmente" (36,4% + 57,3%; 32,5% + 51,8%),
+    como na home. "Ser ouvido pesa mais do que ser atendido" resume a nota 809.
+18. **Brasil x Portugal nas petições (D33, leitura confirmada pelo autor).** A tese diz que, "na média do período", o brasileiro exerce
+    mais o direito de petição (Latinobarómetro) e, adiante, que o envolvimento português "parece ser
+    muito maior", com base no crescimento português e no uso baixo da LAI. O site mantém as duas
+    afirmações e liga a segunda ao uso medido ("Nesse ponto"). O site dá só o número de 2015 do
+    Latinobarómetro.
+19. **LAI como termômetro.** A tese usa a LAI "para tentar demonstrar o exercício do direito de
+    petição". "Parece muito, mas não é" traduz "É, sem dúvida, uma porcentagem muito baixa".
+20. **Países com recall.** O site cita quatro dos oito países da lista ("como"). A ressalva da nota 827
+    (nem sempre em todo o território) saiu por tamanho.
+21. **Por que a Califórnia.** A tese dá dois motivos: a tradição americana anterior a 1787 e o recall
+    "adormecido" na Suíça. O site traz só o segundo.
+22. **Assinaturas na Califórnia.** "De 12% a 20%" junta os 12% dos cargos do Estado e os 20% de
+    legisladores, autoridade tributária e juízes de apelação. "De 10% a 30%" resume a escala por
+    número de eleitores registrados nos cargos locais.
+23. **Travas.** O site cita duas das três; a de seis meses depois de vencer outro recall saiu por
+    tamanho.
+24. **172 tentativas "de 1913 a 2019".** A tese: "Desde 1913 até os dias atuais", com lista que termina
+    em 2019 e fonte acessada em junho de 2019. "Contra ocupantes de cargos estaduais" resume a lista
+    de cargos da tese (governador, vice, procurador, senado, assembleia, suprema corte).
+25. **Confiança no governo.** O site segue o corpo ("verificou-se que a utilização do recall foi capaz
+    de aumentar a confiança"). A ressalva da nota 844 (quem vence um recall sai fortalecido) não entra.
+26. **Recall de 2003.** Cortado por tamanho. Se voltar, sem nomes (D6): "um governador".
+27. **"Os críticos dizem" / "Os defensores respondem".** A tese apresenta "questionamentos negativos"
+    e "pontos positivos" da literatura e toma o lado favorável. "Os colegas nem sempre querem punir
+    um dos seus" traduz "razoável nível de corporativismo".
+28. **Escolha pensada, não impulso.** A tese diz que, no recall, "vota-se [...] com base em uma escolha
+    racional do próprio cidadão, e não de maneira impulsiva". O site põe a frase logo depois das
+    etapas de mobilização, como na tese.
+29. **Mandato imperativo.** A tese não define o termo. "Em que o eleito só cumpre ordens" é a
+    explicação para o leitor leigo. "Conversa entre eleitor e eleito" traduz "processo dialético que
+    caracteriza a relação representante-representado".
+30. **Adoção gradual.** O site omite que os limites de revisão das duas constituições não impedem o
+    recall, por tamanho. "Onde a cidadania ativa funciona melhor" traduz "o nível de atuação por
+    excelência da cidadania ativa".
+31. **Ponto fraco.** "Aventuras políticas" e "sedutor" vêm de 5.5. A oposição "nós, o povo, os bons"
+    contra "eles, os políticos, os ruins" saiu por tamanho.
+32. **"Levar a minoria em conta".** Traduz "considerar também a vontade da minoria".
+33. **Efeito político real.** Resume a vontade "jurídica e **politicamente** eficaz" e o "critério de
+    atuação dos governantes", sem a citação nem o nome do autor citado. A participação de 2022 em
+    Portugal não entra (D5).
+34. **"Esquecidos nas análises".** A tese diz que as análises "acabam por não os levar em
+    consideração".
+35. **Desencanto e exclusão.** "Parte do desencanto vem daí" traduz "um dos motivos". A frase citada
+    de um programa de televisão ("é muito bonita, mas não paga as minhas contas") não entra, como
+    prevê o plano.
+36. **Quatro vias da riqueza.** "Grupos de pressão" traduz *lobby*; "controla a pauta do debate"
+    traduz "controlando a agenda do debate político"; "tende a ter mais educação" traduz "tendem a ser
+    mais bem educados". Sem o nome dos autores citados nem a citação de Dahl.
+37. **Defesa da democracia.** O site omite os exemplos de países ameaçados citados em 5.6. "Para isso,
+    vale usar mais as ferramentas" resume o fecho de 5.6.
+38. **Cortes por tamanho.** A primeira versão tinha 2.179 palavras. Saíram, além do já indicado: os
+    temas vedados à iniciativa popular, o "não compensa", a frase sobre Portugal como exemplo nas
+    regras da iniciativa, 8% e 14% das petições portuguesas, Latinobarómetro de 2002 e 2008, as
+    respostas da LAI, a lista completa de países com recall e o recall de 2003. Nenhum corte muda o
+    argumento. O autor manteve os cortes (D34).
+39. **Menções a "a tese" (D15).** Duas: as conclusões centrais tiradas das petições (B5) e o recall
+    como tradução da cidadania ativa (B9). "O autor" aparece em cinco pontos de posição pessoal: a
+    resposta às travas do referendo, as sugestões para a iniciativa popular, a escolha da Califórnia,
+    a frase "uma pessoa passiva à espera da próxima eleição" e o ponto fraco das ferramentas.

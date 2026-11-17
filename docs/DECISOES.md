@@ -43,7 +43,11 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D30 | Petição e iniciativa popular no capítulo 4 | **Aceito** descrever os dois mecanismos sem o nome ("um pedido formal ao poder público", "um projeto de lei com assinaturas"); os nomes e as explicações ficam para o capítulo 5. Decidido em 17/11/2026. |
 | D31 | Aprovação do capítulo 4 | **Aprovado com um ajuste** (retirada da contagem 89 x 11, D27). Versão final: `src/content/pt-br/capitulo-4.md`, 1.791 palavras, índice 58,9. Decidido em 17/11/2026. |
 
+| D32 | Base das 1.473.063 assinaturas (capítulo 5; era A11) | O número é **exatamente 1% do eleitorado brasileiro de 2018** (147.306.275 eleitores). O site escreve "Com base no eleitorado de 2018, eram 1.473.063 assinaturas", não "Em 2019". Conferido que a tese e as notas não indicam outro eleitorado de referência. Decidido em 17/11/2026. |
+| D33 | Petições, Brasil x Portugal (capítulo 5) | **Mantida** a leitura: nas pesquisas, o brasileiro diz peticionar mais; no uso medido (crescimento português, LAI), o envolvimento português parece bem maior. As duas afirmações ficam, ligadas por "Nesse ponto". Decidido em 17/11/2026. |
+| D34 | Cortes do capítulo 5 | **Mantidos** fora do texto: recall de 2003, lado positivo do apadrinhamento (nota 742), temas vedados à iniciativa popular, oposição "nós, o povo, os bons" contra "eles, os políticos, os ruins" e os demais cortes listados na Rastreabilidade (capítulo 5, item 38). Decidido em 17/11/2026. |
+| D35 | Aprovação do capítulo 5 | **Aprovado com um ajuste** (D32). Versão final: `src/content/pt-br/capitulo-5.md`, 1.800 palavras, índice 57,8. Decidido em 17/11/2026. |
+
 ## Em aberto
 
-Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
-Fase 2 (D13 a D31) foram decididos. Novos pontos entram aqui.
+Nenhum ponto em aberto. Os pontos D1 a D35 foram decididos. Novos pontos entram aqui.

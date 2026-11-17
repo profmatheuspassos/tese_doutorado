@@ -58,6 +58,7 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 | Capítulo 2 | 1.797 | 1.714 | 157 | 10,9 | 2,05 | 63,9 | fácil |
 | Capítulo 3 | 1.794 | 1.615 | 144 | 11,2 | 2,12 | 58,2 | fácil |
 | Capítulo 4 | 1.791 | 1.725 | 151 | 11,4 | 2,11 | 58,9 | fácil |
+| Capítulo 5 | 1.800 | 1.703 | 143 | 11,9 | 2,12 | 57,8 | fácil |
 
 ### Home (17/11/2026)
 
@@ -213,4 +214,41 @@ descentralização, extraordinária, representação).
 - Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela tese.
   A Itália aparece como país, pela constituição; o RGPD, como norma.
 - "A tese" aparece três vezes (D15).
+
+### Capítulo 5 (17/11/2026)
+
+**Resultado (versão aprovada, após o ajuste do autor):** índice 57,8, acima da referência de 50.
+Média de 11,9 palavras por frase (limite: 20). Maior frase: 25 palavras; nenhuma acima de 25.
+Tamanho: 1.800 palavras visíveis, no teto da faixa de 1.200 a 1.800 por página de capítulo (D16).
+
+**Ajuste do autor (D32).** "Em 2019, eram 1.473.063 assinaturas" passou a "Com base no eleitorado
+de 2018, eram 1.473.063 assinaturas" (+4 palavras); "espalhado por pelo menos cinco estados" passou
+a "em pelo menos cinco estados" (−1). Versão enviada para aprovação: 1.797 palavras, índice 57,8.
+O índice não mudou.
+
+**Histórico da medição.** Primeira versão: 2.179 palavras, índice 58,5, três frases acima de 25
+palavras (a maior, de 28). Os cortes foram feitos por tamanho (ver Rastreabilidade, capítulo 5, item
+38). Na revisão de fidelidade, algumas frases foram ajustadas para não dizer mais nem menos que o
+original (itens 8, 13, 18, 21, 22, 25, 30, 34 e 36), o que custou meio ponto de índice. O índice é o
+mais baixo do site até aqui, pelo mesmo motivo dos capítulos 3 e 4: o tema pede palavras longas sem
+substituto simples (constituição, participação, assinaturas, representativa, responsabilidade,
+legitimidade).
+
+**Conferência manual (o que o índice não mede).**
+- Termos técnicos explicados na primeira ocorrência: democracia semidireta (por "além do voto"),
+  referendo, iniciativa popular, petição, ação popular, Lei de Acesso à Informação, recall,
+  impeachment (por contraste), aviso de intenção (pela descrição), mandato imperativo, orçamento
+  participativo (pelo contexto, já explicado no capítulo 3), freios e contrapesos (pelo contexto).
+- Ficam sem nome técnico: plebiscito (a distinção já está no capítulo 1), controle preventivo de
+  constitucionalidade ("controle prévio"), comissão representativa, poliarquia, princípios liberal e
+  democrático da democracia.
+- Voz ativa predominante. Passivas que ficaram: "nenhuma lei foi aprovada" e "os textos podem ser
+  desfigurados", formas naturais para descrever o trâmite sem nomear quem age;
+  "diz-se" é sujeito indeterminado.
+- Sem latim, sem notas de rodapé, sem número de lei ou de artigo. As leis aparecem só pelo ano (a lei
+  brasileira da ação popular, de 1965; a Lei de Acesso à Informação, de 2011).
+- Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela tese.
+  A Califórnia e a Suíça aparecem como lugares onde o recall existe; o recall de 2003 saiu.
+- "A tese" aparece duas vezes (D15).
+- Tabela de petições por legislatura: fora do índice, dentro da contagem de palavras.
 
