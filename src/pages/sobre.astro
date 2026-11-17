@@ -4,7 +4,8 @@
  * sem número de capítulo; o motivo das sementes acompanha a abertura.
  * B2: a ficha vira cartão de duas colunas (chave em cinza); a linha de cabeçalho vazia do .md
  * fica aria-hidden e some da tela. B6: as três referências, com quebra de linha no celular,
- * título em negrito no ABNT e em itálico no APA (envoltórios, sem trocar palavra) e um botão
+ * ABNT e APA na fonte do corpo e o BibTeX em monoespaçada (D69), título em negrito no ABNT e em
+ * itálico no APA (envoltórios, sem trocar palavra) e um botão
  * "Copiar" por formato (T43 a T48). B7: cartão com o link de contato do próprio texto.
  */
 import Capitulo from '../layouts/Capitulo.astro';
@@ -44,7 +45,7 @@ const citacoes = (el: string, i: number) => {
   if (k < 0) return el;
   const f = formatos[k];
   const comTitulo = titulos[f] ? envolverTrecho(el, titulos[f], `cit-titulo cit-titulo-${f.toLowerCase()}`) : el;
-  return comAtributos(comTitulo, { id: idDe(f), class: 'citacao' });
+  return comAtributos(comTitulo, { id: idDe(f), class: f === 'BibTeX' ? 'citacao' : 'citacao citacao-texto' });
 };
 
 // B7 — contato.
@@ -111,6 +112,12 @@ const contato = (el: string, i: number) => (i === iContato ? comAtributos(el, { 
   }
   .texto pre.citacao span { color: inherit !important; }
   .texto pre.citacao:focus-visible { outline: 3px solid var(--color-ramo); outline-offset: 2px; }
+  /* ABNT e APA são texto corrido: fonte do corpo (Inter). O BibTeX continua monoespaçado. */
+  .texto pre.citacao-texto,
+  .texto pre.citacao-texto code {
+    font-family: var(--font-sans);
+  }
+  .texto pre.citacao-texto { font-size: var(--text-pequeno); }
   .cit-titulo-abnt { font-weight: 700; }
   .cit-titulo-apa { font-style: italic; }
 

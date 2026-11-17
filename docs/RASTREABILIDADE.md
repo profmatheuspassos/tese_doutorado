@@ -1160,13 +1160,14 @@ texto; os rótulos novos são os aprovados (T43 a T48; D52).
    chave em cima e valor embaixo. Link do depósito com https (D36, D38).
 3. **Como citar (B6).** Os três blocos do texto quebram linha em qualquer largura (sem rolagem
    lateral) e ficam em cartão claro. O realce de sintaxe que o Markdown aplica aos blocos é
-   neutralizado por CSS, porque a referência é texto e não código; nenhum caractere muda. Título em
+   neutralizado por CSS, porque a referência é texto e não código; nenhum caractere muda. ABNT e
+   APA usam a fonte do corpo (Inter); o BibTeX, que é código, continua em fonte monoespaçada (D69). Título em
    negrito no ABNT e em itálico no APA, por envoltório (como previa o item 12 das escolhas de
    interpretação). Abaixo de cada bloco, o botão "Copiar" (T43), com o nome acessível "Copiar a
    referência ABNT/APA/BibTeX" (T44). Ao copiar: texto simples, sem negrito nem itálico; no ABNT,
    "[data de acesso]" vira a data do dia no padrão ABNT ("17 nov. 2026", meses em T48). O botão
    mostra "Copiado" (T45) por 2 s; nesse intervalo o nome acessível também passa a "Copiado", para
-   o texto visível fazer parte do nome (critério 2.5.3 da WCAG; ponto em aberto A18). O aviso T46 vai para o leitor de
+   o texto visível fazer parte do nome (critério 2.5.3 da WCAG; D68). O aviso T46 vai para o leitor de
    tela por uma região `aria-live`. Se a área de transferência falhar, o texto da referência fica
    selecionado e o aviso T47 aparece na tela. **Sem JavaScript**, os botões não aparecem; as
    referências ficam visíveis e selecionáveis, com "[data de acesso]" como está no texto aprovado.

@@ -222,7 +222,16 @@ const TESTES = {
       return { thead: getComputedStyle(t.querySelector('thead')).display, oculto: t.querySelector('thead').getAttribute('aria-hidden'), chaves: t.querySelectorAll('td[role="rowheader"]').length };
     });
     if (ficha.thead !== 'none' || ficha.oculto !== 'true' || ficha.chaves !== 8) erros.push(`${rotulo}: ficha fora do formato: ${JSON.stringify(ficha)}`);
-    // Como citar (B6): sem JS, nenhum botão; com JS, um por formato, com o nome acessível T44.
+    // Como citar (B6): ABNT e APA na fonte do corpo, com negrito e itálico no título; BibTeX
+    // monoespaçado (D69). Vale em todos os cenários.
+    const fontes = await pagina.evaluate(() => ['abnt', 'apa', 'bibtex'].map((f) => {
+      const pre = document.querySelector(`#citacao-${f}`);
+      const titulo = pre.querySelector('.cit-titulo');
+      return { fonte: getComputedStyle(pre.querySelector('code') ?? pre).fontFamily, peso: titulo && getComputedStyle(titulo).fontWeight, estilo: titulo && getComputedStyle(titulo).fontStyle, quebra: getComputedStyle(pre).whiteSpace };
+    }));
+    const [abnt, apa, bibtex] = fontes;
+    if (!abnt.fonte.startsWith('"Inter') || !apa.fonte.startsWith('"Inter') || bibtex.fonte.includes('Inter') || abnt.peso !== '700' || apa.estilo !== 'italic' || fontes.some((x) => x.quebra !== 'pre-wrap')) erros.push(`${rotulo}: fontes das referências fora do padrão: ${JSON.stringify(fontes)}`);
+    // Sem JS, nenhum botão de copiar; com JS, um por formato, com o nome acessível T44.
     const botoes = await pagina.evaluate(() => [...document.querySelectorAll('[data-copiar]')].map((d) => ({ visivel: !d.hidden && d.getBoundingClientRect().height > 0, nome: d.querySelector('button').getAttribute('aria-label') })));
     if (c.nome === 'sem-js') {
       if (botoes.length !== 3 || botoes.some((b) => b.visivel)) erros.push(`${rotulo}: sem JS, os botões de copiar deviam ficar escondidos: ${JSON.stringify(botoes)}`);

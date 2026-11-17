@@ -215,20 +215,21 @@ npm run lighthouse
   pontuação e maiúsculas (D65; legibilidade igual, 1.791 palavras, índice 58,9). Textos idênticos
   aos aprovados; Lighthouse 98 a 100 nas seis páginas; axe sem violações. Enviada à `main` (PR #11,
   com merge).
-- **Fase 4, Etapa 4 entregue, aguardando aprovação:** página **"Sobre a tese"** (`/sobre/`): ficha em
-  cartão, referências ABNT, APA e BibTeX com botão de copiar (data do dia no ABNT; sem JS, sem
-  botões) e contato em cartão. Links internos quebrados passam a derrubar o build. Home: oscilação
-  do Lighthouse no celular investigada e corrigida, com as animações abaixo da primeira tela
-  carregadas depois (D67; mesma aparência, nenhuma palavra muda); a home no celular roda cinco vezes
-  e o resumo registra a pior. Testes nas sete páginas, 3 larguras x 3 cenários, axe sem violações;
-  Lighthouse 99 a 100 em tudo (pior rodada da home no celular: 99). Ponto em aberto A18 (nome
-  acessível do botão copiar).
+- **Fase 4, Etapa 4 aprovada com um ajuste (D70):** página **"Sobre a tese"** (`/sobre/`): ficha em
+  cartão, referências ABNT, APA e BibTeX com botão de copiar (data do dia no ABNT; "Copiado" também
+  no nome acessível, D68; sem JS, sem botões) e contato em cartão. Ajuste: ABNT e APA na fonte do
+  corpo, BibTeX em monoespaçada (D69). Links internos quebrados passam a derrubar o build. Home:
+  oscilação do Lighthouse no celular investigada e corrigida, com as animações abaixo da primeira
+  tela carregadas depois (D67; mesma aparência, nenhuma palavra muda); a home no celular roda cinco
+  vezes e o resumo registra a pior. Testes nas sete páginas, 3 larguras x 3 cenários, axe sem
+  violações; Lighthouse acima de 90 em tudo. PR #12.
+- **Fase 4 concluída e aprovada** (17/11/2026, D70): capítulos 1 a 5 e "Sobre a tese" publicados,
+  com os interativos e visuais aprovados. Decisões D52 a D70 registradas; nenhum ponto em aberto.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da Etapa 4**, feito pelo autor no GitHub, com decisão sobre o
-   ponto em aberto A18. Com a aprovação, a Fase 4 está concluída. Não começar a Fase 5 antes de o
-   autor confirmar. A sessão seguinte parte da `main` atualizada.
+1. **Merge do pull request da Etapa 4** (PR #12), feito pelo autor no GitHub. Não começar a Fase 5
+   antes de o autor confirmar. A sessão seguinte parte da `main` atualizada.
 2. Imagens ilustrativas finais: ainda são espaços reservados em `public/img/` (prompts em
    `docs/PROMPTS-IMAGENS.md`).
 3. Lembrete para a Fase 5 (D41): na publicação, conferir que o link do repositório na página
