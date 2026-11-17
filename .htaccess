@@ -1,0 +1,54 @@
+# Pasta do subdomínio tese.profmatheuspassos.com.br.
+# Gerado por scripts/gerar-htaccess.mjs a cada build (decisões D71 a D75). Não editar à mão:
+# a Content-Security-Policy leva os hashes dos scripts e estilos em linha do build.
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+AddDefaultCharset utf-8
+AddCharset utf-8 .html .css .js .xml .txt .svg
+AddType image/webp .webp
+AddType font/woff2 .woff2
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Caminhos com ponto no começo (.git, que a Hostinger cria ao clonar a branch) respondem 404.
+  # Fica de fora o .well-known, usado na emissão e renovação do certificado SSL.
+  RewriteRule "(^|/)\.(?!well-known(/|$))" - [R=404,L]
+
+  # HTTPS e host canônico numa só volta. Cobre http:// e também o acesso pela pasta do
+  # domínio principal (profmatheuspassos.com.br/tese/...), que vai para o subdomínio.
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^tese\.profmatheuspassos\.com\.br$ [NC]
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+  RewriteRule ^(.*)$ https://tese.profmatheuspassos.com.br/$1 [R=301,L,NE]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self' 'sha256-VYBo45VS7AtHBvp8UVDA4Jejp3MU72B+nsx4OQ5Yzgc=' 'sha256-W5UQrvOS23sjKpOV6x/KflUHJCIswkPCdB/HvjUzbo8=' 'sha256-sSs4XOfhyb727iIHB5Bqxi9686OypccKz+Djf5YAP54=' 'sha256-vw5dxSdnfBuShZisWACCXilEA93+Jc2LygimkiIhkWI='; style-src 'self' 'sha256-+ezkB4CAMouNaPBU+txFiUggqzxW5lE7iBfb6vg8EXs=' 'sha256-7vI36UaNrkUYsLf9P1rlUu7YDwyU1U6HT3sCcT3aszU=' 'sha256-Kn+ZpC9XTe6a/CP/Yi/nJ3nG2nyx1damTL7jEc9/SBk=' 'sha256-i0ZLQ/kWJhDNNsd2k2QND597F1f8R7WlRU9coh/Eh2A=' 'sha256-nLwzLNPmA++cHPFS0LLn4SoKG4PmZH0T3uHQC5r3or0='; style-src-attr 'unsafe-inline'; img-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "no-referrer"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+  Header always set Permissions-Policy "accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=(), clipboard-write=(self)"
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(webp|png|svg)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/xml text/xml text/plain image/svg+xml
+</IfModule>

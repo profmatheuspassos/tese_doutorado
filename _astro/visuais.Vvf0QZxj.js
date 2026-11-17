@@ -1,0 +1,1 @@
+import{t as e}from"./observar.CD4-UVXQ.js";document.documentElement.classList.add(`anim-pronto`);var t=document.querySelectorAll(`[data-anima]`),n=new IntersectionObserver(e=>{e.filter(e=>e.isIntersecting).forEach(e=>{e.target.classList.add(`visivel`),n.unobserve(e.target)})},{rootMargin:e});t.forEach(e=>n.observe(e));

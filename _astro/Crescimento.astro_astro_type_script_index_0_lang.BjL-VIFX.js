@@ -1,0 +1,1 @@
+import{t as e}from"./gsap.Dm7UF3sG.js";import{t}from"./crescer.BepVh76q.js";import{r as n}from"./observar.CD4-UVXQ.js";document.documentElement.classList.add(`anim-pronto`),e.matchMedia().add(`(prefers-reduced-motion: no-preference)`,()=>{let e=[];return document.querySelectorAll(`[data-crescimento]`).forEach(n=>t(n,n,e)),n(e)});
