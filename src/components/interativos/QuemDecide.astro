@@ -112,11 +112,13 @@ const modelos = ['governo', 'cidadaos'] as const;
   .coluna:has(#qd-cidadaos:checked) .qd-cidadaos .qd-circulo { fill: var(--color-tinta); stroke: var(--color-tinta); stroke-dasharray: none; }
   .coluna:has(#qd-cidadaos:checked) .qd-cidadaos .qd-visto { opacity: 1; }
   .coluna:has(#qd-cidadaos:checked) .qd-cidadaos svg { transform: none; }
-  /* Etapa a etapa: cada linha acende um pouco depois da anterior. */
-  .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(2) .qd-cidadaos * { transition-delay: 0.15s; }
-  .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(3) .qd-cidadaos * { transition-delay: 0.3s; }
-  .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(4) .qd-cidadaos * { transition-delay: 0.45s; }
-  .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(5) .qd-cidadaos * { transition-delay: 0.6s; }
+  /* Etapa a etapa: cada linha acende um pouco depois da anterior (só com movimento normal). */
+  @media (prefers-reduced-motion: no-preference) {
+    .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(2) .qd-cidadaos * { transition-delay: 0.15s; }
+    .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(3) .qd-cidadaos * { transition-delay: 0.3s; }
+    .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(4) .qd-cidadaos * { transition-delay: 0.45s; }
+    .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(5) .qd-cidadaos * { transition-delay: 0.6s; }
+  }
 
   .texto p.qd-estado {
     margin: 0 0 2rem;

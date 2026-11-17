@@ -27,6 +27,7 @@ const exigir = createRequire(import.meta.url);
 const { chromium } = exigir('playwright');
 const raiz = new URL('..', import.meta.url).pathname;
 const dados = JSON.parse(readFileSync(join(raiz, 'src/data/dados.json'), 'utf8'));
+const i18n = JSON.parse(readFileSync(join(raiz, 'src/i18n/pt-br.json'), 'utf8'));
 const rascunho = process.env.CAPTURAS_RASCUNHO || join(tmpdir(), 'capturas');
 mkdirSync(rascunho, { recursive: true });
 const argSalvar = process.argv.indexOf('--salvar');
@@ -38,6 +39,8 @@ const CAPTURAS = {
   'capitulo-1': { pasta: 'fase-4', prefixo: 'cap1-', alvos: ['B0', 'B1', 'B4', 'B8', 'navegacao'] },
   'capitulo-2': { pasta: 'fase-4', prefixo: 'cap2-', alvos: ['B0', 'B2', 'B4', 'navegacao'] },
   'capitulo-3': { pasta: 'fase-4', prefixo: 'cap3-', alvos: ['B0', 'B2', 'B6', 'B8', 'navegacao'] },
+  'capitulo-4': { pasta: 'fase-4', prefixo: 'cap4-', alvos: ['B0', 'B3', 'B7', 'B9', 'B11', 'navegacao'] },
+  'capitulo-5': { pasta: 'fase-4', prefixo: 'cap5-', alvos: ['B0', 'B1', 'B5', 'B10', 'navegacao'] },
 };
 
 // Páginas: lidas dos .md aprovados; entram as que existem no build.
@@ -129,6 +132,87 @@ const TESTES = {
     const preferida = e.formas.filter((f) => f === curtida).length;
     if (preferida < 6) erros.push(`${rotulo}: Enter no cartão não contou como curtida (${JSON.stringify(e)})`);
     await pagina.locator('[data-recomecar]').click();
+  },
+  'capitulo-4': async (pagina, rotulo, c) => {
+    // Quem decide o quê (B3): começa no governo; em "Centrada nos cidadãos" as cinco marcas dos
+    // cidadãos acendem e a linha de estado muda (T36). Funciona sem JS (:has()).
+    const estado = () => pagina.evaluate(() => {
+      const acesa = (m) => { const c = getComputedStyle(m.querySelector('.qd-circulo')).fill; return c !== 'none' && c !== 'transparent' && !/rgba\(.*,\s*0\)$/.test(c); };
+      return {
+        governo: [...document.querySelectorAll('.qd-lista .qd-governo')].map(acesa),
+        cidadaos: [...document.querySelectorAll('.qd-lista .qd-cidadaos')].map(acesa),
+        vistos: [...document.querySelectorAll('.qd-lista .qd-cidadaos .qd-visto')].map((v) => Number(getComputedStyle(v).opacity)),
+        texto: [...document.querySelectorAll('.qd-estado span')].filter((s) => getComputedStyle(s).display !== 'none').map((s) => s.textContent),
+      };
+    });
+    const espera = c.nome === 'movimento-reduzido' ? 60 : 1500;
+    let e = await estado();
+    if (e.governo.length !== 5 || e.governo.includes(false) || e.cidadaos.includes(true) || e.texto.join() !== i18n.quem_decide.estado.governo) erros.push(`${rotulo}: quem decide, estado inicial errado: ${JSON.stringify(e)}`);
+    await pagina.locator('#qd-cidadaos').check();
+    await pagina.waitForTimeout(espera);
+    e = await estado();
+    if (e.cidadaos.length !== 5 || e.cidadaos.includes(false) || e.vistos.some((v) => v < 0.99) || e.governo.includes(false) || e.texto.join() !== i18n.quem_decide.estado.cidadaos) erros.push(`${rotulo}: quem decide, "Centrada nos cidadãos" não acendeu tudo: ${JSON.stringify(e)}`);
+    await pagina.locator('#qd-cidadaos').focus();
+    await pagina.keyboard.press('ArrowLeft');
+    const marcado = await pagina.evaluate(() => document.querySelector('input[name="quem-decide"]:checked')?.value);
+    if (marcado !== 'governo') erros.push(`${rotulo}: quem decide, a seta não voltou para "Centrada no governo" (${marcado})`);
+    await pagina.waitForTimeout(espera);
+    e = await estado();
+    if (e.cidadaos.includes(true)) erros.push(`${rotulo}: quem decide, voltar ao governo não apagou as marcas dos cidadãos`);
+    // Círculo virtuoso (B11): no fim, só os rótulos do virtuoso. Ramo e broto (B9) no estado final.
+    const fim = await pagina.evaluate(() => ({
+      depois: [...document.querySelectorAll('.circulo-virtuoso .circulo-rotulo-depois')].map((r) => Number(getComputedStyle(r).opacity)),
+      antes: [...document.querySelectorAll('.circulo-virtuoso .circulo-rotulo-antes')].map((r) => Number(getComputedStyle(r).opacity)),
+      caule: Number(document.querySelector('[data-crescimento] .ramo-caule')?.getAttribute('stroke-width')),
+      folhas: [...document.querySelectorAll('[data-crescimento] .folha-nova, [data-crescimento] .broto-folha')].map((f) => Number(getComputedStyle(f).opacity)),
+    }));
+    if (fim.depois.length !== 3 || fim.depois.some((o) => o < 0.99) || fim.antes.some((o) => o > 0.01)) erros.push(`${rotulo}: círculo virtuoso sem os rótulos finais: ${JSON.stringify(fim)}`);
+    if (fim.caule !== 3.5 || fim.folhas.length !== 4 || fim.folhas.some((o) => o < 0.99)) erros.push(`${rotulo}: ramo e semente fora do estado final: ${JSON.stringify(fim)}`);
+  },
+  'capitulo-5': async (pagina, rotulo, c, w) => {
+    // Caminho do referendo (B1): cinco passos em Portugal (três portas) e um no Brasil, visíveis.
+    const caminho = await pagina.evaluate(() => [...document.querySelectorAll('.caminho-faixa')].map((f) => ({
+      passos: [...f.querySelectorAll('.caminho-passo')].map((p) => Number(getComputedStyle(p).opacity)),
+      portas: f.querySelectorAll('.caminho-passo[data-porta]').length,
+    })));
+    if (caminho.length !== 2 || caminho[0].passos.length !== 5 || caminho[0].portas !== 3 || caminho[1].passos.length !== 1 || caminho.flatMap((f) => f.passos).some((o) => o < 0.99)) erros.push(`${rotulo}: caminho do referendo incompleto ou escondido: ${JSON.stringify(caminho)}`);
+    // Barras das petições (B5): proporcionais aos números do dados.json.
+    const barras = await pagina.evaluate(() => [...document.querySelectorAll('.tabela-peticoes .peticoes-barra')].map((b) => b.getBoundingClientRect().width));
+    const valores = dados.peticoes_ar_pt.valores;
+    const maior = Math.max(...valores);
+    if (barras.length !== valores.length || barras.some((b, i) => Math.abs(b / Math.max(...barras) - valores[i] / maior) > 0.02)) erros.push(`${rotulo}: barras das petições fora de proporção: ${JSON.stringify(barras)}`);
+    // Cartões: abaixo de 768 px, um país por vez (alternador); acima, os dois lado a lado.
+    const paises = () => pagina.evaluate(() => [...document.querySelectorAll('.ft-cartao')].map((cartao) => ({
+      f: cartao.dataset.ferramenta,
+      visiveis: [...cartao.querySelectorAll('.ft-pais')].filter((p) => getComputedStyle(p).display !== 'none').map((p) => p.dataset.pais).join(),
+      alternador: !!cartao.querySelector('.ft-alternador') && getComputedStyle(cartao.querySelector('.ft-alternador')).display !== 'none',
+    })));
+    let r = await paises();
+    const nomes = Object.keys(i18n.ferramentas.nomes);
+    if (r.map((x) => x.f).join() !== nomes.join()) erros.push(`${rotulo}: cartões fora da ordem T38: ${r.map((x) => x.f).join()}`);
+    for (const x of r) {
+      const esperado = w < 768 && x.f !== 'recall' ? 'pt' : 'pt,br';
+      if (x.visiveis !== esperado || x.alternador !== (w < 768 && x.f !== 'recall')) erros.push(`${rotulo}: cartão ${x.f} mostra "${x.visiveis}" (esperado "${esperado}"), alternador ${x.alternador}`);
+    }
+    if (w < 768) {
+      await pagina.locator('#ft-peticao-br').check();
+      r = await paises();
+      const pet = r.find((x) => x.f === 'peticao');
+      if (pet.visiveis !== 'br') erros.push(`${rotulo}: cartão Petição, "Brasil" escolhido mostra "${pet.visiveis}"`);
+      await pagina.locator('#ft-peticao-br').focus();
+      await pagina.keyboard.press('ArrowLeft');
+      r = await paises();
+      if (r.find((x) => x.f === 'peticao').visiveis !== 'pt') erros.push(`${rotulo}: cartão Petição, a seta não voltou para Portugal`);
+    }
+    // Recall: tracejado; o funil da Califórnia abre e traz 172, 9 e 6.
+    const recall = pagina.locator('.ft-cartao[data-ferramenta="recall"]');
+    const borda = await recall.evaluate((el) => getComputedStyle(el).borderTopStyle);
+    if (borda !== 'dashed') erros.push(`${rotulo}: cartão do recall sem contorno tracejado (${borda})`);
+    await recall.locator('summary').click();
+    const funil = await recall.evaluate((el) => [...el.querySelectorAll('.ft-funil-n')].filter((n) => n.getBoundingClientRect().height > 0).map((n) => n.textContent));
+    const rc = dados.recall_california;
+    if (funil.join() !== [rc.tentativas, rc.votacoes, rc.remocoes].join()) erros.push(`${rotulo}: funil da Califórnia mostra ${JSON.stringify(funil)}`);
+    await recall.locator('summary').click();
   },
   'capitulo-2': async (pagina, rotulo, c) => {
     // Explorador: escolher cada instituição muda a largura de "nenhuma confiança" para o valor do
