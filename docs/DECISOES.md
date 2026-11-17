@@ -25,7 +25,7 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D12 | Lapsos de redação (ponto 10; era A5) | **Aceitos os cinco**, tratados pelo sentido correto: (a) "no máximo cerca de 215 habitantes"; (b) Lei 75/2013; (c) LGPD = Lei 13.709; (d) a definição de referendo está no § 2º; (e) a análise das petições está na seção 5.3. Como o site não cita artigos nem números de lei, (b), (c) e (d) só importam se algum dia forem citados. |
 | D13 | Cena de 2013 na home (era A6) | **Manter como está**: só o motivo inicial (passagem de ônibus) e o resultado ligado a ele (redução do preço). Sem a emenda constitucional e sem os gastos com os torneios. Decidido em 17/11/2026. |
 | D14 | Lapso em 4.2 (era A7) | **Aceito**: "mas sem um efetivo poder de decisão" é tratado pelo sentido correto, "mas sim um efetivo poder de decisão". Decidido em 17/11/2026. |
-| D15 | Menções a "a tese" (home) | **Na home, no máximo cinco**, só onde marcam uma posição do autor; no resto, afirmar diretamente. Nome do autor na abertura da home. Decidido em 17/11/2026. |
+| D15 | Menções a "a tese" (todas as páginas) | **No máximo cinco por página**, só onde marcam uma posição do autor; no resto, afirmar diretamente. Nome do autor na abertura da home. Decidido para a home em 17/11/2026; estendido a todas as páginas em 17/11/2026. |
 
 ## Em aberto
 

@@ -24,6 +24,14 @@ Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch pri
 - Decisões do autor ficam em `docs/DECISOES.md` e valem para todo o site. Consultar antes de
   escrever.
 
+### Protocolo de leitura de cada sessão
+- Ler só `CLAUDE.md`, `docs/DECISOES.md`, a seção da página em questão em
+  `docs/PLANO-CONTEUDO.md` e as notas de leitura do capítulo em questão em
+  `docs/notas-leitura/`. O resto de `docs/` só quando for preciso algo específico.
+- Ler por inteiro o corpo do capítulo original em `conteudo/`.
+- Abrir as notas de rodapé só quando trouxerem dado ou argumento; nunca as que são apenas
+  referência bibliográfica.
+
 ### Git
 - `fonte/` (o .docx original) e `conteudo/` (a conversão integral) **nunca** vão para o
   repositório. Estão no `.gitignore`. Também ficam de fora `node_modules/`, a pasta de build
