@@ -2,14 +2,12 @@
 /**
  * Confere os links internos do build: todo href que aponta para o próprio site precisa abrir um
  * arquivo do dist/ (e toda âncora #id, um elemento com esse id na página de destino).
- * Enquanto a Fase 4 não termina, links para páginas ainda não feitas são só avisos; com
- * LINKS_ESTRITO=1 (ou --estrito), qualquer link quebrado faz o build falhar.
+ * Desde a Etapa 4 da Fase 4 (todas as páginas feitas), qualquer link quebrado faz o build falhar.
  */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
 const dist = new URL('../dist', import.meta.url).pathname;
-const estrito = process.env.LINKS_ESTRITO === '1' || process.argv.includes('--estrito');
 const base = (process.env.BASE_PATH || '/').replace(/\/?$/, '/');
 const htmls = [];
 const andar = (d) => readdirSync(d).forEach((f) => { const p = join(d, f); statSync(p).isDirectory() ? andar(p) : p.endsWith('.html') && htmls.push(p); });
@@ -43,10 +41,9 @@ for (const arquivo of htmls) {
 }
 
 const unicos = [...new Set(quebrados)];
-if (unicos.length && estrito) {
+if (unicos.length) {
   console.error(`conferir-links: ${unicos.length} link(s) interno(s) quebrado(s)`);
   unicos.forEach((q) => console.error(' - ' + q));
   process.exit(1);
 }
-unicos.forEach((q) => console.log('  aviso: link interno ainda sem página: ' + q));
-console.log(`conferir-links: ok (${conferidos} links internos em ${htmls.length} páginas${unicos.length ? `; ${unicos.length} aviso(s), páginas ainda não feitas` : ''})`);
+console.log(`conferir-links: ok (${conferidos} links internos em ${htmls.length} páginas, nenhum quebrado)`);

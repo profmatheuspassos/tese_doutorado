@@ -41,6 +41,7 @@ const CAPTURAS = {
   'capitulo-3': { pasta: 'fase-4', prefixo: 'cap3-', alvos: ['B0', 'B2', 'B6', 'B8', 'navegacao'] },
   'capitulo-4': { pasta: 'fase-4', prefixo: 'cap4-', alvos: ['B0', 'B3', 'B7', 'B9', 'B11', 'navegacao'] },
   'capitulo-5': { pasta: 'fase-4', prefixo: 'cap5-', alvos: ['B0', 'B1', 'B5', 'B10', 'navegacao'] },
+  sobre: { pasta: 'fase-4', prefixo: 'sobre-', alvos: ['B0', 'B2', 'B6', 'B7', 'navegacao'] },
 };
 
 // Páginas: lidas dos .md aprovados; entram as que existem no build.
@@ -213,6 +214,60 @@ const TESTES = {
     const rc = dados.recall_california;
     if (funil.join() !== [rc.tentativas, rc.votacoes, rc.remocoes].join()) erros.push(`${rotulo}: funil da Califórnia mostra ${JSON.stringify(funil)}`);
     await recall.locator('summary').click();
+  },
+  sobre: async (pagina, rotulo, c) => {
+    // Ficha (B2): cabeçalho vazio fora da tela e da leitura; a chave de cada linha é cabeçalho de linha.
+    const ficha = await pagina.evaluate(() => {
+      const t = document.querySelector('table.ficha');
+      return { thead: getComputedStyle(t.querySelector('thead')).display, oculto: t.querySelector('thead').getAttribute('aria-hidden'), chaves: t.querySelectorAll('td[role="rowheader"]').length };
+    });
+    if (ficha.thead !== 'none' || ficha.oculto !== 'true' || ficha.chaves !== 8) erros.push(`${rotulo}: ficha fora do formato: ${JSON.stringify(ficha)}`);
+    // Como citar (B6): sem JS, nenhum botão; com JS, um por formato, com o nome acessível T44.
+    const botoes = await pagina.evaluate(() => [...document.querySelectorAll('[data-copiar]')].map((d) => ({ visivel: !d.hidden && d.getBoundingClientRect().height > 0, nome: d.querySelector('button').getAttribute('aria-label') })));
+    if (c.nome === 'sem-js') {
+      if (botoes.length !== 3 || botoes.some((b) => b.visivel)) erros.push(`${rotulo}: sem JS, os botões de copiar deviam ficar escondidos: ${JSON.stringify(botoes)}`);
+      return;
+    }
+    const nomes = ['ABNT', 'APA', 'BibTeX'].map((f) => i18n.citar.copiar_nome.replace('{formato}', f));
+    if (botoes.map((b) => b.nome).join('|') !== nomes.join('|') || botoes.some((b) => !b.visivel)) erros.push(`${rotulo}: botões de copiar errados: ${JSON.stringify(botoes)}`);
+    // Copiar o ABNT: texto simples, com a data do dia no padrão ABNT no lugar de "[data de acesso]".
+    await pagina.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: BASE });
+    const hoje = new Date();
+    const data = `${hoje.getDate()} ${i18n.citar.meses[hoje.getMonth()]} ${hoje.getFullYear()}`;
+    const botaoAbnt = pagina.locator('[data-copiar] button').first();
+    await botaoAbnt.click();
+    await pagina.waitForTimeout(150);
+    const copia = await pagina.evaluate(async () => ({
+      texto: await navigator.clipboard.readText(),
+      botao: document.querySelector('[data-copiar] button').textContent,
+      aviso: document.querySelector('[data-aviso-regiao]').textContent,
+      pre: document.querySelector('#citacao-abnt').textContent,
+    }));
+    const esperado = copia.pre.replace('[data de acesso]', data);
+    if (copia.texto !== esperado || !copia.texto.includes(`Acesso em: ${data}.`) || /[<>]/.test(copia.texto)) erros.push(`${rotulo}: cópia do ABNT errada: "${copia.texto}"`);
+    const nomeCopiado = await botaoAbnt.getAttribute('aria-label');
+    if (nomeCopiado !== i18n.citar.copiado) erros.push(`${rotulo}: com "Copiado" na tela, o nome acessível ficou "${nomeCopiado}"`);
+    if (copia.botao !== i18n.citar.copiado || copia.aviso !== i18n.citar.aviso.replace('{formato}', 'ABNT')) erros.push(`${rotulo}: depois de copiar, botão "${copia.botao}" e aviso "${copia.aviso}"`);
+    await pagina.waitForTimeout(2200);
+    const volta = await botaoAbnt.textContent();
+    if ((await botaoAbnt.getAttribute('aria-label')) !== nomes[0]) erros.push(`${rotulo}: o nome acessível não voltou a "${nomes[0]}"`);
+    if (volta !== i18n.citar.copiar) erros.push(`${rotulo}: o botão não voltou a "${i18n.citar.copiar}" depois de 2 s ("${volta}")`);
+    // Copiar o BibTeX: igual ao bloco, com as quebras de linha.
+    await pagina.locator('[data-copiar] button').nth(2).click();
+    await pagina.waitForTimeout(150);
+    const bib = await pagina.evaluate(async () => [await navigator.clipboard.readText(), document.querySelector('#citacao-bibtex').textContent]);
+    if (bib[0] !== bib[1] || !bib[0].includes('\n  author')) erros.push(`${rotulo}: cópia do BibTeX diferente do bloco`);
+    // Falha da área de transferência: o texto fica selecionado e aparece T47.
+    await pagina.evaluate(() => { navigator.clipboard.writeText = () => Promise.reject(new Error('teste')); });
+    await pagina.locator('[data-copiar] button').nth(1).click();
+    await pagina.waitForTimeout(150);
+    const falha = await pagina.evaluate(() => {
+      const r = document.querySelectorAll('[data-aviso-regiao]')[1];
+      return { aviso: r.textContent, visivel: r.getBoundingClientRect().height > 1, selecionado: String(getSelection()), pre: document.querySelector('#citacao-apa').textContent };
+    });
+    if (falha.aviso !== i18n.citar.falha || !falha.visivel || falha.selecionado !== falha.pre) erros.push(`${rotulo}: falha ao copiar sem o aviso T47 ou sem a seleção: ${JSON.stringify(falha)}`);
+    await pagina.evaluate(() => getSelection().removeAllRanges());
+    await pagina.waitForTimeout(2200); // os botões voltam a "Copiar" antes do axe
   },
   'capitulo-2': async (pagina, rotulo, c) => {
     // Explorador: escolher cada instituição muda a largura de "nenhuma confiança" para o valor do

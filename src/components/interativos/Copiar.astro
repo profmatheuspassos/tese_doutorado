@@ -1,0 +1,129 @@
+---
+/**
+ * Botão "Copiar" de uma referência ("Sobre a tese", B6). Rótulos T43 a T48 (D52); o script não
+ * tem texto próprio: tudo vem dos atributos data-*, montados aqui a partir do pt-br.json.
+ * - Copia o texto simples do bloco da referência (sem negrito nem itálico). No ABNT,
+ *   "[data de acesso]" vira a data do dia no padrão ABNT ("17 nov. 2026", meses em T48).
+ * - Depois de copiar, o botão mostra "Copiado" (T45) por 2 s (texto e nome acessível) e a região
+ *   aria-live anuncia T46.
+ * - Se a área de transferência falhar, o texto da referência fica selecionado e aparece T47.
+ * Sem JavaScript, o botão não aparece (hidden): a referência fica visível e selecionável, com
+ * "[data de acesso]" como está no texto aprovado.
+ */
+import { t, lista } from '../../i18n';
+
+interface Props { formato: 'ABNT' | 'APA' | 'BibTeX'; alvo: string }
+const { formato, alvo } = Astro.props;
+---
+<div class="cit-acoes" data-ui data-copiar hidden>
+  <button
+    type="button"
+    class="cit-botao"
+    aria-label={t('citar.copiar_nome', { formato })}
+    data-alvo={alvo}
+    data-data-abnt={formato === 'ABNT' ? '' : undefined}
+    data-rotulo={t('citar.copiar')}
+    data-copiado={t('citar.copiado')}
+    data-aviso={t('citar.aviso', { formato })}
+    data-falha={t('citar.falha')}
+    data-meses={JSON.stringify(lista('citar.meses'))}
+  >{t('citar.copiar')}</button>
+  <div class="cit-aviso" aria-live="polite" data-aviso-regiao></div>
+</div>
+
+<style is:global>
+  .cit-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin: -0.5rem 0 1.75rem;
+  }
+  .cit-acoes[hidden] { display: none; }
+  .cit-botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-tinta) 22%, transparent);
+    background: var(--color-branco);
+    font-size: var(--text-pequeno);
+    font-weight: 600;
+    color: var(--color-tinta);
+    cursor: pointer;
+    min-width: 6.5rem;
+    justify-content: center;
+  }
+  .cit-botao:hover { border-color: var(--color-tinta-2); }
+  .cit-botao:focus-visible { outline: 3px solid var(--color-ramo); outline-offset: 2px; }
+  .cit-botao[data-estado='copiado'] { background: var(--color-tinta); border-color: var(--color-tinta); color: var(--color-branco); }
+  /* Aviso de sucesso só para o leitor de tela; o de falha também aparece na tela. */
+  .cit-aviso:not(.cit-aviso-visivel) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .cit-aviso-visivel {
+    flex-basis: 100%;
+    font-size: var(--text-pequeno);
+    font-weight: 600;
+    color: var(--color-tinta);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-copiar]').forEach((caixa) => {
+    const botao = caixa.querySelector<HTMLButtonElement>('button')!;
+    const regiao = caixa.querySelector<HTMLElement>('[data-aviso-regiao]')!;
+    const alvo = document.getElementById(botao.dataset.alvo!);
+    if (!alvo) return;
+    const nome = botao.getAttribute('aria-label')!;
+    let espera: number | undefined;
+
+    const textoParaCopiar = () => {
+      const texto = alvo.textContent ?? '';
+      if (botao.dataset.dataAbnt === undefined) return texto;
+      const meses: string[] = JSON.parse(botao.dataset.meses!);
+      const hoje = new Date();
+      return texto.replace('[data de acesso]', `${hoje.getDate()} ${meses[hoje.getMonth()]} ${hoje.getFullYear()}`);
+    };
+    const falhou = () => {
+      const faixa = document.createRange();
+      faixa.selectNodeContents(alvo);
+      const sel = getSelection();
+      sel?.removeAllRanges();
+      sel?.addRange(faixa);
+      regiao.classList.add('cit-aviso-visivel');
+      regiao.textContent = botao.dataset.falha!;
+    };
+
+    botao.addEventListener('click', async () => {
+      window.clearTimeout(espera);
+      regiao.classList.remove('cit-aviso-visivel');
+      regiao.textContent = '';
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error('sem área de transferência');
+        await navigator.clipboard.writeText(textoParaCopiar());
+      } catch {
+        falhou();
+        return;
+      }
+      // Enquanto mostra "Copiado", o nome acessível acompanha o texto visível (WCAG 2.5.3).
+      botao.textContent = botao.dataset.copiado!;
+      botao.setAttribute('aria-label', botao.dataset.copiado!);
+      botao.dataset.estado = 'copiado';
+      regiao.textContent = botao.dataset.aviso!;
+      espera = window.setTimeout(() => {
+        botao.textContent = botao.dataset.rotulo!;
+        botao.setAttribute('aria-label', nome);
+        delete botao.dataset.estado;
+        regiao.textContent = '';
+      }, 2000);
+    });
+    caixa.hidden = false;
+  });
+</script>
