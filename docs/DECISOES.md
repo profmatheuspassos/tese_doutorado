@@ -77,8 +77,13 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D64 | Caminho do referendo (capítulo 5, B1; era A17) | **Aprovado como proposto:** os três passos do meio (Assembleia, Tribunal Constitucional, Presidente), as "três portas" do texto, têm nó quadrado com uma barra, de trava; o primeiro e o último ficam redondos. Só desenho, sem rótulo além do T37. Decidido em 17/11/2026. |
 | D65 | Etapas da lista do B3 (capítulo 4) | No interativo "quem decide o quê", as cinco etapas viram rótulos de linha. **Autorizada**, como na D46, mudança só de pontuação e maiúsculas no `capitulo-4.md`, sem trocar palavra: cada etapa com inicial maiúscula e sem pontuação no fim ("Definir o que entra na pauta", "Planejar", "Decidir", "Executar", "Avaliar"), no lugar de minúscula com ponto e vírgula e ponto final. Legibilidade remedida: igual (1.791 palavras, índice 58,9). Decidido em 17/11/2026. |
 | D66 | Aprovação da Etapa 3 da Fase 4 (capítulos 4 e 5) | **Aprovada com um ajuste** (D65). Os pontos em aberto A15 a A17 viraram as decisões D62 a D64. Decidido em 17/11/2026. |
+| D67 | Oscilação do Lighthouse da home no celular (pedido do autor) | **Causa:** toda a montagem das animações da home (GSAP, ScrollTrigger e os blocos B1 a B8) rodava numa única tarefa longa logo após a primeira pintura, de 150 a 210 ms no celular simulado; com a CPU disputada, essa tarefa crescia (TBT de até 690 ms, nota 81). **Correção:** só a abertura (B0) é montada na carga; o ScrollTrigger e os demais blocos carregam quando o navegador fica ocioso, um bloco por tarefa (`src/scripts/home.ts` e `home-resto.ts`). Comportamento visível igual (capturas da Fase 3 iguais pixel a pixel) e nenhuma palavra muda. **Regra de medição:** `npm run lighthouse` roda a home no celular cinco vezes, todas precisam passar de 90, e o resumo registra a pior rodada. Decidido em 17/11/2026. |
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os pontos D1 a D66 foram decididos (A15 a A17 viraram D62 a D64). Novos
-pontos entram aqui.
+Os pontos D1 a D67 foram decididos. O ponto abaixo surgiu na Etapa 4 da Fase 4 e segue a proposta
+indicada até o autor decidir; não muda palavra do texto aprovado.
+
+| # | Ponto | Proposta seguida |
+|---|---|---|
+| A18 | Nome acessível do botão "Copiar" ("Sobre a tese", B6) | O plano dá ao botão o nome fixo "Copiar a referência {formato}" (T44). Durante os 2 s em que o botão mostra "Copiado" (T45), o nome acessível **também passa a "Copiado"** e depois volta ao T44. Sem isso, o texto visível deixa de fazer parte do nome acessível (critério 2.5.3 da WCAG), e o teste de acessibilidade (axe) acusa violação. Só usa rótulos aprovados. |

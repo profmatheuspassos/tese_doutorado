@@ -161,6 +161,12 @@ afirmação ao texto.
 9. **Rótulos de interface (D43).** Navegação, links "Leia o capítulo N", rótulos dos gráficos e
    dos círculos e a página 404 usam só os textos aprovados em `src/i18n/pt-br.json`.
 
+
+**Fase 4, Etapa 4 (D67).** As animações da home passaram a carregar em duas partes: a abertura (B0)
+na carga da página e o resto (B1 a B8) quando o navegador fica ocioso, um bloco por tarefa. É só
+uma mudança de quando o código roda: o comportamento visível é o mesmo (capturas da Fase 3 iguais
+pixel a pixel) e nenhuma palavra muda.
+
 ---
 
 ## Capítulo 1 (`src/content/pt-br/capitulo-1.md`)
@@ -1160,7 +1166,7 @@ texto; os rótulos novos são os aprovados (T43 a T48; D52).
    referência ABNT/APA/BibTeX" (T44). Ao copiar: texto simples, sem negrito nem itálico; no ABNT,
    "[data de acesso]" vira a data do dia no padrão ABNT ("17 nov. 2026", meses em T48). O botão
    mostra "Copiado" (T45) por 2 s; nesse intervalo o nome acessível também passa a "Copiado", para
-   o texto visível fazer parte do nome (critério 2.5.3 da WCAG). O aviso T46 vai para o leitor de
+   o texto visível fazer parte do nome (critério 2.5.3 da WCAG; ponto em aberto A18). O aviso T46 vai para o leitor de
    tela por uma região `aria-live`. Se a área de transferência falhar, o texto da referência fica
    selecionado e o aviso T47 aparece na tela. **Sem JavaScript**, os botões não aparecem; as
    referências ficam visíveis e selecionáveis, com "[data de acesso]" como está no texto aprovado.

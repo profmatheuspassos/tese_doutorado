@@ -108,7 +108,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
 | `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e resumo do Lighthouse |
 | `docs/capturas/fase-4/` | Capturas das páginas novas (D56) e `lighthouse/resumo.md` de todas as páginas (só o resumo é versionado, D59) |
-| `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: home (`index.astro`), 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
+| `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: home (`index.astro`), "Sobre a tese" (`sobre.astro`), 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
 | `src/pages/capitulos/[slug].astro`, `src/layouts/Capitulo.astro` | Rotas dos capítulos (lidas dos `.md`) e modelo das páginas internas |
 | `src/components/capitulo/`, `src/components/capitulos/`, `src/components/interativos/` | Abertura, bloco de texto, progresso e navegação; composição de cada capítulo; interativos (explorador etc.) |
 | `src/lib/blocos.ts` | Divide o HTML de cada `.md` nos blocos `Bn`; só acrescenta atributos, envoltórios e desenhos sem texto, nunca texto (inclui `rotularCelulas`, tabela em cartões no celular, e `anexarEmCelulas`, barras ao lado dos números de uma tabela) |
@@ -118,10 +118,10 @@ se as 880 notas de rodapé foram distribuídas.
 | `src/data/dados.json` | Único arquivo de números do site (Quadros 1 a 5 e outros), com os usos por página |
 | `src/i18n/pt-br.json` | Rótulos de interface aprovados (D43, D52); nenhum outro texto de interface |
 | `src/styles/global.css` | Tokens de design (D45) |
-| `src/scripts/home.ts` | Animações GSAP da home (só com `prefers-reduced-motion: no-preference`) |
-| `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, contraste, texto (palavras, aspas, rótulos, atributos), recursos de terceiros e links internos |
+| `src/scripts/home.ts`, `src/scripts/home-resto.ts` | Animações GSAP da home (só com `prefers-reduced-motion: no-preference`): a abertura na carga; o resto (ScrollTrigger e blocos B1 a B8) quando o navegador fica ocioso, um bloco por tarefa (D67) |
+| `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, contraste, texto (palavras, aspas, rótulos, atributos), recursos de terceiros e links internos (link quebrado faz o build falhar) |
 | `scripts/variantes-imagens.mjs` | Gera as larguras 840 e 1680 das imagens para o `srcset` (em `public/img/variantes/`, fora do Git) |
-| `scripts/capturas.mjs`, `scripts/lighthouse.mjs` | Testes no navegador em todas as páginas do build (3 larguras x 3 cenários, salto para cada bloco, axe, teclado, interativos) e Lighthouse |
+| `scripts/capturas.mjs`, `scripts/lighthouse.mjs` | Testes no navegador em todas as páginas do build (3 larguras x 3 cenários, salto para cada bloco, axe, teclado, interativos, botão copiar) e Lighthouse (home no celular em cinco rodadas, registrada a pior; D67) |
 | `scripts/reservar-imagens.mjs` | Cria os espaços reservados em `public/img/` sem sobrescrever imagens finais |
 | `scripts/converter.sh` | Recria `conteudo/` a partir de `fonte/` |
 | `scripts/legibilidade.py` | Mede tamanho e legibilidade de uma página |
@@ -147,7 +147,7 @@ npm run capturas
 Para salvar as capturas versionadas de uma ou mais páginas:
 
 ```bash
-npm run capturas:salvar -- capitulo-4,capitulo-5
+npm run capturas:salvar -- home,sobre
 ```
 
 ```bash
@@ -213,7 +213,8 @@ npm run lighthouse
   (a conferência aceita números por extenso). Escolhas de apresentação aprovadas (D62 a D64).
   Ajuste: as cinco etapas do B3 do capítulo 4 com inicial maiúscula e sem pontuação no fim, só
   pontuação e maiúsculas (D65; legibilidade igual, 1.791 palavras, índice 58,9). Textos idênticos
-  aos aprovados; Lighthouse 98 a 100 nas seis páginas; axe sem violações. PR #11, aguardando merge.
+  aos aprovados; Lighthouse 98 a 100 nas seis páginas; axe sem violações. Enviada à `main` (PR #11,
+  com merge).
 
 ## Próximo passo
 
