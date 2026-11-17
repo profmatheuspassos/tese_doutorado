@@ -127,13 +127,14 @@ se as 880 notas de rodapé foram distribuídas.
 - **Capítulo 4 aprovado** com um ajuste (`src/content/pt-br/capitulo-4.md`, 1.791 palavras,
   índice 58,9), com rastreabilidade e relatório; enviado à `main` por pull request. Decisões D27
   a D31 registradas (D27 retira a contagem 89 x 11 de todo o site).
+- **Capítulo 5 escrito, aguardando aprovação** (`src/content/pt-br/capitulo-5.md`, 1.797 palavras,
+  índice 57,8), com rastreabilidade e relatório. Ponto em aberto A11 (ano das 1.473.063 assinaturas).
 - Ainda não existe código de site.
 
 ## Próximo passo
 
-1. Em sessão nova, partindo da `main` (depois do merge do capítulo 4): recriar `conteudo/` com
-   `bash scripts/converter.sh`.
-2. Capítulo 5 e "Sobre a tese", uma página por vez, cada uma a partir da releitura
-   integral do capítulo original (ver "Protocolo de leitura"). Para cada página: escrever,
-   medir, rastrear, push na branch da sessão, parar para aprovação e, aprovada, abrir pull
-   request para a `main`. Tamanho: 1.200 a 1.800 palavras por página de capítulo (D16).
+1. Aprovação do capítulo 5 pelo autor (e decisão sobre A11); aprovado, pull request para a `main`.
+2. Em sessão nova, partindo da `main` (depois do merge do capítulo 5): recriar `conteudo/` com
+   `bash scripts/converter.sh` e escrever "Sobre a tese" a partir da releitura dos pré-textuais e
+   da metodologia (ver "Protocolo de leitura"): escrever, medir, rastrear, push na branch da
+   sessão, parar para aprovação e, aprovada, abrir pull request para a `main`.

@@ -45,5 +45,8 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
-Fase 2 (D13 a D31) foram decididos. Novos pontos entram aqui.
+| # | Ponto | Proposta em uso até a decisão |
+|---|---|---|
+| A11 | Ano das 1.473.063 assinaturas da iniciativa popular no Brasil (capítulo 5) | A tese diz "atualmente", sem ano. O site escreve **"em 2019"**, ano em que os dados do capítulo foram colhidos (acessos de junho de 2019; as porcentagens da LAI usam o eleitorado de 2018). Alternativa: tirar o número e deixar só "1% do eleitorado, em ao menos cinco estados". |
+
+Os pontos D1 a D31 foram decididos. Novos pontos entram aqui.
