@@ -29,7 +29,12 @@ Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch pri
   repositório. Estão no `.gitignore`. Também ficam de fora `node_modules/`, a pasta de build
   e arquivos de ambiente.
 - Commits pequenos e descritivos ao longo do trabalho.
-- **Push só ao fim de cada fase, depois da aprovação do autor.** Direto na `main`.
+- **Push para a branch da sessão** (a branch de trabalho indicada pelo ambiente) a qualquer
+  momento e, no mínimo, ao fim de cada página, para não perder trabalho.
+- **Nada vai direto para a `main`.** Cada página aprovada segue para a `main` por pull request
+  logo após a aprovação, sem esperar o fim da fase. O autor faz o merge no GitHub.
+- **Toda sessão nova parte da `main` atualizada**: a branch de trabalho da sessão é criada a
+  partir dela.
 - **Nunca usar force push.**
 - Arquivos de trabalho versionados em `docs/`.
 
@@ -54,9 +59,10 @@ Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch pri
 - Todo termo técnico explicado na primeira vez que aparece; exemplos concretos.
 - Sem latim, sem juridiquês, sem notas de rodapé.
 - Tamanho: 8 a 10 mil palavras no site inteiro; cada página de capítulo entre 1.200 e 1.800.
-- Legibilidade medida por índice adaptado ao português (confirmar a fórmula em fonte
-  confiável antes de usar). O índice é conferência, não meta: não piorar o texto para
-  melhorar o número.
+- Legibilidade medida pelo Flesch adaptado ao português (Martins et al., 1996), com
+  `scripts/legibilidade.py`; método em `docs/LEGIBILIDADE.md`. Referência de conferência:
+  **índice de 50 ou mais** (faixa "fácil"). O índice é conferência, não meta: não piorar o
+  texto para melhorar o número.
 
 ### Site (Fases 3 a 5)
 - Astro + Tailwind + GSAP (ScrollTrigger); saída 100% estática; fonte Inter hospedada
@@ -86,26 +92,26 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/PLANO-CONTEUDO.md` | Argumento em 10 linhas, estrutura do site, o que entra em cada página, dados e diagramas |
 | `docs/DECISOES.md` | Decisões do autor e pontos em aberto |
 | `docs/notas-leitura/` | Notas detalhadas por capítulo (argumento, conceitos, dados com ano e fonte, trechos de destaque, seção de origem) |
+| `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
+| `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
+| `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
 | `scripts/converter.sh` | Recria `conteudo/` a partir de `fonte/` |
+| `scripts/legibilidade.py` | Mede tamanho e legibilidade de uma página |
 | `fonte/`, `conteudo/` | Fora do Git |
 
 ## Estado atual (17 de novembro de 2026)
 
-- **Fase 1 concluída e aprovada**: tese convertida e lida por inteiro (corpo e 880 notas);
-  notas de leitura e plano de conteúdo escritos. Só as Referências bibliográficas não foram
-  lidas por inteiro.
-- Sete decisões do autor registradas; cinco pontos em aberto com proposta de tratamento
-  (ver `docs/DECISOES.md`).
-- Ainda não existe código de site nem texto reescrito.
+- **Fase 1 concluída e aprovada.**
+- **Fase 2 em andamento.** Decisões D1 a D15 registradas; nenhum ponto em aberto. Script de
+  legibilidade pronto.
+- **Home aprovada** (`src/content/pt-br/home.md`, 1.770 palavras, índice 62,1), com
+  rastreabilidade e relatório; enviada à `main` por pull request.
+- Ainda não existe código de site.
 
 ## Próximo passo
 
-**Fase 2 — Reescrita em linguagem simples**, a iniciar em nova sessão:
-
-1. Recriar `conteudo/` com `bash scripts/converter.sh`.
-2. Pesquisar e confirmar em fonte confiável o índice de legibilidade para o português (por
-   exemplo, a adaptação do Flesch de Martins et al., 1996) e escrever o script de medição.
-3. Reescrever uma página por vez, começando pela home, sempre a partir da releitura do
-   capítulo original: home, capítulos 1 a 5, "Sobre a tese".
-4. Escrever `docs/RASTREABILIDADE.md` e o relatório de legibilidade.
-5. Parar, mostrar e esperar aprovação antes do push e da Fase 3.
+1. Em sessão nova, partindo da `main` (depois do merge da home): recriar `conteudo/` com
+   `bash scripts/converter.sh`.
+2. Capítulo 1, a partir da releitura integral do capítulo original. Depois, capítulos 2 a 5 e
+   "Sobre a tese", uma página por vez. Para cada página: escrever, medir, rastrear, push na
+   branch da sessão, parar para aprovação e, aprovada, abrir pull request para a `main`.
