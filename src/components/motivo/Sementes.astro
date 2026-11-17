@@ -1,0 +1,20 @@
+---
+/**
+ * Sementes (Brasil, D1): plantadas, ainda sem brotar. Desenho decorativo, sem texto.
+ */
+interface Props { class?: string; quantidade?: number }
+const { class: classe, quantidade = 3 } = Astro.props;
+const largura = quantidade * 36;
+const sementes = Array.from({ length: quantidade }, (_, i) => ({ x: 18 + i * 36, r: [-28, 14, -6, 22, -18][i % 5] }));
+---
+<svg class={classe} viewBox={`0 0 ${largura} 24`} fill="none" aria-hidden="true" focusable="false" data-sementes>
+  {sementes.map((s) => (
+    <g class="semente" transform={`translate(${s.x} 12) rotate(${s.r})`}>
+      <path d="M0-9C5-9 6.5-3 6.5 1C6.5 6 3.5 9 0 9S-6.5 6-6.5 1C-6.5-3-5-9 0-9Z"
+        fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"
+        vector-effect="non-scaling-stroke" />
+      <path d="M0-5V5" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"
+        vector-effect="non-scaling-stroke" />
+    </g>
+  ))}
+</svg>

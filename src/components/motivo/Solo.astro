@@ -1,0 +1,29 @@
+---
+/**
+ * Sementes em terra árida (Brasil, D1): três sementes sobre solo rachado. No estado final
+ * (sem JS ou sem movimento), a semente do meio brotou; o script parte dela fechada e faz o
+ * broto subir quando o texto chega à proposta. Desenho decorativo, sem texto.
+ */
+interface Props { class?: string }
+const { class: classe } = Astro.props;
+const semente = 'M0-9C5-9 6.5-3 6.5 1C6.5 6 3.5 9 0 9S-6.5 6-6.5 1C-6.5-3-5-9 0-9Z';
+const folha = 'M0 0C6-8 18-8 26 0C18 8 6 8 0 0Z';
+---
+<svg class={classe} viewBox="0 0 240 150" fill="none" aria-hidden="true" focusable="false" data-solo>
+  <path d="M8 112H232V150H8Z" fill="currentColor" fill-opacity="0.07" />
+  <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+    <path d="M8 112H232" stroke-width="1.5" />
+    <path d="M52 112l7 10-5 9 6 13M146 112l-6 9 7 10-4 12M196 112l5 8-6 9 3 7M96 112l-3 6 4 7" stroke-width="1" opacity="0.7" />
+  </g>
+  {[[64, -24], [120, 8], [176, -12]].map(([x, r]) => (
+    <g transform={`translate(${x} 101) rotate(${r})`}>
+      <path d={semente} fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      <path d="M0-5V5" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6" vector-effect="non-scaling-stroke" />
+    </g>
+  ))}
+  <g class="broto" data-broto>
+    <path class="broto-caule" pathLength="1" d="M121 92C119 76 123 64 121 46" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+    <path class="broto-folha" d={folha} transform="translate(121 58) rotate(-150)" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+    <path class="broto-folha" d={folha} transform="translate(121 50) rotate(-35)" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+  </g>
+</svg>

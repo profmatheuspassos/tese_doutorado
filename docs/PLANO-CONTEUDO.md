@@ -402,6 +402,11 @@ confiança em escala ordenada e as duas não respostas em cinza. Na home, versã
 "nenhuma confiança" nas cinco instituições, 2006 → 2017 (28,7 → 60,2; 17,6 → 66,1;
 16,8 → 37,2; 10,1 → 40,2; 40,1 → 72,4).
 
+> **Atualização (D44, 17/11/2026):** a home mostra só as três instituições do texto aprovado
+> (partidos, governo e Congresso Nacional), de 2010 a 2017. O resumo acima, com as cinco
+> instituições de 2006 a 2017, não entra na home. Os números do site vêm de `src/data/dados.json`,
+> conferido contra estas tabelas a cada build.
+
 ### 4.2 Outros dados
 
 | Dado | Valores | Ano / fonte na tese | Uso |

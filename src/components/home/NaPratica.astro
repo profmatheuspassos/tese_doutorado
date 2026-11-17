@@ -1,0 +1,66 @@
+---
+import type { Bloco } from '../../lib/blocos';
+import { comAtributos } from '../../lib/blocos';
+import { dados, uso } from '../../lib/dados';
+import NumeroGrande from '../graficos/NumeroGrande.astro';
+import Halteres from '../graficos/Halteres.astro';
+import LinkCapitulo from './LinkCapitulo.astro';
+
+interface Props { bloco: Bloco }
+const { bloco } = Astro.props;
+const [h2, pAbre, pNumero, lista, pFonte, pPortugal, ...resto] = bloco.elementos;
+if (!h2?.startsWith('<h2') || !lista?.startsWith('<ul') || !pPortugal || resto.length) {
+  throw new Error('B3 fora do formato esperado.');
+}
+uso('home', 'B3', 'numero-grande'); // garante que o uso está registrado e conferido
+const r = (el: string) => comAtributos(el, { 'data-revelar': '' });
+---
+<section class="secao-escura respiro" data-bloco="B3">
+  <div class="margem mx-auto max-w-(--container-figura)">
+    <div class="texto max-w-(--container-texto)">
+      <Fragment set:html={r(h2)} />
+      <Fragment set:html={r(pAbre)} />
+    </div>
+
+    <div class="mt-14 grid items-end gap-6 md:mt-20 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-14" data-numero>
+      <NumeroGrande valor={dados.confianca_interpessoal_br.nao_pode_confiar} class="text-semente-escuro" />
+      <div class="texto max-w-(--container-texto) lg:pb-3 [&_p]:text-destaque [&_p]:text-gelo!">
+        <Fragment set:html={r(pNumero)} />
+      </div>
+    </div>
+
+    <div class="mt-14 grid items-center gap-10 md:mt-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
+      <div class="texto lista-instituicoes">
+        <Fragment set:html={r(lista)} />
+        <Fragment set:html={comAtributos(pFonte, { 'data-revelar': '', class: 'fonte' })} />
+      </div>
+      <Halteres pagina="home" bloco="B3" />
+    </div>
+
+    <div class="texto mt-14 max-w-(--container-texto) border-l-2 border-ramo-escuro pl-5 md:mt-20">
+      <Fragment set:html={r(pPortugal)} />
+    </div>
+
+    <LinkCapitulo n={2} class="mt-12" />
+  </div>
+</section>
+
+<style is:global>
+  .lista-instituicoes ul > li {
+    font-size: var(--text-destaque);
+    line-height: 1.45;
+    color: var(--color-gelo);
+    padding-left: 1.5rem;
+    margin-bottom: 0.875rem;
+  }
+  .lista-instituicoes ul > li::before {
+    background: var(--color-semente-escuro);
+    opacity: 1;
+    top: 0.62em;
+  }
+  .lista-instituicoes .fonte {
+    font-size: var(--text-pequeno);
+    color: var(--color-gelo-2);
+    margin-top: 1.5rem;
+  }
+</style>

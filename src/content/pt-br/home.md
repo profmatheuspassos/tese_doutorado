@@ -165,16 +165,16 @@ Nos dois países, as regras abrem espaço para a presença do cidadão, não par
 propõe deixar essa abertura clara na constituição e dizer na lei como ela funciona. A cultura não
 muda só pelo Direito, mas muda também por ele.
 
-<!-- B7 | As ferramentas | origem: abertura do cap. 5 (democracia semidireta); 5.1 ("se o Parlamento quiser"); 5.2; 5.3; 5.4 (recall: definição, adoção gradual e local); 5.5 (complemento; "aventuras políticas" e limites) -->
+<!-- B7 | As ferramentas | lista com pontuação e maiúsculas ajustadas pela D46, sem troca de palavra | origem: abertura do cap. 5 (democracia semidireta); 5.1 ("se o Parlamento quiser"); 5.2; 5.3; 5.4 (recall: definição, adoção gradual e local); 5.5 (complemento; "aventuras políticas" e limites) -->
 
 ## As ferramentas que já existem (e uma que falta)
 
 Além do voto, os dois países já oferecem quatro ferramentas:
 
-- **referendo:** a população vota sim ou não sobre um tema;
-- **iniciativa popular:** os cidadãos reúnem assinaturas e apresentam um projeto de lei;
-- **petição:** qualquer pessoa faz um pedido ou uma reclamação ao poder público;
-- **ação popular:** o cidadão vai à Justiça para anular um ato que prejudica o que é de todos.
+- **Referendo** A população vota sim ou não sobre um tema.
+- **Iniciativa popular** Os cidadãos reúnem assinaturas e apresentam um projeto de lei.
+- **Petição** Qualquer pessoa faz um pedido ou uma reclamação ao poder público.
+- **Ação popular** O cidadão vai à Justiça para anular um ato que prejudica o que é de todos.
 
 Referendo e iniciativa popular quase não são usados e dependem demais dos eleitos. O referendo
 só acontece se o Parlamento quiser.

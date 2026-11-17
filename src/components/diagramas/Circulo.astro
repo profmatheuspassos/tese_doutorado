@@ -1,0 +1,154 @@
+---
+/**
+ * Círculo de três nós ligados por arcos com seta. Os nós são os mesmos elementos nos dois
+ * estados (plano, seção 2, ajuste 3): no alto, o cidadão; à direita, os partidos; à esquerda,
+ * o vínculo entre as pessoas.
+ *  - "vicioso" (B4): o cidadão se afasta → os partidos se fecham → fragmentação política.
+ *  - "virtuoso" (B6): sentir-se parte da comunidade → cidadania ativa → partidos mais abertos.
+ * Rótulos T8/T9 em HTML sobre o SVG. Tudo aria-hidden: o texto do bloco já diz o mesmo.
+ * Com `transicao`, o virtuoso traz também os rótulos do vicioso, que o script troca ao rolar.
+ */
+import { lista } from '../../i18n';
+
+interface Props {
+  estado: 'vicioso' | 'virtuoso';
+  tema?: 'escuro' | 'claro';
+  transicao?: boolean;
+  class?: string;
+}
+const { estado, tema = 'escuro', transicao = false, class: classe } = Astro.props;
+
+// Rótulos na ordem dos nós (alto, direita, esquerda).
+const vicioso = lista('circulo_vicioso'); // [cidadão, partidos, vínculo]
+const virtuosoTexto = lista('circulo_virtuoso'); // [vínculo, cidadão, partidos], na ordem do texto
+const virtuoso = [virtuosoTexto[1], virtuosoTexto[2], virtuosoTexto[0]];
+const rotulos = estado === 'vicioso' ? vicioso : virtuoso;
+if (rotulos.length !== 3 || virtuosoTexto.length !== 3) throw new Error('O círculo precisa de três rótulos.');
+
+const C = 200;
+const R = 120;
+const angulos = [-90, 30, 150]; // alto, direita embaixo, esquerda embaixo
+const rad = (g: number) => (g * Math.PI) / 180;
+const ponto = (g: number) => [C + R * Math.cos(rad(g)), C + R * Math.sin(rad(g))].map((v) => Math.round(v * 10) / 10);
+const folga = 17; // graus livres em volta de cada nó
+const arcos = angulos.map((a, i) => {
+  const [x1, y1] = ponto(a + folga);
+  const [x2, y2] = ponto(angulos[(i + 1) % 3] + (i === 2 ? 360 : 0) - folga);
+  return `M${x1} ${y1}A${R} ${R} 0 0 1 ${x2} ${y2}`;
+});
+const nos = angulos.map(ponto);
+// Posição de cada nó em % da caixa, para os rótulos ficarem junto dos nós.
+const pct = nos.map(([x, y]) => [(x / 400) * 100, (y / 400) * 100]);
+const posicao = (i: number) => (i === 0
+  ? `left:${pct[0][0]}%;bottom:calc(${100 - pct[0][1]}% + 1.9rem)`
+  : `left:${pct[i][0]}%;top:calc(${((C + R) / 400) * 100}% + 0.75rem)`);
+const idSeta = `seta-${estado}`;
+---
+<div class:list={['circulo', `circulo-${estado}`, `circulo-${tema}`, classe]} aria-hidden="true" data-circulo data-ativo="todos">
+  <svg viewBox="0 0 400 400" fill="none" focusable="false">
+    <defs>
+      <marker id={idSeta} viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1 1L8 5L1 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      </marker>
+    </defs>
+    <circle class="circulo-anel" cx={C} cy={C} r={R} />
+    <g class="circulo-arcos">
+      {arcos.map((d) => <path class="circulo-arco" d={d} marker-end={`url(#${idSeta})`} />)}
+    </g>
+    <g class="circulo-fluxo" data-fluxo>
+      {[0, 120, 240].map((a) => { const [x, y] = ponto(a - 30); return <circle cx={x} cy={y} r="3" />; })}
+    </g>
+    {nos.map(([x, y], i) => (
+      <g class="circulo-no" data-no={i}>
+        <circle class="circulo-no-halo" cx={x} cy={y} r="24" />
+        <circle class="circulo-no-ponto" cx={x} cy={y} r="11" />
+      </g>
+    ))}
+  </svg>
+  {transicao && vicioso.map((r, i) => (
+    <p class="circulo-rotulo circulo-rotulo-antes" style={posicao(i)}>{r}</p>
+  ))}
+  {rotulos.map((r, i) => (
+    <p class:list={['circulo-rotulo', transicao && 'circulo-rotulo-depois']} data-no={i} style={posicao(i)}>{r}</p>
+  ))}
+</div>
+
+<style is:global>
+  .circulo {
+    --c-anel: color-mix(in srgb, var(--color-linha-escuro) 22%, transparent);
+    --c-arco: var(--color-gelo-2);
+    --c-no: var(--color-gelo);
+    --c-fundo: var(--color-grafite);
+    --c-no-apagado: var(--color-grafite-2);
+    --c-apagado: var(--color-linha-escuro);
+    --c-rotulo: var(--color-gelo);
+    position: relative;
+    width: 100%;
+    max-width: 30rem;
+    margin-inline: auto;
+    margin-block: 1rem;
+  }
+  .circulo-claro {
+    --c-anel: color-mix(in srgb, var(--color-linha) 22%, transparent);
+    --c-arco: var(--color-tinta-2);
+    --c-no: var(--color-tinta);
+    --c-fundo: var(--color-branco);
+    --c-no-apagado: var(--color-nevoa);
+    --c-apagado: var(--color-linha);
+    --c-rotulo: var(--color-tinta);
+  }
+  .circulo svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .circulo-anel {
+    stroke: var(--c-anel);
+    stroke-width: 1;
+  }
+  .circulo-arco {
+    stroke: var(--c-arco);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  .circulo-arcos {
+    color: var(--c-arco);
+  }
+  .circulo-fluxo circle {
+    fill: var(--c-no);
+    opacity: 0;
+  }
+  .circulo-no-halo {
+    fill: color-mix(in srgb, var(--c-no) 10%, transparent);
+    transition: opacity 0.4s ease;
+  }
+  .circulo-no-ponto {
+    fill: var(--c-no);
+    stroke: var(--c-fundo);
+    stroke-width: 3;
+    transition: fill 0.4s ease;
+  }
+  .circulo-rotulo {
+    position: absolute;
+    width: max-content;
+    max-width: min(9.5rem, 44%);
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: var(--text-pequeno);
+    line-height: 1.3;
+    font-weight: 650;
+    color: var(--c-rotulo);
+    text-wrap: balance;
+    transition: color 0.4s ease;
+  }
+  /* Sem JS: só os rótulos do estado final. O script mostra os do vicioso antes da troca. */
+  .circulo-rotulo-antes {
+    opacity: 0;
+  }
+
+  /* Nó em destaque: os outros esmaecem. Padrão (sem JS): todos acesos. */
+  .circulo:not([data-ativo='todos']) .circulo-no:not(.ativo) .circulo-no-ponto { fill: var(--c-no-apagado); stroke: var(--c-apagado); stroke-width: 1.5; }
+  .circulo:not([data-ativo='todos']) .circulo-no:not(.ativo) .circulo-no-halo { opacity: 0; }
+  .circulo:not([data-ativo='todos']) .circulo-rotulo:not(.ativo):not(.circulo-rotulo-antes) { color: var(--c-apagado); }
+</style>

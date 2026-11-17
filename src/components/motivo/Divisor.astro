@@ -1,0 +1,8 @@
+---
+import Sementes from './Sementes.astro';
+interface Props { class?: string }
+const { class: classe } = Astro.props;
+---
+<div class:list={['flex justify-center', classe]} aria-hidden="true">
+  <Sementes class="h-5 w-24 text-linha" />
+</div>

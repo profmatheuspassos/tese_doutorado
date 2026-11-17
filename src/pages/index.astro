@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import Abertura from '../components/home/Abertura.astro';
+import NaPratica from '../components/home/NaPratica.astro';
+import Cena from '../components/home/Cena.astro';
+import NoPapel from '../components/home/NoPapel.astro';
+import OCirculo from '../components/home/OCirculo.astro';
+import Atalho from '../components/home/Atalho.astro';
+import Proposta from '../components/home/Proposta.astro';
+import Ferramentas from '../components/home/Ferramentas.astro';
+import Conclusoes from '../components/home/Conclusoes.astro';
+import { pagina } from '../lib/paginas';
+import { t } from '../i18n';
+
+const { dados, blocos } = await pagina('home');
+const usados = new Set<string>();
+const b = (id: string) => {
+  const bloco = blocos.get(id);
+  if (!bloco) throw new Error(`Bloco ausente na home: ${id}`);
+  usados.add(id);
+  return bloco;
+};
+const B = Object.fromEntries(['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9'].map((id) => [id, b(id)]));
+const sobrando = [...blocos.keys()].filter((id) => !usados.has(id));
+if (sobrando.length) throw new Error(`Blocos da home sem lugar na página: ${sobrando.join(', ')}`);
+---
+<Base titulo={t('titulo_home', { titulo: dados.titulo })} descricao={dados.subtitulo}>
+  <Abertura bloco={B.B0} />
+  <Cena bloco={B.B1} />
+  <NoPapel bloco={B.B2} />
+  <NaPratica bloco={B.B3} />
+  <OCirculo bloco={B.B4} />
+  <Atalho bloco={B.B5} />
+  <Proposta bloco={B.B6} />
+  <Ferramentas bloco={B.B7} />
+  <Conclusoes bloco={B.B8} />
+  <div slot="rodape" class="texto [&_p]:text-pequeno" data-bloco="B9" set:html={B.B9.html} />
+</Base>
+
+<script>
+  import '../scripts/home';
+</script>
