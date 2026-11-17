@@ -35,5 +35,9 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
-Fase 2 (D13 a D21) foram decididos. Novos pontos entram aqui.
+Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na Fase 2 até o capítulo 2
+(D13 a D21) foram decididos. Novos pontos entram aqui.
+
+| # | Ponto | Situação e proposta |
+|---|---|---|
+| A9 | Atenas: obrigação ou possibilidade de participar (capítulos 1 e 3) | A tese se contradiz. Em 1.1, os cidadãos atenienses "tinham a obrigatoriedade de tomar parte" nas decisões; a página do capítulo 1 (aprovada) escreve "todo cidadão tinha de tomar parte nas decisões da cidade". Em 3.1, Atenas era considerada direta "não porque os cidadãos efetivamente participavam", mas porque "tinham a *possibilidade* de participar, caso assim desejassem"; a presença média era de 20%. A página do capítulo 3 não fala em obrigação e não contradiz o capítulo 1 ao pé da letra, mas os dois textos puxam em direções diferentes. **Proposta:** trocar, no capítulo 1, "todo cidadão tinha de tomar parte nas decisões da cidade" por "os cidadãos podiam tomar parte diretamente nas decisões da cidade", que serve às duas passagens. Até a decisão, o capítulo 1 fica como aprovado e o capítulo 3 segue como escrito. |

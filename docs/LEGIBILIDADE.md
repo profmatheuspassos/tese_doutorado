@@ -56,6 +56,7 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 | Home | 1.770 | 1.585 | 149 | 10,6 | 2,08 | 62,1 | fácil |
 | Capítulo 1 | 1.680 | 1.488 | 129 | 11,5 | 2,07 | 62,1 | fácil |
 | Capítulo 2 | 1.797 | 1.714 | 157 | 10,9 | 2,05 | 63,9 | fácil |
+| Capítulo 3 | 1.794 | 1.615 | 144 | 11,2 | 2,12 | 58,2 | fácil |
 
 ### Home (17/11/2026)
 
@@ -137,4 +138,39 @@ partidos). O índice caiu de 66,1 para 63,9 com os cortes, porque saíram frases
 - Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela
   tese. "Salvadores da pátria" vem com a ressalva de que existem de qualquer lado.
 - "A tese" aparece duas vezes (D15); "para o autor", uma.
+
+### Capítulo 3 (17/11/2026)
+
+**Resultado (versão enviada para aprovação):** índice 58,2, acima da referência de 50. Média de
+11,2 palavras por frase (limite: 20). Maior frase: 24 palavras; nenhuma acima de 25. Tamanho:
+1.794 palavras visíveis, dentro da faixa de 1.200 a 1.800 por página de capítulo (D16), perto do
+teto.
+
+**Histórico da medição.** Primeira versão: 2.343 palavras, índice 58,4, duas frases de 27
+palavras. Os cortes foram feitos por tamanho, não por legibilidade: a imagem do estádio, a
+reeleição sem limite em Atenas, o reconhecimento internacional de Porto Alegre, parte das
+promessas digitais, a checagem de notícias, a interferência estrangeira em eleições, o exemplo
+hipotético do diário oficial e a promessa populista de "democratizar a democracia". Na revisão
+de fidelidade, algumas frases ganharam palavras ("supostamente", "quase nunca diz com clareza",
+"não são só líderes"). O índice é mais baixo que o dos capítulos 1 e 2 (cerca de 62 a 64)
+porque o tema pede palavras longas que não têm substituto simples: democracia, representação,
+participativa, deliberativa, inteligência artificial, institucionais.
+
+**Conferência manual (o que o índice não mede).**
+- Termos técnicos explicados na primeira ocorrência: democracia digital, magistrado (pela
+  função), democracia participativa, orçamento participativo, democracia deliberativa, algoritmo,
+  tirania da maioria (por exemplo e definição), fragmentação (retomada do capítulo 2), populismo
+  (por traços). "Magistrado" é explicado como quem cuidava da administração, para não confundir
+  com juiz.
+- Os termos "corporativismo", "refeudalização", "espaço vazio", "não-povo", "democracia
+  iliberal" e "identificação patriótica" não aparecem: as ideias são explicadas por situações.
+- Voz ativa predominante. Passivas que ficaram: "eram sorteadas", "eram eleitos" e "é vista",
+  formas naturais de falar de escolha de cargos; "se decide" e "se disputa" são sujeito
+  indeterminado.
+- Sem latim, sem notas de rodapé, sem número de lei ou de artigo. "Século IV antes de Cristo"
+  por extenso, sem a abreviação.
+- Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela
+  tese nem de plataforma ou empresa. Esquerda e direita aparecem sempre juntas (bolha;
+  populismo).
+- "A tese" aparece quatro vezes (D15).
 
