@@ -31,8 +31,10 @@ Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch pri
 - Commits pequenos e descritivos ao longo do trabalho.
 - **Push para a branch da sessão** (a branch de trabalho indicada pelo ambiente) a qualquer
   momento e, no mínimo, ao fim de cada página, para não perder trabalho.
-- **Nada vai direto para a `main`.** Ao fim de cada fase, depois da aprovação do autor, o
-  trabalho segue por pull request; o autor faz o merge no GitHub.
+- **Nada vai direto para a `main`.** Cada página aprovada segue para a `main` por pull request
+  logo após a aprovação, sem esperar o fim da fase. O autor faz o merge no GitHub.
+- **Toda sessão nova parte da `main` atualizada**: a branch de trabalho da sessão é criada a
+  partir dela.
 - **Nunca usar force push.**
 - Arquivos de trabalho versionados em `docs/`.
 
@@ -100,17 +102,16 @@ se as 880 notas de rodapé foram distribuídas.
 ## Estado atual (17 de novembro de 2026)
 
 - **Fase 1 concluída e aprovada.**
-- **Fase 2 em andamento.** Decisões D1 a D12 registradas; pontos A6 (cena de 2013) e A7 (lapso
-  em 4.2) em aberto, com proposta em uso. Script de legibilidade pronto.
-- **Home escrita** (`src/content/pt-br/home.md`, 1.792 palavras, índice 62,6), com
-  rastreabilidade e relatório. **Aguardando aprovação do autor.**
+- **Fase 2 em andamento.** Decisões D1 a D15 registradas; nenhum ponto em aberto. Script de
+  legibilidade pronto.
+- **Home aprovada** (`src/content/pt-br/home.md`, 1.770 palavras, índice 62,1), com
+  rastreabilidade e relatório; enviada à `main` por pull request.
 - Ainda não existe código de site.
 
 ## Próximo passo
 
-1. Aplicar as correções do autor à home, se houver.
-2. Seguir com uma página por vez, sempre a partir da releitura do capítulo original em
-   `conteudo/` (recriar com `bash scripts/converter.sh` em sessão nova): capítulos 1 a 5 e
-   "Sobre a tese". Para cada página: escrever, medir, rastrear, push na branch da sessão, parar
-   para aprovação.
-3. Ao fim da Fase 2: pull request para a `main`, depois da aprovação do autor.
+1. Em sessão nova, partindo da `main` (depois do merge da home): recriar `conteudo/` com
+   `bash scripts/converter.sh`.
+2. Capítulo 1, a partir da releitura integral do capítulo original. Depois, capítulos 2 a 5 e
+   "Sobre a tese", uma página por vez. Para cada página: escrever, medir, rastrear, push na
+   branch da sessão, parar para aprovação e, aprovada, abrir pull request para a `main`.
