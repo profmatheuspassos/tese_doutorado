@@ -23,12 +23,11 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D10 | Número de freguesias (ponto 8; era A3) | **Não usar o total de freguesias (3.429) em nenhuma página** até o autor conferir o número na fonte. Os demais dados do cálculo (129 freguesias com plenário, 23.466 habitantes, 0,22% da população) podem ser usados. Se um trecho depender do total, escrever sem ele e avisar o autor. |
 | D11 | Occupy Wall Street datado de 2009 (ponto 9; era A4) | **Sem efeito, encerrado.** A lista de protestos não entra no site. |
 | D12 | Lapsos de redação (ponto 10; era A5) | **Aceitos os cinco**, tratados pelo sentido correto: (a) "no máximo cerca de 215 habitantes"; (b) Lei 75/2013; (c) LGPD = Lei 13.709; (d) a definição de referendo está no § 2º; (e) a análise das petições está na seção 5.3. Como o site não cita artigos nem números de lei, (b), (c) e (d) só importam se algum dia forem citados. |
+| D13 | Cena de 2013 na home (era A6) | **Manter como está**: só o motivo inicial (passagem de ônibus) e o resultado ligado a ele (redução do preço). Sem a emenda constitucional e sem os gastos com os torneios. Decidido em 17/11/2026. |
+| D14 | Lapso em 4.2 (era A7) | **Aceito**: "mas sem um efetivo poder de decisão" é tratado pelo sentido correto, "mas sim um efetivo poder de decisão". Decidido em 17/11/2026. |
+| D15 | Menções a "a tese" (home) | **Na home, no máximo cinco**, só onde marcam uma posição do autor; no resto, afirmar diretamente. Nome do autor na abertura da home. Decidido em 17/11/2026. |
 
 ## Em aberto
 
-Os doze pontos da seção 5 do plano foram decididos (D1 a D12). Pontos surgidos na Fase 2:
-
-| # | Ponto | Problema | Proposta em uso até decisão |
-|---|---|---|---|
-| A6 | Cena de 2013 na home | A decisão D6 proíbe "caso concreto". O plano aprovado abre a home com os protestos de junho de 2013. A Introdução cita, entre os temas, uma proposta de emenda constitucional numerada e os gastos com dois torneios de futebol. | Manter a cena, só com o motivo inicial (passagem de ônibus) e o resultado ligado a ele (redução do preço). Sem a emenda, sem os torneios. |
-| A7 | Lapso em 4.2 (governança centrada nos cidadãos) | O texto diz que os atores exercem "não apenas uma simples influência […], mas **sem** um efetivo poder de decisão no resultado final". Pelo contexto (cidadania ativa como poder de decidir, em 4.2 e nas Considerações finais), o sentido é "mas **sim** um efetivo poder de decisão". | Tratar pelo sentido correto ("com poder real de decisão"), como em D12. A home não depende desse trecho. |
+Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os dois pontos surgidos
+na Fase 2 (D13 e D14) foram decididos. Novos pontos entram aqui.
