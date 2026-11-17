@@ -59,6 +59,7 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 | Capítulo 3 | 1.794 | 1.615 | 144 | 11,2 | 2,12 | 58,2 | fácil |
 | Capítulo 4 | 1.791 | 1.725 | 151 | 11,4 | 2,11 | 58,9 | fácil |
 | Capítulo 5 | 1.800 | 1.703 | 143 | 11,9 | 2,12 | 57,8 | fácil |
+| Sobre a tese | 446 | 344 | 27 | 12,7 | 2,15 | 54,4 | fácil |
 
 ### Home (17/11/2026)
 
@@ -251,4 +252,37 @@ legitimidade).
   A Califórnia e a Suíça aparecem como lugares onde o recall existe; o recall de 2003 saiu.
 - "A tese" aparece duas vezes (D15).
 - Tabela de petições por legislatura: fora do índice, dentro da contagem de palavras.
+
+### Sobre a tese (17/11/2026)
+
+**Resultado (versão enviada para aprovação):** índice 54,4, acima da referência de 50. Média de 12,7
+palavras por frase (limite: 20). Maior frase: 24 palavras; nenhuma acima de 25. Tamanho: 446
+palavras visíveis, dentro do alvo do plano para esta página (350 a 500). A D16 trata só das páginas
+de capítulo.
+
+**O que entra na medição.** A ficha é tabela: conta no tamanho, fica fora do índice. As três
+referências (ABNT, APA, BibTeX) estão em blocos de código: ficam fora do tamanho e do índice, porque
+seguem norma de citação, não linguagem simples.
+
+**Histórico da medição.** Primeira versão: 421 palavras, índice 53,1, duas frases acima de 25
+palavras (32 e 29). As duas foram divididas. A abertura ganhou a explicação de democracia
+representativa, e a agenda de pesquisa, a de democracia direta. Na revisão de fidelidade, a agenda
+passou a falar em "estudar formas de" (os eixos são temas de estudo, não metas), e a frase sobre a
+interdisciplinaridade perdeu um "como" que sugeria relação de causa que o original não faz. O índice
+é o mais baixo do site: o tema da página pede palavras longas sem substituto (universidade,
+democracia, representativa, participação, inteligência artificial), e o texto corrido é curto, o que
+dá mais peso a cada uma.
+
+**Conferência manual (o que o índice não mede).**
+- Termos técnicos explicados na primeira ocorrência: democracia representativa, democracia direta.
+  "Versão de divulgação" é explicada pela frase seguinte.
+- Ficam sem nome técnico: método dedutivo, monográfico, tipológico e estatístico; doutrina;
+  jurisprudência ("decisões judiciais"); accountability ("prestar contas").
+- Voz ativa predominante. Passiva que ficou: "foram adaptados [...] e revisados pelo autor", forma
+  natural para dizer quem revisou; "não foram atualizados" (B5), sem agente a nomear.
+- Sem latim, sem notas de rodapé, sem número de lei ou de artigo. O número do processo CAPES está
+  só na ficha.
+- Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela tese.
+  Nomes próprios só na ficha (autor, orientador, instituições).
+- "A tese" aparece três vezes no corpo (D15).
 

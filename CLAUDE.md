@@ -130,11 +130,14 @@ se as 880 notas de rodapé foram distribuídas.
 - **Capítulo 5 aprovado** com um ajuste (`src/content/pt-br/capitulo-5.md`, 1.800 palavras, índice
   57,8), com rastreabilidade e relatório; enviado à `main` por pull request. Decisões D32 a D35
   registradas (D32: as 1.473.063 assinaturas são 1% do eleitorado de 2018).
+- **"Sobre a tese" escrita, aguardando aprovação** (`src/content/pt-br/sobre.md`, 446 palavras,
+  índice 54,4), com rastreabilidade e relatório. Decisões D36 (versão oficial = link do depósito;
+  sem "documento provisório") e D37 (linha sobre uso de IA) registradas. Pontos A12 a A14 em aberto.
 - Ainda não existe código de site.
 
 ## Próximo passo
 
-1. Em sessão nova, partindo da `main` (depois do merge do capítulo 5): recriar `conteudo/` com
-   `bash scripts/converter.sh` e escrever "Sobre a tese" a partir da releitura dos pré-textuais e
-   da metodologia (ver "Protocolo de leitura"): escrever, medir, rastrear, push na branch da
-   sessão, parar para aprovação e, aprovada, abrir pull request para a `main`.
+1. Autor aprova "Sobre a tese" (e decide A12 a A14). Aprovada: registrar a aprovação em
+   `docs/DECISOES.md` e abrir pull request da branch da sessão para a `main`.
+2. Com isso, todas as páginas do plano estão escritas. A Fase 3 (código do site) só começa com
+   aprovação do autor.

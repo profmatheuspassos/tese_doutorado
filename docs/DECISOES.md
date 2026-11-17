@@ -47,7 +47,15 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D33 | Petições, Brasil x Portugal (capítulo 5) | **Mantida** a leitura: nas pesquisas, o brasileiro diz peticionar mais; no uso medido (crescimento português, LAI), o envolvimento português parece bem maior. As duas afirmações ficam, ligadas por "Nesse ponto". Decidido em 17/11/2026. |
 | D34 | Cortes do capítulo 5 | **Mantidos** fora do texto: recall de 2003, lado positivo do apadrinhamento (nota 742), temas vedados à iniciativa popular, oposição "nós, o povo, os bons" contra "eles, os políticos, os ruins" e os demais cortes listados na Rastreabilidade (capítulo 5, item 38). Decidido em 17/11/2026. |
 | D35 | Aprovação do capítulo 5 | **Aprovado com um ajuste** (D32). Versão final: `src/content/pt-br/capitulo-5.md`, 1.800 palavras, índice 57,8. Decidido em 17/11/2026. |
+| D36 | Versão oficial da tese (página "Sobre") | O link do depósito da D7 (**http://hdl.handle.net/10451/57093**) é a versão oficial, usada na ficha, no texto e nas três referências de citação. **Não mencionar "documento provisório"** em nenhuma página. Decidido em 17/11/2026. |
+| D37 | Uso de inteligência artificial (página "Sobre") | A página traz uma linha dizendo que os textos foram adaptados para linguagem simples **com apoio de inteligência artificial e revisados pelo autor**, e que a ligação de cada trecho com a tese está documentada no repositório do projeto. Decidido em 17/11/2026. |
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os pontos D1 a D35 foram decididos. Novos pontos entram aqui.
+Os pontos D1 a D37 foram decididos. Pontos levantados na página "Sobre a tese" (17/11/2026):
+
+| # | Ponto | Proposta seguida até a decisão |
+|---|---|---|
+| A12 | Nome do repositório e conferência do link | O link da D7 não pôde ser aberto nesta sessão (rede bloqueia hdl.handle.net). O site escreve "repositório da Universidade de Lisboa", deduzido do prefixo 10451, e o APA usa "Repositório da Universidade de Lisboa". Conferir o nome e se o link abre o registro certo. |
+| A13 | Forma do nome nas citações | Regra ABNT e APA para o último sobrenome: "SILVA, Matheus Passos" e "Silva, M. P.". Se o autor preferir sobrenome composto, passa a "PASSOS SILVA, Matheus" e "Passos Silva, M.". Sem número de folhas no ABNT, até o autor informar o total da versão depositada. |
+| A14 | Repositório público | A linha da D37 linka o repositório no GitHub. O link só funciona para o público se o repositório for público quando o site sair. |
