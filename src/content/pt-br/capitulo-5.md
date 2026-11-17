@@ -58,7 +58,7 @@ Não se resolve um problema com os mesmos princípios que o causaram. Sozinho, o
 revigora a democracia. Além de mudar as regras, o cidadão precisa voltar a confiar. E isso
 depende de ele se sentir parte de uma comunidade.
 
-<!-- B3 | Iniciativa popular | origem: 5.2 (Lei 17/2003: 20.000 assinaturas, entrega impressa ou eletrônica, comissão representativa ouvida; Brasil: 1% do eleitorado em 5 estados, 1.473.063 eleitores "atualmente", tudo em papel; nota 736, 92 vezes; quatro leis de 1988 a 2019; Câmara sem estrutura para conferir; "apadrinhamento"; "sob o aspecto formal nenhuma lei"; desfiguração; PT: nove iniciativas desde 2003, quatro aprovadas; três problemas; "desprestigiado" e "subutilizado"; desconfiança mútua; sugestões: meios digitais, mais temas, autoria; sem identificação, sem trabalho conjunto) -->
+<!-- B3 | Iniciativa popular | origem: 5.2 (Lei 17/2003: 20.000 assinaturas, entrega impressa ou eletrônica, comissão representativa ouvida; Brasil: 1% do eleitorado em 5 estados, 1.473.063 eleitores "atualmente" (1% do eleitorado de 2018, decisão D32), tudo em papel; nota 736, 92 vezes; quatro leis de 1988 a 2019; Câmara sem estrutura para conferir; "apadrinhamento"; "sob o aspecto formal nenhuma lei"; desfiguração; PT: nove iniciativas desde 2003, quatro aprovadas; três problemas; "desprestigiado" e "subutilizado"; desconfiança mútua; sugestões: meios digitais, mais temas, autoria; sem identificação, sem trabalho conjunto) -->
 
 ## Iniciativa popular: o projeto que muda de dono
 
@@ -67,8 +67,8 @@ Na iniciativa popular, os cidadãos reúnem assinaturas e apresentam um projeto 
 Em Portugal, bastam 20 mil assinaturas, que podem ser enviadas pela internet. Um grupo de cidadãos
 representa os autores e é ouvido pelo Parlamento.
 
-No Brasil, é preciso 1% do eleitorado, espalhado por pelo menos cinco estados. Em 2019, eram
-1.473.063 assinaturas, todas em papel, num país 92 vezes maior que Portugal.
+No Brasil, é preciso 1% do eleitorado, em pelo menos cinco estados. Com base no eleitorado de
+2018, eram 1.473.063 assinaturas, todas em papel, num país 92 vezes maior que Portugal.
 
 De 1988 a 2019, quatro leis federais nasceram de projetos populares. Mas a Câmara dos Deputados
 diz não ter estrutura para conferir assinaturas. Então um deputado "apadrinha" o projeto, que segue

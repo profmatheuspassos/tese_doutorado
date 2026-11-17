@@ -58,7 +58,7 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 | Capítulo 2 | 1.797 | 1.714 | 157 | 10,9 | 2,05 | 63,9 | fácil |
 | Capítulo 3 | 1.794 | 1.615 | 144 | 11,2 | 2,12 | 58,2 | fácil |
 | Capítulo 4 | 1.791 | 1.725 | 151 | 11,4 | 2,11 | 58,9 | fácil |
-| Capítulo 5 (aguardando aprovação) | 1.797 | 1.700 | 143 | 11,9 | 2,12 | 57,8 | fácil |
+| Capítulo 5 | 1.800 | 1.703 | 143 | 11,9 | 2,12 | 57,8 | fácil |
 
 ### Home (17/11/2026)
 
@@ -217,9 +217,14 @@ descentralização, extraordinária, representação).
 
 ### Capítulo 5 (17/11/2026)
 
-**Resultado (versão enviada para aprovação):** índice 57,8, acima da referência de 50. Média de 11,9
-palavras por frase (limite: 20). Maior frase: 25 palavras; nenhuma acima de 25. Tamanho: 1.797
-palavras visíveis, dentro da faixa de 1.200 a 1.800 por página de capítulo (D16), perto do teto.
+**Resultado (versão aprovada, após o ajuste do autor):** índice 57,8, acima da referência de 50.
+Média de 11,9 palavras por frase (limite: 20). Maior frase: 25 palavras; nenhuma acima de 25.
+Tamanho: 1.800 palavras visíveis, no teto da faixa de 1.200 a 1.800 por página de capítulo (D16).
+
+**Ajuste do autor (D32).** "Em 2019, eram 1.473.063 assinaturas" passou a "Com base no eleitorado
+de 2018, eram 1.473.063 assinaturas" (+4 palavras); "espalhado por pelo menos cinco estados" passou
+a "em pelo menos cinco estados" (−1). Versão enviada para aprovação: 1.797 palavras, índice 57,8.
+O índice não mudou.
 
 **Histórico da medição.** Primeira versão: 2.179 palavras, índice 58,5, três frases acima de 25
 palavras (a maior, de 28). Os cortes foram feitos por tamanho (ver Rastreabilidade, capítulo 5, item

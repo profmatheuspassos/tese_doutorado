@@ -661,7 +661,8 @@ Releitura feita em 17/11/2026: corpo do capítulo 5 por inteiro (abertura, 5.1, 
 5.6). Notas de rodapé abertas só quando trazem dado ou argumento: 701, 705, 717, 719, 720, 721, 722,
 728, 730, 731, 732, 736, 737, 742, 745, 746, 747, 756, 766, 767, 768, 803 a 811, 825, 826, 827, 838,
 840 a 844, 846, 848, 849, 852 a 857, 863 a 865, 870 e 876 a 880. As âncoras abaixo foram conferidas
-uma a uma contra `conteudo/05-capitulo-5.md` (150 trechos, todos encontrados).
+uma a uma contra `conteudo/05-capitulo-5.md` (150 trechos, todos encontrados). Versão aprovada pelo
+autor em 17/11/2026, com o ajuste da D32.
 
 ### Blocos
 
@@ -689,7 +690,7 @@ uma a uma contra `conteudo/05-capitulo-5.md` (150 trechos, todos encontrados).
 | Referendos em Portugal | 8: 3 nacionais (1998, 1998, 2007) e 5 locais | 1975–2019 | CNE (nota 723) | 5.1 |
 | Consultas populares no Brasil | 5: 2 nacionais (1993, 2005) e 3 locais | 1988–2019 | TSE (notas 724 a 727) | 5.1 |
 | Assinaturas para iniciativa popular (PT) | 20 mil | regra legal | Lei 17/2003, alterada em 2016 (não citada) | 5.2 |
-| Assinaturas para iniciativa popular (BR) | 1% do eleitorado em ao menos cinco estados; 1.473.063 | regra constitucional; número "atualmente", datado no site como 2019 (A11) | Constituição Federal; cálculo da tese | 5.2 |
+| Assinaturas para iniciativa popular (BR) | 1% do eleitorado em ao menos cinco estados; 1.473.063 | regra constitucional; número "atualmente", que é 1% do eleitorado de 2018 (D32) | Constituição Federal; cálculo da tese | 5.2 |
 | Tamanho do Brasil | 92 vezes Portugal | — | Reportagem de 2017 (nota 736) | 5.2 |
 | Leis de iniciativa popular (BR) | 4 federais | 1988–2019 | Estudo de 2017 (nota 737) | 5.2 |
 | Iniciativas legislativas de cidadãos (PT) | 9 apresentadas, 4 viraram lei | 2003–2019 | Parlamento português (notas 748 a 762) | 5.2 |
@@ -723,10 +724,13 @@ consultas em 31 anos" (nota 730; ver D3).
 
 ### Escolhas de interpretação
 
-1. **Ano de 1.473.063 (A11, em aberto).** A tese diz que hoje são necessários "atualmente" 1.473.063
-   eleitores, sem ano. O site escreve "em 2019", ano em que os dados do capítulo foram colhidos (os
-   acessos às fontes são de junho de 2019, e as porcentagens da LAI usam o eleitorado de 2018). Cabe
-   ao autor confirmar.
+1. **Base das 1.473.063 assinaturas (D32, era A11).** A tese diz que são necessários "atualmente"
+   1.473.063 eleitores, sem ano. O número é exatamente 1% do eleitorado brasileiro de 2018
+   (147.306.275 eleitores; 1.473.062,75 arredondado para cima), conferido pelo autor. A tese e as
+   notas não indicam outro eleitorado de referência (busca feita em todo `conteudo/`). O site
+   escreve "Com base no eleitorado de 2018, eram 1.473.063 assinaturas". A versão enviada para
+   aprovação dizia "Em 2019"; para caber no teto de 1.800 palavras, "espalhado por pelo menos cinco
+   estados" passou a "em pelo menos cinco estados", sem mudança de sentido.
 2. **Consultas nacionais no Brasil (D3).** O site usa duas (1993 e 2005), como o corpo de 5.1. A nota
    730 ("três consultas populares de âmbito nacional em 31 anos") e a média "uma vez a cada dez
    anos" ficam de fora. O site diz só "consulta rara".
@@ -772,7 +776,7 @@ consultas em 31 anos" (nota 730; ver D3).
     (aprovada). Sem nome do autor.
 17. **93,7% e 84,3%.** Somas de "concordo" e "concordo totalmente" (36,4% + 57,3%; 32,5% + 51,8%),
     como na home. "Ser ouvido pesa mais do que ser atendido" resume a nota 809.
-18. **Brasil x Portugal nas petições.** A tese diz que, "na média do período", o brasileiro exerce
+18. **Brasil x Portugal nas petições (D33, leitura confirmada pelo autor).** A tese diz que, "na média do período", o brasileiro exerce
     mais o direito de petição (Latinobarómetro) e, adiante, que o envolvimento português "parece ser
     muito maior", com base no crescimento português e no uso baixo da LAI. O site mantém as duas
     afirmações e liga a segunda ao uso medido ("Nesse ponto"). O site dá só o número de 2015 do
@@ -826,7 +830,7 @@ consultas em 31 anos" (nota 730; ver D3).
     temas vedados à iniciativa popular, o "não compensa", a frase sobre Portugal como exemplo nas
     regras da iniciativa, 8% e 14% das petições portuguesas, Latinobarómetro de 2002 e 2008, as
     respostas da LAI, a lista completa de países com recall e o recall de 2003. Nenhum corte muda o
-    argumento; todos podem voltar se o autor trocar por outro trecho.
+    argumento. O autor manteve os cortes (D34).
 39. **Menções a "a tese" (D15).** Duas: as conclusões centrais tiradas das petições (B5) e o recall
     como tradução da cidadania ativa (B9). "O autor" aparece em cinco pontos de posição pessoal: a
     resposta às travas do referendo, as sugestões para a iniciativa popular, a escolha da Califórnia,
