@@ -71,7 +71,15 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D58 | Visuais do plano que ficam de fora (Fase 4) | **Não entram:** gráfico de abstenção e simulação dos três eleitores (cap. 2); Atenas em números, pares promessa/problema, anatomia do populismo, adversário x inimigo e dados de acesso (cap. 3); linha do tempo presença x decisão, "30 formas" e "26 de 35" em destaque (cap. 4); funil do recall separado, pedidos de informação por ano e escala 92x (cap. 5). Critério: só entra dado que está no texto aprovado ou que uma decisão já liberou (D44, no explorador). Decidido em 17/11/2026. |
 | D59 | Aprovação da Etapa 1 da Fase 4 (capítulo 2) | **Aprovada com três ajustes.** (1) O "92,9%" em destaque não pode encostar no parágrafo seguinte em nenhuma largura: a margem abaixo do número passa a acompanhar o tamanho dele, e um teste exige pelo menos 8 px entre a vírgula e o texto. (2) Na escada do B2, o primeiro degrau perde a terracota (cor do Brasil, D45), porque os degraus valem para os dois países: o destaque passa a ser em tinta. A terracota do explorador continua. (3) Lighthouse: só o `resumo.md` fica no repositório; os JSON completos da Fase 3 e da Fase 4 saem, e a Fase 3 ganha um resumo extraído deles antes da remoção. Decidido em 17/11/2026. |
 | D60 | Folga do "92,9%" na home (bloco B3) | Pedido do autor ao aprovar o merge da Etapa 1 da Fase 4: a home recebe a mesma margem do capítulo 2 abaixo do número em destaque (0,3 vez o tamanho do número), no lugar do espaço fixo de 24 px, para a vírgula nunca chegar perto do texto seguinte (em 768 px ficava a 3 px; agora fica a 23 px). Em 1024 px ou mais, número e texto ficam lado a lado, sem mudança. **Nenhuma palavra muda**; no HTML da home mudam só duas classes. O teste dos 8 px passa a valer também para a home. Capturas da Fase 3 mantidas (em 375 e 1440 px a home não muda). Decidido em 17/11/2026. |
+| D61 | Aprovação da Etapa 2 da Fase 4 (capítulos 1 e 3) | **Aprovada**, com merge na `main` feito pelo autor (PR #10). A Etapa 3 (capítulos 4 e 5) foi autorizada a partir da `main` atualizada. Decidido em 17/11/2026. |
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os pontos D1 a D60 foram decididos. Novos pontos entram aqui.
+Os pontos D1 a D61 foram decididos. Os pontos abaixo surgiram na Etapa 3 da Fase 4 (capítulos 4
+e 5) e seguem a proposta indicada até o autor decidir; nenhum muda palavra do texto aprovado.
+
+| # | Ponto | Proposta seguida |
+|---|---|---|
+| A15 | Lugar dos cartões das ferramentas (capítulo 5) | O plano diz "entre B9 e B10, onde o texto diz 'Nenhuma dessas ferramentas'". Os cartões ficam **antes do título "Complemento, com limites"**, fechando a parte das ferramentas, e não entre esse título e o parágrafo, para o título continuar colado ao texto que ele abre. |
+| A16 | Cartão do recall (capítulo 5) | Como a resposta é a mesma nos dois países ("Não existe.", T41), o cartão do recall **não tem alternador** no celular nem o rótulo "Como funciona": mostra Portugal e Brasil lado a lado em qualquer largura, com o exemplo da Califórnia no `<details>` (T42). |
+| A17 | Caminho do referendo (capítulo 5, B1) | Os três passos do meio (Assembleia, Tribunal Constitucional, Presidente) são as "três portas" do texto e ganham **nó quadrado com uma barra, de trava**; o primeiro e o último ficam redondos. Só desenho, sem rótulo além do T37. |
