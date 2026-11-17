@@ -28,7 +28,7 @@ o dado depende delas, nas notas de rodapé.
 | B5 O atalho | Democracia digital como decisão direta pela internet; acesso: PT 63,9% (16–74 anos, 1º trimestre de 2018), BR 74,8% em domicílios com acesso (2017); curtidas e bolhas (exemplo vegetariano); adversário x inimigo; populismo como degeneração; quantidade ≠ qualidade; complemento, não salvação; "algo mais" | 3.1; 3.2; 3.3; Considerações finais (§ 4) | "Cerca de 63,9% dos habitantes com idade entre 16 e 74 anos"; "74,8% da população residia em domicílios"; "cozinha vegetariana"; "o inimigo precisa necessária e completamente destruído"; "O populismo, portanto, é inegavelmente uma degeneração"; "é necessário *algo mais*"; "*salvadora da pátria*" |
 | B6 O cidadão no centro | Identificação patriótica (corresponsabilidade pela comunidade; local); racional, não moral (cinco pessoas); cidadania ativa (decidir políticas locais com os outros, responder pelo resultado, ao lado do Estado); governança centrada no governo x nos cidadãos; apatia por impotência; partidos que se abrem; PT: abertura frágil, 0,22% da população, propostas sem voto; BR: 30 possibilidades, nenhuma direta, Estatuto da Cidade consultivo; presença x decisão; propostas para constituição, lei e cultura | 4.1; 4.2; 4.2.1; 4.2.2; 4.2.3; 4.3 | "corresponsáveis pelo empreendimento que têm em comum"; "se houver 5 pessoas"; "de maneira subsidiária ao Estado -- e não em oposição e/ou em substituição a este"; "de *cidadão observador* passa-se ao *cidadão atuante*"; "apáticas na esfera política porque se sentem impotentes"; "aplica-se efetivamente a apenas 0,22% da população"; "30 possibilidades constitucionais"; "muito mais em termos *consultivos* do que *decisórios*"; "abertura à *presença* dos cidadãos […] mas não necessariamente favorecem a *tomada de decisão*" |
 | B7 As ferramentas | Referendo, iniciativa popular, petição e ação popular; referendo e iniciativa quase não usados e dependentes dos eleitos; referendo "só se o Parlamento quiser"; recall: definição, Califórnia, adoção gradual e local; complementos; risco de aventuras políticas e limites | Abertura do cap. 5; 5.1; 5.2; 5.3; 5.4; 5.5 | "democracia semidireta"; "o referendo só irá ocorrer *se o Parlamento assim quiser*"; "remoção de seus representantes dos cargos eletivos *antes* da próxima eleição"; "mecanismos *complementares* à democracia representativa, não que a substituam" |
-| B8 O que a tese conclui | Eleições essenciais, mas insuficientes; o raciocínio do um quarto; petições em PT: 5,4% (2003–2011) → 21% (2016), dois terços coletivas, 91,5% de interesse coletivo; 93,7% e 84,3% (pesquisa citada, tese de doutorado de 2017); ser ouvido > ser atendido; desencanto com a eleição, não com a participação; interesse local; PT à frente, com falhas; tabela dos sete problemas; sem fórmula mágica | Considerações finais (conclusões e itens a–g); 5.3; 5.5 | "escolhido por apenas um quarto dos eleitores"; "entre 2003 e 2011 apenas 5,4%"; "dois terços das petições"; "91,5% de todos os tipos de petições"; "36,4% […] 57,3%"; "32,5% […] 51,8%"; "o cidadão não tem interesse na participação eleitoral, mas isto não significa"; "não há uma *fórmula mágica*"; "havendo oportunidades, os cidadãos irão participar" |
+| B8 As conclusões | Eleições essenciais, mas insuficientes; o raciocínio do um quarto; petições em PT: 5,4% (2003–2011) → 21% (2016), dois terços coletivas, 91,5% de interesse coletivo; 93,7% e 84,3% (pesquisa com quem enviou petições; tese de doutorado do ISCTE, 2017, citada na nota 808); ser ouvido > ser atendido; desencanto com a eleição, não com a participação; interesse local; PT à frente, com falhas; tabela dos sete problemas; sem fórmula mágica | Considerações finais (conclusões e itens a–g); 5.3; 5.5 | "escolhido por apenas um quarto dos eleitores"; "entre 2003 e 2011 apenas 5,4%"; "dois terços das petições"; "91,5% de todos os tipos de petições"; "36,4% […] 57,3%"; "32,5% […] 51,8%"; "o cidadão não tem interesse na participação eleitoral, mas isto não significa"; "não há uma *fórmula mágica*"; "havendo oportunidades, os cidadãos irão participar" |
 | B9 Rodapé | Versão de divulgação; dados da tese, defendida em 2022, sem atualização | Decisão D7; regra do CLAUDE.md | — |
 
 ### Dados usados na home
@@ -46,7 +46,7 @@ o dado depende delas, nas notas de rodapé.
 | Possibilidades constitucionais de participação além do voto (BR) | 30 | — | Levantamento citado pela tese | 4.2.2 |
 | Portugueses que assinaram petição | 5,4% → 21% | 2003–2011 → 2016 | Portal de Opinião Pública | 5.3 |
 | Petições coletivas; de interesse coletivo (PT) | dois terços; 91,5% | estudo de 2017 | Tese de doutorado citada (ISCTE, 2017) | 5.3 |
-| Esperavam tratamento adequado; ser ouvidos (PT) | 93,7%; 84,3% | estudo de 2017 | idem | 5.3 |
+| Esperavam tratamento adequado; ser ouvidos (PT) | 93,7%; 84,3% | estudo de 2017 | idem | 5.3, nota 808 |
 
 ### Escolhas de interpretação
 
@@ -54,8 +54,7 @@ o dado depende delas, nas notas de rodapé.
    uma proposta de emenda constitucional numerada, os gastos com dois torneios de futebol e a
    corrupção, e diz que a emenda foi arquivada. Pela decisão D6 (nenhum caso concreto), o site
    fica só com o motivo inicial (a passagem) e o resultado ligado a ele (a redução do preço).
-   **Peço confirmação:** a decisão D6 permite manter os protestos de 2013 como cena de abertura,
-   como previa o plano aprovado?
+   **Confirmado pelo autor (D13).**
 2. **Período militar.** A Introdução usa o regime militar brasileiro como argumento por absurdo
    ("seria possível afirmar que…"). O site mantém o argumento, sem nomes, porque é um período
    histórico e não um caso concreto.
@@ -97,11 +96,24 @@ o dado depende delas, nas notas de rodapé.
 17. **"Ser ouvido conta mais do que ser atendido."** Junta 5.3 (nota 809) e as Considerações
     finais ("independentemente de ver as suas demandas concretizadas").
 18. **Tabela dos sete problemas.** Os rótulos dos problemas foram reescritos para o leitor
-    leigo: "tirania da maioria" virou "maioria que esmaga a minoria"; "massificação da cultura e
-    da moralidade", "massificação da cultura"; "demagogia no espaço vazio da democracia",
-    "demagogos falando em nome do povo"; "opressão mascarada", "exclusão disfarçada de
-    democracia"; "irracionalidade", "decisões irracionais". A coluna da
-    democracia digital segue 3.2; a da cidadania ativa, os itens (a) a (g) das Considerações
-    finais.
+    leigo, com o sentido conferido em 3.2: "tirania da maioria" virou "maioria que esmaga a
+    minoria"; "massificação da cultura e da moralidade" (o argumento de que o voto da maioria
+    rebaixa os padrões culturais e morais) virou "cultura e valores nivelados por baixo";
+    "demagogia no espaço vazio da democracia" virou "demagogos falando em nome do povo";
+    "opressão legal mascarada de democrática" (exclusões implícitas e constantes por raça,
+    classe ou gênero, sem opressão aberta) virou "exclusão silenciosa por raça, classe ou
+    gênero"; "irracionalidade" virou "decisões irracionais". A coluna da democracia digital
+    segue 3.2; a da cidadania ativa, os itens (a) a (g) das Considerações finais.
 19. **Remissão errada das Considerações finais (D12, e).** As Considerações finais atribuem ao
     "Capítulo 4" a análise das petições. A rastreabilidade aponta para 5.3, onde ela está.
+20. **Somas de 93,7% e 84,3%.** Os dois números não aparecem prontos na tese. São somas das
+    respostas "concordo" e "concordo totalmente" que a seção 5.3 traz para cada frase, com fonte
+    na nota 808 (tese de doutorado do ISCTE, fevereiro de 2017, p. 165):
+    "esperava que fosse tratada de forma adequada", 36,4% + 57,3% = 93,7%; "esperava que as
+    minhas preocupações fossem ouvidas", 32,5% + 51,8% = 84,3%. A própria tese trata as duas
+    respostas juntas como avaliação positiva.
+21. **Menções a "a tese" (pedido do autor, 17/11/2026; D15).** A home cita "a tese" no máximo cinco
+    vezes: na abertura, com o nome do autor; em três posições próprias do autor (a raiz do
+    problema está nas instituições; o populismo é uma degeneração da democracia; a proposta de
+    deixar a abertura clara na constituição); e no link "Sobre a tese". O resto é afirmado
+    diretamente. O conteúdo continua sendo o da tese, bloco a bloco, conforme a tabela acima.
