@@ -6,10 +6,12 @@
 import Capitulo1 from '../../components/capitulos/Capitulo1.astro';
 import Capitulo2 from '../../components/capitulos/Capitulo2.astro';
 import Capitulo3 from '../../components/capitulos/Capitulo3.astro';
+import Capitulo4 from '../../components/capitulos/Capitulo4.astro';
+import Capitulo5 from '../../components/capitulos/Capitulo5.astro';
 import { capitulos } from '../../lib/paginas';
 
 export async function getStaticPaths() {
-  const composicoes = { 1: Capitulo1, 2: Capitulo2, 3: Capitulo3 } as Record<number, typeof Capitulo2>;
+  const composicoes = { 1: Capitulo1, 2: Capitulo2, 3: Capitulo3, 4: Capitulo4, 5: Capitulo5 } as Record<number, typeof Capitulo2>;
   const caps = await capitulos();
   return caps.filter((c) => composicoes[c.n]).map((c) => {
     const m = c.rota.match(/^\/capitulos\/([\w-]+)\/$/);

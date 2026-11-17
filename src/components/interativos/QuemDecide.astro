@@ -1,0 +1,139 @@
+---
+/**
+ * Quem decide o quê (capítulo 4, B3). A lista das cinco etapas do texto ganha duas faixas de
+ * marcas, "Governo" (T6) e "Cidadãos" (T35), por marcasQuemDecide (src/lib/quemDecide.ts). Este
+ * componente traz as duas peças de interface em volta da lista:
+ *  - parte "topo": o alternador "Modelo de governança" (T34) e o cabeçalho das faixas;
+ *  - parte "estado": a linha de estado (T36, aria-live), que diz o que mudou.
+ * Começa em "Centrada no governo": só a faixa do governo acesa. Em "Centrada nos cidadãos", as
+ * marcas dos cidadãos acendem etapa a etapa. Tudo por CSS :has(), sem JavaScript; com movimento
+ * reduzido, a troca é imediata. Marcas e cabeçalho são aria-hidden: o texto diz o mesmo. Sem
+ * suporte a :has(), o alternador e a linha de estado somem e fica o estado inicial.
+ */
+import { t } from '../../i18n';
+
+interface Props { parte: 'topo' | 'estado' }
+const { parte } = Astro.props;
+const modelos = ['governo', 'cidadaos'] as const;
+---
+{parte === 'topo' ? (
+  <div class="qd-topo" data-ui data-quem-decide-topo>
+    <fieldset class="alternador qd-controles">
+      <legend class="alternador-legenda">{t('quem_decide.legenda')}</legend>
+      <div class="alternador-opcoes">
+        {modelos.map((m) => (
+          <label class="alternador-opcao">
+            <input type="radio" name="quem-decide" id={`qd-${m}`} value={m} checked={m === 'governo'} />
+            <span>{t(`quem_decide.opcoes.${m}`)}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+    <div class="qd-cabecalho" aria-hidden="true">
+      <span></span>
+      <span class="qd-col">{t('grafico.governo')}</span>
+      <span class="qd-col">{t('quem_decide.cidadaos')}</span>
+    </div>
+  </div>
+) : (
+  <p class="qd-estado" aria-live="polite" data-ui data-quem-decide-estado>
+    {modelos.map((m) => <span data-modelo={m}>{t(`quem_decide.estado.${m}`)}</span>)}
+  </p>
+)}
+
+<style is:global>
+  .qd-topo {
+    margin-top: 1.5rem;
+    padding: clamp(1.25rem, 4vw, 1.75rem) clamp(1rem, 4vw, 1.75rem) 0.75rem;
+    background: var(--color-nevoa);
+    border-radius: var(--radius-cartao) var(--radius-cartao) 0 0;
+  }
+  .qd-cabecalho,
+  .texto ol.qd-lista > li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--qd-col) var(--qd-col);
+    align-items: center;
+  }
+  .qd-topo,
+  .texto ol.qd-lista {
+    --qd-col: 4.5rem;
+  }
+  @media (min-width: 640px) {
+    .qd-topo,
+    .texto ol.qd-lista { --qd-col: 6rem; }
+  }
+  .qd-cabecalho {
+    margin-top: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--color-tinta);
+  }
+  .qd-col {
+    text-align: center;
+    font-size: 0.8125rem;
+    font-weight: 650;
+    color: var(--color-tinta-2);
+  }
+  .texto ol.qd-lista {
+    margin: 0;
+    padding: 0 clamp(1rem, 4vw, 1.75rem);
+    background: var(--color-nevoa);
+  }
+  .texto ol.qd-lista > li {
+    margin: 0;
+    padding-block: 0.7rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-tinta) 10%, transparent);
+  }
+  .texto ol.qd-lista > li::before { top: 0.7rem; }
+  .qd-marca {
+    justify-self: center;
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  .qd-marca svg { width: 100%; height: 100%; overflow: visible; }
+  .qd-circulo { fill: var(--color-tinta-2); stroke: var(--color-tinta-2); stroke-width: 1.5; }
+  .qd-visto { fill: none; stroke: var(--color-branco); stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
+  /* Cidadãos de fora: círculo vazio e tracejado (forma diferente, não só cor). */
+  .qd-cidadaos .qd-circulo {
+    fill: transparent;
+    stroke: var(--color-linha);
+    stroke-dasharray: 3 3;
+    transition: fill 0.35s ease, stroke 0.35s ease;
+  }
+  .qd-cidadaos .qd-visto {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .qd-cidadaos svg {
+    transform: scale(0.85);
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1.4);
+  }
+  .coluna:has(#qd-cidadaos:checked) .qd-cidadaos .qd-circulo { fill: var(--color-tinta); stroke: var(--color-tinta); stroke-dasharray: none; }
+  .coluna:has(#qd-cidadaos:checked) .qd-cidadaos .qd-visto { opacity: 1; }
+  .coluna:has(#qd-cidadaos:checked) .qd-cidadaos svg { transform: none; }
+  /* Etapa a etapa: cada linha acende um pouco depois da anterior (só com movimento normal). */
+  @media (prefers-reduced-motion: no-preference) {
+    .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(2) .qd-cidadaos * { transition-delay: 0.15s; }
+    .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(3) .qd-cidadaos * { transition-delay: 0.3s; }
+    .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(4) .qd-cidadaos * { transition-delay: 0.45s; }
+    .coluna:has(#qd-cidadaos:checked) .qd-lista > li:nth-child(5) .qd-cidadaos * { transition-delay: 0.6s; }
+  }
+
+  .texto p.qd-estado {
+    margin: 0 0 2rem;
+    padding: 1rem clamp(1rem, 4vw, 1.75rem) clamp(1.25rem, 4vw, 1.5rem);
+    background: var(--color-nevoa);
+    border-radius: 0 0 var(--radius-cartao) var(--radius-cartao);
+    font-size: var(--text-pequeno);
+    font-weight: 650;
+    color: var(--color-tinta);
+  }
+  .qd-estado [data-modelo='cidadaos'] { display: none; }
+  .coluna:has(#qd-cidadaos:checked) .qd-estado [data-modelo='governo'] { display: none; }
+  .coluna:has(#qd-cidadaos:checked) .qd-estado [data-modelo='cidadaos'] { display: inline; }
+  @supports not selector(:has(*)) {
+    .qd-controles,
+    .qd-estado { display: none; }
+  }
+</style>

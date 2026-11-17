@@ -690,7 +690,8 @@ palavra "cidadão" nas constituições, 89 em Portugal e 11 no Brasil (nota 643)
 9. **Governança e etapas.** "Governança" é explicada como "o jeito como Estado e sociedade se
    organizam para decidir" (a tese fala em relação entre Estado e sociedade). As cinco etapas seguem
    a nota 584; "definição da agenda" vira "definir o que entra na pauta", e "implementação",
-   "executar". "No segundo, pode entrar em qualquer uma" resume a possibilidade de interferir "nas
+   "executar". Na Fase 4, as etapas ganharam inicial maiúscula e perderam a pontuação final, por
+   virarem rótulos de linha do interativo (D65; nenhuma palavra mudou). "No segundo, pode entrar em qualquer uma" resume a possibilidade de interferir "nas
    diferentes etapas" e o envolvimento "em todas as etapas"; uma das condições citadas pela tese
    pede participação em "pelo menos uma".
 10. **Culpa "neles".** Vem da nota 586: no modelo centrado no governo é "fácil" o cidadão se eximir
@@ -781,6 +782,48 @@ palavra "cidadão" nas constituições, 89 em Portugal e 11 no Brasil (nota 643)
     mudanças propostas (B9) e o juízo "extremamente não democrática" (B10). "O autor" aparece em
     quatro pontos de posição pessoal: o cálculo das freguesias, Portugal mais avançado, a antecipação
     das críticas e as "ideias que revelam a inquietação".
+
+### Escolhas de apresentação visual (Fase 4)
+
+O texto publicado é o do `capitulo-4.md`, palavra por palavra (conferido a cada build por
+`scripts/conferir-texto.mjs`). O modelo da página é o do capítulo 2 (itens 1 e 2 da seção dele),
+com abertura em névoa e a imagem `cap4-abertura.webp` (`alt=""`, D47; ainda espaço reservado).
+Nenhuma escolha abaixo acrescenta afirmação ao texto; os rótulos novos são os aprovados (T6, T7,
+T34 a T36; D52).
+
+1. **Quem decide o quê (B3), interativo.** A lista das cinco etapas do texto ganha duas faixas
+   de marcas, "Governo" (T6) e "Cidadãos" (T35), com o alternador "Modelo de governança" (T34)
+   antes da lista e a linha de estado (T36, `aria-live`) depois. Como as etapas viram rótulos de
+   linha, cada uma passou a ter inicial maiúscula e nenhuma pontuação no fim ("Definir o que entra
+   na pauta", "Planejar"...), mudança só de pontuação e maiúsculas autorizada pelo autor (D65).
+   Começa em "Centrada no governo":
+   as cinco marcas do governo acesas e as dos cidadãos vazias e tracejadas ("o cidadão fica de
+   fora de todas"). Em "Centrada nos cidadãos", as marcas dos cidadãos acendem etapa a etapa e as
+   do governo continuam acesas, porque o texto diz que os cidadãos decidem "junto com o poder
+   público" e agem "ao lado do Estado, não contra ele nem no lugar dele". Cores neutras (cinza e
+   tinta): o modelo vale para os dois países. Marca vazia e marca cheia diferem também na forma
+   (tracejado x círculo cheio com visto), não só na cor. Funciona sem JavaScript (botões de rádio
+   e CSS `:has()`); com movimento reduzido, a troca é imediata. Marcas e cabeçalho são
+   `aria-hidden`: a lista e a linha de estado dizem o mesmo.
+2. **0,22% em destaque (B7).** Número grande em verde (Portugal, D1: os ramos finos "alcançam
+   0,22% da população"), logo antes do parágrafo que traz o dado. Valor do `dados.json`
+   (`freguesias_plenario_pt`), conferido contra a frase do texto ("são só 129 freguesias, com
+   23.466 habitantes: 0,22% da população", censo de 2011). Fora da leitura de tela; mesma folga
+   mínima de 8 px do capítulo 2 (D59), agora numa regra comum do CSS.
+3. **Ramo que engrossa e semente que brota (B9).** Depois da lista das três mudanças ("A tese
+   propõe três mudanças"), o motivo da home (D1) em dois cartões, "Portugal" e "Brasil" (T7): o
+   ramo fino engrossa e ganha duas folhas; das três sementes, a do meio brota. É a imagem do que as
+   mudanças fariam, sem dizer nada além do texto. `aria-hidden`; sem JS ou com movimento reduzido,
+   já aparece no estado final. A animação é a mesma da home, agora num módulo comum
+   (`src/scripts/comum/crescer.ts`).
+4. **Círculo virtuoso (B11).** O componente da home, tema claro, depois de "Assim o círculo
+   vicioso começa a girar ao contrário". Ao entrar na tela, os rótulos do vicioso (T8) dão lugar
+   aos do virtuoso (T9), com as setas no mesmo sentido (D50). Os três nós do virtuoso são as três
+   peças da proposta do B0 (vínculo, cidadania ativa, partidos abertos). `aria-hidden`; sem JS ou
+   com movimento reduzido, só os rótulos finais. Animação num módulo comum
+   (`src/scripts/comum/circulo.ts`), sem mudar a home.
+5. **Fora da página (D58):** linha do tempo presença x decisão, "30 formas" e "26 de 35" em
+   destaque.
 
 ---
 
@@ -964,6 +1007,45 @@ consultas em 31 anos" (nota 730; ver D3).
     como tradução da cidadania ativa (B9). "O autor" aparece em cinco pontos de posição pessoal: a
     resposta às travas do referendo, as sugestões para a iniciativa popular, a escolha da Califórnia,
     a frase "uma pessoa passiva à espera da próxima eleição" e o ponto fraco das ferramentas.
+
+### Escolhas de apresentação visual (Fase 4)
+
+O texto publicado é o do `capitulo-5.md`, palavra por palavra (conferido a cada build por
+`scripts/conferir-texto.mjs`). O modelo da página é o do capítulo 2, com abertura em névoa e a
+imagem `cap5-abertura.webp` (`alt=""`, D47; ainda espaço reservado). Nenhuma escolha abaixo
+acrescenta afirmação ao texto; os rótulos novos são os aprovados (T7, T37 a T42; D52).
+
+1. **Números dos rótulos ligados ao texto.** Os números dos cartões e do caminho do referendo
+   vêm de séries novas do `dados.json` (`referendo_pt`, `consultas_br`, `iniciativa_pt`,
+   `iniciativa_br`, `peticoes_assinadas`, `peticoes_ar_pt`, `recall_california`). Cada série tem
+   em `usos` a frase do `.md` que a confirma, conferida a cada build; onde o texto escreve o número
+   por extenso ("oito referendos", "duas nacionais", "Quatro viraram lei"), a conferência usa o
+   extenso. Nos rótulos aprovados (T40), os números aparecem em algarismos.
+2. **Caminho do referendo (B1).** Depois de "Só o Congresso Nacional convoca a consulta", duas
+   faixas: Portugal (verde) em cinco passos e Brasil (terracota) em um (T37). Os três passos do
+   meio são as "três portas" do texto e levam um nó quadrado com uma barra, de trava (D64); o primeiro e
+   o último, nó redondo (o último, cheio). Sem rótulo além do T37. Na horizontal a partir de
+   768 px, na vertical no celular. `aria-hidden`: o texto diz o mesmo. Os passos aparecem em
+   sequência ao entrar na tela, só com movimento normal.
+3. **Barras na tabela das petições (B5).** Ao lado de cada número da própria tabela (113 a 632),
+   uma barra verde (Portugal) do mesmo tamanho relativo, `aria-hidden`. Sem rótulo novo. No build,
+   o número de cada célula é conferido contra o `dados.json`; se diferir, o build para.
+4. **Cartões das ferramentas, interativo (entre B9 e B10).** Antes do título "Complemento, com
+   limites", cujo primeiro parágrafo começa por "Nenhuma dessas ferramentas" (D62), cinco cartões (T38):
+   referendo, iniciativa popular, petição, ação popular e recall. Cada cartão tem "Como funciona"
+   e "Quanto foi usado" (T39) para Portugal e Brasil (T7), com o conteúdo do T40, tirado do texto
+   aprovado (no referendo, Portugal, as três travas, D52; na iniciativa, Brasil, a base de 2018,
+   D32). A partir de 768 px, os dois países lado a lado; abaixo disso, um alternador
+   Portugal/Brasil por cartão, que começa em Portugal (botões de rádio e CSS `:has()`, sem
+   JavaScript; sem suporte a `:has()`, os dois países empilhados). A ação popular não tem "Quanto
+   foi usado": o texto não traz uso. O recall tem contorno tracejado, como na home, e "Não existe."
+   nos dois países (T41), sem alternador e sem o rótulo "Como funciona", porque a resposta é a
+   mesma nos dois (D63). O exemplo da Califórnia (T42) fica num `<details>`: 172 tentativas, 9 chegaram
+   às urnas, 6 tiraram o eleito do cargo, com barras proporcionais (as menores com tamanho mínimo
+   visível) e a legenda "Califórnia, cargos estaduais, de 1913 a 2019". O funil é texto lido pelo
+   leitor de tela; só as barras são `aria-hidden`.
+5. **Fora da página (D58):** funil do recall separado (fica no cartão), pedidos de informação por
+   ano e escala 92x.
 
 ---
 

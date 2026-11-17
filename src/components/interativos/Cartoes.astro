@@ -1,0 +1,224 @@
+---
+/**
+ * Cartões das ferramentas (capítulo 5, entre B9 e B10, antes de "Nenhuma dessas ferramentas").
+ * Cinco cartões (T38), cada um com "Como funciona" e "Quanto foi usado" (T39) para Portugal e
+ * Brasil (T7). Conteúdo das células: T40, tirado do texto aprovado; números como marcadores do
+ * dados.json, conferidos contra o texto a cada build (D52: no referendo, Portugal, as três
+ * travas). A partir de 768 px, as duas colunas lado a lado; abaixo, um alternador
+ * Portugal/Brasil por cartão (rádios + :has(), sem JavaScript). Sem suporte a :has(), as duas
+ * colunas aparecem empilhadas.
+ * Ação popular: sem "Quanto foi usado" (o texto não traz uso). Recall: contorno tracejado, como
+ * na home; "Não existe." nos dois países (T41), sem alternador; o exemplo da Califórnia (T42)
+ * fica num <details>, com o funil 172 → 9 → 6.
+ */
+import { mapa, t } from '../../i18n';
+import { dados, uso } from '../../lib/dados';
+import { formatarInteiro } from '../../lib/numeros';
+
+for (const bloco of ['B2', 'B3', 'B5', 'B6', 'B7']) uso('capitulo-5', bloco, 'cartoes');
+const nomes = mapa('ferramentas.nomes');
+const linhas = mapa('ferramentas.linhas');
+const paises = [
+  { id: 'pt', nome: t('paises.portugal'), cor: 'bg-ramo' },
+  { id: 'br', nome: t('paises.brasil'), cor: 'bg-semente' },
+] as const;
+const ordem = ['referendo', 'iniciativa', 'peticao', 'acao_popular', 'recall'] as const;
+if (Object.keys(nomes).join() !== ordem.join()) throw new Error('Cartões: nomes das ferramentas (T38) fora da ordem esperada.');
+
+// Células de um cartão: [linha, texto] por país; linhas sem texto ficam de fora.
+const celulas = (f: (typeof ordem)[number], pais: 'pt' | 'br'): [string, string][] => {
+  if (f === 'recall') return [['', t('ferramentas.nao_existe')]];
+  const c = mapa(`ferramentas.celulas.${f}`);
+  return (['como', 'uso'] as const).filter((l) => c[`${pais}_${l}`]).map((l) => [linhas[l], c[`${pais}_${l}`]]);
+};
+ordem.filter((f) => f !== 'recall').forEach((f) => {
+  if (!celulas(f, 'pt').length || celulas(f, 'pt').length !== celulas(f, 'br').length) throw new Error(`Cartões: ${f} sem células iguais nos dois países.`);
+});
+
+const rc = dados.recall_california;
+const funil = [
+  { n: rc.tentativas, rotulo: t('ferramentas.california.funil.tentativas') },
+  { n: rc.votacoes, rotulo: t('ferramentas.california.funil.votacoes') },
+  { n: rc.remocoes, rotulo: t('ferramentas.california.funil.remocoes') },
+];
+---
+<div class="ferramentas-cartoes largo" data-ui data-cartoes-ferramentas>
+  <ul class="ft-lista">
+    {ordem.map((f) => {
+      const alterna = f !== 'recall';
+      return (
+        <li class:list={['ft-cartao', !alterna && 'ft-falta']} data-ferramenta={f}>
+          <p class="ft-nome" id={`ft-${f}`}>{nomes[f]}</p>
+          {alterna && (
+            <div class="alternador ft-alternador" role="radiogroup" aria-labelledby={`ft-${f}`}>
+              <div class="alternador-opcoes">
+                {paises.map((p) => (
+                  <label class="alternador-opcao">
+                    <input type="radio" name={`ft-${f}-pais`} id={`ft-${f}-${p.id}`} value={p.id} checked={p.id === 'pt'} />
+                    <span>{p.nome}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+          <div class:list={['ft-paises', alterna && 'ft-paises-alternados']}>
+            {paises.map((p) => (
+              <div class:list={['ft-pais', `ft-${p.id}`]} data-pais={p.id}>
+                <div class="ft-pais-nome"><i class:list={['ponto-pais', p.cor]}></i>{p.nome}</div>
+                <dl class="ft-celulas">
+                  {celulas(f, p.id).map(([linha, texto]) => (
+                    <div class="ft-celula">
+                      {linha && <dt>{linha}</dt>}
+                      <dd>{texto}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            ))}
+          </div>
+          {!alterna && (
+            <details class="ft-california">
+              <summary>{t('ferramentas.california.botao')}</summary>
+              <figure class="ft-funil">
+                {funil.map((e) => (
+                  <div class="ft-funil-etapa">
+                    <span class="ft-funil-n">{formatarInteiro(e.n)}</span>
+                    <span class="ft-funil-direita">
+                      <span class="ft-funil-barra" style={`--p:${e.n / rc.tentativas}`} aria-hidden="true"></span>
+                      <span class="ft-funil-rotulo">{e.rotulo}</span>
+                    </span>
+                  </div>
+                ))}
+                <figcaption class="ft-funil-legenda">{t('ferramentas.california.legenda')}</figcaption>
+              </figure>
+            </details>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+</div>
+
+<style is:global>
+  .texto ul.ft-lista {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  .texto ul.ft-lista > li { margin: 0; padding: 0; }
+  .texto ul.ft-lista > li::before { display: none; }
+  .ft-cartao {
+    padding: 1.25rem clamp(1rem, 4vw, 1.75rem) 1.5rem !important;
+    background: var(--color-branco);
+    border: 1px solid color-mix(in srgb, var(--color-tinta) 10%, transparent);
+    border-radius: var(--radius-cartao);
+    box-shadow: 0 1px 2px rgb(15 17 20 / 0.04), 0 8px 24px -16px rgb(15 17 20 / 0.12);
+  }
+  /* O recall: a ferramenta que falta, em cartão tracejado (como na home). */
+  .ft-falta {
+    background: transparent;
+    box-shadow: none;
+    border: 1.5px dashed var(--color-linha);
+  }
+  .texto p.ft-nome {
+    margin: 0 0 1rem;
+    font-size: var(--text-subtitulo);
+    line-height: var(--text-subtitulo--line-height);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  .ft-alternador { margin-bottom: 1rem; }
+  .ft-paises {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .ft-pais { min-width: 0; }
+  .ft-pais-nome {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1.5px solid var(--color-ramo);
+    font-size: var(--text-pequeno);
+    font-weight: 700;
+  }
+  .ft-br .ft-pais-nome { border-bottom-color: var(--color-semente); }
+  .ft-falta .ft-pais-nome { border-bottom-color: var(--color-linha); }
+  .ferramentas-cartoes .ponto-pais {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 999px;
+  }
+  .ft-celulas { margin: 0; }
+  .ft-celula + .ft-celula { margin-top: 0.9rem; }
+  .ft-celulas dt {
+    font-size: 0.8125rem;
+    font-weight: 650;
+    color: var(--color-tinta-2);
+    margin-bottom: 0.2rem;
+  }
+  .ft-celulas dd {
+    margin: 0;
+    font-size: var(--text-pequeno);
+    line-height: 1.5;
+  }
+  /* Celular: um país por vez, escolhido no alternador. Desktop: os dois lado a lado. */
+  @media (max-width: 767.98px) {
+    .ft-paises-alternados { grid-template-columns: minmax(0, 1fr); }
+    .ft-paises-alternados .ft-pais-nome { display: none; }
+    .ft-cartao .ft-paises-alternados .ft-br { display: none; }
+    .ft-cartao:has(input[value='br']:checked) .ft-paises-alternados .ft-br { display: block; }
+    .ft-cartao:has(input[value='br']:checked) .ft-paises-alternados .ft-pt { display: none; }
+    @supports not selector(:has(*)) {
+      .ft-alternador { display: none; }
+      .ft-paises-alternados .ft-pais-nome { display: flex; }
+      .ft-cartao .ft-paises-alternados .ft-br { display: block; }
+    }
+  }
+  @media (min-width: 768px) {
+    .ft-alternador { display: none; }
+    .texto ul.ft-lista { gap: 1.25rem; }
+  }
+
+  .ft-california { margin-top: 1.25rem; font-size: var(--text-pequeno); }
+  .ft-california summary {
+    cursor: pointer;
+    font-weight: 650;
+    color: var(--color-ramo);
+    width: max-content;
+    max-width: 100%;
+  }
+  .ft-california summary:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+  .ft-funil { margin: 1rem 0 0; display: grid; gap: 0.75rem; }
+  .ft-funil-etapa {
+    display: grid;
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .ft-funil-n {
+    font-size: var(--text-subtitulo);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+  .ft-funil-direita { display: grid; gap: 0.3rem; }
+  .ft-funil-barra {
+    display: block;
+    height: 0.6rem;
+    width: max(0.5rem, calc(var(--p) * 100%));
+    border-radius: 999px;
+    background: var(--color-tinta-2);
+  }
+  .ft-funil-rotulo { line-height: 1.35; }
+  .ft-funil-legenda {
+    margin-top: 0.25rem;
+    font-size: 0.8125rem;
+    color: var(--color-tinta-2);
+  }
+</style>

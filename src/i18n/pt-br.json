@@ -72,5 +72,76 @@
     "mostrar": "Mostrar o que deixou de aparecer",
     "recomecar": "Recomeçar"
   },
-  "estadio_legenda": "Imagine 30 mil pessoas num estádio, sem microfone, todas com direito de propor leis e opinar. Discutir uma única proposta já seria difícil."
+  "estadio_legenda": "Imagine 30 mil pessoas num estádio, sem microfone, todas com direito de propor leis e opinar. Discutir uma única proposta já seria difícil.",
+  "quem_decide": {
+    "legenda": "Modelo de governança",
+    "opcoes": {
+      "governo": "Centrada no governo",
+      "cidadaos": "Centrada nos cidadãos"
+    },
+    "cidadaos": "Cidadãos",
+    "estado": {
+      "governo": "O cidadão fica de fora das cinco etapas.",
+      "cidadaos": "O cidadão pode entrar em qualquer uma das cinco etapas."
+    }
+  },
+  "caminho_referendo": {
+    "portugal": [
+      "Cidadãos reúnem {d:referendo_pt.assinaturas_mil} mil assinaturas",
+      "A Assembleia da República aprova",
+      "O Tribunal Constitucional confere",
+      "O Presidente da República convoca ou recusa",
+      "Votação: só obriga se votar mais da metade dos inscritos"
+    ],
+    "brasil": [
+      "Só o Congresso Nacional convoca"
+    ]
+  },
+  "ferramentas": {
+    "nomes": {
+      "referendo": "Referendo",
+      "iniciativa": "Iniciativa popular",
+      "peticao": "Petição",
+      "acao_popular": "Ação popular",
+      "recall": "Recall"
+    },
+    "linhas": {
+      "como": "Como funciona",
+      "uso": "Quanto foi usado"
+    },
+    "celulas": {
+      "referendo": {
+        "pt_como": "Cidadãos podem propor, com {d:referendo_pt.assinaturas_mil} mil assinaturas, mas a Assembleia, o Tribunal Constitucional e o Presidente podem barrar.",
+        "pt_uso": "{d:referendo_pt.total} referendos de {d:referendo_pt.de} a {d:referendo_pt.ate}: {d:referendo_pt.nacionais} nacionais e {d:referendo_pt.locais} locais.",
+        "br_como": "Só o Congresso Nacional convoca. O cidadão não pode propor.",
+        "br_uso": "{d:consultas_br.total} consultas de {d:consultas_br.de} a {d:consultas_br.ate}: {d:consultas_br.nacionais} nacionais e {d:consultas_br.locais} locais."
+      },
+      "iniciativa": {
+        "pt_como": "{d:iniciativa_pt.assinaturas_mil} mil assinaturas, que podem ser enviadas pela internet.",
+        "pt_uso": "{d:iniciativa_pt.total} iniciativas de {d:iniciativa_pt.de} a {d:iniciativa_pt.ate}; {d:iniciativa_pt.viraram_lei} viraram lei.",
+        "br_como": "{d:iniciativa_br.percentual_eleitorado}% do eleitorado em pelo menos {d:iniciativa_br.estados} estados: {d:iniciativa_br.assinaturas} assinaturas, com base no eleitorado de {d:iniciativa_br.ano}, todas em papel.",
+        "br_uso": "{d:iniciativa_br.leis_federais} leis federais de {d:iniciativa_br.de} a {d:iniciativa_br.ate}; formalmente, nenhuma como iniciativa popular."
+      },
+      "peticao": {
+        "pt_como": "Direito de participação política, com lei própria. Dá direito a uma resposta.",
+        "pt_uso": "Já assinaram: {d:peticoes_assinadas.pt.0.valor}% ({d:peticoes_assinadas.pt.0.de} a {d:peticoes_assinadas.pt.0.ate}) e {d:peticoes_assinadas.pt.1.valor}% ({d:peticoes_assinadas.pt.1.ano}).",
+        "br_como": "Direito individual, sem lei própria. Dá direito a uma resposta.",
+        "br_uso": "Dizem ter assinado: {d:peticoes_assinadas.br.valor}% ({d:peticoes_assinadas.br.ano})."
+      },
+      "acao_popular": {
+        "pt_como": "Direito de participação política.",
+        "br_como": "Direito individual; segue uma lei de 1965."
+      }
+    },
+    "nao_existe": "Não existe.",
+    "california": {
+      "botao": "Ver o exemplo da Califórnia",
+      "funil": {
+        "tentativas": "tentativas",
+        "votacoes": "chegaram às urnas",
+        "remocoes": "tiraram o eleito do cargo"
+      },
+      "legenda": "Califórnia, cargos estaduais, de {d:recall_california.de} a {d:recall_california.ate}"
+    }
+  }
 }

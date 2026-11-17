@@ -1,0 +1,71 @@
+---
+/**
+ * Ramo que engrossa e semente que brota (capítulo 4, B9), depois das três mudanças que a tese
+ * propõe. Reusa o motivo da home (D1): o ramo fino de Portugal engrossa e ganha folhas; das
+ * sementes do Brasil, uma brota. Legendas T7. Decorativo (aria-hidden): o texto diz o que muda.
+ * Sem JS ou com movimento reduzido, o desenho já está no estado final (ramo grosso, broto aberto).
+ */
+import Ramo from '../motivo/Ramo.astro';
+import Solo from '../motivo/Solo.astro';
+import { t } from '../../i18n';
+---
+<div class="crescimento largo" aria-hidden="true" data-ui data-crescimento>
+  <div class="crescimento-pais crescimento-pt">
+    <Ramo class="crescimento-ramo text-ramo" crescer />
+    <span class="crescimento-rotulo"><i class="ponto-pais bg-ramo"></i>{t('paises.portugal')}</span>
+  </div>
+  <div class="crescimento-pais crescimento-br">
+    <Solo class="crescimento-solo text-semente" />
+    <span class="crescimento-rotulo"><i class="ponto-pais bg-semente"></i>{t('paises.brasil')}</span>
+  </div>
+</div>
+
+<style is:global>
+  .crescimento {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 40rem !important;
+  }
+  .crescimento-pais {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem 1rem 1.25rem;
+    border-radius: var(--radius-cartao);
+    background: var(--color-nevoa);
+  }
+  .crescimento-pt { border-top: 3px solid var(--color-ramo); }
+  .crescimento-br { border-top: 3px solid var(--color-semente); }
+  .crescimento-ramo { height: clamp(8rem, 30vw, 11rem); width: auto; }
+  .crescimento-solo { width: 100%; max-width: 12rem; height: auto; }
+  .crescimento-rotulo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: var(--text-pequeno);
+    font-weight: 650;
+    color: var(--color-tinta);
+  }
+  .crescimento .ponto-pais {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 999px;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { crescer } from '../../scripts/comum/crescer';
+  import { desligar } from '../../scripts/comum/observar';
+
+  document.documentElement.classList.add('anim-pronto');
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const obs: IntersectionObserver[] = [];
+    document.querySelectorAll('[data-crescimento]').forEach((el) => crescer(el, el, obs));
+    return desligar(obs);
+  });
+</script>

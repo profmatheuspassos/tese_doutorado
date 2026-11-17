@@ -1,0 +1,133 @@
+---
+/**
+ * Caminho do referendo (capítulo 5, B1; T37): em Portugal, cinco passos; no Brasil, um. Os três
+ * passos do meio são as "três portas" do texto (Assembleia, Tribunal Constitucional, Presidente)
+ * e levam um nó quadrado, de trava; o primeiro e o último, nó redondo. Portugal em verde, Brasil
+ * em terracota (cada faixa é um país, D45). Repete o que o texto do bloco diz: aria-hidden.
+ * Passos na horizontal a partir de 768 px; na vertical no celular. Aparecem em sequência ao
+ * entrar na tela (data-anima, só com movimento normal).
+ */
+import { lista, t } from '../../i18n';
+import { uso } from '../../lib/dados';
+
+uso('capitulo-5', 'B1', 'caminho-referendo');
+const portugal = lista('caminho_referendo.portugal');
+const brasil = lista('caminho_referendo.brasil');
+if (portugal.length !== 5 || brasil.length !== 1) throw new Error('Caminho do referendo: esperados cinco passos em Portugal e um no Brasil (T37).');
+const faixas = [
+  { pais: 'pt', nome: t('paises.portugal'), passos: portugal, porta: (i: number) => i >= 1 && i <= 3 },
+  { pais: 'br', nome: t('paises.brasil'), passos: brasil, porta: () => false },
+];
+---
+<div class="caminho largo" aria-hidden="true" data-ui data-caminho>
+  {faixas.map((f) => (
+    <div class:list={['caminho-faixa', `caminho-${f.pais}`]}>
+      <span class="caminho-pais"><i class:list={['ponto-pais', f.pais === 'pt' ? 'bg-ramo' : 'bg-semente']}></i>{f.nome}</span>
+      <ol class="caminho-passos" data-anima>
+        {f.passos.map((p, i) => (
+          <li class="caminho-passo" style={`--i:${i}`} data-porta={f.porta(i) ? '' : undefined}>
+            <span class="caminho-no"></span>
+            <span class="caminho-rotulo">{p}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  ))}
+</div>
+
+<style is:global>
+  .caminho {
+    display: grid;
+    gap: 1rem;
+  }
+  .caminho-faixa {
+    --c: var(--color-ramo);
+    padding: 1.25rem clamp(1rem, 4vw, 1.75rem) 1.5rem;
+    border-radius: var(--radius-cartao);
+    background: var(--color-nevoa);
+    border-left: 3px solid var(--c);
+  }
+  .caminho-br { --c: var(--color-semente); }
+  .caminho-pais {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 1rem;
+    font-size: var(--text-pequeno);
+    font-weight: 700;
+    color: var(--color-tinta);
+  }
+  .caminho .ponto-pais {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 999px;
+  }
+  .texto ol.caminho-passos {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .texto ol.caminho-passos > li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0 0 1.1rem;
+  }
+  .texto ol.caminho-passos > li::before { display: none; }
+  .texto ol.caminho-passos > li:last-child { padding-bottom: 0; }
+  /* traço entre os nós (vertical no celular) */
+  .caminho-passo:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 0.6875rem;
+    top: 1.5rem;
+    bottom: 0;
+    width: 2px;
+    background: color-mix(in srgb, var(--c) 45%, transparent);
+  }
+  .caminho-no {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 999px;
+    border: 2px solid var(--c);
+    background: var(--color-branco);
+  }
+  .caminho-passo:last-child .caminho-no { background: var(--c); }
+  /* As três portas: nó quadrado, com uma barra de trava. */
+  .caminho-passo[data-porta] .caminho-no {
+    border-radius: 4px;
+    background: linear-gradient(var(--c), var(--c)) center / 2px 60% no-repeat, var(--color-branco);
+  }
+  .caminho-rotulo {
+    padding-top: 0.1rem;
+    font-size: var(--text-pequeno);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-tinta);
+  }
+  @media (min-width: 768px) {
+    .texto ol.caminho-passos { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .texto ol.caminho-passos > li {
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 0 0.75rem 0 0;
+    }
+    .caminho-passo:not(:last-child)::after {
+      left: 1.9rem;
+      right: 0.4rem;
+      top: 0.6875rem;
+      bottom: auto;
+      width: auto;
+      height: 2px;
+    }
+  }
+</style>
+
+<script>
+  import '../../scripts/comum/visuais';
+</script>
