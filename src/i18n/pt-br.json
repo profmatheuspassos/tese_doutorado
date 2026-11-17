@@ -143,5 +143,26 @@
       },
       "legenda": "Califórnia, cargos estaduais, de {d:recall_california.de} a {d:recall_california.ate}"
     }
+  },
+  "citar": {
+    "copiar": "Copiar",
+    "copiar_nome": "Copiar a referência {formato}",
+    "copiado": "Copiado",
+    "aviso": "Referência {formato} copiada.",
+    "falha": "Não deu para copiar. O texto ficou selecionado: use Ctrl+C (ou Cmd+C no Mac).",
+    "meses": [
+      "jan.",
+      "fev.",
+      "mar.",
+      "abr.",
+      "maio",
+      "jun.",
+      "jul.",
+      "ago.",
+      "set.",
+      "out.",
+      "nov.",
+      "dez."
+    ]
   }
 }

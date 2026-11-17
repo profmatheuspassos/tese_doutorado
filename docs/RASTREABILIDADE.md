@@ -161,6 +161,12 @@ afirmação ao texto.
 9. **Rótulos de interface (D43).** Navegação, links "Leia o capítulo N", rótulos dos gráficos e
    dos círculos e a página 404 usam só os textos aprovados em `src/i18n/pt-br.json`.
 
+
+**Fase 4, Etapa 4 (D67).** As animações da home passaram a carregar em duas partes: a abertura (B0)
+na carga da página e o resto (B1 a B8) quando o navegador fica ocioso, um bloco por tarefa. É só
+uma mudança de quando o código roda: o comportamento visível é o mesmo (capturas da Fase 3 iguais
+pixel a pixel) e nenhuma palavra muda.
+
 ---
 
 ## Capítulo 1 (`src/content/pt-br/capitulo-1.md`)
@@ -1136,3 +1142,34 @@ o uso de inteligência artificial (D37).
 13. **Menções a "a tese" (D15).** Três no corpo (duas em B1, uma em B5), além do título da página e
     de "uma tese de doutorado" na abertura. No resto, "o trabalho" e "a pesquisa". "O autor"
     aparece duas vezes (B1, B3).
+
+### Escolhas de apresentação visual (Fase 4)
+
+O texto publicado é o do `sobre.md`, palavra por palavra (conferido a cada build por
+`scripts/conferir-texto.mjs`, inclusive dentro dos blocos das referências). O modelo da página é o
+dos capítulos, sem imagem e sem "Capítulo N". Nenhuma escolha abaixo acrescenta afirmação ao
+texto; os rótulos novos são os aprovados (T43 a T48; D52).
+
+1. **Abertura (B0).** Fundo névoa, título e parágrafo do B0 e, ao lado no desktop (abaixo no
+   celular), cinco sementes do motivo da home (D1), decorativas (`aria-hidden`). Sem imagem: não
+   há uma reservada para esta página. `meta description` = o parágrafo do B0 (T17).
+2. **Ficha (B2).** A tabela do texto vira cartão de duas colunas, com a chave em cinza. A linha de
+   cabeçalho vazia do `.md` fica `aria-hidden` e some da tela; a primeira célula de cada linha
+   ganha o papel de cabeçalho de linha (`role="rowheader"`), para o leitor de tela anunciar
+   "Autor", "Orientador" etc. junto do valor. Só atributos; nenhuma palavra muda. No celular,
+   chave em cima e valor embaixo. Link do depósito com https (D36, D38).
+3. **Como citar (B6).** Os três blocos do texto quebram linha em qualquer largura (sem rolagem
+   lateral) e ficam em cartão claro. O realce de sintaxe que o Markdown aplica aos blocos é
+   neutralizado por CSS, porque a referência é texto e não código; nenhum caractere muda. ABNT e
+   APA usam a fonte do corpo (Inter); o BibTeX, que é código, continua em fonte monoespaçada (D69). Título em
+   negrito no ABNT e em itálico no APA, por envoltório (como previa o item 12 das escolhas de
+   interpretação). Abaixo de cada bloco, o botão "Copiar" (T43), com o nome acessível "Copiar a
+   referência ABNT/APA/BibTeX" (T44). Ao copiar: texto simples, sem negrito nem itálico; no ABNT,
+   "[data de acesso]" vira a data do dia no padrão ABNT ("17 nov. 2026", meses em T48). O botão
+   mostra "Copiado" (T45) por 2 s; nesse intervalo o nome acessível também passa a "Copiado", para
+   o texto visível fazer parte do nome (critério 2.5.3 da WCAG; D68). O aviso T46 vai para o leitor de
+   tela por uma região `aria-live`. Se a área de transferência falhar, o texto da referência fica
+   selecionado e o aviso T47 aparece na tela. **Sem JavaScript**, os botões não aparecem; as
+   referências ficam visíveis e selecionáveis, com "[data de acesso]" como está no texto aprovado.
+4. **Contato (B7).** O parágrafo do texto vira cartão, com o link `mailto:` dele. Nada novo.
+5. **Navegação final.** "Anterior" (Capítulo 5) e "Voltar ao início" (T10): é a última página.

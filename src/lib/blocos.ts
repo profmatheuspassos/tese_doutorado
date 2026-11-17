@@ -173,3 +173,15 @@ export function anexarEmCelulas(tabela: string, coluna: number, html: (linha: nu
     return `<tr>${celulas}</tr>`;
   }));
 }
+
+/** Acrescenta atributos à célula de uma coluna (contada a partir de 0) em cada linha do corpo. */
+export function atributosNaColuna(tabela: string, coluna: number, atributos: Record<string, string>): string {
+  if (!tabela.startsWith('<table')) throw new Error('atributosNaColuna: o elemento precisa ser uma tabela.');
+  const extra = Object.entries(atributos).map(([k, v]) => ` ${k}="${v.replace(/"/g, '&quot;')}"`).join('');
+  return tabela.replace(/<tbody>[\s\S]*<\/tbody>/, (tbody) => tbody.replace(/<tr>([\s\S]*?)<\/tr>/g, (_l, dentro: string) => {
+    let c = 0;
+    const celulas = dentro.replace(/<td(?=[\s>])/g, (m) => (c++ === coluna ? `<td${extra}` : m));
+    if (c <= coluna) throw new Error(`atributosNaColuna: linha sem a coluna ${coluna}.`);
+    return `<tr>${celulas}</tr>`;
+  }));
+}
