@@ -2,18 +2,18 @@
 pagina: home
 rota: /
 titulo: "Revigorar, não substituir"
-subtitulo: "Uma tese sobre democracia, cidadania e participação em Portugal e no Brasil"
+subtitulo: "Democracia, cidadania e participação em Portugal e no Brasil"
 ---
 
 <!-- B0 | Abertura | origem: Resumo; Introdução (Contextualização) -->
 
 # Revigorar, não substituir
 
-Este site conta, em linguagem simples, uma tese de doutorado em Direito que compara Portugal e
-Brasil. Os dois países têm eleições livres, partidos e liberdade de expressão. Mesmo assim,
+Este site conta, em linguagem simples, a tese de doutorado em Direito de Matheus Passos Silva,
+que compara Portugal e Brasil. Os dois países têm eleições livres, partidos e liberdade de expressão. Mesmo assim,
 muita gente sente que a própria voz não conta.
 
-A saída que a tese propõe não é trocar a democracia
+A saída não é trocar a democracia
 representativa, o sistema em que o povo elege pessoas para decidir em seu nome. É revigorá-la,
 colocando o cidadão no centro das decisões sobre o lugar onde vive.
 
@@ -28,7 +28,7 @@ Parte dos pedidos foi atendida: o preço da passagem caiu.
 À primeira vista, a cena prova que a democracia funciona. Houve liberdade para protestar, os
 governantes responderam, e o país tem eleições livres.
 
-Para a tese, não basta. Ter as regras certas é necessário, mas não é
+Não basta. Ter as regras certas é necessário, mas não é
 suficiente. Se bastasse, o Brasil do período militar, que tinha quase todas essas regras, teria
 sido uma democracia.
 
@@ -48,8 +48,8 @@ A teoria política reúne as chamadas "regras do jogo" da democracia. Entre elas
 
 Um governo democrático também precisa responder aos cidadãos e prestar contas a eles.
 
-A tese confere a constituição de cada país, que é a sua lei mais importante, e as leis
-eleitorais. Portugal e Brasil cumprem todas as regras. No papel, são democracias. Falta saber se
+Portugal e Brasil cumprem todas essas regras, tanto na constituição, a lei mais importante de
+cada país, quanto nas leis eleitorais. No papel, são democracias. Falta saber se
 isso chega à vida de todo dia.
 
 <!-- B3 | Na prática | origem: Introdução (Contextualização); 2.1 (raciocínio do cidadão; confiança interpessoal; Quadros 1, 2 e 5; confiança nos partidos em Portugal) -->
@@ -86,7 +86,7 @@ democráticos por dentro. Na prática, poucos dirigentes decidem programa e cand
 Portugal, a lei exige democracia interna, mas a prática fica aquém. No Brasil, a lei nem exige isso
 de forma explícita.
 
-**As pessoas deixam de se ver como parte de um todo.** A tese chama isso de fragmentação
+**As pessoas deixam de se ver como parte de um todo.** Isso se chama fragmentação
 política. Cada um cuida de si, faltam projetos em comum, e cresce a sensação de que nada muda.
 
 Quanto mais o cidadão se afasta, mais os partidos se fecham. Quanto mais eles se fecham, menos o
@@ -99,7 +99,7 @@ outros.
 ## O atalho que não resolve
 
 Diante disso, ganhou força a ideia da democracia digital: em vez de eleger representantes,
-as pessoas decidiriam diretamente, pela internet. A tese mostra que não resolve.
+as pessoas decidiriam diretamente, pela internet. Não resolve.
 
 **Nem todos estão conectados.** Em 2018, 63,9% dos portugueses de 16 a 74 anos tinham usado a
 internet nos três primeiros meses do ano. No Brasil, em 2017, 74,8% das pessoas viviam em casas
@@ -124,7 +124,7 @@ qualidade. A tecnologia pode ser um complemento, mas não é a salvação. É pr
 
 A proposta tem três peças.
 
-**1. Sentir-se parte da comunidade.** A tese chama isso de identificação patriótica. O nome pode
+**1. Sentir-se parte da comunidade.** O nome técnico é identificação patriótica. O nome pode
 enganar: a ideia é que as pessoas se reconheçam como responsáveis, juntas, pela comunidade em que
 vivem. Funciona melhor no bairro ou na cidade.
 
@@ -137,9 +137,9 @@ todas.
 onde mora. Políticas públicas são as ações do poder público para resolver problemas coletivos,
 como a iluminação de uma rua. Quem decide junto também responde pelo resultado.
 
-Hoje, tudo gira em torno do governo, e o cidadão só observa. A tese propõe uma governança
+Hoje, tudo gira em torno do governo, e o cidadão só observa. A proposta é uma governança
 centrada nos cidadãos, em que o cidadão atua ao lado do Estado, não contra ele nem no lugar dele.
-Para a tese, as pessoas se afastam da política porque se sentem impotentes. Quando a participação
+As pessoas se afastam da política porque se sentem impotentes. Quando a participação
 tem efeito, o interesse aparece.
 
 **3. Partidos mais abertos.** Quem se envolve nas questões do bairro passa a procurar os partidos
@@ -181,7 +181,7 @@ só acontece se o Parlamento quiser.
 
 Falta uma ferramenta nos dois países: o recall. Com ele, os eleitores reúnem assinaturas e depois
 votam se um eleito deve deixar o cargo antes do fim do mandato. O estado da Califórnia, nos
-Estados Unidos, usa o recall. A tese sugere adotá-lo aos poucos, começando pelo nível local.
+Estados Unidos, usa o recall. A sugestão é adotá-lo aos poucos, começando pelo nível local.
 
 Todas essas ferramentas complementam a representação, não a substituem. E podem servir a
 aventuras políticas. Por isso, precisam de limites na lei, respeito à minoria e controle da
@@ -189,7 +189,7 @@ Justiça.
 
 <!-- B8 | O que a tese conclui | origem: Considerações finais (conclusões; sete problemas; "fórmula mágica"); 5.3 (dados e conclusões sobre petições); 5.5 (eleições essenciais, não suficientes) -->
 
-## O que a tese conclui
+## As conclusões
 
 **Eleições são essenciais, mas não bastam.** Quando vota mais ou menos metade dos eleitores, um
 governante pode se eleger com o apoio de só um quarto deles.
@@ -198,7 +198,7 @@ governante pode se eleger com o apoio de só um quarto deles.
 21% dos portugueses disseram ter assinado alguma petição. Entre 2003 e 2011, eram 5,4%. Dois
 terços das petições são coletivas, e 91,5% buscam um interesse comum.
 
-**Ser ouvido conta muito.** Numa pesquisa citada pela tese, 93,7% de quem enviou petições
+**Ser ouvido conta muito.** Numa pesquisa, 93,7% de quem enviou petições
 esperava um tratamento adequado, e 84,3% esperava ser ouvido. A confiança depende mais de ser
 ouvido do que de ver o pedido atendido. O desencanto é com a eleição, não com a participação.
 
@@ -209,25 +209,25 @@ problemas próximos.
 
 ### Sete problemas, duas respostas
 
-A tese testa as duas saídas contra sete problemas apontados à democracia representativa.
+Veja como as duas saídas lidam com sete problemas apontados à democracia representativa.
 
 | Problema | O digital resolve? | A resposta da cidadania ativa |
 |---|---|---|
 | Maioria que esmaga a minoria | Não | Decisões locais, em grupos diversos, impedem que um grupo domine |
-| Massificação da cultura | Não; agrava | Quem participa se informa sobre o bairro e a cidade |
+| Cultura e valores nivelados por baixo | Não; agrava | Quem participa se informa sobre o bairro e a cidade |
 | Governo ineficaz | Não | Recursos vão para necessidades reais, e quem decide se sente responsável |
 | Conflitos entre grupos | Não; estimula o "nós contra eles" | Os conflitos ficam, mas busca-se acordo, não vitória total |
 | Demagogos falando "em nome do povo" | Não | A ação dos cidadãos entre eleições ocupa esse lugar |
-| Exclusão disfarçada de democracia | Não garante | A participação de baixo para cima ajuda a reduzi-la |
+| Exclusão silenciosa por raça, classe ou gênero | Não garante | A participação de baixo para cima ajuda a reduzi-la |
 | Decisões irracionais | Não | Quem vive o problema participa da decisão |
 
 ### Sem fórmula mágica
 
-Nada disso depende de altruísmo. Mudar a lei não faz ninguém participar de uma hora para outra, e
-a tese não promete isso. Ela aponta uma possibilidade: com oportunidades reais, as pessoas
+Nada disso depende de altruísmo. Mudar a lei não faz ninguém participar de uma hora para outra.
+O que existe é uma possibilidade: com oportunidades reais, as pessoas
 participam. E, quando são ao menos ouvidas, passam a se interessar pelo que é de todos.
 
 <!-- B9 | Rodapé | origem: decisão D7 (ficha da tese); página Sobre a tese (a escrever) -->
 
-Esta é uma versão de divulgação. Os dados são os da tese, defendida em 2022, e não foram
-atualizados. Para saber como a tese foi feita e como citá-la, veja [Sobre a tese](/sobre/).
+Esta é uma versão de divulgação. Os dados são os do trabalho original, defendido em 2022, e
+não foram atualizados. Para saber como ele foi feito e como citá-lo, veja [Sobre a tese](/sobre/).
