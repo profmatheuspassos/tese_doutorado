@@ -1,0 +1,84 @@
+---
+/**
+ * Capítulo 4 — O cidadão no centro.
+ * B3: quem decide o quê (interativo; as cinco etapas da lista do texto com as faixas "Governo" e
+ * "Cidadãos"). B7: 0,22% em destaque. B9: ramo que engrossa e semente que brota, depois das três
+ * mudanças. B11: círculo virtuoso, com a troca de rótulos do vicioso (D50).
+ */
+import Capitulo from '../../layouts/Capitulo.astro';
+import BlocoTexto from '../capitulo/BlocoTexto.astro';
+import Circulo from '../diagramas/Circulo.astro';
+import NumeroGrande from '../graficos/NumeroGrande.astro';
+import Crescimento from '../graficos/Crescimento.astro';
+import QuemDecide from '../interativos/QuemDecide.astro';
+import { pagina } from '../../lib/paginas';
+import { usarBlocos } from '../../lib/blocos';
+import { marcasQuemDecide } from '../../lib/quemDecide';
+import { dados, uso } from '../../lib/dados';
+
+const { dados: meta, blocos } = await pagina('capitulo-4');
+const { b, conferir } = usarBlocos(blocos, 'capitulo-4');
+const B0 = b('B0');
+const [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11, B12] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10', 'B11', 'B12'].map(b);
+conferir();
+
+// B3 — a lista das cinco etapas, com o alternador antes e a linha de estado depois.
+const iEtapas = B3.elementos.findIndex((el) => el.startsWith('<ol'));
+if (iEtapas < 1 || !B3.elementos[iEtapas - 1].includes('cinco etapas')) throw new Error('capitulo-4 B3: lista das cinco etapas fora do lugar esperado.');
+const etapas = (el: string, i: number) => (i === iEtapas ? marcasQuemDecide(el) : el);
+
+// B7 — 0,22% em destaque, antes do parágrafo que traz o número.
+uso('capitulo-4', 'B7', 'numero-grande');
+const iFreguesias = B7.elementos.findIndex((el) => el.includes('% da população'));
+if (iFreguesias < 1) throw new Error('capitulo-4 B7: parágrafo das freguesias com reunião de todos os eleitores não encontrado.');
+
+// B9 — o ramo e a semente entram depois da lista das três mudanças.
+const iMudancas = B9.elementos.findIndex((el) => el.startsWith('<ul'));
+if (iMudancas < 1 || (B9.elementos[iMudancas].match(/<li[\s>]/g) ?? []).length !== 3) throw new Error('capitulo-4 B9: lista das três mudanças não encontrada.');
+
+// B11 — o círculo fecha o bloco, depois de "Assim o círculo vicioso começa a girar ao contrário."
+const fimB11 = B11.elementos.length - 1;
+if (!B11.elementos[fimB11].includes('girar ao contrário')) throw new Error('capitulo-4 B11: a última frase mudou.');
+---
+<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={meta.titulo_original} imagem="cap4-abertura.webp" tema="nevoa">
+  <BlocoTexto bloco={B1} />
+  <BlocoTexto bloco={B2} />
+  <BlocoTexto bloco={B3} transformar={etapas}>
+    <QuemDecide slot={`apos-${iEtapas - 1}`} parte="topo" />
+    <QuemDecide slot={`apos-${iEtapas}`} parte="estado" />
+  </BlocoTexto>
+  <BlocoTexto bloco={B4} />
+  <BlocoTexto bloco={B5} />
+  <BlocoTexto bloco={B6} />
+  <BlocoTexto bloco={B7}>
+    <NumeroGrande slot={`apos-${iFreguesias - 1}`} valor={dados.freguesias_plenario_pt.percentual} casas={2} class="numero-capitulo text-ramo" />
+  </BlocoTexto>
+  <BlocoTexto bloco={B8} />
+  <BlocoTexto bloco={B9}>
+    <Crescimento slot={`apos-${iMudancas}`} />
+  </BlocoTexto>
+  <BlocoTexto bloco={B10} />
+  <BlocoTexto bloco={B11}>
+    <div slot={`apos-${fimB11}`} class="largo circulo-virtuoso-capitulo" data-ui>
+      <Circulo estado="virtuoso" tema="claro" transicao />
+    </div>
+  </BlocoTexto>
+  <BlocoTexto bloco={B12} />
+</Capitulo>
+
+<style is:global>
+  .circulo-virtuoso-capitulo .circulo { max-width: 26rem; }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { transicaoCirculos } from '../../scripts/comum/circulo';
+  import { desligar } from '../../scripts/comum/observar';
+
+  document.documentElement.classList.add('anim-pronto');
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const obs: IntersectionObserver[] = [];
+    transicaoCirculos(obs);
+    return desligar(obs);
+  });
+</script>

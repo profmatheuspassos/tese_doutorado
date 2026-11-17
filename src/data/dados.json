@@ -84,6 +84,80 @@
     "pode_confiar": 6.8,
     "nao_pode_confiar": 92.9
   },
+  "freguesias_plenario_pt": {
+    "origem": "Tese, 4.2.1 (nota 635; cálculo do autor sobre os Censos de 2011)",
+    "eleitores_max": 150,
+    "ano": 2011,
+    "freguesias": 129,
+    "habitantes": 23466,
+    "percentual": 0.22
+  },
+  "referendo_pt": {
+    "origem": "Tese, 5.1 (Lei 15-A/98; CNE, nota 723)",
+    "assinaturas_mil": 60,
+    "de": 1975,
+    "ate": 2019,
+    "total": 8,
+    "nacionais": 3,
+    "locais": 5
+  },
+  "consultas_br": {
+    "origem": "Tese, 5.1 (TSE, notas 724 a 727; D3)",
+    "de": 1988,
+    "ate": 2019,
+    "total": 5,
+    "nacionais": 2,
+    "locais": 3
+  },
+  "iniciativa_pt": {
+    "origem": "Tese, 5.2 (Lei 17/2003; notas 748 a 762)",
+    "assinaturas_mil": 20,
+    "de": 2003,
+    "ate": 2019,
+    "total": 9,
+    "viraram_lei": 4
+  },
+  "iniciativa_br": {
+    "origem": "Tese, 5.2 (Constituição Federal; nota 737; D32)",
+    "percentual_eleitorado": 1,
+    "estados": 5,
+    "assinaturas": 1473063,
+    "ano": 2018,
+    "de": 1988,
+    "ate": 2019,
+    "leis_federais": 4
+  },
+  "peticoes_assinadas": {
+    "origem": "Tese, 5.3 (Portal de Opinião Pública, nota 799; Latinobarómetro)",
+    "pt": [
+      {
+        "de": 2003,
+        "ate": 2011,
+        "valor": 5.4
+      },
+      {
+        "ano": 2016,
+        "valor": 21
+      }
+    ],
+    "br": {
+      "ano": 2015,
+      "valor": 25.4
+    }
+  },
+  "peticoes_ar_pt": {
+    "origem": "Tese, 5.3 (Parlamento português, nota 802)",
+    "legislaturas": ["2002 a 2005", "2005 a 2009", "2009 a 2011 (mais curta)", "2011 a 2015", "2015 a junho de 2019"],
+    "valores": [113, 592, 181, 552, 632]
+  },
+  "recall_california": {
+    "origem": "Tese, 5.4 (Secretaria de Estado da Califórnia, notas 840 a 842)",
+    "de": 1913,
+    "ate": 2019,
+    "tentativas": 172,
+    "votacoes": 9,
+    "remocoes": 6
+  },
   "usos": [
     {
       "pagina": "home",
@@ -142,6 +216,104 @@
       "grafico": "numero-grande",
       "serie": "confianca_interpessoal_br",
       "frases": ["Outros {nao_pode_confiar}% disseram que não"]
+    },
+    {
+      "pagina": "capitulo-4",
+      "bloco": "B7",
+      "grafico": "numero-grande",
+      "serie": "freguesias_plenario_pt",
+      "frases": [
+        "Nas freguesias com até {eleitores_max} eleitores",
+        "Pelas contas do autor, com base no censo de {ano}, são só {freguesias} freguesias, com {habitantes} habitantes: {percentual}% da população."
+      ]
+    },
+    {
+      "pagina": "capitulo-5",
+      "bloco": "B1",
+      "grafico": "caminho-referendo",
+      "serie": "referendo_pt",
+      "frases": [
+        "cidadãos podem propor um referendo com {assinaturas_mil} mil assinaturas"
+      ]
+    },
+    {
+      "pagina": "capitulo-5",
+      "bloco": "B2",
+      "grafico": "cartoes",
+      "serie": "referendo_pt",
+      "frases": [
+        "Em Portugal, de {de} a {ate}, houve {total|extenso} referendos: {nacionais|extenso} nacionais",
+        "e {locais|extenso} locais. No Brasil"
+      ]
+    },
+    {
+      "pagina": "capitulo-5",
+      "bloco": "B2",
+      "grafico": "cartoes",
+      "serie": "consultas_br",
+      "frases": [
+        "No Brasil, de {de} a {ate}, houve {total|extenso_f} consultas: {nacionais|extenso_f} nacionais (1993 e 2005) e {locais|extenso_f} locais."
+      ]
+    },
+    {
+      "pagina": "capitulo-5",
+      "bloco": "B3",
+      "grafico": "cartoes",
+      "serie": "iniciativa_pt",
+      "frases": [
+        "Em Portugal, bastam {assinaturas_mil} mil assinaturas, que podem ser enviadas pela internet.",
+        "Em Portugal, de {de} a {ate}, chegaram {total|extenso_f} iniciativas ao Parlamento. {viraram_lei|Extenso_f} viraram lei."
+      ]
+    },
+    {
+      "pagina": "capitulo-5",
+      "bloco": "B3",
+      "grafico": "cartoes",
+      "serie": "iniciativa_br",
+      "frases": [
+        "No Brasil, é preciso {percentual_eleitorado}% do eleitorado, em pelo menos {estados|extenso} estados. Com base no eleitorado de {ano}, eram {assinaturas} assinaturas, todas em papel",
+        "De {de} a {ate}, {leis_federais|extenso_f} leis federais nasceram de projetos populares."
+      ]
+    },
+    {
+      "pagina": "capitulo-5",
+      "bloco": "B5",
+      "grafico": "cartoes",
+      "serie": "peticoes_assinadas",
+      "frases": [
+        "passou de {pt.0.valor}%, entre {pt.0.de} e {pt.0.ate}, para {pt.1.valor}% em {pt.1.ano}."
+      ]
+    },
+    {
+      "pagina": "capitulo-5",
+      "bloco": "B6",
+      "grafico": "cartoes",
+      "serie": "peticoes_assinadas",
+      "frases": [
+        "foi de {br.valor}% em {br.ano}."
+      ]
+    },
+    {
+      "pagina": "capitulo-5",
+      "bloco": "B5",
+      "grafico": "barras-tabela",
+      "serie": "peticoes_ar_pt",
+      "frases": [
+        "| {legislaturas.0} | {valores.0} |",
+        "| {legislaturas.1} | {valores.1} |",
+        "| {legislaturas.2} | {valores.2} |",
+        "| {legislaturas.3} | {valores.3} |",
+        "| {legislaturas.4} | {valores.4} |"
+      ]
+    },
+    {
+      "pagina": "capitulo-5",
+      "bloco": "B7",
+      "grafico": "cartoes",
+      "serie": "recall_california",
+      "frases": [
+        "De {de} a {ate}, houve {tentativas} tentativas de recall contra ocupantes de cargos estaduais na Califórnia. Só {votacoes} chegaram às urnas, e {remocoes} tiraram o eleito do cargo."
+      ]
     }
   ]
 }

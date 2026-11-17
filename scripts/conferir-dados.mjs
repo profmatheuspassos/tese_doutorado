@@ -4,12 +4,16 @@
  *  1. contra as tabelas dos Quadros 1 a 5 em docs/PLANO-CONTEUDO.md (seção 4.1), célula por célula;
  *  2. soma de cada coluna entre 99,9 e 100,1;
  *  3. contra os textos aprovados: cada frase registrada em "usos" precisa aparecer, com os números
- *     do JSON, no .md da página;
+ *     do JSON, no .md da página. Nas frases, {caminho} é um valor da série, formatado como no site
+ *     (src/lib/rotulos.mjs); {caminho|extenso} e {caminho|extenso_f} escrevem o número por extenso
+ *     (masculino ou feminino), como o texto aprovado faz ("oito referendos", "duas nacionais");
+ *     com inicial maiúscula ({caminho|Extenso_f}), o número abre a frase ("Quatro viraram lei");
  *  4. nenhum número com vírgula decimal escrito à mão nos componentes e páginas.
  * Qualquer diferença encerra com erro.
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
+import { formatarValor, lerCaminho } from '../src/lib/rotulos.mjs';
 
 const raiz = new URL('..', import.meta.url).pathname;
 const ler = (p) => readFileSync(join(raiz, p), 'utf8');
@@ -50,6 +54,19 @@ for (const [chave, inst] of Object.entries(serie.instituicoes)) {
 }
 
 // 3. JSON x textos aprovados
+const EXTENSO = ['zero', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez'];
+const EXTENSO_F = { 1: 'uma', 2: 'duas' };
+function valorNaFrase(serie, caminho, formato) {
+  const v = lerCaminho(serie, caminho);
+  if (!formato) {
+    const chaves = caminho.split('.').filter((p) => !/^\d+$/.test(p));
+    return formatarValor(v, chaves[chaves.length - 1]);
+  }
+  if (!/^[eE]xtenso(_f)?$/.test(formato)) throw new Error(`formato desconhecido: |${formato}`);
+  if (!Number.isInteger(v) || v < 0 || v >= EXTENSO.length) throw new Error(`sem extenso para ${caminho} = ${v}`);
+  const palavra = formato.endsWith('_f') ? EXTENSO_F[v] ?? EXTENSO[v] : EXTENSO[v];
+  return formato[0] === 'E' ? palavra[0].toUpperCase() + palavra.slice(1) : palavra;
+}
 let frases = 0;
 for (const u of dados.usos) {
   const md = espacos(ler(`src/content/pt-br/${u.pagina}.md`));
@@ -69,8 +86,12 @@ for (const u of dados.usos) {
   }
   if (u.frases) {
     const s = dados[u.serie];
+    if (!s) { erros.push(`${u.pagina} ${u.bloco}: série inexistente no dados.json: ${u.serie}`); continue; }
     for (const modelo of u.frases) {
-      procurar(modelo.replace(/\{(\w+)\}/g, (_, k) => (typeof s[k] === 'number' && k !== 'ano' ? fmt(s[k]) : String(s[k]))), u.serie);
+      let frase;
+      try { frase = modelo.replace(/\{([\w.]+)(?:\|(\w+))?\}/g, (_, caminho, formato) => valorNaFrase(s, caminho, formato)); }
+      catch (e) { erros.push(`${u.pagina} ${u.bloco}: ${e.message} (${u.serie})`); continue; }
+      procurar(frase, u.serie);
     }
   }
 }

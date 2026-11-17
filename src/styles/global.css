@@ -241,6 +241,11 @@
     font-variant-numeric: tabular-nums;
     color: var(--color-tinta-2);
   }
+  /* Número em destaque nos capítulos (2, 4): a vírgula desce abaixo da linha (altura de linha
+     0,85), por isso a margem acompanha o tamanho do número e nunca encosta no texto (D59). */
+  .texto .numero-capitulo {
+    margin-bottom: 0.3em;
+  }
   .tabela-numeros td:not(:first-child),
   .tabela-numeros th:not(:first-child) {
     text-align: right;
@@ -298,6 +303,62 @@
       font-weight: 600;
       color: var(--color-tinta-2);
     }
+  }
+
+  /*
+   * Alternador (capítulos 4 e 5): botões de rádio com cara de pílula. Funciona sem JavaScript,
+   * pelo teclado (setas) e no leitor de tela; o que muda na tela é feito por CSS :has().
+   */
+  .alternador {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+  }
+  .alternador-legenda {
+    font-size: var(--text-pequeno);
+    font-weight: 650;
+    margin-bottom: 0.75rem;
+  }
+  .alternador-opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .alternador-opcao {
+    position: relative;
+    cursor: pointer;
+  }
+  .alternador-opcao input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .alternador-opcao span {
+    display: inline-block;
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-tinta) 22%, transparent);
+    background: var(--color-branco);
+    font-size: var(--text-pequeno);
+    line-height: 1.3;
+    font-weight: 550;
+    color: var(--color-tinta);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .alternador-opcao:hover span {
+    border-color: var(--color-tinta-2);
+  }
+  .alternador-opcao input:checked + span {
+    background: var(--color-tinta);
+    border-color: var(--color-tinta);
+    color: var(--color-branco);
+  }
+  .alternador-opcao input:focus-visible + span {
+    outline: 3px solid var(--color-ramo);
+    outline-offset: 2px;
   }
 
   /* Link "Leia o capítulo N" ao fim dos blocos (T5) */

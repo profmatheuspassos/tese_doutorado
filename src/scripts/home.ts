@@ -11,6 +11,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { aoEntrar, desligar, revelarEmLote } from './comum/observar';
 import { animarChecklists } from './comum/checklist';
+import { transicaoCirculos } from './comum/circulo';
+import { crescer } from './comum/crescer';
 
 gsap.registerPlugin(ScrollTrigger);
 document.documentElement.classList.add('anim-pronto');
@@ -107,35 +109,10 @@ mm.add('(prefers-reduced-motion: no-preference)', (ctx) => {
   }
 
   // B6 — no círculo virtuoso, os rótulos do vicioso dão lugar aos novos.
-  document.querySelectorAll<HTMLElement>('.circulo-virtuoso').forEach((c) => {
-    const antes = c.querySelectorAll('.circulo-rotulo-antes');
-    const depois = c.querySelectorAll('.circulo-rotulo-depois');
-    if (!antes.length) return;
-    gsap.set(antes, { opacity: 1 });
-    gsap.set(depois, { opacity: 0 });
-    const tl = gsap.timeline({ paused: true })
-      .to(antes, { opacity: 0, duration: 0.5, stagger: 0.15 }, 0.4)
-      .to(depois, { opacity: 1, duration: 0.6, stagger: 0.15 }, 0.75);
-    aoEntrar(c, () => tl.play(), obs);
-  });
+  transicaoCirculos(obs);
 
   // B6 — quando o texto chega à proposta, o ramo engrossa e a semente brota.
-  const gatilho = document.querySelector('[data-crescer]');
-  const caule = document.querySelector<SVGPathElement>('.ramo-cresce .ramo-caule');
-  const folhasNovas = document.querySelectorAll('.ramo-cresce .folha-nova');
-  const broto = document.querySelector('[data-solo] [data-broto]');
-  if (gatilho && caule && broto) {
-    gsap.set(caule, { attr: { 'stroke-width': 1.75 } });
-    gsap.set(folhasNovas, { opacity: 0 });
-    gsap.set(broto.querySelector('.broto-caule'), { strokeDasharray: 1, strokeDashoffset: 1 });
-    gsap.set(broto.querySelectorAll('.broto-folha'), { opacity: 0 });
-    const tl = gsap.timeline({ paused: true })
-      .to(caule, { attr: { 'stroke-width': 3.5 }, duration: 1.2, ease: 'power2.inOut' }, 0)
-      .to(folhasNovas, { opacity: 1, duration: 0.6, stagger: 0.2 }, 0.6)
-      .to(broto.querySelector('.broto-caule'), { strokeDashoffset: 0, duration: 1, ease: 'power2.out' }, 0.2)
-      .to(broto.querySelectorAll('.broto-folha'), { opacity: 1, duration: 0.5, stagger: 0.2 }, 0.9);
-    aoEntrar(gatilho, () => tl.play(), obs);
-  }
+  crescer(document, document.querySelector('[data-crescer]'), obs);
 
   // B7 — os cartões das ferramentas entram em sequência.
   document.querySelectorAll('[data-cartoes]').forEach((ul) => {
