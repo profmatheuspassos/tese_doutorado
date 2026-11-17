@@ -93,7 +93,7 @@ Isso é **escolha de interpretação** → registrar na rastreabilidade e pedir 
 - Art. 225.º, n.º 2 (Açores e Madeira).
 - Art. 267.º: administração próxima das populações, com participação dos interessados (por associações, organizações de moradores).
 - Limites: não diz *em que temas* nem *como*; deixa para a lei, que pode ampliar ou restringir. Organizações de moradores (arts. 263.º–265.º): petição e presença na assembleia de freguesia **sem direito a voto**. "Participar sem votar é o mesmo que não participar."
-- Nota 643: a palavra "cidadão(s)" aparece **89 vezes** na CRP e **11** na CF.
+- Nota 643: a palavra "cidadão(s)" aparece **89 vezes** na CRP e **11** na CF. **Não usar no site (D27).**
 
 **Leis locais** (Lei 169/99; Lei 75/2013, "Estatutos"):
 - **Plenário de cidadãos eleitores**: em freguesias com **150 eleitores ou menos**, substitui a assembleia de freguesia; quórum de 10% dos eleitores. Cálculo do autor (eleitores ≈ 70% da população → até ~215 habitantes): **129 freguesias de 3.429**, somando **23.466 habitantes = 0,22% da população** (base: 10.562.178; Censos 2011, CAOP 2013). → **número-chave para Portugal**.
@@ -161,7 +161,7 @@ Cultura atual não estimula; eleitos não largariam o poder; "não há alternati
 - **Motivo visual** ramos (PT) e sementes/solo árido (BR), com legendas explicando o que cada elemento representa.
 - **Comparador dos dois modelos de governança** (alternância ou slider "centrada no governo ↔ centrada nos cidadãos"), mostrando o ciclo de cinco etapas e em quais o cidadão entra.
 - **"Presença x decisão"**: o cidadão pode entrar, sentar, falar no período reservado… e não votar. Linha do tempo de uma proposta numa assembleia de freguesia.
-- Números: 0,22% (PT); 150–750 € de coima; 30 vias constitucionais e nenhuma direta (BR); 89 x 11 ocorrências de "cidadão"; 26 de 35 partidos; 8 anos de "provisório".
+- Números: 0,22% (PT); 150–750 € de coima; 30 vias constitucionais e nenhuma direta (BR); 89 x 11 ocorrências de "cidadão" (não usar, D27); 26 de 35 partidos; 8 anos de "provisório".
 - Exemplo das 5 pessoas (interação simples).
 - "Apáticos porque impotentes."
 - Círculo virtuoso contraposto ao vicioso.

@@ -37,8 +37,13 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D24 | Cortes do capítulo 3 | **Mantidos** fora do texto: o exemplo hipotético do diário oficial, a imagem do estádio sem microfone, a democracia iliberal e a promessa populista de "democratizar a democracia". A imagem do estádio fica registrada em `docs/PLANO-CONTEUDO.md` (3.3) como ideia visual para a Fase 3. Decidido em 17/11/2026. |
 | D25 | Porto Alegre e Lisboa (capítulo 3) | **Aceito** citar as duas cidades pelo nome, nos orçamentos participativos. São cidades e programas públicos, fora do alcance da D6. Decidido em 17/11/2026. |
 | D26 | Aprovação do capítulo 3 | **Aprovado sem ajustes de texto** (`src/content/pt-br/capitulo-3.md`, 1.794 palavras, índice 58,2). Decidido em 17/11/2026. |
+| D27 | Contagens sem ano (capítulo 4; era A10) | **Mantidas sem ano** as 30 formas de participação na constituição brasileira e as mais de 5.500 leis orgânicas municipais, como descrição dos textos que a tese analisou. **Retirada** a contagem da palavra "cidadão" (89 vezes na constituição portuguesa, 11 na brasileira; nota 643): a contagem brasileira parece baixa demais e não foi conferida no texto atual, e a própria nota diz que não serve como critério de análise. **Não usar em nenhuma página.** No capítulo 4, a frase anterior passou a fechar o parágrafo com as razões da nota 653. Decidido em 17/11/2026. |
+| D28 | Democracia interna nos partidos brasileiros | **Aceita** a formulação "nem a constituição nem a lei fazem essa exigência de forma explícita", que vale para 4.3 ("nenhuma exigência, nem mesmo na lei") e para 2.2, nota 260 ("exigência explícita"), e repete a home e o capítulo 2. Decidido em 17/11/2026. |
+| D29 | Ano do RGPD (capítulo 4) | **Mantido "aprovado em 2016"** (nota 660). Não acrescentar 2018, que a tese não traz. Decidido em 17/11/2026. |
+| D30 | Petição e iniciativa popular no capítulo 4 | **Aceito** descrever os dois mecanismos sem o nome ("um pedido formal ao poder público", "um projeto de lei com assinaturas"); os nomes e as explicações ficam para o capítulo 5. Decidido em 17/11/2026. |
+| D31 | Aprovação do capítulo 4 | **Aprovado com um ajuste** (retirada da contagem 89 x 11, D27). Versão final: `src/content/pt-br/capitulo-4.md`, 1.791 palavras, índice 58,9. Decidido em 17/11/2026. |
 
 ## Em aberto
 
 Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
-Fase 2 (D13 a D26) foram decididos. Novos pontos entram aqui.
+Fase 2 (D13 a D31) foram decididos. Novos pontos entram aqui.
