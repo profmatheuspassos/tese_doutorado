@@ -414,7 +414,7 @@ confiança em escala ordenada e as duas não respostas em cinza. Na home, versã
 | Abstenção / brancos / nulos, presidente, Brasil (1º turno) | 1998: 21,49 / 8,03 / 10,67 · 2002: 17,74 / 3,03 / 7,36 · 2006: 16,77 / 6,02 / 4,50 · 2010: 22,13 / 3,42 / 6,03 · 2014: 19,39 / 3,84 / 5,80 · 2018: 20,33 / 2,65 / 6,14 | TSE | Gráfico, cap. 2 |
 | Atenas | cerca de 30 mil cidadãos; quórum de 6 mil (20%); cerca de 600 de 700 magistraturas por sorteio; conselho de 500; ao menos 40 assembleias por ano | Séc. IV a.C.; Manin, Held | Cap. 3 |
 | Acesso à internet | Portugal: 63,9% das pessoas de 16 a 74 anos usaram nos 3 primeiros meses de 2018 · Brasil: 74,8% viviam em domicílio com acesso em 2017; 58,3% entre os mais pobres | INE; IBGE | Cap. 3 |
-| Plenário de eleitores, Portugal | 129 de 3.429 freguesias; 23.466 habitantes; 0,22% da população | Censos 2011; cálculo do autor | Cap. 4 |
+| Plenário de eleitores, Portugal | 129 freguesias (total de freguesias fora do site, ver D10); 23.466 habitantes; 0,22% da população | Censos 2011; cálculo do autor | Cap. 4 |
 | Multa por intervir em sessão | 150 a 750 euros | Lei 75/2013 | Cap. 4 |
 | "Cidadão(s)" nas constituições | 89 ocorrências (Portugal); 11 (Brasil) | Contagem do autor | Cap. 4 |
 | Comissões provisórias, Brasil | Em 26 de 35 partidos, mais da metade da estrutura; duração de até 8 anos | Jun. 2019, reportagem citada; lei alterada em 2019 | Cap. 4 |
@@ -455,8 +455,9 @@ semente brota, quando a página chega às propostas). Ver ressalva na seção 5,
 
 Encontrei estes pontos durante a leitura. Nenhum impede a Fase 2, mas todos mudam o texto.
 
-> **Atualização:** os pontos 1, 2, 4, 5, 6, 11 e 12 foram decididos pelo autor; os pontos 3,
-> 7, 8, 9 e 10 seguem em aberto. Ver `docs/DECISOES.md`, que prevalece sobre esta seção.
+> **Atualização:** os doze pontos foram decididos pelo autor (D1 a D12). Atenção ao ponto 8:
+> o total de freguesias não entra no site até o autor conferir o número. Ver
+> `docs/DECISOES.md`, que prevalece sobre esta seção.
 
 1. **As metáforas existem só nos títulos.** "Os ramos são finos e precisam ser cuidados" e
    "as sementes estão plantadas, mas a terra é árida" aparecem nos títulos de 4.2.1 e 4.2.2

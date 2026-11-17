@@ -18,16 +18,13 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D5 | Participação nas legislativas portuguesas de 2022, 52,19% (ponto 6) | **Não usar.** |
 | D6 | Nomes próprios (ponto 11) | **Nenhum nome de governante, partido ou caso concreto** em nenhuma página. No recall de 2003 na Califórnia: "um governador". |
 | D7 | Ficha da tese (ponto 12) | Defesa em **18 de novembro de 2022**. Depósito: **http://hdl.handle.net/10451/57093**. Contato a publicar: **contato@profmatheus.com**. |
+| D8 | Nome da fundação (ponto 3; era A1) | Usar **"Fundação Francisco Manuel dos Santos"**. |
+| D9 | Acesso à internet em Portugal (ponto 7; era A2) | Usar **só os 63,9%** (pessoas de 16 a 74 anos que usaram a internet nos três primeiros meses de 2018), sempre com a data. Não usar os 69% por rede móvel. |
+| D10 | Número de freguesias (ponto 8; era A3) | **Não usar o total de freguesias (3.429) em nenhuma página** até o autor conferir o número na fonte. Os demais dados do cálculo (129 freguesias com plenário, 23.466 habitantes, 0,22% da população) podem ser usados. Se um trecho depender do total, escrever sem ele e avisar o autor. |
+| D11 | Occupy Wall Street datado de 2009 (ponto 9; era A4) | **Sem efeito, encerrado.** A lista de protestos não entra no site. |
+| D12 | Lapsos de redação (ponto 10; era A5) | **Aceitos os cinco**, tratados pelo sentido correto: (a) "no máximo cerca de 215 habitantes"; (b) Lei 75/2013; (c) LGPD = Lei 13.709; (d) a definição de referendo está no § 2º; (e) a análise das petições está na seção 5.3. Como o site não cita artigos nem números de lei, (b), (c) e (d) só importam se algum dia forem citados. |
 
 ## Em aberto
 
-A seção 5 do plano tem doze pontos. Sete foram decididos acima (1, 2, 4, 5, 6, 11 e 12).
-Restam **cinco** (3, 7, 8, 9 e 10), todos com proposta de tratamento.
-
-| # | Ponto | Problema | Proposta em uso até decisão |
-|---|---|---|---|
-| A1 | Nome da fundação (ponto 3) | O corpo do capítulo 2 diz "Fundação Manuel dos Santos"; as notas de rodapé dizem "Fundação Francisco Manuel dos Santos". | Usar "Fundação Francisco Manuel dos Santos". |
-| A2 | Acesso à internet em Portugal (ponto 7) | A tese dá 63,9% de usuários (16 a 74 anos, primeiro trimestre de 2018) e, na mesma frase, 69% por rede móvel. As bases parecem diferentes. | Usar só os 63,9%. |
-| A3 | Número de freguesias (ponto 8) | A tese traz 3.429 freguesias (das quais 129 com até cerca de 215 habitantes, 0,22% da população). | Manter o número da tese, com o ano e a fonte que ela cita (Censos 2011, CAOP 2013). |
-| A4 | Occupy Wall Street datado de 2009 (ponto 9) | Possível erro de data na lista de protestos do capítulo 3. | Sem efeito no site: a lista de protestos não entra. Registrado para conhecimento do autor. |
-| A5 | Lapsos de redação (ponto 10) | (a) "pelo menos 215 habitantes", onde o contexto pede "no máximo"; (b) "Lei 75/2003" por 75/2013; (c) LGPD como "Lei 13.708", a nota traz 13.709; (d) "§ 1º" por § 2º na definição de referendo da lei brasileira; (e) as Considerações finais remetem ao "Capítulo 4" para a análise das petições, que está na seção 5.3. | Tratar pelo sentido correto em cada caso. |
+Nenhum ponto em aberto. Os doze pontos da seção 5 do plano foram decididos (D1 a D12).
+Novos pontos que surgirem na Fase 2 entram aqui.
