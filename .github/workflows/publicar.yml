@@ -1,0 +1,79 @@
+# Publicação do site (decisão D71).
+# - Pull request para a main: roda o build com todas as conferências, sem publicar.
+# - Merge na main (ou execução manual): roda o mesmo build e, se tudo passar, grava o site pronto
+#   (dist/, com o .htaccess) na branch "publicacao", com um commit normal (nunca force push).
+#   A Hostinger puxa essa branch pela ferramenta Git do hPanel, avisada pelo webhook do repositório.
+# Nenhuma senha da Hostinger fica no GitHub; o push usa só o GITHUB_TOKEN deste workflow.
+name: Publicar
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publicar-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    env:
+      SITE_URL: https://tese.profmatheuspassos.com.br
+      BASE_PATH: /
+      PLAYWRIGHT_VERSAO: 1.63.0
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Dependências
+        run: npm ci
+
+      # A conferência de texto lê as páginas num navegador sem JavaScript (Playwright).
+      - name: Navegador para a conferência de texto
+        run: |
+          npm install --no-save "playwright@${PLAYWRIGHT_VERSAO}"
+          npx playwright install --with-deps chromium
+
+      - name: Build com todas as conferências
+        run: npm run build
+
+      - name: Gravar na branch publicacao
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          destino="$RUNNER_TEMP/publicacao"
+          remoto="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin publicacao >/dev/null; then
+            git clone --quiet --branch publicacao --single-branch --depth 1 "$remoto" "$destino"
+          else
+            # Primeira publicação: a branch nasce órfã, só com o site pronto.
+            git init --quiet -b publicacao "$destino"
+            git -C "$destino" remote add origin "$remoto"
+          fi
+          rsync -a --delete --exclude .git dist/ "$destino"/
+          cd "$destino"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "O site pronto não mudou; nada a publicar."
+            exit 0
+          fi
+          git commit --quiet -m "Publica main@${GITHUB_SHA::7}"
+          git push --quiet origin publicacao
+          echo "Publicado: main@${GITHUB_SHA::7} na branch publicacao."
