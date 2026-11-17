@@ -111,7 +111,7 @@ site inteiro (D16).
 
 ### Capítulo 2 (17/11/2026)
 
-**Resultado (versão enviada para aprovação):** índice 63,9, acima da referência de 50. Média de
+**Resultado (versão aprovada sem ajustes de texto):** índice 63,9, acima da referência de 50. Média de
 10,9 palavras por frase (limite: 20). Maior frase: 23 palavras; nenhuma acima de 25. Tamanho:
 1.797 palavras visíveis, dentro da faixa de 1.200 a 1.800 por página de capítulo (D16), mas
 perto do teto.

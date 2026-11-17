@@ -31,12 +31,9 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D18 | Contagem de partidos no capítulo 1 | **Aceito** não usar nenhum número de partidos do capítulo 1 (25 antes de 2006, mais 9, 34 registrados, 75 em formação), em linha com a D4. Decidido em 17/11/2026. |
 | D19 | Exemplo hipotético dos 55% (capítulo 1) | **Manter.** O número é ilustrativo e não vem da tese; o raciocínio sobre maioria e direitos da minoria, sim. Decidido em 17/11/2026. |
 | D20 | "Para o autor" (capítulo 1) | **Aceito** atribuir ao autor a ligação entre a mudança de 2006 nas alianças e a multiplicação dos partidos. Decidido em 17/11/2026. |
+| D21 | Constituições e estímulo à participação (capítulo 2, B10; era A8) | **Aceita** a formulação "Nenhuma a segue à risca, mas nenhuma cria mecanismos claros para estimular a participação entre as eleições", apoiada em "não há a preocupação […] em estabelecer mecanismos" (2.3). Evita contradição com o capítulo 1, que diz que a constituição portuguesa manda o Estado "incentivar a participação". Decidido em 17/11/2026. |
 
 ## Em aberto
 
-Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na Fase 2 (D13 a D20) foram
-decididos. Novos pontos entram aqui.
-
-| # | Ponto | Proposta seguida até a decisão |
-|---|---|---|
-| A8 | Constituições e estímulo à participação (capítulo 2, B10) | A tese diz em 2.3 que não há na CRP e na CF "comandos constitucionais explícitos que incentivem a participação política no período entre eleições". A página aprovada do capítulo 1 (B9) diz que a constituição portuguesa manda o Estado "incentivar a participação" (1.2). Proposta: no capítulo 2, escrever que "nenhuma a segue à risca, mas nenhuma cria mecanismos claros para estimular a participação entre as eleições", apoiado em "não há a preocupação […] em estabelecer mecanismos". Assim as duas páginas não se contradizem. Levantado em 17/11/2026. |
+Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
+Fase 2 (D13 a D21) foram decididos. Novos pontos entram aqui.

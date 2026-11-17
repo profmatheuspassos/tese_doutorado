@@ -306,7 +306,7 @@ participação não eleitoral em PT (petição e contato, dez. 2016) e no BR (pe
     estimular a participação entre eleições. O capítulo 1 (página aprovada, B9) diz que a
     constituição portuguesa manda o Estado "incentivar a participação". Para não haver
     contradição entre as páginas, o site fala em "mecanismos claros" e mantém o "nenhuma a segue à
-    risca". **Ponto levado ao autor (A8 em `docs/DECISOES.md`).**
+    risca". **Aceito pelo autor (D21).**
 15. **Nomes dos modelos.** "Democracia concorrencial" e "modelo comunitarista" não aparecem; o site
     usa "um método para escolher quem governa" e "uma construção em comum", como no plano.
 16. **Grupos organizados.** A tese lista "grupos de interesse, *lobbies*, organizações não
