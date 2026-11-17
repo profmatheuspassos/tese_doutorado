@@ -375,6 +375,41 @@ participação não eleitoral em PT (petição e contato, dez. 2016) e no BR (pe
     fragmentação (B10). Uma terceira posição do autor aparece como "para o autor" (B7, prazo de dois
     anos).
 
+### Escolhas de apresentação visual (Fase 4)
+
+O texto publicado é o do `capitulo-2.md`, palavra por palavra (conferido a cada build por
+`scripts/conferir-texto.mjs`). As escolhas abaixo são de apresentação; nenhuma acrescenta
+afirmação ao texto. O capítulo 2 é o modelo das páginas internas (D54): os itens 1 e 2 valem
+para todos os capítulos.
+
+1. **Modelo da página.** Abertura com a imagem `cap2-abertura.webp` (`alt=""`, D47; ainda espaço
+   reservado), "Capítulo 2" (T4), o título do `.md`, o título original do capítulo com o rótulo
+   "Título na tese" (T13) e os parágrafos do B0. Barra de progresso decorativa sob o cabeçalho.
+   Navegação final "Anterior" / "A seguir" (T14, T15; `aria-label` T16). `meta description` =
+   primeiro parágrafo do B0 (T17). Texto sem animação de entrada (D57).
+2. **Coluna de leitura.** Cada bloco é a fatia exata do `.md`; os componentes só acrescentam
+   atributos, classes e desenhos sem texto. A tabela do B4 só ganha alinhamento pelos números.
+3. **Círculo vicioso na abertura (B0).** O mesmo componente da home, com os rótulos T8, ao lado do
+   parágrafo que termina em "num círculo vicioso". É `aria-hidden`: o texto diz o mesmo. Fica com
+   os três nós acesos, sem a sequência presa à rolagem da home, porque o B0 não traz um parágrafo
+   por nó.
+4. **Escada dos três degraus (B2).** Os três parágrafos do texto viram três cartões, cada um com
+   um ícone de degrau (uma, duas ou três barras cheias). O primeiro leva o acento terracota,
+   porque o texto diz que "a maioria fica no primeiro degrau". Sem rótulo novo.
+5. **92,9% em destaque (B4).** Repete o dado do parágrafo seguinte (`dados.json`,
+   `confianca_interpessoal_br`); fica fora da leitura de tela.
+6. **Explorador dos Quadros 1 a 5 (B4, D44).** Depois do comentário sobre a tabela do texto, um
+   seletor das cinco instituições (T21, T22) mostra as seis respostas de cada Quadro em 2006, 2010
+   e 2017 (T23). Os números vêm só do `dados.json`, conferido célula por célula contra o plano
+   (seção 4.1, conferida contra a tese na Fase 1) e, na linha "nenhuma confiança", contra o texto
+   do B4. Começa em Congresso Nacional, a primeira linha da tabela do texto. "Nenhuma confiança"
+   em terracota, as outras respostas de confiança em cinzas do mais escuro (muita) ao mais claro
+   (pouca), as não respostas em cinza listrado. O valor só aparece dentro do segmento quando cabe
+   (6% ou mais; 11% ou mais abaixo de 640 px); todos os valores estão na tabela "Ver os números em
+   tabela" (T25, T26). Fonte, pergunta e número de entrevistas na legenda (T24), montada a partir
+   do `dados.json`. Funciona sem JavaScript (botões de rádio e CSS); com movimento reduzido, a troca
+   é imediata. As barras são `aria-hidden`; o leitor de tela usa a tabela.
+
 ---
 
 ## Capítulo 3 (`src/content/pt-br/capitulo-3.md`)
