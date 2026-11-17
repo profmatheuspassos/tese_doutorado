@@ -6,12 +6,23 @@ import LinkPular from '../components/site/LinkPular.astro';
 import Cabecalho from '../components/site/Cabecalho.astro';
 import Rodape from '../components/site/Rodape.astro';
 import { url } from '../lib/paginas';
+import { getEntry } from 'astro:content';
+import { IMAGEM_OG } from '../lib/imagens.mjs';
 
 interface Props {
   titulo: string; // <title> completo (T11)
   descricao?: string; // T12
+  indexar?: boolean; // false na 404: sem canonical, sem metadados de compartilhamento, noindex
 }
-const { titulo, descricao } = Astro.props;
+const { titulo, descricao, indexar = true } = Astro.props;
+
+// Endereço canônico e compartilhamento (D72, D73). Só textos já aprovados: o <title> (T11), a
+// descrição (T12 ou a da página) e o título da home como nome do site.
+if (!Astro.site) throw new Error('Falta o "site" no astro.config.mjs.');
+const canonica = new URL(Astro.url.pathname, Astro.site).href;
+const imagemOg = new URL(url(`/img/${IMAGEM_OG.nome}`), Astro.site).href;
+const nomeSite = (await getEntry('paginas', 'home'))?.data.titulo;
+if (!nomeSite) throw new Error('Página "home" sem título para o og:site_name.');
 
 // Fonte Inter Variable servida pelo próprio site (só latim e latim estendido).
 const fontes = `
@@ -29,6 +40,21 @@ const marcaJs = `document.documentElement.classList.add('js');setTimeout(functio
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titulo}</title>
     {descricao && <meta name="description" content={descricao} />}
+    {indexar ? (
+      <>
+        <link rel="canonical" href={canonica} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonica} />
+        <meta property="og:title" content={titulo} />
+        {descricao && <meta property="og:description" content={descricao} />}
+        <meta property="og:image" content={imagemOg} />
+        <meta property="og:image:width" content={String(IMAGEM_OG.largura)} />
+        <meta property="og:image:height" content={String(IMAGEM_OG.altura)} />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:site_name" content={nomeSite} />
+        <meta name="twitter:card" content="summary_large_image" />
+      </>
+    ) : <meta name="robots" content="noindex" />}
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />

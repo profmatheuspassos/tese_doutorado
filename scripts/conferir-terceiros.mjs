@@ -9,10 +9,20 @@
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { site } from '../src/lib/site.mjs';
 
 const dist = new URL('../dist', import.meta.url).pathname;
-const LINKS_PERMITIDOS = [/^https:\/\/hdl\.handle\.net\//, /^https:\/\/github\.com\/profmatheuspassos\/tese_doutorado\/?$/, /^mailto:/];
-const externo = (v) => /^(https?:)?\/\//i.test(v.trim());
+// Links (só navegação, nada carregado de fora): depósito da tese, repositório, licenças (D76).
+const LINKS_PERMITIDOS = [
+  /^https:\/\/hdl\.handle\.net\//,
+  /^https:\/\/github\.com\/profmatheuspassos\/tese_doutorado\/?$/,
+  /^https:\/\/github\.com\/profmatheuspassos\/tese_doutorado\/blob\/main\/LICENSE$/,
+  /^https:\/\/creativecommons\.org\/licenses\/by-nc-nd\/4\.0\/deed\.pt-br$/,
+  /^mailto:/,
+];
+// Endereço absoluto do próprio site (canonical, D72) não é de terceiros.
+const proprio = (v) => v.trim() === site() || v.trim().startsWith(`${site()}/`);
+const externo = (v) => /^(https?:)?\/\//i.test(v.trim()) && !proprio(v);
 const erros = [];
 const avisos = [];
 const arquivos = [];

@@ -4,7 +4,7 @@ import Sementes from '../components/motivo/Sementes.astro';
 import { t } from '../i18n';
 import { url } from '../lib/paginas';
 ---
-<Base titulo={t('titulo_pagina', { titulo: t('nao_encontrada') })}>
+<Base titulo={t('titulo_pagina', { titulo: t('nao_encontrada') })} indexar={false}>
   <section class="secao-clara margem mx-auto flex min-h-[calc(100svh-3rem)] max-w-(--container-figura) flex-col justify-center py-24" data-ui>
     <Sementes class="mb-10 h-6 w-28 text-semente" />
     <h1 class="max-w-[16ch] text-titulo font-extrabold text-tinta text-balance">{t('nao_encontrada')}</h1>
