@@ -35,7 +35,9 @@ const salvar = new Set(argSalvar > 0 ? (process.argv[argSalvar + 1] || '').split
 // Blocos com captura versionada (D49 para a home; D56 para as páginas novas).
 const CAPTURAS = {
   home: { pasta: 'fase-3', prefixo: '', alvos: ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'rodape'] },
+  'capitulo-1': { pasta: 'fase-4', prefixo: 'cap1-', alvos: ['B0', 'B1', 'B4', 'B8', 'navegacao'] },
   'capitulo-2': { pasta: 'fase-4', prefixo: 'cap2-', alvos: ['B0', 'B2', 'B4', 'navegacao'] },
+  'capitulo-3': { pasta: 'fase-4', prefixo: 'cap3-', alvos: ['B0', 'B2', 'B6', 'B8', 'navegacao'] },
 };
 
 // Páginas: lidas dos .md aprovados; entram as que existem no build.
@@ -77,6 +79,56 @@ const TESTES = {
     tamanhos.forEach((t, i) => {
       if (t.strong !== tituloPadrao || (t.frase && t.p !== tituloPadrao)) erros.push(`${rotulo}: B8, conclusão ${i + 1} com tamanho ${t.frase ? t.p : t.strong}, diferente dos títulos (${tituloPadrao})`);
     });
+  },
+  'capitulo-1': async (pagina, rotulo, c, w) => {
+    // Checklist (D53): nove regras, cada uma com as duas marcas visíveis e desenhadas no fim.
+    const marcas = await pagina.evaluate(() => [...document.querySelectorAll('[data-bloco="B4"] [data-checklist] > li')].map((li) => [...li.querySelectorAll('.marca')].map((m) => {
+      const circulo = m.querySelector('.marca-circulo');
+      const visto = m.querySelector('.marca-visto');
+      return Number(getComputedStyle(circulo).opacity) > 0.99 && Math.abs(parseFloat(getComputedStyle(visto).strokeDashoffset || '0')) < 0.01;
+    })));
+    if (marcas.length !== 9 || marcas.some((l) => l.length !== 2 || l.includes(false))) erros.push(`${rotulo}: checklist com marcas faltando ou não desenhadas: ${JSON.stringify(marcas)}`);
+    // Linha do tempo: três etapas visíveis.
+    const etapas = await pagina.evaluate(() => [...document.querySelectorAll('.linha-tempo-etapa')].map((e) => Number(getComputedStyle(e).opacity)));
+    if (etapas.length !== 3 || etapas.some((o) => o < 0.99)) erros.push(`${rotulo}: linha do tempo incompleta ou escondida: ${JSON.stringify(etapas)}`);
+    // "Lado a lado": cartões abaixo de 768 px, tabela acima.
+    const exibicao = await pagina.evaluate(() => getComputedStyle(document.querySelector('[data-lado-a-lado] tbody tr')).display);
+    if ((w < 768) !== (exibicao === 'block')) erros.push(`${rotulo}: "Lado a lado" com exibição ${exibicao} em ${w}px`);
+  },
+  'capitulo-3': async (pagina, rotulo, c) => {
+    const estado = () => pagina.evaluate(() => ({
+      contador: document.querySelector('[data-contador]').textContent,
+      formas: [...document.querySelectorAll('.bl-cartao')].map((b) => b.dataset.forma),
+      sumidas: [...document.querySelectorAll('[data-sumidas] li')].filter((l) => !l.hidden && !l.parentElement.hidden).length,
+    }));
+    // Estádio (D24, D55): alt vazio e a legenda T33.
+    const estadio = await pagina.evaluate(() => ({ alt: document.querySelector('.estadio img')?.getAttribute('alt'), legenda: document.querySelector('.estadio figcaption')?.textContent }));
+    if (estadio.alt !== '' || !estadio.legenda?.startsWith('Imagine 30 mil pessoas')) erros.push(`${rotulo}: estádio sem alt vazio ou sem a legenda T33 (${JSON.stringify(estadio)})`);
+    const interativo = await pagina.locator('[data-bolha]').isVisible();
+    const tira = await pagina.locator('[data-bolha-tira]').isVisible();
+    if (c.nome === 'sem-js') {
+      if (interativo || !tira) erros.push(`${rotulo}: sem JS, a bolha devia mostrar só a tira estática (interativo ${interativo}, tira ${tira})`);
+      return;
+    }
+    if (!interativo || tira) erros.push(`${rotulo}: com JS, a bolha devia mostrar só o interativo (interativo ${interativo}, tira ${tira})`);
+    // Quatro curtidas na mesma forma: um tipo só na tela.
+    for (let k = 0; k < 4; k++) await pagina.locator('.bl-cartao[data-forma="triangulo"]').first().click();
+    let e = await estado();
+    if (!e.contador.endsWith('1 de 4') || new Set(e.formas).size !== 1 || e.formas[0] !== 'triangulo') erros.push(`${rotulo}: bolha depois de 4 curtidas: ${JSON.stringify(e)}`);
+    await pagina.locator('[data-mostrar]').click();
+    e = await estado();
+    if (e.sumidas !== 3) erros.push(`${rotulo}: "Mostrar o que deixou de aparecer" mostrou ${e.sumidas} formas (esperado 3)`);
+    await pagina.locator('[data-recomecar]').click();
+    e = await estado();
+    if (!e.contador.endsWith('4 de 4') || new Set(e.formas).size !== 4 || e.sumidas !== 0) erros.push(`${rotulo}: "Recomeçar" não voltou ao início: ${JSON.stringify(e)}`);
+    // Teclado: Enter num cartão conta como curtida.
+    const curtida = await pagina.locator('.bl-cartao').first().getAttribute('data-forma');
+    await pagina.locator('.bl-cartao').first().focus();
+    await pagina.keyboard.press('Enter');
+    e = await estado();
+    const preferida = e.formas.filter((f) => f === curtida).length;
+    if (preferida < 6) erros.push(`${rotulo}: Enter no cartão não contou como curtida (${JSON.stringify(e)})`);
+    await pagina.locator('[data-recomecar]').click();
   },
   'capitulo-2': async (pagina, rotulo, c) => {
     // Explorador: escolher cada instituição muda a largura de "nenhuma confiança" para o valor do
@@ -167,7 +219,9 @@ for (const pg of paginas) {
         const larguraExcedente = document.documentElement.scrollWidth - document.documentElement.clientWidth;
         const invisiveis = [];
         for (const el of document.querySelectorAll('[data-bloco] :is(h1,h2,h3,p,li,th,td)')) {
-          if (el.closest('[aria-hidden="true"], details:not([open])')) continue;
+          // Fora da conta: o que é decorativo, o que fica num <details> fechado e o que está
+          // escondido de propósito (hidden: o interativo da bolha sem JS, as formas ainda não mostradas).
+          if (el.closest('[aria-hidden="true"], details:not([open]), [hidden]')) continue;
           let op = 1;
           for (let a = el; a; a = a.parentElement) op *= Number(getComputedStyle(a).opacity);
           const r = el.getBoundingClientRect();
