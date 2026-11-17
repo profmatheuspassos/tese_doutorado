@@ -394,10 +394,12 @@ para todos os capítulos.
    os três nós acesos, sem a sequência presa à rolagem da home, porque o B0 não traz um parágrafo
    por nó.
 4. **Escada dos três degraus (B2).** Os três parágrafos do texto viram três cartões, cada um com
-   um ícone de degrau (uma, duas ou três barras cheias). O primeiro leva o acento terracota,
-   porque o texto diz que "a maioria fica no primeiro degrau". Sem rótulo novo.
+   um ícone de degrau (uma, duas ou três barras cheias). O primeiro tem destaque em tinta (cor
+   neutra), porque o texto diz que "a maioria fica no primeiro degrau"; os degraus valem para os
+   dois países, por isso não levam a cor de nenhum deles (D59). Sem rótulo novo.
 5. **92,9% em destaque (B4).** Repete o dado do parágrafo seguinte (`dados.json`,
-   `confianca_interpessoal_br`); fica fora da leitura de tela.
+   `confianca_interpessoal_br`); fica fora da leitura de tela. A margem abaixo do número acompanha
+   o tamanho dele, para a vírgula nunca encostar no parágrafo seguinte (D59; conferido por teste).
 6. **Explorador dos Quadros 1 a 5 (B4, D44).** Depois do comentário sobre a tabela do texto, um
    seletor das cinco instituições (T21, T22) mostra as seis respostas de cada Quadro em 2006, 2010
    e 2017 (T23). Os números vêm só do `dados.json`, conferido célula por célula contra o plano

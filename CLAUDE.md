@@ -106,8 +106,8 @@ se as 880 notas de rodapé foram distribuídas.
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
 | `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
 | `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
-| `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e relatórios do Lighthouse |
-| `docs/capturas/fase-4/` | Capturas das páginas novas (D56) e relatórios do Lighthouse de todas as páginas, com `resumo.md` |
+| `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e resumo do Lighthouse |
+| `docs/capturas/fase-4/` | Capturas das páginas novas (D56) e `lighthouse/resumo.md` de todas as páginas (só o resumo é versionado, D59) |
 | `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: home (`index.astro`), 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
 | `src/pages/capitulos/[slug].astro`, `src/layouts/Capitulo.astro` | Rotas dos capítulos (lidas dos `.md`) e modelo das páginas internas |
 | `src/components/capitulo/`, `src/components/capitulos/`, `src/components/interativos/` | Abertura, bloco de texto, progresso e navegação; composição de cada capítulo; interativos (explorador etc.) |
@@ -190,7 +190,7 @@ npm run lighthouse
 - As imagens ilustrativas ainda são espaços reservados (cor lisa) em `public/img/`.
 - **Fase 4 aprovada como plano** (17/11/2026; `docs/PLANO-FASE-4.md`), com as decisões D52 a D58.
   Entrega em quatro etapas, com parada para aprovação ao fim de cada uma.
-- **Fase 4, Etapa 1 entregue, aguardando aprovação:** modelo das páginas internas e **capítulo 2**
+- **Fase 4, Etapa 1 aprovada com três ajustes (D59):** modelo das páginas internas e **capítulo 2**
   completo (`/capitulos/2-o-que-nao-funciona/`): abertura com o círculo vicioso, escada dos três
   degraus, 92,9% em destaque e explorador dos Quadros 1 a 5, que funciona sem JavaScript.
   Conferências e testes estendidos a várias páginas. Texto idêntico ao aprovado (1.797 palavras);
@@ -198,7 +198,8 @@ npm run lighthouse
 
 ## Próximo passo
 
-1. **Aprovação da Etapa 1 da Fase 4** (capítulo 2). Com ela: pull request para a `main`.
+1. **Merge do pull request da Etapa 1** (capítulo 2), feito pelo autor no GitHub. Não começar a
+   Etapa 2 antes de o autor confirmar o merge. A sessão seguinte parte da `main` atualizada.
 2. Etapa 2: capítulos 1 e 3. Etapa 3: capítulos 4 e 5. Etapa 4: "Sobre a tese", links internos como
    erro (`LINKS_ESTRITO=1`), Lighthouse e capturas das sete páginas. Cada etapa para e espera
    aprovação.

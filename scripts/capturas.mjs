@@ -106,6 +106,23 @@ const TESTES = {
   },
 };
 
+// Números em destaque das páginas internas: a tinta do último algarismo ou da vírgula (medida
+// num canvas com a mesma fonte) fica pelo menos 8 px acima do elemento seguinte.
+async function testarNumeros(pagina, rotulo) {
+  const folgas = await pagina.evaluate(() => [...document.querySelectorAll('[data-bloco] .numero-grande')].map((el) => {
+    const span = el.querySelector('span');
+    const cs = getComputedStyle(el);
+    const g = document.createElement('canvas').getContext('2d');
+    g.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    const m = g.measureText(span.textContent);
+    const caixa = el.getBoundingClientRect();
+    const base = caixa.top + caixa.height / 2 + (m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2;
+    const seguinte = el.nextElementSibling?.getBoundingClientRect().top ?? Infinity;
+    return { texto: span.textContent, folga: seguinte - (base + m.actualBoundingBoxDescent) };
+  }));
+  folgas.forEach((f) => { if (f.folga < 8) erros.push(`${rotulo}: número em destaque "${f.texto}" a ${f.folga.toFixed(1)}px do texto seguinte (mínimo 8)`); });
+}
+
 // Barra de progresso (páginas internas): avança com a rolagem, exceto sem JS em navegador sem
 // animation-timeline, onde não aparece. O Chromium tem animation-timeline, então ela aparece sempre.
 async function testarProgresso(pagina, rotulo) {
@@ -195,6 +212,7 @@ for (const pg of paginas) {
 
       if (TESTES[pg.nome]) await TESTES[pg.nome](pagina, rotulo, c, w);
       await testarProgresso(pagina, rotulo);
+      if (pg.nome !== 'home') await testarNumeros(pagina, rotulo);
 
       // Acessibilidade (axe-core local), no cenário de movimento reduzido.
       let violacoes = '-';
