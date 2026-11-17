@@ -1,0 +1,150 @@
+---
+import type { Bloco } from '../../lib/blocos';
+import { comAtributos } from '../../lib/blocos';
+import Broto from '../motivo/Broto.astro';
+
+interface Props { bloco: Bloco }
+const { bloco } = Astro.props;
+const [h2, c0, c1, c2, c3, c4, h3Sete, pVeja, tabela, h3Sem, pSem, ...resto] = bloco.elementos;
+const conclusoes = [c0, c1, c2, c3, c4];
+const ok = h2?.startsWith('<h2') && conclusoes.every((c) => c?.startsWith('<p><strong>'))
+  && h3Sete?.startsWith('<h3') && tabela?.startsWith('<table') && h3Sem?.startsWith('<h3') && pSem && !resto.length;
+if (!ok) throw new Error('B8 fora do formato esperado.');
+const r = (el: string, extra: Record<string, string> = {}) => comAtributos(el, { 'data-revelar': '', ...extra });
+// Quando o negrito é só o começo da frase (não termina em ponto), ele fica na mesma linha do resto.
+const fraseInteira = (p: string) => !/^<p><strong>[\s\S]*?\.<\/strong>/.test(p);
+
+// Tabela: cada célula ganha data-col e data-label (o cabeçalho da coluna, que já está na
+// tabela), para virar cartão no celular. Só atributos; o texto não muda.
+const cabecalhos = [...tabela.matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map((m) => m[1].replace(/<[^>]+>/g, '').trim());
+if (cabecalhos.length !== 3) throw new Error('B8: a tabela precisa de três colunas.');
+const corpo = tabela.replace(/<tr>([\s\S]*?)<\/tr>/g, (_linha, dentro: string) => {
+  let i = 0;
+  const celulas = dentro.replace(/<td(?=[\s>])/g, () => {
+    const atr = ` data-col="${i}" data-label="${cabecalhos[i].replace(/"/g, '&quot;')}"`;
+    i++;
+    return `<td${atr}`;
+  });
+  return `<tr>${celulas}</tr>`;
+});
+const tabelaPronta = comAtributos(corpo, { class: 'sete-problemas', 'data-tabela': '' });
+---
+<section class="secao-clara respiro" data-bloco="B8">
+  <div class="margem mx-auto max-w-(--container-figura)">
+    <div class="texto max-w-(--container-texto)">
+      <Fragment set:html={r(h2)} />
+    </div>
+    <div class="texto conclusoes mt-6 max-w-[46rem]">
+      {conclusoes.map((c) => <Fragment set:html={r(c, fraseInteira(c) ? { class: 'conclusao-frase' } : {})} />)}
+    </div>
+
+    <div class="texto mt-16 md:mt-24">
+      <div class="max-w-(--container-texto)">
+        <Fragment set:html={r(h3Sete, { class: 'titulo-secao' })} />
+        <Fragment set:html={r(pVeja)} />
+      </div>
+      <Fragment set:html={tabelaPronta} />
+    </div>
+
+    <div class="mt-16 grid items-center gap-8 md:mt-24 md:grid-cols-[minmax(0,1fr)_auto] md:gap-16">
+      <div class="texto max-w-(--container-texto)">
+        <Fragment set:html={r(h3Sem, { class: 'titulo-secao' })} />
+        <Fragment set:html={r(pSem, { class: 'sem-formula' })} />
+      </div>
+      <Broto class="h-28 w-auto justify-self-start text-ramo md:h-40 md:justify-self-center" />
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .conclusoes > p {
+    padding-block: 1.5rem;
+    margin: 0;
+    border-top: 1px solid color-mix(in srgb, var(--color-tinta) 10%, transparent);
+  }
+  .conclusoes > p:last-child {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-tinta) 10%, transparent);
+  }
+  .conclusoes strong {
+    display: block;
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+    margin-bottom: 0.4rem;
+  }
+  .conclusoes > p.conclusao-frase strong {
+    display: inline;
+    font-size: inherit;
+  }
+  .conclusoes > p.conclusao-frase {
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+  }
+  .texto .titulo-secao {
+    font-size: var(--text-titulo);
+    line-height: var(--text-titulo--line-height);
+    letter-spacing: var(--text-titulo--letter-spacing);
+    font-weight: 750;
+    margin-top: 0;
+  }
+  .sem-formula {
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+  }
+
+  /* Sete problemas: tabela no desktop, cartões no celular. */
+  .texto table.sete-problemas {
+    margin-top: 2rem;
+    font-size: var(--text-corpo);
+  }
+  .sete-problemas th {
+    font-size: var(--text-pequeno);
+    color: var(--color-tinta-2);
+    font-weight: 600;
+    border-bottom: 1.5px solid var(--color-tinta);
+  }
+  .sete-problemas td[data-col='0'] { font-weight: 600; width: 32%; }
+  .sete-problemas td[data-col='1'] { color: var(--color-tinta-2); width: 22%; }
+  .sete-problemas td,
+  .sete-problemas th { padding: 1rem 1.25rem 1rem 0; }
+  @media (max-width: 767.98px) {
+    .sete-problemas thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .sete-problemas,
+    .sete-problemas tbody,
+    .sete-problemas tr,
+    .sete-problemas td {
+      display: block;
+      width: 100% !important;
+    }
+    .sete-problemas tr {
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      border-radius: var(--radius-cartao);
+      background: var(--color-nevoa);
+    }
+    .sete-problemas td {
+      border: 0;
+      padding: 0.35rem 0;
+    }
+    .sete-problemas td[data-col='0'] {
+      font-size: var(--text-destaque);
+      line-height: var(--text-destaque--line-height);
+      padding-bottom: 0.6rem;
+    }
+    .sete-problemas td[data-col='1']::before,
+    .sete-problemas td[data-col='2']::before {
+      content: attr(data-label) " " / "";
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-tinta-2);
+    }
+    .sete-problemas td[data-col='2'] { color: var(--color-tinta); }
+  }
+</style>

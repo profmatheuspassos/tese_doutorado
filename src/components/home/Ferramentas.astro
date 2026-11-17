@@ -1,0 +1,79 @@
+---
+import type { Bloco } from '../../lib/blocos';
+import { comAtributos, envolverTrecho } from '../../lib/blocos';
+import LinkCapitulo from './LinkCapitulo.astro';
+
+interface Props { bloco: Bloco }
+const { bloco } = Astro.props;
+const [h2, pIntro, lista, pUso, pRecall, pLimites, ...resto] = bloco.elementos;
+if (!h2?.startsWith('<h2') || !lista?.startsWith('<ul') || !pLimites || resto.length) throw new Error('B7 fora do formato esperado.');
+if ((lista.match(/<li>/g) ?? []).length !== 4) throw new Error('B7: esperadas quatro ferramentas na lista.');
+const r = (el: string, extra: Record<string, string> = {}) => comAtributos(el, { 'data-revelar': '', ...extra });
+---
+<section class="secao-nevoa respiro" data-bloco="B7">
+  <div class="margem mx-auto max-w-(--container-figura)">
+    <div class="texto max-w-(--container-texto)">
+      <Fragment set:html={r(h2)} />
+      <Fragment set:html={r(pIntro)} />
+    </div>
+    <div class="texto mt-8">
+      <Fragment set:html={comAtributos(lista, { class: 'ferramentas', 'data-cartoes': '' })} />
+    </div>
+    <div class="texto max-w-(--container-texto)">
+      <Fragment set:html={r(pUso)} />
+    </div>
+    <div class="texto mt-10">
+      <Fragment set:html={r(envolverTrecho(pRecall, 'Falta uma ferramenta nos dois países: o recall.', 'ferramenta-nome'), { class: 'ferramenta-falta' })} />
+    </div>
+    <div class="texto mt-10 max-w-(--container-texto)">
+      <Fragment set:html={r(pLimites, { class: 'ferramentas-limites' })} />
+    </div>
+    <LinkCapitulo n={5} class="mt-10" />
+  </div>
+</section>
+
+<style is:global>
+  .texto ul.ferramentas {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 768px) {
+    .texto ul.ferramentas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  }
+  .texto ul.ferramentas > li {
+    margin: 0;
+    padding: 1.5rem;
+    background: var(--color-branco);
+    border: 1px solid color-mix(in srgb, var(--color-tinta) 8%, transparent);
+    border-radius: var(--radius-cartao);
+    box-shadow: 0 1px 2px rgb(15 17 20 / 0.04), 0 8px 24px -16px rgb(15 17 20 / 0.12);
+  }
+  .texto ul.ferramentas > li::before { display: none; }
+  .texto ul.ferramentas > li > strong:first-child {
+    display: block;
+    font-size: var(--text-subtitulo);
+    line-height: var(--text-subtitulo--line-height);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.5rem;
+  }
+  /* O recall: a ferramenta que falta, em cartão tracejado, sem rótulo novo. */
+  .ferramenta-falta {
+    max-width: 46rem;
+    padding: 1.5rem;
+    border: 1.5px dashed var(--color-linha);
+    border-radius: var(--radius-cartao);
+  }
+  .ferramenta-nome {
+    display: block;
+    font-weight: 700;
+    font-size: var(--text-subtitulo);
+    line-height: var(--text-subtitulo--line-height);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.5rem;
+  }
+  .ferramentas-limites {
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+  }
+</style>

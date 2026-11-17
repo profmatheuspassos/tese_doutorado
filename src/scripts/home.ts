@@ -106,46 +106,134 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
   });
 });
 
-// B4 — o círculo: um nó acende por vez; no fim, todos acesos e os arcos giram.
+// B4 e B6 — o círculo: um nó acende por vez, conforme o texto; no fim, todos acesos.
 function ativar(circulo: HTMLElement, no: number | 'todos') {
   circulo.dataset.ativo = String(no);
   circulo.querySelectorAll<HTMLElement | SVGElement>('[data-no]').forEach((el) => {
     el.classList.toggle('ativo', no === 'todos' || el.dataset.no === String(no));
   });
 }
+const secoesComCirculo = () =>
+  [...document.querySelectorAll<HTMLElement>('[data-bloco]')].filter((s) => s.querySelector('[data-circulo]') && s.querySelector('[data-passo-no]'));
 
 mm.add('(prefers-reduced-motion: no-preference) and (min-width: 1024px)', () => {
-  const secao = document.querySelector<HTMLElement>('[data-bloco="B4"]');
-  const circulo = secao?.querySelector<HTMLElement>('[data-circulo]');
-  const final = secao?.querySelector('[data-passo-final]');
-  if (!secao || !circulo || !final) return;
-  ativar(circulo, 0);
-  secao.querySelectorAll<HTMLElement>('[data-passo-no]').forEach((p) => {
-    const no = Number(p.dataset.passoNo);
-    ScrollTrigger.create({
-      trigger: p, start: 'top 60%', end: 'bottom 60%',
-      onEnter: () => ativar(circulo, no), onEnterBack: () => ativar(circulo, no),
+  const circulos: HTMLElement[] = [];
+  secoesComCirculo().forEach((secao) => {
+    const circulo = secao.querySelector<HTMLElement>('[data-circulo]')!;
+    const final = secao.querySelector('[data-passo-final]');
+    const passos = [...secao.querySelectorAll<HTMLElement>('[data-passo-no]')];
+    circulos.push(circulo);
+    ativar(circulo, Number(passos[0].dataset.passoNo));
+    passos.forEach((p) => {
+      const no = Number(p.dataset.passoNo);
+      ScrollTrigger.create({
+        trigger: p, start: 'top 60%', end: 'bottom 60%',
+        onEnter: () => ativar(circulo, no), onEnterBack: () => ativar(circulo, no),
+      });
     });
+    if (final) {
+      const ultimo = Number(passos[passos.length - 1].dataset.passoNo);
+      ScrollTrigger.create({ trigger: final, start: 'top 60%', onEnter: () => ativar(circulo, 'todos'), onLeaveBack: () => ativar(circulo, ultimo) });
+    }
+    // Três pontos circulam pelo anel, no sentido das setas, acompanhando a rolagem.
+    const fluxo = circulo.querySelector('[data-fluxo]');
+    if (fluxo) {
+      gsap.set(fluxo.querySelectorAll('circle'), { opacity: 1 });
+      gsap.fromTo(fluxo, { rotation: 0 }, {
+        rotation: 360, svgOrigin: '200 200', ease: 'none',
+        scrollTrigger: { trigger: secao, start: 'top 60%', end: 'bottom 40%', scrub: true },
+      });
+    }
   });
-  ScrollTrigger.create({ trigger: final, start: 'top 60%', onEnter: () => ativar(circulo, 'todos'), onLeaveBack: () => ativar(circulo, 2) });
-  // Três pontos circulam pelo anel, no sentido das setas, acompanhando a rolagem.
-  const fluxo = circulo.querySelector('[data-fluxo]');
-  if (fluxo) {
-    gsap.set(fluxo.querySelectorAll('circle'), { opacity: 1 });
-    gsap.fromTo(fluxo, { rotation: 0 }, {
-      rotation: 360, svgOrigin: '200 200', ease: 'none',
-      scrollTrigger: { trigger: secao, start: 'top 60%', end: 'bottom 40%', scrub: true },
-    });
-  }
-  return () => ativar(circulo, 'todos');
+  return () => circulos.forEach((c) => ativar(c, 'todos'));
 });
 
 mm.add('(prefers-reduced-motion: no-preference) and (max-width: 1023.98px)', () => {
-  const circulo = document.querySelector<HTMLElement>('[data-bloco="B4"] [data-circulo]');
-  if (!circulo) return;
-  ativar(circulo, 0);
-  const tl = gsap.timeline({ scrollTrigger: { trigger: circulo, start: 'top 70%', once: true } });
-  [0, 1, 2].forEach((no, k) => tl.call(() => ativar(circulo, no), [], k * 0.8));
-  tl.call(() => ativar(circulo, 'todos'), [], 2.4);
-  return () => ativar(circulo, 'todos');
+  const circulos: HTMLElement[] = [];
+  secoesComCirculo().forEach((secao) => {
+    const circulo = secao.querySelector<HTMLElement>('[data-circulo]')!;
+    const ordem = [...secao.querySelectorAll<HTMLElement>('[data-passo-no]')].map((p) => Number(p.dataset.passoNo));
+    circulos.push(circulo);
+    ativar(circulo, ordem[0]);
+    const tl = gsap.timeline({ scrollTrigger: { trigger: circulo, start: 'top 70%', once: true } });
+    ordem.forEach((no, k) => tl.call(() => ativar(circulo, no), [], 0.6 + k * 0.8));
+    tl.call(() => ativar(circulo, 'todos'), [], 0.6 + ordem.length * 0.8);
+  });
+  return () => circulos.forEach((c) => ativar(c, 'todos'));
+});
+
+mm.add('(prefers-reduced-motion: no-preference)', () => {
+  // B5 — na bolha, os pontos coloridos se reduzem a uma cor só.
+  const pontos = gsap.utils.toArray<SVGCircleElement>('.bolha-ponto');
+  if (pontos.length) {
+    pontos.forEach((p) => gsap.set(p, { attr: { fill: p.dataset.cor ?? '' } }));
+    gsap.to(pontos, {
+      attr: { fill: 'var(--color-gelo-2)' }, duration: 0.6, stagger: 0.25, delay: 0.5,
+      scrollTrigger: { trigger: pontos[0].closest('svg'), start: 'top 80%', once: true },
+    });
+  }
+
+  // B6 — no círculo virtuoso, os rótulos do vicioso dão lugar aos novos.
+  document.querySelectorAll<HTMLElement>('.circulo-virtuoso').forEach((c) => {
+    const antes = c.querySelectorAll('.circulo-rotulo-antes');
+    const depois = c.querySelectorAll('.circulo-rotulo-depois');
+    if (!antes.length) return;
+    gsap.set(antes, { opacity: 1 });
+    gsap.set(depois, { opacity: 0 });
+    gsap.timeline({ scrollTrigger: { trigger: c, start: 'top 65%', once: true } })
+      .to(antes, { opacity: 0, duration: 0.5, stagger: 0.15 }, 0.4)
+      .to(depois, { opacity: 1, duration: 0.6, stagger: 0.15 }, 0.75);
+  });
+
+  // B6 — quando o texto chega à proposta, o ramo engrossa e a semente brota.
+  const gatilho = document.querySelector('[data-crescer]');
+  const caule = document.querySelector<SVGPathElement>('.ramo-cresce .ramo-caule');
+  const folhasNovas = document.querySelectorAll('.ramo-cresce .folha-nova');
+  const broto = document.querySelector('[data-solo] [data-broto]');
+  if (gatilho && caule && broto) {
+    gsap.set(caule, { attr: { 'stroke-width': 1.75 } });
+    gsap.set(folhasNovas, { opacity: 0 });
+    gsap.set(broto.querySelector('.broto-caule'), { strokeDasharray: 1, strokeDashoffset: 1 });
+    gsap.set(broto.querySelectorAll('.broto-folha'), { opacity: 0 });
+    gsap.timeline({ scrollTrigger: { trigger: gatilho, start: 'top 80%', once: true } })
+      .to(caule, { attr: { 'stroke-width': 3.5 }, duration: 1.2, ease: 'power2.inOut' }, 0)
+      .to(folhasNovas, { opacity: 1, duration: 0.6, stagger: 0.2 }, 0.6)
+      .to(broto.querySelector('.broto-caule'), { strokeDashoffset: 0, duration: 1, ease: 'power2.out' }, 0.2)
+      .to(broto.querySelectorAll('.broto-folha'), { opacity: 1, duration: 0.5, stagger: 0.2 }, 0.9);
+  }
+
+  // B7 — os cartões das ferramentas entram em sequência.
+  document.querySelectorAll('[data-cartoes]').forEach((ul) => {
+    const itens = ul.querySelectorAll('li');
+    gsap.set(itens, { opacity: 0, y: 20 });
+    gsap.to(itens, { ...sobe, stagger: 0.12, scrollTrigger: { trigger: ul, start: 'top 80%', once: true } });
+  });
+
+  // B8 — o broto do fecho se desenha.
+  const brotoFinal = document.querySelector('[data-broto-final]');
+  if (brotoFinal) {
+    gsap.set(brotoFinal.querySelector('.broto-caule'), { strokeDasharray: 1, strokeDashoffset: 1 });
+    gsap.set(brotoFinal.querySelectorAll('.broto-folha'), { opacity: 0 });
+    gsap.timeline({ scrollTrigger: { trigger: brotoFinal, start: 'top 85%', once: true } })
+      .to(brotoFinal.querySelector('.broto-caule'), { strokeDashoffset: 0, duration: 1, ease: 'power2.out' })
+      .to(brotoFinal.querySelectorAll('.broto-folha'), { opacity: 1, duration: 0.5, stagger: 0.2 }, 0.7);
+  }
+});
+
+// B8 — sete problemas: no desktop, a coluna "O digital resolve?" aparece primeiro e a da
+// cidadania ativa depois; no celular, os cartões entram em sequência.
+mm.add('(prefers-reduced-motion: no-preference) and (min-width: 768px)', () => {
+  const tabela = document.querySelector('[data-tabela]');
+  if (!tabela) return;
+  const col1 = tabela.querySelectorAll('td[data-col="1"]');
+  const col2 = tabela.querySelectorAll('td[data-col="2"]');
+  gsap.set([col1, col2], { opacity: 0 });
+  gsap.timeline({ scrollTrigger: { trigger: tabela, start: 'top 70%', once: true } })
+    .to(col1, { opacity: 1, duration: 0.4, stagger: 0.08 })
+    .to(col2, { opacity: 1, duration: 0.5, stagger: 0.1 }, '+=0.2');
+});
+mm.add('(prefers-reduced-motion: no-preference) and (max-width: 767.98px)', () => {
+  const linhas = document.querySelectorAll('[data-tabela] tbody tr');
+  gsap.set(linhas, { opacity: 0, y: 16 });
+  ScrollTrigger.batch(linhas, { start: 'top 88%', once: true, onEnter: (l) => gsap.to(l, { ...sobe, stagger: 0.1 }) });
 });

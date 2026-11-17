@@ -1,0 +1,120 @@
+---
+import type { Bloco } from '../../lib/blocos';
+import { comAtributos } from '../../lib/blocos';
+import { url } from '../../lib/paginas';
+import Circulo from '../diagramas/Circulo.astro';
+import Ramo from '../motivo/Ramo.astro';
+import Solo from '../motivo/Solo.astro';
+import LinkCapitulo from './LinkCapitulo.astro';
+
+interface Props { bloco: Bloco }
+const { bloco } = Astro.props;
+const [h2, pIntro, p1, p1b, p2, p2b, p3, h3PT, pPT, h3BR, pBR, pFinal, ...resto] = bloco.elementos;
+const ok = h2?.startsWith('<h2') && [p1, p2, p3].every((p) => p?.startsWith('<p><strong>'))
+  && h3PT?.startsWith('<h3') && h3BR?.startsWith('<h3') && pFinal && !resto.length;
+if (!ok) throw new Error('B6 fora do formato esperado.');
+const r = (el: string, extra: Record<string, string> = {}) => comAtributos(el, { 'data-revelar': '', ...extra });
+// Cada peça acende o nó correspondente do círculo (0 = cidadão, 1 = partidos, 2 = vínculo).
+---
+<div class="proposta-transicao" aria-hidden="true"></div>
+<section class="secao-clara pt-6 pb-[clamp(4rem,12vw,9rem)]" data-bloco="B6">
+  <div class="margem mx-auto max-w-(--container-figura)">
+    <div class="grid gap-x-20 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+      <div class="texto lg:col-start-2 lg:row-start-1">
+        <Fragment set:html={r(h2)} />
+        <Fragment set:html={r(pIntro, { class: 'proposta-intro' })} />
+      </div>
+      <div class="lg:col-start-1 lg:row-span-2 lg:row-start-1">
+        <div class="lg:sticky lg:top-[max(5rem,calc(50svh-17rem))]">
+          <Circulo estado="virtuoso" tema="claro" transicao />
+        </div>
+      </div>
+      <div class="texto proposta-pecas lg:col-start-2 lg:row-start-2">
+        <Fragment set:html={r(p1, { 'data-passo-no': '2' })} />
+        <Fragment set:html={r(p1b)} />
+        <Fragment set:html={r(p2, { 'data-passo-no': '0' })} />
+        <Fragment set:html={r(p2b)} />
+        <Fragment set:html={r(p3, { 'data-passo-no': '1' })} />
+        <span data-passo-final aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <img
+      src={url('/img/home-bairro.webp')}
+      width="1800"
+      height="1200"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="mt-16 aspect-[3/2] w-full rounded-cartao border border-tinta/8 bg-nevoa object-cover md:mt-24"
+    />
+
+    <div class="mt-12 grid gap-5 md:mt-16 lg:grid-cols-2">
+      <div class="pais-cartao pais-pt texto" data-revelar>
+        <Ramo class="pais-desenho text-ramo" crescer />
+        <Fragment set:html={h3PT} />
+        <Fragment set:html={pPT} />
+      </div>
+      <div class="pais-cartao pais-br texto" data-revelar>
+        <Solo class="pais-desenho pais-desenho-solo text-semente" />
+        <Fragment set:html={h3BR} />
+        <Fragment set:html={pBR} />
+      </div>
+    </div>
+
+    <div class="texto mt-12 max-w-(--container-texto) md:mt-16">
+      <Fragment set:html={r(pFinal, { class: 'proposta-final', 'data-crescer': '' })} />
+    </div>
+    <LinkCapitulo n={4} class="mt-10" />
+  </div>
+</section>
+
+<style is:global>
+  /* Passagem do escuro (B5) para o claro (B6): "o círculo vicioso começa a girar ao contrário". */
+  .proposta-transicao {
+    height: clamp(8rem, 26vh, 16rem);
+    background: linear-gradient(to bottom, var(--color-grafite), var(--color-branco));
+  }
+  .proposta-intro,
+  .proposta-final {
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+  }
+  .proposta-pecas strong {
+    display: block;
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+    margin-bottom: 0.35rem;
+  }
+  .proposta-pecas [data-passo-no] {
+    margin-top: 2.5rem;
+  }
+  @media (min-width: 1024px) {
+    .proposta-pecas [data-passo-no] {
+      margin-top: 14vh;
+    }
+  }
+  .pais-cartao {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-cartao);
+    border: 1px solid color-mix(in srgb, var(--color-tinta) 8%, transparent);
+    background: var(--color-nevoa);
+    padding: 1.75rem 1.5rem 0.75rem;
+  }
+  .pais-pt { border-top: 3px solid var(--color-ramo); }
+  .pais-br { border-top: 3px solid var(--color-semente); }
+  .pais-cartao h3 {
+    margin-top: 0;
+  }
+  .pais-desenho {
+    display: block;
+    height: 9rem;
+    width: auto;
+    margin-bottom: 1rem;
+  }
+  .pais-desenho-solo {
+    height: 7rem;
+    margin-top: 2rem;
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+import type { Bloco } from '../../lib/blocos';
+import { comAtributos, envolverTrecho } from '../../lib/blocos';
+import LinkCapitulo from './LinkCapitulo.astro';
+
+interface Props { bloco: Bloco }
+const { bloco } = Astro.props;
+const [h2, pPromessa, c0, c1, c2, c3, pFecho, ...resto] = bloco.elementos;
+const cartoes = [c0, c1, c2, c3];
+if (!h2?.startsWith('<h2') || !cartoes.every((c) => c?.startsWith('<p><strong>')) || !pFecho || resto.length) {
+  throw new Error('B5 fora do formato esperado.');
+}
+const r = (el: string, extra: Record<string, string> = {}) => comAtributos(el, { 'data-revelar': '', ...extra });
+
+// Ícones em traço, sem texto, na ordem dos quatro problemas do texto. Na bolha, o estado
+// final (sem JS) é uma cor só; o script parte de pontos coloridos (data-cor).
+const cores = ['var(--color-gelo-2)', 'var(--color-ramo-escuro)', 'var(--color-semente-escuro)', 'var(--color-linha-escuro)', 'var(--color-gelo)'];
+const pontosBolha = [[8.5, 9], [14, 8], [11, 12.5], [15.5, 13], [8, 14.5]];
+---
+<section class="secao-escura respiro" data-bloco="B5">
+  <div class="margem mx-auto max-w-(--container-figura)">
+    <div class="texto max-w-(--container-texto)">
+      <Fragment set:html={r(h2)} />
+      <Fragment set:html={r(envolverTrecho(pPromessa, 'Não resolve.', 'frase-forte'), { class: 'atalho-promessa' })} />
+    </div>
+
+    <div class="atalho-cartoes mt-12 grid gap-4 md:mt-16 md:grid-cols-2 md:gap-5">
+      {cartoes.map((c, i) => (
+        <div class="atalho-cartao texto" data-revelar>
+          <svg class="atalho-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" data-icone={i}>
+            {i === 0 && (
+              <>
+                <path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.8 15.8a4.6 4.6 0 0 1 6.4 0" />
+                <circle cx="12" cy="19" r="1" fill="currentColor" />
+                <path d="M4 3.5l16 17" />
+              </>
+            )}
+            {i === 1 && (
+              <>
+                <circle cx="12" cy="11.5" r="8.5" />
+                {pontosBolha.map(([x, y], k) => <circle class="bolha-ponto" cx={x} cy={y} r="1.6" fill="var(--color-gelo-2)" data-cor={cores[k]} stroke="none" />)}
+              </>
+            )}
+            {i === 2 && (
+              <>
+                <path d="M2 12h7M6.5 9L9.5 12 6.5 15" />
+                <path d="M22 12h-7M17.5 9L14.5 12 17.5 15" />
+                <path d="M12 7v1.5M12 15.5V17" />
+              </>
+            )}
+            {i === 3 && (
+              <>
+                <circle cx="12" cy="4.5" r="2" />
+                <path d="M9.5 12l2.5-4.5 2.5 4.5" />
+                <path d="M8 12.5h8v4H8z" />
+                <path d="M4 20.5h.01M8 20.5h.01M16 20.5h.01M20 20.5h.01M12 20.5h.01" stroke-width="2.4" />
+              </>
+            )}
+          </svg>
+          <Fragment set:html={c} />
+        </div>
+      ))}
+    </div>
+
+    <div class="texto mt-14 max-w-(--container-texto) md:mt-20">
+      <Fragment set:html={r(envolverTrecho(pFecho, 'É preciso algo mais.', 'frase-forte frase-forte-bloco'), { class: 'atalho-fecho' })} />
+    </div>
+    <LinkCapitulo n={3} class="mt-10" />
+  </div>
+</section>
+
+<style is:global>
+  .atalho-promessa,
+  .atalho-fecho {
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+  }
+  .frase-forte {
+    font-weight: 700;
+    color: var(--color-gelo);
+  }
+  .frase-forte-bloco {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: var(--text-titulo);
+    line-height: var(--text-titulo--line-height);
+    letter-spacing: var(--text-titulo--letter-spacing);
+  }
+  .atalho-cartao {
+    background: var(--color-grafite-2);
+    border: 1px solid color-mix(in srgb, var(--color-linha-escuro) 18%, transparent);
+    border-radius: var(--radius-cartao);
+    padding: 1.5rem 1.5rem 0.5rem;
+  }
+  .atalho-cartao p {
+    color: var(--color-gelo-2);
+  }
+  .atalho-cartao strong {
+    display: block;
+    font-size: var(--text-destaque);
+    line-height: var(--text-destaque--line-height);
+    margin-bottom: 0.35rem;
+  }
+  .atalho-icone {
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-gelo);
+    margin-bottom: 1rem;
+  }
+</style>

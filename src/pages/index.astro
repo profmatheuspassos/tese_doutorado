@@ -5,7 +5,10 @@ import NaPratica from '../components/home/NaPratica.astro';
 import Cena from '../components/home/Cena.astro';
 import NoPapel from '../components/home/NoPapel.astro';
 import OCirculo from '../components/home/OCirculo.astro';
-import BlocoSimples from '../components/home/BlocoSimples.astro';
+import Atalho from '../components/home/Atalho.astro';
+import Proposta from '../components/home/Proposta.astro';
+import Ferramentas from '../components/home/Ferramentas.astro';
+import Conclusoes from '../components/home/Conclusoes.astro';
 import { pagina } from '../lib/paginas';
 import { t } from '../i18n';
 
@@ -27,10 +30,10 @@ if (sobrando.length) throw new Error(`Blocos da home sem lugar na página: ${sob
   <NoPapel bloco={B.B2} />
   <NaPratica bloco={B.B3} />
   <OCirculo bloco={B.B4} />
-  <BlocoSimples bloco={B.B5} tom="escura" capitulo={3} />
-  <BlocoSimples bloco={B.B6} tom="clara" capitulo={4} />
-  <BlocoSimples bloco={B.B7} tom="nevoa" capitulo={5} />
-  <BlocoSimples bloco={B.B8} tom="clara" />
+  <Atalho bloco={B.B5} />
+  <Proposta bloco={B.B6} />
+  <Ferramentas bloco={B.B7} />
+  <Conclusoes bloco={B.B8} />
   <div slot="rodape" class="texto [&_p]:text-pequeno" data-bloco="B9" set:html={B.B9.html} />
 </Base>
 
