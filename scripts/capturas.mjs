@@ -111,7 +111,7 @@ for (const c of cenarios) {
       await p2.goto(BASE, { waitUntil: 'networkidle' });
       await p2.evaluate(() => document.fonts.ready.then(() => true));
       for (const b of destaques) {
-        const loc = p2.locator(`[data-bloco="${b}"]`);
+        const loc = p2.locator(b === 'rodape' ? 'footer' : `[data-bloco="${b}"]`);
         // Percorre o bloco inteiro antes da captura, para que todas as animações tenham disparado.
         const caixa = await loc.evaluate((el) => { const r = el.getBoundingClientRect(); return { topo: r.top + scrollY, altura: r.height }; });
         for (let y = caixa.topo - 200; y <= caixa.topo + caixa.altura; y += 300) { await p2.evaluate((v) => scrollTo(0, v), y); await p2.waitForTimeout(c.nome === 'normal' ? 150 : 0); }
@@ -126,6 +126,27 @@ for (const c of cenarios) {
     await ctx.close();
   }
 }
+// Página 404: sem rolagem horizontal, sem violação do axe; captura versionada no cenário normal.
+for (const w of larguras) {
+  for (const c of cenarios) {
+    const ctx = await navegador.newContext({ viewport: { width: w, height: w < 500 ? 812 : 900 }, deviceScaleFactor: versionada(c.nome, w) ? 2 : 1, ...c.opcoes });
+    const pagina = await ctx.newPage();
+    const rotulo = `404 ${c.nome} ${w}px`;
+    pagina.on('pageerror', (e) => erros.push(`${rotulo}: erro de JS: ${e.message}`));
+    const resp = await pagina.goto(`${BASE}rota-que-nao-existe/`, { waitUntil: 'networkidle' });
+    if (resp.status() !== 404) erros.push(`${rotulo}: status ${resp.status()} (esperado 404)`);
+    const excedente = await pagina.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (excedente > 0) erros.push(`${rotulo}: rolagem horizontal de ${excedente}px`);
+    if (c.nome === 'movimento-reduzido') {
+      await pagina.addScriptTag({ path: join(raiz, 'node_modules/axe-core/axe.min.js') });
+      const r = await pagina.evaluate(async () => (await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } })).violations.map((v) => `${v.id}: ${v.help}`));
+      r.forEach((v) => erros.push(`${rotulo}: axe: ${v}`));
+    }
+    if (versionada(c.nome, w)) await pagina.screenshot({ path: join(saida, `404-${w}.jpg`), type: 'jpeg', quality: 70 });
+    await ctx.close();
+  }
+}
+resumo.push('404: 9 combinações testadas (status, rolagem horizontal, axe)');
 await navegador.close();
 servidor.kill();
 

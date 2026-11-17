@@ -10,7 +10,7 @@
     "postbuild": "node scripts/conferir-texto.mjs && node scripts/conferir-terceiros.mjs",
     "preview": "astro preview",
     "conferir": "npm run build",
-    "capturas": "node scripts/capturas.mjs B0,B1,B2,B3,B4",
+    "capturas": "node scripts/capturas.mjs B0,B1,B2,B3,B4,B5,B6,B7,B8,rodape",
     "imagens": "node scripts/reservar-imagens.mjs",
     "lighthouse": "node scripts/lighthouse.mjs"
   },

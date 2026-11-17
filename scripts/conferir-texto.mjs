@@ -120,6 +120,32 @@ for (const p of paginas) {
   }
   console.log(`  ${p.arquivo}: ${publicados.length} palavras e ${aspasPublicadas} aspas conferidas em ${ids.length} blocos; ${soltos.length} rótulos de interface conferidos; <title>: ${r.titulo}`);
 }
+// Páginas sem .md (ex.: 404): todo texto visível precisa ser rótulo aprovado.
+const rotasMd = new Set(paginas.map((p) => join(raiz, 'dist', p.meta.rota, 'index.html')));
+const htmlDoBuild = [];
+const andar = (d) => readdirSync(d, { withFileTypes: true }).forEach((e) => {
+  const c = join(d, e.name);
+  if (e.isDirectory()) andar(c); else if (e.name.endsWith('.html')) htmlDoBuild.push(c);
+});
+andar(join(raiz, 'dist'));
+for (const html of htmlDoBuild.filter((h) => !rotasMd.has(h))) {
+  const pagina = await contexto.newPage();
+  await pagina.goto(pathToFileURL(html).href);
+  const textos = await pagina.evaluate(() => {
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const saida = [];
+    for (let n = w.nextNode(); n; n = w.nextNode()) {
+      const el = n.parentElement;
+      if (!el || el.closest('script, style, template') || !n.textContent.trim()) continue;
+      saida.push(n.textContent.trim());
+    }
+    return { saida, titulo: document.title };
+  });
+  await pagina.close();
+  const nome = html.slice(join(raiz, 'dist').length + 1);
+  textos.saida.forEach((s) => { if (!permitidos.has(s) && !numeroDosDados.test(s)) erros.push(`${nome}: texto de interface não aprovado: "${s}"`); });
+  console.log(`  ${nome}: ${textos.saida.length} textos de interface conferidos; <title>: ${textos.titulo}`);
+}
 await navegador.close();
 
 if (!conferidas) erros.push('Nenhuma página do build corresponde a um .md aprovado.');
@@ -128,4 +154,4 @@ if (erros.length) {
   erros.forEach((e) => console.error(' - ' + e));
   process.exit(1);
 }
-console.log(`conferir-texto: ok (${conferidas} página(s) idênticas ao texto aprovado)`);
+console.log(`conferir-texto: ok (${conferidas} página(s) idênticas ao texto aprovado; ${htmlDoBuild.length - conferidas} sem .md, só com rótulos aprovados)`);
