@@ -106,8 +106,9 @@ const TESTES = {
   },
 };
 
-// Números em destaque das páginas internas: a tinta do último algarismo ou da vírgula (medida
-// num canvas com a mesma fonte) fica pelo menos 8 px acima do elemento seguinte.
+// Números em destaque: a tinta do último algarismo ou da vírgula (medida num canvas com a mesma
+// fonte) fica pelo menos 8 px acima do elemento seguinte, quando ele está embaixo do número. Se o
+// elemento seguinte fica ao lado (sem sobreposição horizontal), não há o que medir.
 async function testarNumeros(pagina, rotulo) {
   const folgas = await pagina.evaluate(() => [...document.querySelectorAll('[data-bloco] .numero-grande')].map((el) => {
     const span = el.querySelector('span');
@@ -117,8 +118,9 @@ async function testarNumeros(pagina, rotulo) {
     const m = g.measureText(span.textContent);
     const caixa = el.getBoundingClientRect();
     const base = caixa.top + caixa.height / 2 + (m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2;
-    const seguinte = el.nextElementSibling?.getBoundingClientRect().top ?? Infinity;
-    return { texto: span.textContent, folga: seguinte - (base + m.actualBoundingBoxDescent) };
+    const prox = el.nextElementSibling?.getBoundingClientRect();
+    const embaixo = prox && prox.left < caixa.right && prox.right > caixa.left && prox.top > caixa.top;
+    return { texto: span.textContent, folga: embaixo ? prox.top - (base + m.actualBoundingBoxDescent) : Infinity };
   }));
   folgas.forEach((f) => { if (f.folga < 8) erros.push(`${rotulo}: número em destaque "${f.texto}" a ${f.folga.toFixed(1)}px do texto seguinte (mínimo 8)`); });
 }
@@ -212,7 +214,7 @@ for (const pg of paginas) {
 
       if (TESTES[pg.nome]) await TESTES[pg.nome](pagina, rotulo, c, w);
       await testarProgresso(pagina, rotulo);
-      if (pg.nome !== 'home') await testarNumeros(pagina, rotulo);
+      await testarNumeros(pagina, rotulo);
 
       // Acessibilidade (axe-core local), no cenário de movimento reduzido.
       let violacoes = '-';

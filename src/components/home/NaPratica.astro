@@ -22,8 +22,10 @@ const r = (el: string) => comAtributos(el, { 'data-revelar': '' });
       <Fragment set:html={r(pAbre)} />
     </div>
 
-    <div class="mt-14 grid items-end gap-6 md:mt-20 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-14" data-numero>
-      <NumeroGrande valor={dados.confianca_interpessoal_br.nao_pode_confiar} class="text-semente-escuro" />
+    <div class="mt-14 grid items-end gap-x-6 md:mt-20 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-14" data-numero>
+      {/* A margem abaixo do número acompanha o tamanho dele (0.3em), como no capítulo 2 (D60): a vírgula
+          nunca chega perto do texto seguinte. Lado a lado (1024 px ou mais), não há margem. */}
+      <NumeroGrande valor={dados.confianca_interpessoal_br.nao_pode_confiar} class="text-semente-escuro mb-[0.3em] lg:mb-0" />
       <div class="texto max-w-(--container-texto) lg:pb-3 [&_p]:text-destaque [&_p]:text-gelo!">
         <Fragment set:html={r(pNumero)} />
       </div>
