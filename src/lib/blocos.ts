@@ -130,3 +130,24 @@ export function textoSimples(html: string): string {
     .replace(/\s+/g, ' ')
     .trim();
 }
+
+/**
+ * Prepara uma tabela para virar cartões no celular: cada célula do corpo ganha data-col (índice
+ * da coluna) e data-label (o texto do cabeçalho da coluna, que já está na tabela). Só atributos;
+ * o texto não muda. Mesma técnica da tabela dos sete problemas da home (Conclusoes.astro).
+ */
+export function rotularCelulas(tabela: string): string {
+  if (!tabela.startsWith('<table')) throw new Error('rotularCelulas: o elemento precisa ser uma tabela.');
+  const cabecalhos = [...tabela.matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map((m) => textoSimples(m[1]));
+  const corpo = tabela.replace(/<tbody>[\s\S]*<\/tbody>/, (tbody) => tbody.replace(/<tr>([\s\S]*?)<\/tr>/g, (_l, dentro: string) => {
+    let i = 0;
+    const celulas = dentro.replace(/<td(?=[\s>])/g, () => {
+      if (i >= cabecalhos.length) throw new Error('rotularCelulas: linha com mais células que o cabeçalho.');
+      const atr = ` data-col="${i}" data-label="${cabecalhos[i].replace(/"/g, '&quot;')}"`;
+      i++;
+      return `<td${atr}`;
+    });
+    return `<tr>${celulas}</tr>`;
+  }));
+  return comAtributos(corpo, { class: 'tabela-cartoes' });
+}

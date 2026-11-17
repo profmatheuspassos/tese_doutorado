@@ -1,0 +1,95 @@
+/*
+ * Checklist com as marcas de "cumpre" de Portugal (ramo) e do Brasil (semente): home (B2) e
+ * capítulo 1 (B4). Estilos fora de camada, como estavam no componente da home.
+ */
+.checklist-legenda {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 0.625rem;
+  padding-right: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--color-tinta-2);
+}
+.checklist-legenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.ponto-pais {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 999px;
+}
+.texto ul.checklist {
+  background: var(--color-branco);
+  border: 1px solid color-mix(in srgb, var(--color-tinta) 8%, transparent);
+  border-radius: var(--radius-cartao);
+  box-shadow: 0 1px 2px rgb(15 17 20 / 0.04), 0 8px 24px -16px rgb(15 17 20 / 0.12);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+.texto ul.checklist > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.95rem 1.25rem;
+  line-height: 1.45;
+}
+.texto ul.checklist > li + li {
+  border-top: 1px solid color-mix(in srgb, var(--color-tinta) 8%, transparent);
+}
+.texto ul.checklist > li::before {
+  display: none;
+}
+.marcas {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 0.5rem;
+}
+.marca {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.marca-circulo {
+  stroke-width: 1.5;
+}
+.marca-visto {
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.marca-pt .marca-circulo { stroke: var(--color-ramo); fill: color-mix(in srgb, var(--color-ramo) 12%, transparent); }
+.marca-pt .marca-visto { stroke: var(--color-ramo); }
+.marca-br .marca-circulo { stroke: var(--color-semente); fill: color-mix(in srgb, var(--color-semente) 12%, transparent); }
+.marca-br .marca-visto { stroke: var(--color-semente); }
+
+/* Lista numerada (capítulo 1): o número da regra continua visível, à esquerda. */
+.texto ol.checklist {
+  background: var(--color-branco);
+  border: 1px solid color-mix(in srgb, var(--color-tinta) 8%, transparent);
+  border-radius: var(--radius-cartao);
+  box-shadow: 0 1px 2px rgb(15 17 20 / 0.04), 0 8px 24px -16px rgb(15 17 20 / 0.12);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+.texto ol.checklist > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.95rem 1.25rem 0.95rem 3rem;
+  line-height: 1.45;
+}
+.texto ol.checklist > li + li {
+  border-top: 1px solid color-mix(in srgb, var(--color-tinta) 8%, transparent);
+}
+.texto ol.checklist > li::before {
+  left: 1.25rem;
+  top: 0.95rem;
+}

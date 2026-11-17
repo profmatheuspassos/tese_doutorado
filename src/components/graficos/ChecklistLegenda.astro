@@ -1,0 +1,26 @@
+---
+/**
+ * Legenda "Portugal" / "Brasil" (T7) do checklist das páginas internas (capítulo 1, B4), com os
+ * estilos comuns do checklist e a animação de desenho das marcas (como na home, D53).
+ * A lista em si recebe as marcas por comMarcas (src/lib/checklist.ts).
+ */
+import { t } from '../../i18n';
+import '../../styles/checklist.css';
+---
+<div class="checklist-legenda" aria-hidden="true" data-ui>
+  <span><i class="ponto-pais bg-ramo"></i>{t('paises.portugal')}</span>
+  <span><i class="ponto-pais bg-semente"></i>{t('paises.brasil')}</span>
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { animarChecklists } from '../../scripts/comum/checklist';
+  import { desligar } from '../../scripts/comum/observar';
+
+  document.documentElement.classList.add('anim-pronto');
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const obs: IntersectionObserver[] = [];
+    animarChecklists(obs);
+    return desligar(obs);
+  });
+</script>
