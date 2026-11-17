@@ -40,5 +40,9 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na
-Fase 2 (D13 a D26) foram decididos. Novos pontos entram aqui.
+Os doze pontos da seção 5 do plano (D1 a D12) e os pontos surgidos na Fase 2 até o capítulo 3
+(D13 a D26) foram decididos. Novos pontos entram aqui.
+
+| # | Ponto | Situação e proposta |
+|---|---|---|
+| A10 | Contagens sem ano (capítulo 4) | A regra é que todo dado apareça com o ano a que se refere. A tese não dá ano para três contagens que a página usa: a palavra "cidadão" aparece 89 vezes na constituição portuguesa e 11 na brasileira (nota 643, contagem do autor); há "mais de 5.500" leis orgânicas municipais no Brasil (4.2.2); a constituição brasileira prevê 30 formas de participação além do voto (nota 644, estudo de 2006; a home, aprovada, já usa o número sem ano). As três descrevem textos legais em vigor quando a tese foi escrita, não medições de opinião. **Proposta:** manter as três sem ano, como estão, tratando-as como descrição dos textos analisados pela tese. Alternativa: escrever "quando a tese foi escrita" junto da contagem 89 x 11, a única que não é número redondo. Até a decisão, a página segue como escrita. |

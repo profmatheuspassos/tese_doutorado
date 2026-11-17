@@ -57,6 +57,7 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 | Capítulo 1 | 1.680 | 1.488 | 129 | 11,5 | 2,07 | 61,9 | fácil |
 | Capítulo 2 | 1.797 | 1.714 | 157 | 10,9 | 2,05 | 63,9 | fácil |
 | Capítulo 3 | 1.794 | 1.615 | 144 | 11,2 | 2,12 | 58,2 | fácil |
+| Capítulo 4 | 1.797 | 1.731 | 150 | 11,5 | 2,11 | 58,8 | fácil |
 
 ### Home (17/11/2026)
 
@@ -177,4 +178,37 @@ participativa, deliberativa, inteligência artificial, institucionais.
   tese nem de plataforma ou empresa. Esquerda e direita aparecem sempre juntas (bolha;
   populismo).
 - "A tese" aparece quatro vezes (D15).
+
+### Capítulo 4 (17/11/2026)
+
+**Resultado (versão enviada para aprovação):** índice 58,8, acima da referência de 50. Média de
+11,5 palavras por frase (limite: 20). Maior frase: 25 palavras (a da constituição italiana);
+nenhuma acima de 25. Tamanho: 1.797 palavras visíveis, dentro da faixa de 1.200 a 1.800 por página
+de capítulo (D16), no teto.
+
+**Histórico da medição.** Primeira versão: 2.475 palavras, índice 56,4, quatro frases acima de 25
+palavras (a maior, de 36). Os cortes foram feitos por tamanho, não por legibilidade (ver
+Rastreabilidade, capítulo 4, item 35). Na revisão de fidelidade, sete frases foram ajustadas para
+não dizer mais que o original (itens 5, 12, 18, 23 e 32), o que acrescentou algumas palavras,
+compensadas com cortes de redundância. O índice fica perto do capítulo 3 (58,2) pelo mesmo motivo:
+o tema pede palavras longas sem substituto simples (participação, constituição, governança,
+descentralização, extraordinária, representação).
+
+**Conferência manual (o que o índice não mede).**
+- Termos técnicos explicados na primeira ocorrência: identificação patriótica, freguesia, políticas
+  públicas, governança, governança centrada no governo e nos cidadãos (por contraste), as cinco
+  etapas, descentralização (por "lá"/"aqui"), plano diretor, lei básica do município, comissões
+  provisórias (como direções provisórias). Petição e iniciativa popular aparecem descritas, sem o
+  nome, porque são o assunto do capítulo 5. "RGPD" aparece como "regulamento europeu" de proteção de
+  dados.
+- Ficam sem nome técnico: comunitarismo, liberalismo procedimental, subsidiariedade, plenário de
+  cidadãos eleitores, oligarquização (já explicada no capítulo 2), autoisolamento.
+- Voz ativa predominante. Passivas que ficaram: "foi desenhada" (abertura, sem agente a nomear),
+  "é votada" e "são indicados, não eleitos", formas naturais para regras de votação e escolha de
+  cargos; "se decide" é sujeito indeterminado.
+- Sem latim, sem notas de rodapé, sem número de lei ou de artigo. A lei portuguesa aparece só pelo
+  ano (2013).
+- Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela tese.
+  A Itália aparece como país, pela constituição; o RGPD, como norma.
+- "A tese" aparece três vezes (D15).
 

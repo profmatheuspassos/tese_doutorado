@@ -483,3 +483,167 @@ das três ondas de democratização (nota 330); limite de 280 caracteres de uma 
 27. **Menções a "a tese" (D15).** Quatro: a proposta que não se confunde com os dois modelos (B3),
     a fragmentação como problema central (B9), o populismo como degeneração (B10) e os quatro
     caminhos (B11). "Daí a conclusão" (B2) marca a posição do autor sem repetir "a tese".
+
+---
+
+## Capítulo 4 (`src/content/pt-br/capitulo-4.md`)
+
+Releitura feita em 17/11/2026: corpo do capítulo 4 por inteiro (abertura, 4.1, 4.2, 4.2.1, 4.2.2,
+4.2.3 e 4.3). Notas de rodapé abertas só quando trazem dado ou argumento: 534, 556, 562, 584,
+586, 617, 635, 636, 641, 642, 643, 644, 647, 653, 658, 659, 660, 677, 681, 682, 691, 692 e 693. As
+âncoras abaixo foram conferidas uma a uma contra `conteudo/04-capitulo-4.md` (168 trechos, todos
+encontrados).
+
+### Blocos
+
+| Bloco | O que o site diz | Origem na tese | Âncora no original |
+|---|---|---|---|
+| B0 Abertura | Modelo desenhado no fim do séc. XIX; quase não mudou em cem anos; sociedade do séc. XXI com modelo de outro tempo; sem ligação com o eleito, cobrar é perda de tempo; democracia "não resolve seus problemas"; aventuras populistas; três peças; nenhuma substitui eleições, partidos ou Estado; revigorar, não trocar | Abertura do cap. 4; 4.1; fecho de 4.2.3 | "criado em fins do século XIX e consolidado no início do século XX"; "existe já há praticamente 100 anos"; "uma sociedade do século XXI"; "perda de tempo"; "não resolve seus problemas"; "propenso a seguir aventuras populistas"; "não é o de substituir a democracia representativa, mas sim o de revitalizá-la" |
+| B1 Sentir-se parte | Identificação patriótica, sem relação com bandeira; reconhecer-se, com os outros, responsável pela comunidade; o que não é: obrigação, reuniões frequentes, instituições paralelas, bondade, vontade da maioria a qualquer custo; direitos, eleições e Justiça mantidos; "nós" separados de "eles"; pertencimento substitui isolamento aos poucos; difícil no país, possível no bairro ou na freguesia (definida) | 4.1 (comunitarismo, sem o nome; definição de identificação patriótica; nível local) | "continuará a exercer todos os direitos fundamentais"; "igual acesso à Justiça"; "não se espera que os indivíduos reúnam-se com frequência"; "porque são virtuosos ou altruístas"; "Não se pretende, na visão comunitarista, que o cidadão seja"; "outras instituições paralelas às já existentes"; "não transforma esta mesma decisão em algo intrinsecamente bom"; "Cria-se assim a separação entre eleito e eleitor"; "vindo gradualmente a substituir o"; "difícil de ser concretizada em nível nacional"; "junta de freguesia ou de um bairro"; "corresponsáveis pelo empreendimento que têm em comum" |
+| B2 Lógica, não bondade | Exemplo das cinco pessoas; sem acordo se cada uma insiste; prejuízo dos outros volta contra elas; solução boa o bastante para todas; racional, não moral; impor bondade seria coisa de regime fechado; a lei estimula; por cem anos ensinou que participar é votar | 4.1 (segunda objeção e resposta) | "se houver 5 pessoas que, em conjunto, devem tomar uma decisão"; "o consenso obviamente não será atingido"; "o prejuízo dos outros gerará neles reações"; "em um processo racional -- e não moral --"; "flertar com regimes jurídico-políticos fechados"; "a ideologia liberal estimulou nos últimos 100 anos" |
+| B3 Da cidadania passiva à ativa | Cidadania tradicional: direitos, quase nenhum dever com os outros; contato só na eleição; depois assiste. Cidadania ativa: organizar-se e decidir, com o poder público, políticas públicas (definidas); ao lado do Estado, não contra nem no lugar; quem decide junto responde junto. Governança (definida): centrada no governo (vota, só eleitos decidem, culpa "neles") x centrada nos cidadãos (atuar na criação com poder real de decisão; observador vira ator; responsabilidade dividida). Cinco etapas; no primeiro modelo, fora de todas; no segundo, pode entrar em qualquer uma | 4.2; notas 584 e 586; D14 | "não tem absolutamente nenhuma obrigação para com estas duas outras instâncias"; "O ponto de contato destes com a esfera pública seria unicamente durante o momento eleitoral"; "permanece completamente"; "capacidade que os cidadãos possuem de se auto-organizarem"; "e não em oposição e/ou em substituição a este"; "governança centrada no governo"; "mas sem um efetivo poder de decisão no resultado final" (lido como "mas sim", D14); "cidadão observador"; "definição da agenda" (nota 584); "não participa em nenhuma das etapas de produção das mesmas"; "para o cidadão se eximir de qualquer responsabilidade" (nota 586); "necessariamente é no mínimo corresponsável" (nota 586) |
+| B4 Perto de casa | Não é se interessar por tudo; envolvimento com o que está perto; iluminação da rua x taxa de câmbio; descentralização; "lá", "eles" x "aqui", "nós"; máquina do Estado intimida menos; mais fácil cobrar resultados; eleições necessárias para assuntos distantes | 4.2; nota 636 | "que o cidadão se interesse por todos os aspectos"; "iluminação pública da rua em que vive" (nota 636); "taxa de câmbio" (nota 636); "descentralização político-administrativa"; "no governo central, por"; "pela máquina estatal"; "prestação de contas da própria política pública"; "em níveis que se encontram distantes da realidade do cidadão" |
+| B5 Apáticos porque impotentes | Objeção: se nem votam, por que participariam mais?; faltam formas eficazes; pedido formal e projeto de lei com assinaturas são burocráticos; resultado incerto (rejeição ou outro conteúdo); desiste e sobra a eleição, que não o interessa; escolha racional; apáticos porque impotentes | 4.2 (objeção da utopia); nota 617 | "o que faria com que tivessem interesse em participar"; "não oferece formas que possam ser vistas pelo cidadão como eficazes"; "tais processos são razoavelmente burocráticos"; "o resultado da sua participação é incerto"; "mas com conteúdo diferente daquele inicialmente proposto"; "a única forma de participação novamente se reduz à eleição, pela qual tal cidadão não tem nenhum interesse"; "É obviamente uma escolha racional"; "As pessoas são apáticas na esfera política porque se sentem impotentes" |
+| B6 Um exemplo que já existe | Constituição italiana: todos os níveis de governo favorecem a iniciativa própria dos cidadãos, sozinhos ou em grupo, em atividades de interesse geral; Estado não abre mão das suas tarefas; ações mais bem pensadas e executadas pelos cidadãos | 4.2 (art. 118 da Constituição italiana, sem citar o artigo) | "favorecem a iniciativa autônoma dos cidadãos"; "executada de maneira particular ou associada"; "atividades de interesse geral"; "não se limita ao poder local, mas sim a todas as esferas da administração pública"; "não abre mão de suas responsabilidades"; "mais bem pensadas, planejadas, desenvolvidas e avaliadas pelos próprios cidadãos" |
+| B7 Portugal | Constituição manda incentivar a participação; ambiente como dever também dos cidadãos; não diz temas nem como; a lei pode ampliar ou restringir; organizações de moradores com representantes sem voto; "participar sem votar"; freguesias com até 150 eleitores: reunião de todos os eleitores; contas do autor, censo de 2011: só 129 freguesias, 23.466 habitantes, 0,22%; sessão extraordinária a pedido, com assinaturas; dois representantes propõem, sem voto; proposta votada só se a assembleia quiser; sessões públicas com momento para o público; ninguém pode se intrometer, aplaudir ou reprovar; multa de 150 a 750 euros, lei de 2013; bola de neve; não pede aprovação, pede análise | 4.2.1; nota 635; D1; D10 | "a garantia da e o incentivo à participação democrática"; "são encarregados de assegurar o direito ao ambiente"; "a indicação explícita de quais seriam estes temas"; "a lei pode tanto ampliar ou restringir"; "sendo, contudo, que esta participação é"; "participar sem votar é o mesmo que não participar"; "nas freguesias com 150 eleitores ou menos a assembleia de freguesia será substituída pelo plenário dos cidadãos eleitores"; "apenas 129 destas possuem até 215 habitantes"; "corresponde a 23.466 habitantes"; "apenas 0,22% da população total do país"; "Censos 2011" (nota 635); "requerimento realizado por um número mínimo de cidadãos eleitores"; "garantido o direito de participação de dois representantes dos respectivos requerentes"; "são votadas se tal for deliberado"; "para a intervenção do público"; "a nenhum cidadão é permitido intrometer-se nas discussões, aplaudir ou reprovar"; "150,00 EUR (cento e cinquenta euros) a 750,00 EUR"; "Lei n.º 75/2013"; "bola de neve"; "se nem mesmo em nível local minhas propostas são sequer apreciadas"; "pelos cidadãos sejam" |
+| B8 Brasil | Ainda menos favorável; 30 formas além do voto, segundo um estudo; nenhuma direta na criação de política pública; nos municípios, só a iniciativa popular local com 5% dos eleitores; mais de 5.500 leis orgânicas ("lei básica"); Estatuto da Cidade, obrigatório para todas as cidades; participação em todas as etapas; debates e audiências sobre o orçamento antes da aprovação da Câmara; plano diretor (definido) discutido em público; muito mais consultiva do que decisória; audiências como prestação de contas; papel de cada grupo indefinido; ouvir, refletir, informar-se; bater o martelo com o poder público; para o autor, Portugal bem mais avançado; seguir o exemplo; 89 x 11 ocorrências de "cidadão" | 4.2.2; notas 643, 644 e 653 | "ainda menos propícia"; "30 possibilidades constitucionais"; "na formulação de políticas públicas -- e tampouco"; "o plebiscito, o referendo e a iniciativa popular"; "possibilidade de o contribuinte fiscalizar as contas do seu município"; "apoiada por pelo menos 5% dos eleitores da região"; "a CF simplesmente silencia a este respeito mesmo no nível local"; "mais de 5.500 leis orgânicas diferentes"; "de aplicação obrigatória por parte de todos os municípios"; "presentes em todas as etapas dos processos de formulação das políticas públicas"; "como condição obrigatória para sua aprovação pela Câmara Municipal"; "plano diretor"; "audiências púbicas e de debates" (assim no original); "muito mais em termos"; "por parte dos incumbentes"; "não há a indicação de qual será a responsabilidade efetiva de cada um desses grupos"; "se limita a ouvir, eventualmente a ponderar e, ainda, a se informar"; "bater o martelo"; "bem mais avançado do que o ordenamento jurídico brasileiro" (nota 653); "siga -- mais uma vez -- o exemplo de Portugal" (nota 653); "permitem o autogoverno nas freguesias menores" (nota 653); "em 89 oportunidades" (nota 643); "em apenas 11 momentos distintos" (nota 643); "no singular ou no plural" (nota 643) |
+| B9 Presença não é decisão | Presença, não decisão; nas reuniões locais, quem está dentro barra novidades e quem está fora entra com muito custo; preconceito do cidadão inculto; voto por renda no séc. XIX; democracia como processo, com altos e baixos; "iluminados"; três mudanças (constituição, lei, cultura); frases vagas não bastam; Direito não é solução mágica; "não só, mas também"; proteção de dados: ideia de décadas, diretiva de 1995, RGPD aprovado em 2016, direitos conhecidos, empresas adaptadas, outros países e o Brasil com leis próprias; não se resolve um problema com sua causa; reforçar só os canais atuais não basta | 4.2.3; notas 659 e 660 | "determinada abertura à"; "não necessariamente favorecem a"; "reunião que diga respeito a algum processo de tomada de decisão em nível local"; "o surgimento de"; "o faz depois de muito custo"; "a visão de que o cidadão em geral é inculto"; "um retorno ao século XIX, quando só votavam aqueles que tivessem uma determinada renda"; "o estabelecimento de uma democracia é um"; "altos e baixos"; "não cabendo a um grupo de"; "nomeadamente naquelas de âmbito local"; "A lei precisará indicar, de maneira explícita"; "incentiva-se a participação"; "necessárias, mas insuficientes"; "solução mágica"; "a mudança cultural não depende"; "remontando ainda à década de 1960"; "Diretiva 95/46/CE"; "de 27 de abril de 2016" (nota 660); "transformação da ideia em algo"; "viram-se obrigados a cumprir o RGPD"; "inclusive o Brasil -- tiveram de correr para aprovar suas respectivas legislações"; "não se pode solucionar um problema aplicando-se, como solução, elementos que estão na causa deste mesmo problema"; "apenas o reforço dos canais representativos atualmente existentes" |
+| B10 Partidos democráticos por dentro | Autonomia nas duas constituições como reação aos regimes anteriores; PT exige democracia interna (órgãos eleitos, cargos não vitalícios); BR sem exigência explícita; 2019: direções provisórias até oito anos; "extremamente não democrática"; junho de 2019: 26 de 35 partidos com mais da metade da estrutura em comissões provisórias; dirigentes indicados, não eleitos; concentração nos municípios; cuidam do dinheiro, candidatos e alianças; líderes controlam quem vota neles | 4.3; nota 677; D4 | "regimes políticos fechados que detinham toda a prerrogativa de intervir nos partidos"; "organização e da gestão democráticas"; "os cargos partidários não poderão em absoluto ser vitalícios"; "não há nenhuma exigência, nem mesmo na lei"; "curiosamente ausente na CF"; "poderá ser de até 8 (oito) anos"; "extremamente não democrática"; "mais da metade da estrutura organizacional de 26 dos 35 partidos políticos brasileiros"; "cujos líderes são indicados, não eleitos internamente"; "23 jun. 2019" (nota 677); "tais estruturas provisórias proliferam na esfera municipal"; "por gerir os fundos partidário e eleitoral, por definir quem serão os candidatos"; "por definir a estrutura das coligações"; "acabam por controlar quem vota neles mesmos" |
+| B11 Do círculo vicioso ao virtuoso | Três causas e três saídas. Autonomia demais (sobretudo no Brasil; convenções para a imprensa; lei com democracia interna, transparência e renovação, inspirada na portuguesa; lei necessária, não suficiente). Isolamento (só na eleição; deveres com cidadãos, não só eleitores: informar, formar; processo contínuo). Cidadão passivo (alimenta o isolamento; reaprende no bairro; tende a procurar o partido nos temas distantes; partidos se abrem para reter simpatizantes). Círculo vicioso gira ao contrário | 4.3; nota 682 | "excessiva autonomia que os partidos políticos têm"; "com ênfase maior no caso brasileiro do que no caso português"; "simplesmente não aplicam princípios democráticos"; "eventos tacitamente realizados para divulgação midiática"; "inspirar-se no legislador português"; "o princípio da transparência, o princípio da renovação e o próprio princípio democrático"; "a norma jurídica é uma condição necessária" (nota 682); "autoisolamento exercido pelos partidos"; "exclusivamente no momento das eleições"; "não apenas para com os"; "a formação e a preparação política destes mesmos cidadãos"; "entendido como contínuo ao longo do tempo"; "favorecer e retroalimentar o isolamento dos partidos políticos"; "reeducação político-cultural"; "o reconduziriam ao partido político"; "buscariam reter o maior número possível de simpatizantes" |
+| B12 As objeções | O autor antecipa críticas: eleitos não abririam mão do poder; cem anos e crescimento, sem alternativa; resposta: insatisfação não depende só da economia; transição no sentido de democracia, resultado incerto; "ideias que revelam a inquietação"; gancho para o cap. 5 | Fim de 4.3; notas 691 e 692 | "Haverá quem diga que estas propostas são utópicas"; "os eleitos não terão a necessária consciência para se abster do poder político"; "não há alternativas"; "existe há pelo menos 100 anos"; "crescimento econômico médio das sociedades"; "insatisfação com a democracia não é decorrente apenas da insatisfação com o desenvolvimento econômico"; "período de"; "Ainda não há uma definição clara"; "ideias que revelam a inquietação"; "no referendo, no direito de petição" |
+
+### Dados usados no capítulo 4
+
+| Dado | Valor no site | Ano | Fonte citada pela tese | Onde na tese |
+|---|---|---|---|---|
+| Idade do modelo representativo | fim do séc. XIX; quase cem anos sem mudança essencial | — | — | 4.1 |
+| Freguesias com reunião de todos os eleitores | até 150 eleitores | regra legal | Lei 169/99 (não citada no site) | 4.2.1 |
+| Alcance dessa reunião | 129 freguesias; 23.466 habitantes; 0,22% da população | censo de 2011 | INE, Censos 2011, CAOP 2013 (nota 635); cálculo do autor | 4.2.1 |
+| Multa por intervir na sessão | 150 a 750 euros | lei de 2013 | Lei 75/2013 (não citada pelo número) | 4.2.1 |
+| Formas de participação na constituição brasileira | 30 além do voto; nenhuma direta | — (ver A10) | Estudo citado na nota 644 | 4.2.2 |
+| Iniciativa popular municipal | apoio de 5% dos eleitores | regra constitucional | Constituição Federal (não citada pelo artigo) | 4.2.2 |
+| Leis orgânicas municipais | mais de 5.500 | — (ver A10) | — | 4.2.2 |
+| "Cidadão" nas constituições | 89 vezes (PT); 11 (BR) | — (ver A10) | Contagem do autor (nota 643) | 4.2.2 |
+| Proteção de dados | diretiva europeia de 1995; RGPD aprovado em 2016 | 1995; 2016 | Notas 659 e 660 | 4.2.3 |
+| Direções provisórias | até oito anos | 2019 | Lei dos partidos, alteração de 2019 | 4.3 |
+| Comissões provisórias | em 26 de 35 partidos, mais da metade da estrutura | junho de 2019 | Reportagem de 23/06/2019 (nota 677) | 4.3 |
+
+Dados do capítulo **não usados**: pesquisa do TSE de 2010 (36,6% não sabiam os cargos em disputa;
+23% não lembravam o voto para deputado estadual; 22,4% não sabiam o papel do Presidente; 41% não
+sabiam o que faz um senador) e população de Roma antiga (nota 533), cortados por tamanho; relação
+de 70% entre eleitores e população e o limite de 215 habitantes do cálculo do autor; total de
+freguesias (D10); população de 10.562.178; número de assinaturas para sessão extraordinária (30 ou
+50 vezes o número de membros da assembleia de freguesia; 5% dos eleitores no município); dois dias
+úteis de aviso das sessões; exemplo de 2.865 comissões provisórias, 492 diretórios e uma executiva
+em um partido; partidos com 100% de órgãos provisórios e partidos antigos com maioria provisória;
+anos 1960 e 1980 da proteção de dados (resumidos em "a ideia já tinha décadas").
+
+### Escolhas de interpretação
+
+1. **Metáforas (D1).** "Ramos finos" e "sementes em terra árida" aparecem só nos títulos de B7 e
+   B8. O corpo dos blocos não desenvolve a imagem, como no original.
+2. **"Não tem a ver com bandeira."** A tese não diz isso. É o mesmo recurso da home ("o nome pode
+   enganar"), para o leitor não entender "patriótica" como nacionalismo. O conteúdo da definição
+   segue 4.1.
+3. **"Fica possível" no bairro.** A tese diz que o envolvimento "pode ser difícil" no nível nacional
+   e "parece ser possível" no local. O site mantém a gradação ("difícil", "fica possível").
+4. **"Bondosas".** Resume "virtuosos ou altruístas". "Reuniões frequentes" traduz a recusa da
+   democracia deliberativa, sem o nome.
+5. **"Nós" e "eles".** A tese fala em "separação" e em "dicotomia". A primeira versão escrevia
+   "'nós' contra 'eles'"; na revisão de fidelidade, ficou "separa 'nós' [...] de 'eles'".
+6. **"Impor bondade seria coisa de regime fechado."** A tese: defender que as normas estimulem o
+   altruísmo "seria o mesmo que flertar com regimes jurídico-políticos fechados". O site encurta.
+7. **Cidadania tradicional: "quase nenhum dever".** A tese diz "absolutamente nenhuma obrigação",
+   "salvo em situações excepcionais como em caso de guerra". "Quase" cobre a exceção sem citá-la.
+8. **Poder real de decisão (D14).** A frase da tese "mas sem um efetivo poder de decisão" é lida
+   pelo sentido correto, "mas sim".
+9. **Governança e etapas.** "Governança" é explicada como "o jeito como Estado e sociedade se
+   organizam para decidir" (a tese fala em relação entre Estado e sociedade). As cinco etapas seguem
+   a nota 584; "definição da agenda" vira "definir o que entra na pauta", e "implementação",
+   "executar". "No segundo, pode entrar em qualquer uma" resume a possibilidade de interferir "nas
+   diferentes etapas" e o envolvimento "em todas as etapas"; uma das condições citadas pela tese
+   pede participação em "pelo menos uma".
+10. **Culpa "neles".** Vem da nota 586: no modelo centrado no governo é "fácil" o cidadão se eximir
+    de responsabilidade pelo fracasso de uma política.
+11. **Petição e iniciativa popular sem o nome (B5).** O site descreve os dois mecanismos ("um pedido
+    formal ao poder público", "um projeto de lei com assinaturas"). Os nomes ficam para o capítulo 5,
+    que os explica.
+12. **"Sobra só a eleição, que já não o interessa."** A tese: "a única forma de participação
+    novamente se reduz à eleição, pela qual tal cidadão não tem nenhum interesse". A primeira versão
+    dizia "volta a só votar", o que não é o mesmo; foi corrigida.
+13. **Itália.** O artigo não é citado. "Todos os níveis de governo" resume a lista (Estado, regiões,
+    cidades metropolitanas, províncias e municípios). "Iniciativa própria" traduz "iniciativa
+    autônoma"; "sozinhos ou em grupo", "particular ou associada"; "executadas", "desenvolvidas".
+14. **Constituição portuguesa.** O site cita duas aberturas (incentivo à participação; ambiente
+    como dever também dos cidadãos) e omite as demais (participação direta ou por representantes,
+    participação "direta e ativa" como condição da democracia, Açores e Madeira, administração
+    próxima das populações), por tamanho.
+15. **Organizações de moradores.** O site cita só a presença sem voto, que é o ponto da tese; o
+    direito de petição delas fica de fora.
+16. **Reunião de todos os eleitores.** É o "plenário de cidadãos eleitores". O site diz que a
+    contagem é "do autor": ele usou a proporção média de 70% de eleitores na população para chegar
+    a freguesias com até 215 habitantes. O 215 e os 70% ficam de fora; com isso, o lapso da tese
+    sobre "pelo menos 215" (D12, item a) não aparece. Sem o total de freguesias (D10). "Censo de
+    2011" resume "Censos 2011 -- CAOP 2013".
+17. **"Se a assembleia quiser".** Traduz "são votadas se tal for deliberado", como na home.
+18. **Regra das sessões.** A primeira versão dizia "durante os debates, nenhum cidadão pode
+    intervir"; foi trocada pela letra da lei, "se intrometer nas discussões, aplaudir ou reprovar".
+    O site dá o ano da lei (2013), não o número. A periodicidade mínima mensal e o aviso de dois dias
+    úteis ficam de fora.
+19. **"Analisada".** Traduz "apreciada". A nota 641 ("chance de 50%") não é usada: é retórica, não
+    dado.
+20. **Trinta formas de participação.** "Segundo um estudo" sem o nome da autora (sem nomes de
+    autores citados, como nos capítulos anteriores). A tese inclui o sufrágio entre os exemplos dessa
+    lista, mas diz que as 30 vão "para além do momento eleitoral"; o site segue a home, "além do
+    voto".
+21. **"A única porta".** A tese: "em apenas uma oportunidade há uma indicação normativa que se
+    refere ao cidadão". As duas menções genéricas a políticas públicas (assistência social e
+    cultura) ficaram de fora por tamanho.
+22. **"Lei básica".** Traduz "lei orgânica" municipal.
+23. **"Muito mais consultiva do que decisória"; "refletir".** Seguem a gradação da tese ("muito mais
+    em termos *consultivos* do que *decisórios*"). "Refletir" traduz "ponderar"; a primeira versão
+    dizia "opinar", que diz mais que o original.
+24. **"Para o autor, Portugal está bem mais avançado".** Vem da nota 653. As razões dadas pela nota
+    (participação na constituição; autogoverno das freguesias pequenas) não foram repetidas, porque
+    o próprio bloco B7 as mostra.
+25. **89 x 11.** A nota 643 diz que a contagem é "curiosidade, mas também [...] análise" e que não
+    é "critério de análise aprofundada". O site a chama de "indício". Sem ano: ver A10.
+26. **"Nas reuniões locais".** A tese descreve o que se vê "quando se está presente em alguma
+    reunião [...] em nível local". O site mantém o contexto.
+27. **Preconceito.** A tese fala do cidadão visto como "inculto" e "desinteressado"; o site usa só
+    "inculto", por tamanho. Na lista das três mudanças, "necessárias, mas insuficientes" vira "não
+    bastam", e "sem lista detalhada de temas" sai por tamanho.
+28. **Proteção de dados.** "A ideia já tinha décadas" resume os anos 1960 e os princípios de 1980.
+    "Aprovado em 2016" vem da nota 660; a tese diz que o tema se popularizou com "a aprovação, e
+    principalmente [...] a entrada em vigor", sem dar outra data, e o site não acrescenta nenhuma. O
+    motivo da corrida de outros países (não perder negócios com a União Europeia) ficou de fora.
+29. **Regimes anteriores.** "Regimes autoritários" traduz "regimes políticos fechados".
+30. **Exigência de democracia interna no Brasil.** Em 4.3, a tese diz que não há "nenhuma exigência,
+    nem mesmo na lei"; em 2.2 (nota 260), que não há "exigência explícita". O site usa "nem a
+    constituição nem a lei fazem essa exigência de forma explícita", que é verdadeira nas duas
+    passagens e igual à home e ao capítulo 2 (aprovados).
+31. **"Direções provisórias"; "dinheiro do partido"; "alianças".** Como no capítulo 2, "direções
+    provisórias" traduz "órgãos provisórios". "Cuidam do dinheiro do partido" resume "gerir os fundos
+    partidário e eleitoral"; "alianças" traduz "coligações". A tese atribui essas funções aos
+    "líderes" indicados; o site diz "dirigentes".
+32. **"Sobretudo no Brasil"; "tende a procurar".** Na revisão de fidelidade, B11 ganhou "sobretudo no
+    Brasil" (a tese: "com ênfase maior no caso brasileiro") e "tende a" (a tese usa o condicional:
+    "poderia se sentir compelido").
+33. **Círculo virtuoso.** "O círculo vicioso começa a girar ao contrário" é a mesma imagem da home
+    (aprovada). A tese descreve o ciclo em 4.3 sem desenhá-lo (plano, seção 2, ajuste 3).
+34. **Objeções.** "O autor antecipa as críticas" traduz "Haverá quem diga". Das quatro críticas, o
+    site traz duas (eleitos e "não há alternativa"); a cultura atual e a interpretação "esticada"
+    ficam de fora. Da resposta, sai o argumento do baixo apoio à democracia em tempos de crescimento,
+    por tamanho.
+35. **Cortes por tamanho.** Saíram, entre a primeira versão (2.475 palavras) e a final: o bloco sobre
+    autonomia individual (família, renda, país, profissão; exemplo do emprego) e o voto coletivo do
+    século XIX; a pesquisa do TSE de 2010; a diferença para as democracias participativa e
+    deliberativa (já tratadas no capítulo 3); a ideia de que mais espaços de participação não bastam;
+    a mobilização total como traço totalitário; a frase sobre direitos e deveres como as duas faces
+    da cidadania; o motivo do filiado para participar diante de oito anos de direção provisória.
+    Nenhum desses cortes muda o argumento; todos podem voltar se o autor preferir trocar por outro
+    trecho.
+36. **Menções a "a tese" (D15).** Três: a análise que pede ao menos apreciação (B7), as três
+    mudanças propostas (B9) e o juízo "extremamente não democrática" (B10). "O autor" aparece em
+    quatro pontos de posição pessoal: o cálculo das freguesias, Portugal mais avançado, a antecipação
+    das críticas e as "ideias que revelam a inquietação".
