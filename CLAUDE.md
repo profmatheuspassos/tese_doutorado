@@ -90,26 +90,27 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/PLANO-CONTEUDO.md` | Argumento em 10 linhas, estrutura do site, o que entra em cada página, dados e diagramas |
 | `docs/DECISOES.md` | Decisões do autor e pontos em aberto |
 | `docs/notas-leitura/` | Notas detalhadas por capítulo (argumento, conceitos, dados com ano e fonte, trechos de destaque, seção de origem) |
+| `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
+| `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
+| `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
 | `scripts/converter.sh` | Recria `conteudo/` a partir de `fonte/` |
+| `scripts/legibilidade.py` | Mede tamanho e legibilidade de uma página |
 | `fonte/`, `conteudo/` | Fora do Git |
 
 ## Estado atual (17 de novembro de 2026)
 
-- **Fase 1 concluída e aprovada**: tese convertida e lida por inteiro (corpo e 880 notas);
-  notas de leitura e plano de conteúdo escritos. Só as Referências bibliográficas não foram
-  lidas por inteiro.
-- Sete decisões do autor registradas; cinco pontos em aberto com proposta de tratamento
-  (ver `docs/DECISOES.md`).
-- Ainda não existe código de site nem texto reescrito.
+- **Fase 1 concluída e aprovada.**
+- **Fase 2 em andamento.** Decisões D1 a D12 registradas; pontos A6 (cena de 2013) e A7 (lapso
+  em 4.2) em aberto, com proposta em uso. Script de legibilidade pronto.
+- **Home escrita** (`src/content/pt-br/home.md`, 1.792 palavras, índice 62,6), com
+  rastreabilidade e relatório. **Aguardando aprovação do autor.**
+- Ainda não existe código de site.
 
 ## Próximo passo
 
-**Fase 2 — Reescrita em linguagem simples**, a iniciar em nova sessão:
-
-1. Recriar `conteudo/` com `bash scripts/converter.sh`.
-2. Pesquisar e confirmar em fonte confiável o índice de legibilidade para o português (por
-   exemplo, a adaptação do Flesch de Martins et al., 1996) e escrever o script de medição.
-3. Reescrever uma página por vez, começando pela home, sempre a partir da releitura do
-   capítulo original: home, capítulos 1 a 5, "Sobre a tese".
-4. Escrever `docs/RASTREABILIDADE.md` e o relatório de legibilidade.
-5. Parar, mostrar e esperar aprovação antes do pull request e da Fase 3.
+1. Aplicar as correções do autor à home, se houver.
+2. Seguir com uma página por vez, sempre a partir da releitura do capítulo original em
+   `conteudo/` (recriar com `bash scripts/converter.sh` em sessão nova): capítulos 1 a 5 e
+   "Sobre a tese". Para cada página: escrever, medir, rastrear, push na branch da sessão, parar
+   para aprovação.
+3. Ao fim da Fase 2: pull request para a `main`, depois da aprovação do autor.
