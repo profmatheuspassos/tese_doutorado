@@ -53,7 +53,9 @@ escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 | D40 | Nome nas citações (era A13) | **Mantidos** "SILVA, Matheus Passos" (ABNT) e "Silva, M. P." (APA). **Sem número de folhas** no ABNT. Decidido em 17/11/2026. |
 | D41 | Repositório público (era A14) | O repositório no GitHub **já é público**. Fica como **lembrete para a Fase 5**: conferir, na publicação, que o link da linha sobre rastreabilidade (D37) abre para o público. Decidido em 17/11/2026. |
 | D42 | Aprovação de "Sobre a tese" | **Aprovada com um ajuste** (D38). Versão final: `src/content/pt-br/sobre.md`, 446 palavras, índice 54,4. Com ela, a **Fase 2 está concluída**: todas as páginas do plano estão escritas e aprovadas. Decidido em 17/11/2026. |
+| D43 | Textos de interface (Fase 3) | **Aprovados** os rótulos T1 a T12 do plano da Fase 3, guardados em `src/i18n/pt-br.json`: "Pular para o conteúdo"; "Menu"; "Início"; "Capítulo N"; "Leia o capítulo N: [título]"; rótulos do gráfico da home ("Partidos", "Governo", "Congresso Nacional", anos); "Portugal" e "Brasil" no checklist; nós do círculo vicioso ("O cidadão se afasta", "Os partidos se fecham", "Fragmentação política") e do virtuoso ("Sentir-se parte da comunidade", "Cidadania ativa", "Partidos mais abertos"); "Página não encontrada" e "Voltar ao início"; `<title>` da home "Revigorar, não substituir · Matheus Passos Silva" e das demais "[título] · Revigorar, não substituir" (T11, definido pelo autor); descrição para buscadores = `subtitulo` do `home.md`. Nenhum outro texto de interface entra no site sem aprovação. Imagens ilustrativas com `alt=""`. Decidido em 17/11/2026. |
+| D44 | Gráfico da home (D2 x plano, seção 4.1) | O gráfico da home mostra **só as três instituições do texto aprovado** (partidos, governo e Congresso Nacional), **de 2010 a 2017**. O resumo previsto no plano (cinco instituições, 2006 a 2017) não entra na home; as cinco ficam na tabela do capítulo 2 e no explorador da Fase 4. Decidido em 17/11/2026. |
 
 ## Em aberto
 
-Nenhum ponto em aberto. Os pontos D1 a D42 foram decididos. Novos pontos entram aqui.
+Nenhum ponto em aberto. Os pontos D1 a D44 foram decididos. Novos pontos entram aqui.
