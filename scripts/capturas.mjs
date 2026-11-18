@@ -46,7 +46,7 @@ const CAPTURAS = {
   'capitulo-3': { pasta: 'fase-4', prefixo: 'cap3-', alvos: ['B0', 'B2', 'B6', 'B8', 'navegacao'] },
   'capitulo-4': { pasta: 'fase-4', prefixo: 'cap4-', alvos: ['B0', 'B3', 'B7', 'B9', 'B11', 'navegacao'] },
   'capitulo-5': { pasta: 'fase-4', prefixo: 'cap5-', alvos: ['B0', 'B1', 'B5', 'B10', 'navegacao'] },
-  sobre: { pasta: 'fase-4', prefixo: 'sobre-', alvos: ['B0', 'B2', 'B6', 'B7', 'navegacao'] },
+  sobre: { pasta: 'fase-4', prefixo: 'sobre-', alvos: ['B0', 'B1', 'B2', 'B6', 'B7', 'navegacao'] },
 };
 
 // Endereço publicado (opcional). Sem ele, os testes rodam no build local.

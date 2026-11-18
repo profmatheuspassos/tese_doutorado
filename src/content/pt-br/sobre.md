@@ -24,7 +24,9 @@ outros autores. Para estudar ou citar o trabalho, use a versão oficial, no
 
 Os textos do site foram adaptados para linguagem simples com apoio de inteligência artificial e
 revisados pelo autor. A ligação de cada trecho com a parte da tese de onde ele vem está documentada
-no [repositório do projeto](https://github.com/profmatheuspassos/tese_doutorado).
+no [repositório do projeto](https://github.com/profmatheuspassos/tese_doutorado). As ilustrações
+também foram geradas com inteligência artificial, a partir de instruções do autor, e revisadas por
+ele.
 
 <!-- B2 | Ficha | origem: capa e folha de rosto; Agradecimentos (CAPES, 2015 a 2018); D7 (defesa e depósito) -->
 

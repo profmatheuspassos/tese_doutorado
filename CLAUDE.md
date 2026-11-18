@@ -208,7 +208,8 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   request.
 - **Imagens ilustrativas finais (D81):** as oito ilustrações geradas no Gemini (plano pago,
   18/11/2026) e aprovadas pelo autor substituem os espaços reservados em `public/img/`, recortadas e
-  reduzidas, em WebP. Os originais não ficam no repositório. A `og-home.png` não muda.
+  reduzidas, em WebP. Os originais não estão na árvore atual nem no site, mas ficaram no histórico da
+  `main` (commit `67d4013`), porque o PR #16 entrou por merge comum (D82). A `og-home.png` não muda.
 - **Fase 4 aprovada como plano** (17/11/2026; `docs/PLANO-FASE-4.md`), com as decisões D52 a D58.
   Entrega em quatro etapas, com parada para aprovação ao fim de cada uma.
 - **Fase 4, Etapa 1 aprovada com três ajustes (D59):** modelo das páginas internas e **capítulo 2**
@@ -272,12 +273,20 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 - **Fase 5, Etapa 3 aprovada** e enviada à `main` (PR #15, merge `ed49c91`): README final, público
   (o que é o site, endereço, como rodar, como a publicação funciona, licenças). Com ela, a **Fase 5
   está concluída**.
+- **Imagens finais no ar (PR #16, merge comum `cc9168b`):** em 18/11/2026, o `versao.txt` mostra
+  `cc9168b` (gerado 2026-11-18T15:43:01Z), `conferir:publicado` passou (282 testes), e as oito WebP e
+  as 15 variantes de 840 e 1680 px respondem 200, idênticas byte a byte às do repositório (a
+  `home-cena-2013`, com 1200 px, só tem a de 840). **Originais no histórico da `main` (D82):** o
+  commit `67d4013` (cerca de 15 MB) ficou no histórico; o autor decidiu não reescrevê-lo (nada de
+  force push). Não vão para o site, publicado da branch `publicacao`.
+- **Linha sobre as ilustrações (D83):** frase aprovada pelo autor em 18/11/2026 no fim do parágrafo
+  sobre IA da página "Sobre a tese" (bloco B1) e no README. "Sobre a tese": 464 palavras, índice
+  53,4 (bloco B1: 54,7 → 51,3).
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request das imagens (D81)**, feito pelo autor no GitHub, **por "Squash
-   and merge"** (os originais passaram pela branch e não podem chegar à `main`). Depois do merge,
-   conferir que o `versao.txt` no ar mostra o novo commit (`NODE_USE_ENV_PROXY=1 npm run
-   conferir:publicado`).
+1. **Aprovação e merge do pull request da D82 e da D83** (merge comum; não há arquivos grandes).
+   Depois do merge, conferir que o `versao.txt` no ar mostra o novo commit (`NODE_USE_ENV_PROXY=1 npm
+   run conferir:publicado`) e que a página "Sobre a tese" traz a frase das ilustrações.
 2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).

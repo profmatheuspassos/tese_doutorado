@@ -17,7 +17,8 @@ da Universidade de Lisboa: https://hdl.handle.net/10451/57093
 Os textos foram adaptados para linguagem simples com apoio de inteligência artificial e revisados
 pelo autor. Cada trecho do site está ligado à seção da tese de onde veio, em
 [`docs/RASTREABILIDADE.md`](docs/RASTREABILIDADE.md). As decisões do autor sobre o conteúdo e o
-site estão em [`docs/DECISOES.md`](docs/DECISOES.md).
+site estão em [`docs/DECISOES.md`](docs/DECISOES.md). As ilustrações também foram geradas com
+inteligência artificial, a partir de instruções do autor, e revisadas por ele.
 
 O site é estático (Astro, Tailwind e GSAP), não usa cookies, não tem analytics e não carrega nada
 de terceiros. Os textos e os interativos funcionam sem JavaScript; o site respeita a preferência

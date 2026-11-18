@@ -59,7 +59,7 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 | Capítulo 3 | 1.794 | 1.615 | 144 | 11,2 | 2,12 | 58,2 | fácil |
 | Capítulo 4 | 1.791 | 1.725 | 151 | 11,4 | 2,11 | 58,9 | fácil |
 | Capítulo 5 | 1.800 | 1.703 | 143 | 11,9 | 2,12 | 57,8 | fácil |
-| Sobre a tese | 446 | 344 | 27 | 12,7 | 2,15 | 54,4 | fácil |
+| Sobre a tese | 464 | 362 | 28 | 12,9 | 2,15 | 53,4 | fácil |
 
 ### Home (17/11/2026)
 
@@ -269,6 +269,23 @@ de capítulo.
 **Ajuste do autor (D38).** Links de hdl.handle.net passaram de http para https. Tamanho e índice não
 mudaram: o endereço não entra na contagem, e as citações ficam em blocos de código.
 
+**Nova medição (18/11/2026, D83).** O autor aprovou uma frase nova no fim do parágrafo sobre o uso
+de inteligência artificial (bloco B1): "As ilustrações também foram geradas com inteligência
+artificial, a partir de instruções do autor, e revisadas por ele." (18 palavras). Nenhuma outra
+palavra mudou.
+
+| Trecho | Palavras visíveis | Palavras no texto corrido | Frases | Palavras/frase | Sílabas/palavra | Índice |
+|---|---|---|---|---|---|---|
+| Bloco B1, antes | 104 | 94 | 6 | 15,7 | 2,11 | 54,7 |
+| Bloco B1, depois | 122 | 112 | 7 | 16,0 | 2,14 | 51,3 |
+| Página, antes | 446 | 344 | 27 | 12,7 | 2,15 | 54,4 |
+| Página, depois | 464 | 362 | 28 | 12,9 | 2,15 | 53,4 |
+
+O bloco foi medido isolado (do comentário `B1` ao `B2`), com o mesmo script. Os dois continuam na
+faixa "fácil", acima da referência de 50. A queda vem das palavras longas da frase (ilustrações,
+inteligência artificial, instruções), sem substituto simples. Maior frase da página: 24 palavras;
+nenhuma acima de 25. Tamanho dentro do alvo da página (350 a 500 palavras).
+
 **O que entra na medição.** A ficha é tabela: conta no tamanho, fica fora do índice. As três
 referências (ABNT, APA, BibTeX) estão em blocos de código: ficam fora do tamanho e do índice, porque
 seguem norma de citação, não linguagem simples.
@@ -288,7 +305,8 @@ dá mais peso a cada uma.
 - Ficam sem nome técnico: método dedutivo, monográfico, tipológico e estatístico; doutrina;
   jurisprudência ("decisões judiciais"); accountability ("prestar contas").
 - Voz ativa predominante. Passiva que ficou: "foram adaptados [...] e revisados pelo autor", forma
-  natural para dizer quem revisou; "não foram atualizados" (B5), sem agente a nomear.
+  natural para dizer quem revisou; "foram geradas [...] e revisadas por ele" (D83), que repete essa
+  forma de propósito; "não foram atualizados" (B5), sem agente a nomear.
 - Sem latim, sem notas de rodapé, sem número de lei ou de artigo. O número do processo CAPES está
   só na ficha.
 - Nenhum nome de governante, partido ou caso concreto (D6). Nenhum nome de autor citado pela tese.

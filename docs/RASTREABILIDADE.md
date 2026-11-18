@@ -1065,14 +1065,15 @@ abaixo foram conferidas uma a uma contra `conteudo/` (23 trechos, todos encontra
 pelo autor em 17/11/2026, com o ajuste da D38 (links com https).
 
 Dois blocos não vêm da tese, e sim de pedidos do autor: a versão oficial (D7, D36) e a linha sobre
-o uso de inteligência artificial (D37).
+o uso de inteligência artificial (D37), ampliada em 18/11/2026 com a frase sobre as ilustrações
+(D83).
 
 ### Blocos
 
 | Bloco | O que o site diz | Origem na tese | Âncora no original |
 |---|---|---|---|
 | B0 Abertura | Tese de doutorado em Direito, Universidade de Lisboa, 2022; compara PT e BR, duas democracias representativas; a pergunta é se o cidadão pode ganhar peso real nas decisões sem trocar o sistema | Capa e folha de rosto; D7; Introdução (Contextualização, problema de pesquisa); Resumo | "Tese especialmente elaborada para obtenção do grau de Doutor em Direito, na especialidade de Ciências Jurídico-Políticas"; "a proposta de cidadania ativa garante aos cidadãos mecanismos de controle suficientemente fortes"; "efetivo revigoramento -- e não a substituição" |
-| B1 O que o site é e o que não é | Versão de divulgação; sem mudar o sentido; sem citações, notas e discussão detalhada com outros autores; versão oficial no repositório da Universidade de Lisboa; textos adaptados com apoio de IA e revisados pelo autor; rastreabilidade no repositório do projeto | Não vem da tese: CLAUDE.md (objetivo do projeto e regras de fidelidade); D7; D36; D37 | — |
+| B1 O que o site é e o que não é | Versão de divulgação; sem mudar o sentido; sem citações, notas e discussão detalhada com outros autores; versão oficial no repositório da Universidade de Lisboa; textos adaptados com apoio de IA e revisados pelo autor; rastreabilidade no repositório do projeto; ilustrações geradas com IA, a partir de instruções do autor, e revisadas por ele | Não vem da tese: CLAUDE.md (objetivo do projeto e regras de fidelidade); D7; D36; D37; D83 (frase das ilustrações, 18/11/2026) | — |
 | B2 Ficha | Título, autor, orientador, instituição, grau e especialidade, ano, defesa, financiamento CAPES (processo, 2015 a 2018), versão oficial | Capa e folha de rosto; Agradecimentos; D7 | "Orientador: Professor Doutor Jorge Manuel Moura Loureiro de Miranda"; "o Professor Doutor Jorge Miranda"; "Instituição financiadora: CAPES -- Proc. Nº BEX 1791/15-0"; "fundação do Ministério da Educação (MEC) do Brasil"; "pelo apoio financeiro a mim dispensado de 2015 a 2018" |
 | B3 Como a pesquisa foi feita | Primeiro constituições, leis e decisões judiciais, com leitura própria; depois os outros autores, inclusive os contrários; comparação PT–BR como base; Portugal como referência por ser mais aberto; objetivo: soluções para o Brasil; Direito, ciência política e sociologia; números de opinião, eleições e participação | Introdução (Metodologia; Contextualização; Objetivos); Resumo | "utiliza-se exclusivamente de fontes objetivas primárias"; "Constituição, a legislação e a jurisprudência"; "o primeiro contato do pesquisador for com este mesmo texto jurídico"; "outros contributos que se apresentam como contrários à tese desenvolvida"; "método comparativo, dada ser esta a estrutura básica do texto"; "abertura jurídico institucional maior ao conceito"; "com ênfase para a busca de soluções para o sistema brasileiro"; "envolve as áreas do Direito, da Ciência Política e da Sociologia"; "método estatístico, já que alguns fenômenos jurídico-políticos serão reduzidos a termos quantitativos" |
 | B4 O que fica para depois | Seis temas para pesquisas futuras; três citados: qualidade da democracia, prestação de contas dos partidos, tecnologia como meio de participação sem democracia direta | Considerações finais (penúltimo parágrafo, eixos a, b e c) | "aventam-se alguns eixos centrais"; "a verificação da melhoria da qualidade da democracia"; "a necessária *accountability* de suas ações para com o eleitorado"; "não em sua vertente análoga à democracia direta"; "efetivamente utilizada como meio de participação política do cidadão" |
@@ -1104,7 +1105,11 @@ o uso de inteligência artificial (D37).
    (D39). Links com https (D38).
 3. **Linha sobre inteligência artificial (B1; D37).** Pedido do autor, não vem da tese. O link aponta
    para o repositório no GitHub, onde está esta Rastreabilidade. O repositório já é público; conferir
-   o link na publicação (D41, lembrete para a Fase 5).
+   o link na publicação (D41, lembrete para a Fase 5). **Frase das ilustrações (D83).** Texto aprovado
+   pelo autor em 18/11/2026, palavra por palavra, no fim do mesmo parágrafo: "As ilustrações também
+   foram geradas com inteligência artificial, a partir de instruções do autor, e revisadas por
+   ele." Descreve o processo da D81 (prompts do autor, imagens aprovadas uma a uma). A mesma frase
+   está no README. Não vem da tese e não acrescenta afirmação sobre ela.
 4. **"Ficam de fora [...] a discussão detalhada com outros autores" (B1).** Descreve as regras do
    site: sem notas de rodapé e sem nome de autor citado pela tese. O argumento dos autores entra,
    resumido, sem o nome.
@@ -1141,7 +1146,7 @@ o uso de inteligência artificial (D37).
     Passos), mantida pelo autor, sem número de folhas (D40).
 13. **Menções a "a tese" (D15).** Três no corpo (duas em B1, uma em B5), além do título da página e
     de "uma tese de doutorado" na abertura. No resto, "o trabalho" e "a pesquisa". "O autor"
-    aparece duas vezes (B1, B3).
+    aparece três vezes (duas em B1, uma em B3); a segunda de B1 veio com a frase da D83.
 
 ### Escolhas de apresentação visual (Fase 4)
 
