@@ -257,21 +257,22 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   WordPress, pôs o redirecionamento do domínio principal, criou o subdomínio com SSL e ligou a
   implantação pelo aplicativo "Implante de GitHub" (sem webhook), com a CDN da Hostinger desligada
   (D78). Primeira implantação manual: `e35f1fa`.
-- **Fase 5, Etapa 2 feita, aguardando aprovação:** testes no endereço real (rede da sessão no
-  ambiente "tese_doutorado"); `versao.txt` (D78); `connect-src 'self'` na CSP (D79), porque o
-  Lighthouse no ar dava SEO 92 e Agentic Browsing 50; documentação da integração por aplicativo e
-  da CDN desligada; plano da fase versionado em `docs/PLANO-FASE-5.md`.
+- **Fase 5, Etapa 2 aprovada** e enviada à `main` (PR #14, merge `40e639d`): testes no endereço
+  real, `versao.txt` (D78), `connect-src 'self'` na CSP (D79), integração por aplicativo e CDN
+  desligada documentadas, plano da fase versionado em `docs/PLANO-FASE-5.md`.
+- **Implantação automática confirmada (D80):** o merge da Etapa 2 entrou no ar sozinho; o
+  `versao.txt` mostra `40e639d`, gerado em 2026-11-18T13:54:01Z. No ar: `conferir:publicado` passou
+  (282 testes, sem CDN); Lighthouse com SEO e Agentic Browsing em 100 nas sete páginas, celular e
+  computador.
+- **Fase 5, Etapa 3 feita, aguardando aprovação:** README final, público (o que é o site, endereço,
+  como rodar, como a publicação funciona, licenças), e encerramento da fase neste arquivo. Com a
+  aprovação, a **Fase 5 está concluída**.
 
 ## Próximo passo
 
-1. **Aprovação e merge da Etapa 2 da Fase 5**, feito pelo autor no GitHub. O merge é o teste da
-   implantação automática: o workflow grava um commit novo na `publicacao` (o `versao.txt` muda a
-   cada build) e a Hostinger deve publicá-lo sozinha.
-2. **Confirmar no ar**, na sessão seguinte: `NODE_USE_ENV_PROXY=1 npm run conferir:publicado` (o
-   `versao.txt` tem de mostrar o commit do merge) e
-   `LIGHTHOUSE_URL=https://tese.profmatheuspassos.com.br npm run lighthouse` (SEO e Agentic
-   Browsing devem voltar a 100 com a D79). Conferir no navegador o link do depósito
-   (`hdl.handle.net`), que o servidor da Universidade de Lisboa recusa vindo da nuvem.
-3. **Etapa 3:** README final e conclusão da Fase 5 neste arquivo.
-4. Imagens ilustrativas finais: ainda são espaços reservados em `public/img/`; a troca segue
-   `docs/PUBLICACAO.md`.
+1. **Aprovação e merge da Etapa 3 da Fase 5**, feito pelo autor no GitHub. Depois do merge, conferir
+   que o `versao.txt` no ar mostra o novo commit (`NODE_USE_ENV_PROXY=1 npm run conferir:publicado`).
+2. **Conferir no navegador o link do depósito** (`https://hdl.handle.net/10451/57093`), que o
+   servidor da Universidade de Lisboa recusa vindo da nuvem.
+3. **Imagens ilustrativas finais:** ainda são espaços reservados em `public/img/`; a troca segue
+   `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
