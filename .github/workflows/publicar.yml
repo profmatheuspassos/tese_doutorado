@@ -2,7 +2,8 @@
 # - Pull request para a main: roda o build com todas as conferências, sem publicar.
 # - Merge na main (ou execução manual): roda o mesmo build e, se tudo passar, grava o site pronto
 #   (dist/, com o .htaccess) na branch "publicacao", com um commit normal (nunca force push).
-#   A Hostinger puxa essa branch pela ferramenta Git do hPanel, avisada pelo webhook do repositório.
+#   A Hostinger puxa essa branch pelo aplicativo "Implante de GitHub" (implantação automática, D78);
+#   não há webhook no repositório. O dist/versao.txt muda a cada build, então todo merge publica.
 # Nenhuma senha da Hostinger fica no GitHub; o push usa só o GITHUB_TOKEN deste workflow.
 name: Publicar
 
