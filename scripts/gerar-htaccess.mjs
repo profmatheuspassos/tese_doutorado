@@ -48,6 +48,9 @@ export function cspDoBuild() {
     // Atributos style="…" (barras, rótulos do círculo, cores do bloco BibTeX): sem entrada do
     // usuário num site estático, não há como injetar estilo.
     "style-src-attr 'unsafe-inline'",
+    // Pedidos da página ao próprio site (nenhum script do site faz; ferramentas como o Lighthouse
+    // leem o robots.txt de dentro da página). Nada de fora (D79).
+    "connect-src 'self'",
     "img-src 'self'",
     "font-src 'self'",
     "manifest-src 'self'",
