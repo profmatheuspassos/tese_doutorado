@@ -8,7 +8,7 @@
     "dev": "node scripts/variantes-imagens.mjs && astro dev",
     "prebuild": "node scripts/conferir-dados.mjs && node scripts/conferir-contraste.mjs && node scripts/conferir-imagens.mjs && node scripts/variantes-imagens.mjs",
     "build": "astro check && astro build",
-    "postbuild": "node scripts/conferir-texto.mjs && node scripts/conferir-terceiros.mjs && node scripts/conferir-links.mjs && node scripts/gerar-htaccess.mjs && node scripts/conferir-publicacao.mjs",
+    "postbuild": "node scripts/conferir-texto.mjs && node scripts/conferir-terceiros.mjs && node scripts/conferir-links.mjs && node scripts/gerar-htaccess.mjs && node scripts/gerar-versao.mjs && node scripts/conferir-publicacao.mjs",
     "preview": "astro preview",
     "conferir": "npm run build",
     "capturas": "node scripts/capturas.mjs",
