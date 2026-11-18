@@ -53,7 +53,9 @@ try {
       const rodadas = [];
       for (let k = 0; k < vezes; k++) {
         const saida = join(rascunho, `${pg.nome}-${modo}${vezes > 1 ? `-${k + 1}` : ''}.json`);
-        const args = [join(raiz, 'node_modules/lighthouse/cli/index.js'), `${BASE}${pg.rota}`, '--quiet', `--chrome-flags=--headless=new --no-sandbox`, '--output=json', `--output-path=${saida}`];
+        // No endereço publicado, atrás de um proxy (como na nuvem), o Chrome sai por ele.
+        const proxy = NO_AR && process.env.HTTPS_PROXY ? ` --proxy-server=${process.env.HTTPS_PROXY}` : '';
+        const args = [join(raiz, 'node_modules/lighthouse/cli/index.js'), `${BASE}${pg.rota}`, '--quiet', `--chrome-flags=--headless=new --no-sandbox${proxy}`, '--output=json', `--output-path=${saida}`];
         if (modo === 'desktop') args.push('--preset=desktop');
         execFileSync(process.execPath, args, { env: { ...process.env, CHROME_PATH: chrome }, stdio: 'inherit', timeout: 240000 });
         const r = JSON.parse(readFileSync(saida, 'utf8'));

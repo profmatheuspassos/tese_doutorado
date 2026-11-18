@@ -106,8 +106,10 @@ se as 880 notas de rodapé foram distribuídas.
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
 | `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
 | `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
+| `docs/PLANO-FASE-5.md` | Plano aprovado da Fase 5 (publicação), com os ajustes da D78 e D79 |
 | `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e resumo do Lighthouse |
 | `docs/capturas/fase-4/` | Capturas das páginas novas (D56) e `lighthouse/resumo.md` de todas as páginas (só o resumo é versionado, D59) |
+| `docs/capturas/fase-5/` | `lighthouse/resumo.md` medido no endereço publicado |
 | `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: home (`index.astro`), "Sobre a tese" (`sobre.astro`), 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
 | `src/pages/capitulos/[slug].astro`, `src/layouts/Capitulo.astro` | Rotas dos capítulos (lidas dos `.md`) e modelo das páginas internas |
 | `src/components/capitulo/`, `src/components/capitulos/`, `src/components/interativos/` | Abertura, bloco de texto, progresso e navegação; composição de cada capítulo; interativos (explorador etc.) |
@@ -120,11 +122,12 @@ se as 880 notas de rodapé foram distribuídas.
 | `src/styles/global.css` | Tokens de design (D45) |
 | `src/scripts/home.ts`, `src/scripts/home-resto.ts` | Animações GSAP da home (só com `prefers-reduced-motion: no-preference`): a abertura na carga; o resto (ScrollTrigger e blocos B1 a B8) quando o navegador fica ocioso, um bloco por tarefa (D67) |
 | `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, contraste, imagens (nome, tamanho, peso), texto (palavras, aspas, rótulos, atributos), recursos de terceiros, links internos (link quebrado faz o build falhar) e publicação (canonical, Open Graph, sitemap, robots, CSP, `.htaccess` da pasta principal) |
-| `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74) e cache (D75) |
+| `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74, D79) e cache (D75) |
+| `scripts/gerar-versao.mjs` | Gera `dist/versao.txt` a cada build: commit da `main` e data/hora UTC (D78), para saber qual versão está no ar |
 | `scripts/conferir-publicado.mjs` | Testes no endereço real depois de publicar (`npm run conferir:publicado`) |
 | `src/lib/site.mjs`, `src/lib/imagens.mjs` | Endereço final do site (D72); lista única das imagens com nome, tamanho e teto de peso |
 | `src/pages/sitemap.xml.ts`, `src/pages/robots.txt.ts` | Sitemap e robots, gerados no build |
-| `.github/workflows/publicar.yml` | Build com as conferências em todo PR e, a cada merge na `main`, publicação na branch `publicacao` (D71) |
+| `.github/workflows/publicar.yml` | Build com as conferências em todo PR e, a cada merge na `main`, publicação na branch `publicacao` (D71), que a Hostinger implanta pelo aplicativo "Implante de GitHub", sem webhook (D78) |
 | `hospedagem/htaccess-dominio-principal` | `.htaccess` da pasta principal do domínio na Hostinger: redireciona o domínio principal para profmatheus.com (D77) |
 | `docs/PUBLICACAO.md` | Como o site chega ao ar, passo a passo do hPanel, troca de imagens e testes depois de publicar |
 | `LICENSE`, `LICENSE-CONTEUDO.md` | Código sob MIT; textos e imagens sob CC BY-NC-ND 4.0 (D76) |
@@ -169,7 +172,7 @@ Depois de publicar (detalhes em `docs/PUBLICACAO.md`):
 NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 ```
 
-## Estado atual (17 de novembro de 2026)
+## Estado atual (18 de novembro de 2026)
 
 - **Fase 1 concluída e aprovada.**
 - **Fase 2 concluída e aprovada** (17/11/2026): home, capítulos 1 a 5 e "Sobre a tese" escritos e
@@ -245,20 +248,30 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   `publicacao` e Git do hPanel; endereço canônico; compartilhamento; cabeçalhos de segurança; cache;
   licenças CC BY-NC-ND 4.0 e MIT, com o T49 no rodapé; domínio principal sem WordPress, redirecionado
   para profmatheus.com). Entrega em três etapas, com parada ao fim de cada uma.
-- **Fase 5, Etapa 1 (código da publicação) feita, aguardando aprovação:** endereço final no build,
-  canonical e Open Graph, sitemap e robots, `.htaccess` gerado com CSP por hash, conferências novas
-  (imagens e publicação), testes no navegador com os cabeçalhos reais, workflow de publicação,
-  `.htaccess` da pasta principal, licenças e linha T49 no rodapé, `docs/PUBLICACAO.md`. Textos
-  aprovados idênticos.
+- **Fase 5, Etapa 1 (código da publicação) aprovada** e enviada à `main` (PR #13, com merge):
+  endereço final no build, canonical e Open Graph, sitemap e robots, `.htaccess` gerado com CSP por
+  hash, conferências novas (imagens e publicação), testes no navegador com os cabeçalhos reais,
+  workflow de publicação, `.htaccess` da pasta principal, licenças e linha T49 no rodapé,
+  `docs/PUBLICACAO.md`. Textos aprovados idênticos.
+- **Site no ar desde 18/11/2026** em https://tese.profmatheuspassos.com.br. O autor removeu o
+  WordPress, pôs o redirecionamento do domínio principal, criou o subdomínio com SSL e ligou a
+  implantação pelo aplicativo "Implante de GitHub" (sem webhook), com a CDN da Hostinger desligada
+  (D78). Primeira implantação manual: `e35f1fa`.
+- **Fase 5, Etapa 2 feita, aguardando aprovação:** testes no endereço real (rede da sessão no
+  ambiente "tese_doutorado"); `versao.txt` (D78); `connect-src 'self'` na CSP (D79), porque o
+  Lighthouse no ar dava SEO 92 e Agentic Browsing 50; documentação da integração por aplicativo e
+  da CDN desligada; plano da fase versionado em `docs/PLANO-FASE-5.md`.
 
 ## Próximo passo
 
-1. **Aprovação e merge da Etapa 1 da Fase 5**, feito pelo autor no GitHub. O merge dispara o
-   workflow, que cria a branch `publicacao`.
-2. **Etapa 2:** o autor faz, em sequência, os passos A e B de `docs/PUBLICACAO.md` (remover o
-   WordPress, redirecionar o domínio principal) e depois C e D (subdomínio, SSL, Git, webhook).
-   A sessão roda os testes no endereço real (`conferir:publicado`, `capturas` e `lighthouse` com o
-   endereço publicado) e corrige o que aparecer, por pull request. Inclui o lembrete da D41.
+1. **Aprovação e merge da Etapa 2 da Fase 5**, feito pelo autor no GitHub. O merge é o teste da
+   implantação automática: o workflow grava um commit novo na `publicacao` (o `versao.txt` muda a
+   cada build) e a Hostinger deve publicá-lo sozinha.
+2. **Confirmar no ar**, na sessão seguinte: `NODE_USE_ENV_PROXY=1 npm run conferir:publicado` (o
+   `versao.txt` tem de mostrar o commit do merge) e
+   `LIGHTHOUSE_URL=https://tese.profmatheuspassos.com.br npm run lighthouse` (SEO e Agentic
+   Browsing devem voltar a 100 com a D79). Conferir no navegador o link do depósito
+   (`hdl.handle.net`), que o servidor da Universidade de Lisboa recusa vindo da nuvem.
 3. **Etapa 3:** README final e conclusão da Fase 5 neste arquivo.
 4. Imagens ilustrativas finais: ainda são espaços reservados em `public/img/`; a troca segue
    `docs/PUBLICACAO.md`.

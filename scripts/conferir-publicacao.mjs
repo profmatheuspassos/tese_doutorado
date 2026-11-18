@@ -8,6 +8,8 @@
  *  - a CSP do dist/.htaccess cobre todo <script> e <style> em linha; nenhum atributo on…= nem
  *    link javascript: (que a CSP bloquearia);
  *  - no GitHub Actions, o endereço é o final (D72);
+ *  - dist/versao.txt existe, no formato certo, com o commit do Actions, e o .htaccess manda
+ *    no-cache para ele (D78);
  *  - o .htaccess da pasta principal (hospedagem/) só tem mod_rewrite, com condição de host em
  *    toda regra, sem mod_alias nem Header (D77).
  */
@@ -16,6 +18,7 @@ import { join, relative } from 'node:path';
 import { cspDoBuild } from './gerar-htaccess.mjs';
 import { SITE_FINAL, site, base, absoluta } from '../src/lib/site.mjs';
 import { IMAGEM_OG } from '../src/lib/imagens.mjs';
+import { FORMATO_VERSAO } from './gerar-versao.mjs';
 
 const raiz = new URL('..', import.meta.url).pathname;
 const dist = join(raiz, 'dist');
@@ -89,7 +92,16 @@ for (const arquivo of htmls) {
 // 4. Endereço final no GitHub Actions.
 if (process.env.GITHUB_ACTIONS === 'true' && (site() !== SITE_FINAL || base() !== '/')) erros.push(`no Actions, o site precisa ser ${SITE_FINAL}/ (está ${site()}${base()})`);
 
-// 5. .htaccess da pasta principal (D77).
+// 5. versao.txt (D78).
+const arquivoVersao = join(dist, 'versao.txt');
+const versao = existsSync(arquivoVersao) ? readFileSync(arquivoVersao, 'utf8') : null;
+if (versao === null) erros.push('dist/versao.txt ausente');
+else if (!FORMATO_VERSAO.test(versao)) erros.push(`dist/versao.txt fora do formato (commit de 40 caracteres e data UTC): ${JSON.stringify(versao)}`);
+else if (process.env.GITHUB_ACTIONS === 'true' && !versao.startsWith(`commit ${process.env.GITHUB_SHA}\n`)) erros.push(`dist/versao.txt com commit diferente do GITHUB_SHA (${process.env.GITHUB_SHA})`);
+if (!/<FilesMatch "\\\.\([^)]*\btxt\b[^)]*\)\$">\s*Header set Cache-Control "no-cache"/.test(htaccess)) erros.push('o .htaccess não manda no-cache para .txt (versao.txt)');
+if (locs.some((l) => l.endsWith('versao.txt'))) erros.push('versao.txt não deve entrar no sitemap');
+
+// 6. .htaccess da pasta principal (D77).
 const principal = readFileSync(join(raiz, 'hospedagem/htaccess-dominio-principal'), 'utf8').split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#'));
 let condicaoDeHost = false;
 for (const l of principal) {
