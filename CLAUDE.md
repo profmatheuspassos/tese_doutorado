@@ -206,7 +206,9 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   quebra; D49: capturas versionadas; D50: setas do círculo virtuoso; D51: conclusão da fase).
   Home: 1.770 palavras, índice 62,1. Lighthouse acima de 90 em tudo. Enviada à `main` por pull
   request.
-- As imagens ilustrativas ainda são espaços reservados (cor lisa) em `public/img/`.
+- **Imagens ilustrativas finais (D81):** as oito ilustrações geradas no Gemini (plano pago,
+  18/11/2026) e aprovadas pelo autor substituem os espaços reservados em `public/img/`, recortadas e
+  reduzidas, em WebP. Os originais não ficam no repositório. A `og-home.png` não muda.
 - **Fase 4 aprovada como plano** (17/11/2026; `docs/PLANO-FASE-4.md`), com as decisões D52 a D58.
   Entrega em quatro etapas, com parada para aprovação ao fim de cada uma.
 - **Fase 4, Etapa 1 aprovada com três ajustes (D59):** modelo das páginas internas e **capítulo 2**
@@ -267,13 +269,15 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 - **Link do depósito conferido pelo autor** (`https://hdl.handle.net/10451/57093`, na página
   "Sobre a tese"): funciona no navegador, em 18/11/2026. O servidor da Universidade de Lisboa só
   recusa a conexão vinda da nuvem.
-- **Fase 5, Etapa 3 feita, aguardando aprovação:** README final, público (o que é o site, endereço,
-  como rodar, como a publicação funciona, licenças), e encerramento da fase neste arquivo. Com a
-  aprovação, a **Fase 5 está concluída**.
+- **Fase 5, Etapa 3 aprovada** e enviada à `main` (PR #15, merge `ed49c91`): README final, público
+  (o que é o site, endereço, como rodar, como a publicação funciona, licenças). Com ela, a **Fase 5
+  está concluída**.
 
 ## Próximo passo
 
-1. **Aprovação e merge da Etapa 3 da Fase 5**, feito pelo autor no GitHub. Depois do merge, conferir
-   que o `versao.txt` no ar mostra o novo commit (`NODE_USE_ENV_PROXY=1 npm run conferir:publicado`).
-2. **Imagens ilustrativas finais:** ainda são espaços reservados em `public/img/`; a troca segue
-   `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
+1. **Aprovação e merge do pull request das imagens (D81)**, feito pelo autor no GitHub, **por "Squash
+   and merge"** (os originais passaram pela branch e não podem chegar à `main`). Depois do merge,
+   conferir que o `versao.txt` no ar mostra o novo commit (`NODE_USE_ENV_PROXY=1 npm run
+   conferir:publicado`).
+2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+   segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
