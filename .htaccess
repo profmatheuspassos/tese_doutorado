@@ -28,7 +28,7 @@ AddType font/woff2 .woff2
 
 <IfModule mod_headers.c>
   Header always set Strict-Transport-Security "max-age=31536000"
-  Header always set Content-Security-Policy "default-src 'none'; script-src 'self' 'sha256-VYBo45VS7AtHBvp8UVDA4Jejp3MU72B+nsx4OQ5Yzgc=' 'sha256-W5UQrvOS23sjKpOV6x/KflUHJCIswkPCdB/HvjUzbo8=' 'sha256-sSs4XOfhyb727iIHB5Bqxi9686OypccKz+Djf5YAP54=' 'sha256-vw5dxSdnfBuShZisWACCXilEA93+Jc2LygimkiIhkWI='; style-src 'self' 'sha256-+ezkB4CAMouNaPBU+txFiUggqzxW5lE7iBfb6vg8EXs=' 'sha256-7vI36UaNrkUYsLf9P1rlUu7YDwyU1U6HT3sCcT3aszU=' 'sha256-Kn+ZpC9XTe6a/CP/Yi/nJ3nG2nyx1damTL7jEc9/SBk=' 'sha256-i0ZLQ/kWJhDNNsd2k2QND597F1f8R7WlRU9coh/Eh2A=' 'sha256-nLwzLNPmA++cHPFS0LLn4SoKG4PmZH0T3uHQC5r3or0='; style-src-attr 'unsafe-inline'; img-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self' 'sha256-VYBo45VS7AtHBvp8UVDA4Jejp3MU72B+nsx4OQ5Yzgc=' 'sha256-W5UQrvOS23sjKpOV6x/KflUHJCIswkPCdB/HvjUzbo8=' 'sha256-sSs4XOfhyb727iIHB5Bqxi9686OypccKz+Djf5YAP54=' 'sha256-vw5dxSdnfBuShZisWACCXilEA93+Jc2LygimkiIhkWI='; style-src 'self' 'sha256-+ezkB4CAMouNaPBU+txFiUggqzxW5lE7iBfb6vg8EXs=' 'sha256-7vI36UaNrkUYsLf9P1rlUu7YDwyU1U6HT3sCcT3aszU=' 'sha256-Kn+ZpC9XTe6a/CP/Yi/nJ3nG2nyx1damTL7jEc9/SBk=' 'sha256-i0ZLQ/kWJhDNNsd2k2QND597F1f8R7WlRU9coh/Eh2A=' 'sha256-nLwzLNPmA++cHPFS0LLn4SoKG4PmZH0T3uHQC5r3or0='; style-src-attr 'unsafe-inline'; connect-src 'self'; img-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "DENY"
   Header always set Referrer-Policy "no-referrer"
