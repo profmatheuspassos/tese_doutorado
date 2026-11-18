@@ -101,7 +101,8 @@ const cenarios = [
 const altura = (w) => (w < 500 ? 812 : 900);
 const erros = [];
 const resumo = [];
-const navegador = await chromium.launch();
+// No endereço publicado, atrás de um proxy (como na nuvem), o navegador sai por ele.
+const navegador = await chromium.launch(NO_AR && process.env.HTTPS_PROXY ? { proxy: { server: process.env.HTTPS_PROXY } } : {});
 const axe = (pagina) => pagina.addScriptTag({ url: `${BASE}/__axe.js` })
   .then(() => pagina.evaluate(async () => (await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } })).violations.map((v) => `${v.id}: ${v.help} (${v.nodes.length}: ${v.nodes.slice(0, 2).map((n) => n.target.join(' ')).join(' | ')})`)));
 

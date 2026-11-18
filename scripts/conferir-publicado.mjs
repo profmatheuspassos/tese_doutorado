@@ -15,13 +15,17 @@
  * Domínio principal (D77):
  *  - profmatheuspassos.com.br e www, em http e https → 301 para https://profmatheus.com, mesmo
  *    caminho; /tese/... → 301 para o subdomínio.
+ * versao.txt (D78): no ar, no formato certo, no-cache, com o commit esperado (COMMIT_ESPERADO ou o
+ * último da main).
  * Links públicos: repositório no GitHub sem login (D41), depósito da tese, licenças (D76).
  *
  * Atrás de um proxy (como na nuvem), rode com NODE_USE_ENV_PROXY=1.
  */
 import { CABECALHOS_FIXOS, CACHE, hash } from './gerar-htaccess.mjs';
+import { FORMATO_VERSAO } from './gerar-versao.mjs';
 import { SITE_FINAL, site } from '../src/lib/site.mjs';
 import { readFileSync, readdirSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
 
 const raiz = new URL('..', import.meta.url).pathname;
@@ -34,6 +38,7 @@ const rotas = readdirSync(join(raiz, 'src/content/pt-br')).filter((f) => f.endsW
 
 const erros = [];
 const avisos = [];
+const pendentes = [];
 let testes = 0;
 const conferir = (ok, msg) => { testes++; if (!ok) erros.push(msg); };
 const pedir = (url, opcoes = {}) => fetch(url, { redirect: 'manual', headers: { 'User-Agent': 'conferir-publicado', 'Accept-Encoding': 'gzip, br' }, ...opcoes });
@@ -42,7 +47,10 @@ const pedir = (url, opcoes = {}) => fetch(url, { redirect: 'manual', headers: { 
 // não vêm de .htaccess nenhum (nível do servidor) são aceitos, mas listados como aviso.
 const NOSSOS = new Set(['strict-transport-security', 'content-security-policy', 'x-content-type-options', 'x-frame-options', 'referrer-policy', 'cross-origin-opener-policy', 'cross-origin-resource-policy', 'permissions-policy', 'cache-control']);
 const PADRAO_HTTP = new Set(['date', 'server', 'content-type', 'content-length', 'content-encoding', 'transfer-encoding', 'connection', 'keep-alive', 'etag', 'last-modified', 'accept-ranges', 'vary', 'alt-svc', 'location', 'expires']);
-const DO_SERVIDOR = new Set(['platform', 'panel', 'x-turbo-charged-by', 'x-litespeed-cache', 'x-litespeed-tag', 'x-litespeed-cache-control', 'cf-cache-status', 'cf-ray', 'x-hcdn-cache-status', 'x-hcdn-request-id', 'x-hcdn-upstream-rt', 'x-hcdn-cache-key']);
+const DO_SERVIDOR = new Set(['platform', 'panel', 'x-turbo-charged-by', 'x-litespeed-cache', 'x-litespeed-tag', 'x-litespeed-cache-control']);
+// CDN da Hostinger desligada (D78): resposta vinda dela (server: hcdn, x-hcdn-*, age) é erro, porque
+// a CDN troca cabeçalhos (tira a CSP e o COOP das imagens em cache e abre o CORS).
+const DA_CDN = (nome, valor) => nome.startsWith('x-hcdn-') || nome === 'age' || (nome === 'server' && /hcdn/i.test(valor));
 
 function conferirCabecalhos(rotulo, r, html) {
   const h = r.headers;
@@ -58,6 +66,7 @@ function conferirCabecalhos(rotulo, r, html) {
   }
   conferir(!h.get('x-powered-by'), `${rotulo}: x-powered-by presente`);
   for (const [nome, valor] of h) {
+    if (DA_CDN(nome, valor)) { erros.push(`${rotulo}: resposta passou pela CDN da Hostinger (${nome}: ${valor}), que devia estar desligada (D78)`); continue; }
     if (NOSSOS.has(nome) || PADRAO_HTTP.has(nome)) continue;
     if (DO_SERVIDOR.has(nome)) { avisos.push(`${rotulo}: cabeçalho do servidor: ${nome}: ${valor}`); continue; }
     erros.push(`${rotulo}: cabeçalho fora da lista (herdado?): ${nome}: ${valor}`);
@@ -82,9 +91,36 @@ for (const rota of rotas) {
   conferir(/^(gzip|br)$/.test(r.headers.get('content-encoding') || ''), `${url}: sem compressão (content-encoding ${r.headers.get('content-encoding')})`);
 }
 
+// Atrás de um proxy que só abre túnel (CONNECT), o fetch do Node não alcança http://; nesse caso o
+// pedido vai pelo curl, com túnel. Só lê status e Location, sem seguir o redirecionamento.
+function pedirHttpPorTunel(url) {
+  const saida = execFileSync('curl', ['-sS', '-o', '/dev/null', '-D', '-', '--max-time', '30', '--proxytunnel', '-x', process.env.HTTPS_PROXY, url], { encoding: 'utf8' });
+  const blocos = saida.trim().split(/\r?\n\r?\n/);
+  const ultimo = blocos[blocos.length - 1];
+  const status = Number(ultimo.match(/^HTTP\/[\d.]+ (\d{3})/m)?.[1]);
+  const location = ultimo.match(/^location:\s*(.+?)\s*$/im)?.[1] ?? null;
+  return { status, headers: { get: (n) => (n.toLowerCase() === 'location' ? location : null) } };
+}
+const umPasso = async (url) => (url.startsWith('http://') && process.env.HTTPS_PROXY ? pedirHttpPorTunel(url) : pedir(url));
 const redireciona = async (de, para, rotulo) => {
-  const r = await pedir(de);
+  const r = await umPasso(de);
   conferir(r.status === 301 && r.headers.get('location') === para, `${rotulo}: ${de} → ${r.status} ${r.headers.get('location')} (esperado 301 ${para})`);
+};
+// Domínio principal em http://: o servidor pode passar antes para https:// no mesmo endereço (um
+// passo a mais, fora do .htaccess do projeto). Vale se todos os passos forem 301, no máximo dois,
+// e o último levar ao destino esperado; o passo extra fica como aviso.
+const redirecionaEmCadeia = async (de, para, rotulo) => {
+  const passos = [];
+  let url = de;
+  for (let i = 0; i < 3 && url !== para; i++) {
+    const r = await umPasso(url);
+    const prox = r.headers.get('location');
+    passos.push(`${r.status} ${prox}`);
+    if (r.status !== 301 || !prox) break;
+    url = new URL(prox, url).href;
+  }
+  conferir(url === para && passos.length <= 2 && passos.every((p) => p.startsWith('301 ')), `${rotulo}: ${de} → ${passos.join(' → ')} (esperado 301 até ${para}, no máximo dois passos)`);
+  if (url === para && passos.length === 2) avisos.push(`${rotulo}: ${de} passa por https:// antes de ${para} (passo do servidor, não do .htaccess)`);
 };
 await redireciona(`http://${HOST_S}/`, `${S}/`, 'http → https');
 await redireciona(`http://${HOST_S}/sobre/`, `${S}/sobre/`, 'http → https');
@@ -98,8 +134,9 @@ conferir(r404.status === 404 && h404.includes('Página não encontrada'), `404: 
 conferirCabecalhos('404', r404, h404);
 for (const caminho of ['/.git/HEAD', '/.git/config', '/.htaccess']) {
   const r = await pedir(`${S}${caminho}`);
-  // O próprio servidor já barra o .htaccess (403); o resto que começa com ponto responde 404.
-  const aceitos = caminho === '/.htaccess' ? [403, 404] : [404];
+  // O servidor da Hostinger barra .git e .htaccess antes do .htaccess do site (403); o resto
+  // que começa com ponto responde 404 pela regra do site. Os dois códigos protegem.
+  const aceitos = [403, 404];
   conferir(aceitos.includes(r.status), `${caminho}: status ${r.status} (esperado ${aceitos.join(' ou ')})`);
 }
 
@@ -112,6 +149,32 @@ for (const caminho of [asset(/href="(\/_astro\/[^"]+\.css)"/), asset(/src="(\/_a
   conferirCabecalhos(caminho, r);
   if (caminho.endsWith('.png')) conferir(r.headers.get('content-type') === 'image/png', `${url}: content-type ${r.headers.get('content-type')}`);
 }
+// versao.txt (D78): commit da main que gerou o site no ar. Esperado: COMMIT_ESPERADO ou o último
+// commit da main (git fetch + origin/main). Publicações anteriores à D78 não têm o arquivo: fica
+// como pendente, não como falha.
+{
+  const r = await pedir(`${S}/versao.txt`);
+  const texto = await r.text();
+  let esperado = process.env.COMMIT_ESPERADO;
+  if (!esperado) {
+    try {
+      execFileSync('git', ['fetch', '--quiet', 'origin', 'main'], { cwd: raiz, stdio: 'ignore' });
+      esperado = execFileSync('git', ['rev-parse', 'origin/main'], { cwd: raiz, encoding: 'utf8' }).trim();
+    } catch { avisos.push('versao.txt: não deu para ler o último commit da main; use COMMIT_ESPERADO'); }
+  }
+  if (r.status === 404) {
+    pendentes.push(`versao.txt ainda não está no ar (publicação anterior à D78); depois do próximo merge, deve mostrar o commit dele (hoje a main está em ${esperado?.slice(0, 7) ?? "?"})`);
+  } else {
+    conferir(r.status === 200, `versao.txt: status ${r.status}`);
+    conferir(FORMATO_VERSAO.test(texto), `versao.txt fora do formato: ${JSON.stringify(texto.slice(0, 120))}`);
+    conferir(r.headers.get('cache-control') === 'no-cache', `versao.txt: cache-control ${r.headers.get('cache-control')} (esperado no-cache)`);
+    conferirCabecalhos('/versao.txt', r);
+    const noAr = texto.match(/^commit ([0-9a-f]{40})$/m)?.[1];
+    if (esperado) conferir(noAr === esperado, `versao.txt: no ar está o commit ${noAr?.slice(0, 7)}, esperado ${esperado.slice(0, 7)} (a implantação automática não rodou?)`);
+    console.log(`  versão no ar: commit ${noAr?.slice(0, 7)}, ${texto.match(/^gerado (.+)$/m)?.[1]}`);
+  }
+}
+
 const sitemap = await (await pedir(`${S}/sitemap.xml`)).text();
 const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 conferir(locs.length === rotas.length, `sitemap com ${locs.length} URLs (esperado ${rotas.length})`);
@@ -122,7 +185,7 @@ conferir(robots.includes(`Sitemap: ${S}/sitemap.xml`), 'robots.txt sem a linha d
 // --- Domínio principal ---
 for (const host of [PRINCIPAL, `www.${PRINCIPAL}`]) {
   for (const esquema of ['http', 'https']) {
-    for (const caminho of ['/', '/algum/caminho/?q=1']) await redireciona(`${esquema}://${host}${caminho}`, `${DESTINO}${caminho}`, 'domínio principal');
+    for (const caminho of ['/', '/algum/caminho/?q=1']) await redirecionaEmCadeia(`${esquema}://${host}${caminho}`, `${DESTINO}${caminho}`, 'domínio principal');
   }
   await redireciona(`https://${host}/tese/`, `${S}/`, '/tese/ no domínio principal');
   await redireciona(`https://${host}/tese/capitulos/1-no-papel/`, `${S}/capitulos/1-no-papel/`, '/tese/ no domínio principal');
@@ -133,11 +196,15 @@ for (const url of ['https://github.com/profmatheuspassos/tese_doutorado', 'https
   try {
     const r = await fetch(url, { redirect: 'follow', headers: { 'User-Agent': 'conferir-publicado' } });
     conferir(r.status === 200, `${url}: status ${r.status} sem login (esperado 200)`);
-  } catch (e) { erros.push(`${url}: ${e.cause?.code || e.message}`); }
+  } catch (e) {
+    // Erro de rede (não de HTTP) num site de terceiros: não dá para concluir nada daqui.
+    pendentes.push(`${url}: não testado daqui (${e.cause?.code || e.message}); abra no navegador`);
+  }
 }
 
 if (S !== SITE_FINAL) avisos.push(`conferindo ${S}, não o endereço final ${SITE_FINAL}`);
 avisos.forEach((a) => console.log('  aviso: ' + a));
+pendentes.forEach((p) => console.log('  pendente: ' + p));
 if (erros.length) {
   console.error(`conferir-publicado: ${erros.length} problema(s) em ${testes} testes`);
   erros.forEach((e) => console.error(' - ' + e));
