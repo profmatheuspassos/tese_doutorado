@@ -264,6 +264,9 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   `versao.txt` mostra `40e639d`, gerado em 2026-11-18T13:54:01Z. No ar: `conferir:publicado` passou
   (282 testes, sem CDN); Lighthouse com SEO e Agentic Browsing em 100 nas sete páginas, celular e
   computador.
+- **Link do depósito conferido pelo autor** (`https://hdl.handle.net/10451/57093`, na página
+  "Sobre a tese"): funciona no navegador, em 18/11/2026. O servidor da Universidade de Lisboa só
+  recusa a conexão vinda da nuvem.
 - **Fase 5, Etapa 3 feita, aguardando aprovação:** README final, público (o que é o site, endereço,
   como rodar, como a publicação funciona, licenças), e encerramento da fase neste arquivo. Com a
   aprovação, a **Fase 5 está concluída**.
@@ -272,7 +275,5 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 
 1. **Aprovação e merge da Etapa 3 da Fase 5**, feito pelo autor no GitHub. Depois do merge, conferir
    que o `versao.txt` no ar mostra o novo commit (`NODE_USE_ENV_PROXY=1 npm run conferir:publicado`).
-2. **Conferir no navegador o link do depósito** (`https://hdl.handle.net/10451/57093`), que o
-   servidor da Universidade de Lisboa recusa vindo da nuvem.
-3. **Imagens ilustrativas finais:** ainda são espaços reservados em `public/img/`; a troca segue
+2. **Imagens ilustrativas finais:** ainda são espaços reservados em `public/img/`; a troca segue
    `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
