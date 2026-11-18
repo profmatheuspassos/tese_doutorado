@@ -3,8 +3,10 @@
 As imagens não são geradas neste projeto. Este arquivo traz o guia de estilo e o prompt final de
 cada imagem. As oito ilustrações foram **geradas no Gemini, no plano pago, em 18/11/2026**, cada uma
 numa conversa nova, com os prompts abaixo, e aprovadas pelo autor uma a uma contra este guia. Os
-recortes, a redução e os desvios aceitos estão na D81 (`docs/DECISOES.md`). Os originais não ficam
-no repositório; em `public/img/` estão só os WebP finais, com o nome e o tamanho exatos da tabela.
+recortes, a redução e os desvios aceitos estão na D81 (`docs/DECISOES.md`). Os originais não estão
+na árvore atual do repositório nem no site, mas ficaram no histórico da `main` (commit `67d4013`),
+porque o pull request entrou por merge comum (D82). Em `public/img/` estão só os WebP finais, com o
+nome e o tamanho exatos da tabela.
 O script `npm run imagens` nunca sobrescreve um arquivo que já existe.
 
 **Como trocar depois da publicação (Fase 5):** passo a passo em `docs/PUBLICACAO.md`, seção "Como
