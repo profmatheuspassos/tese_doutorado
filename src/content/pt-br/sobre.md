@@ -51,7 +51,7 @@ O autor leu primeiro o texto das constituições, das leis e das decisões judic
 própria leitura. Só depois a comparou com o que outros autores escreveram, inclusive os que pensam
 diferente. A comparação entre os dois países é a base do trabalho. Portugal serve de referência,
 porque suas leis são mais abertas à participação do cidadão. O objetivo é buscar soluções para o
-Brasil. A pesquisa junta Direito, ciência política e sociologia e também usa números: pesquisas de
+Brasil. A pesquisa junta Direito, Ciência Política e Sociologia e também usa números: pesquisas de
 opinião, resultados de eleições e dados oficiais sobre participação.
 
 <!-- B4 | O que fica para depois | origem: Considerações finais, penúltimo parágrafo (seis eixos de pesquisa futura, itens a, b e c) -->
