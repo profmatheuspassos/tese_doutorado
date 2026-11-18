@@ -4,31 +4,28 @@ Gerado por `npm run lighthouse` com `LIGHTHOUSE_URL=https://tese.profmatheuspass
 
 | Página | Modo | Performance | Accessibility | Best Practices | SEO | Agentic Browsing | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|---|
-| home | celular, pior de 5 (desempenho: 96, 100, 100, 100, 100) | 96 | 100 | 100 | 92 | 50 | 1.4 s | 0 | 220 ms |
-| home | desktop | 100 | 100 | 100 | 92 | 50 | 0.3 s | 0.002 | 0 ms |
-| capitulo-1 | celular | 100 | 100 | 100 | 92 | 50 | 0.9 s | 0 | 10 ms |
-| capitulo-1 | desktop | 100 | 100 | 100 | 92 | 50 | 0.3 s | 0 | 0 ms |
-| capitulo-2 | celular | 100 | 100 | 100 | 92 | 50 | 0.9 s | 0 | 0 ms |
-| capitulo-2 | desktop | 100 | 100 | 100 | 92 | 50 | 0.3 s | 0.001 | 0 ms |
-| capitulo-3 | celular | 100 | 100 | 100 | 92 | 50 | 0.9 s | 0 | 0 ms |
-| capitulo-3 | desktop | 100 | 100 | 100 | 92 | 50 | 0.3 s | 0.001 | 0 ms |
-| capitulo-4 | celular | 100 | 100 | 100 | 92 | 50 | 0.9 s | 0 | 0 ms |
-| capitulo-4 | desktop | 100 | 100 | 100 | 92 | 50 | 0.3 s | 0 | 0 ms |
-| capitulo-5 | celular | 100 | 100 | 100 | 92 | 50 | 0.9 s | 0 | 0 ms |
-| capitulo-5 | desktop | 100 | 100 | 100 | 92 | 50 | 0.3 s | 0.002 | 0 ms |
-| sobre | celular | 100 | 100 | 100 | 92 | 50 | 0.9 s | 0 | 0 ms |
-| sobre | desktop | 100 | 100 | 100 | 92 | 50 | 0.3 s | 0.041 | 0 ms |
+| home | celular, pior de 5 (desempenho: 98, 100, 100, 100, 99) | 98 | 100 | 100 | 100 | 100 | 1.5 s | 0 | 140 ms |
+| home | desktop | 100 | 100 | 100 | 100 | 100 | 0.3 s | 0 | 0 ms |
+| capitulo-1 | celular | 100 | 100 | 100 | 100 | 100 | 0.9 s | 0 | 10 ms |
+| capitulo-1 | desktop | 100 | 100 | 100 | 100 | 100 | 0.3 s | 0.001 | 0 ms |
+| capitulo-2 | celular | 100 | 100 | 100 | 100 | 100 | 0.9 s | 0 | 0 ms |
+| capitulo-2 | desktop | 100 | 100 | 100 | 100 | 100 | 0.3 s | 0 | 0 ms |
+| capitulo-3 | celular | 100 | 100 | 100 | 100 | 100 | 1.1 s | 0 | 0 ms |
+| capitulo-3 | desktop | 100 | 100 | 100 | 100 | 100 | 0.3 s | 0 | 0 ms |
+| capitulo-4 | celular | 100 | 100 | 100 | 100 | 100 | 1.0 s | 0 | 30 ms |
+| capitulo-4 | desktop | 100 | 100 | 100 | 100 | 100 | 0.3 s | 0 | 0 ms |
+| capitulo-5 | celular | 100 | 100 | 100 | 100 | 100 | 1.0 s | 0 | 10 ms |
+| capitulo-5 | desktop | 100 | 100 | 100 | 100 | 100 | 0.3 s | 0 | 0 ms |
+| sobre | celular | 100 | 100 | 100 | 100 | 100 | 0.9 s | 0 | 0 ms |
+| sobre | desktop | 100 | 100 | 100 | 100 | 100 | 0.3 s | 0.041 | 0 ms |
 
-## Leitura (18/11/2026, Etapa 2)
+## Leitura (18/11/2026, Etapa 3)
 
-Medição feita de um contêiner na nuvem, atrás de um proxy, com o site publicado pelo commit
-`e35f1fa` da branch `publicacao`.
+Medição feita de um contêiner na nuvem, atrás de um proxy, com o site publicado a partir do commit
+`40e639d` da `main` (merge da Etapa 2, com a D79), conforme o `versao.txt` no ar.
 
-- Desempenho, acessibilidade e boas práticas: 96 a 100 em todas as páginas.
-- **SEO 92 e Agentic Browsing 50 em todas as páginas.** Causa: a CSP publicada (`default-src
-  'none'`, sem `connect-src`) impedia a página de buscar qualquer coisa, inclusive no próprio site,
-  e o Lighthouse lê `robots.txt`, `llms.txt` e `.well-known/ard.json` de dentro da página. Os
-  robôs de busca não passam por essa restrição; só a medição era afetada.
-- **Correção (D79):** `connect-src 'self'` na CSP. Conferida num servidor local com os cabeçalhos
-  do `.htaccess`: com a CSP antiga, SEO 92 e Agentic Browsing 50; com a nova, 100 nas cinco
-  categorias. Entra no ar com o merge da Etapa 2; a medição no ar será refeita depois dele.
+- **SEO e Agentic Browsing em 100 em todas as páginas**, no celular e no computador. A correção da
+  D79 (`connect-src 'self'`) resolveu no ar o que a Etapa 2 tinha medido (92 e 50).
+- Acessibilidade e boas práticas: 100 em tudo. Desempenho: 100 em todas as páginas, exceto a home
+  no celular, 98 na pior de cinco rodadas.
+- Nenhuma resposta da CDN (nenhum cabeçalho `x-hcdn-*`), como pede a D78.

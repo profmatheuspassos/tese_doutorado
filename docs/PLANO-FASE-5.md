@@ -86,7 +86,8 @@ texto oficial); linha T49 no rodapé.
 ## Etapas
 
 - **Etapa 1 — código da publicação:** aprovada, PR #13 com merge.
-- **Etapa 2 — no ar:** testes no endereço real, integração por aplicativo, CDN desligada,
-  `versao.txt` (D78) e `connect-src 'self'` (D79). O merge dela serve de teste da implantação
+- **Etapa 2 — no ar:** aprovada, PR #14 com merge (`40e639d`): testes no endereço real,
+  integração por aplicativo, CDN desligada, `versao.txt` (D78) e `connect-src 'self'` (D79). O merge dela serve de teste da implantação
   automática: o `versao.txt` no ar tem de mostrar o commit do merge.
-- **Etapa 3 — fechamento:** README final e conclusão da fase no `CLAUDE.md`.
+- **Etapa 3 — fechamento:** README final e conclusão da fase no `CLAUDE.md`; implantação
+  automática confirmada e medição no ar registradas (D80).
