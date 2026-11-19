@@ -177,7 +177,14 @@ async function visitar(base, rota, c, w, rotulo) {
   const ctx = await navegador.newContext({ viewport: { width: w, height: altura(w) }, deviceScaleFactor: 1, ...c.opcoes });
   await ctx.addInitScript(() => document.addEventListener('securitypolicyviolation', (e) => console.error(`CSP bloqueou: ${e.violatedDirective} ${e.blockedURI || 'em linha'}`)));
   const pagina = await ctx.newPage();
-  pagina.on('console', (m) => { if (m.type() === 'error') falhar('console', `${rotulo}: ${m.text()}`); });
+  // Na rota da 404, o Chromium registra no console o status 404 do próprio documento pedido, que
+  // é o status exigido ali. Só essa mensagem, desse documento, não conta; qualquer outra conta.
+  const documento404 = rota === '/rota-que-nao-existe/' ? `${base}${rota}` : null;
+  pagina.on('console', (m) => {
+    if (m.type() !== 'error') return;
+    if (documento404 && m.location().url === documento404 && /status of 404/.test(m.text())) return;
+    falhar('console', `${rotulo}: ${m.text()}`);
+  });
   pagina.on('pageerror', (e) => falhar('console', `${rotulo}: erro de JS: ${e.message}`));
   pagina.on('request', (r) => { if (!r.url().startsWith(base) && !r.url().startsWith('data:')) falhar('console', `${rotulo}: pedido para fora: ${r.url()}`); });
   const resposta = await pagina.goto(`${base}${rota}`, { waitUntil: 'networkidle' });
