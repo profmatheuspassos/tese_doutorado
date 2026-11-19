@@ -68,7 +68,9 @@ jobs:
             git init --quiet -b publicacao "$destino"
             git -C "$destino" remote add origin "$remoto"
           fi
-          rsync -a --delete --exclude .git dist/ "$destino"/
+          # --checksum: compara o conteúdo, e não só tamanho e hora. Sem ele, o rsync pulou o
+          # versao.txt (mesmo tamanho, gravado no mesmo segundo do clone) no merge de b9562f3 (D105).
+          rsync -a --checksum --delete --exclude .git dist/ "$destino"/
           cd "$destino"
           git add -A
           if git diff --cached --quiet; then
