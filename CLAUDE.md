@@ -299,23 +299,20 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   53,4 (bloco B1: 54,7 → 51,3). Enviada à `main` (PR #17, merge `764b1e9`).
 - **Maiúsculas das disciplinas (D84):** "Direito, Ciência Política e Sociologia" em "Sobre a tese",
   B3. Enviada à `main` (PR #18, merge `b9562f3`).
-- **Pendência na publicação (achada em 19/11/2026):** o site no ar tem o conteúdo de `b9562f3`
-  (a página "Sobre a tese" já mostra a D84, e a branch `publicacao` tem o commit "Publica
-  main@b9562f3"), mas o `versao.txt` no ar e na `publicacao` ainda mostra `764b1e9`. Causa, pelo
-  log do Actions (run 44345625144): o `versao.txt` foi gravado às 16:27:05 e a `publicacao` foi
-  clonada no mesmo segundo; o `rsync -a` do workflow compara tamanho e hora, os dois eram iguais, e
-  o arquivo não foi copiado. Correção sugerida, à espera da aprovação do autor: `rsync -a
-  --checksum` em `.github/workflows/publicar.yml`, por pull request próprio.
+- **`versao.txt` que não mudou (D105):** no merge de `b9562f3`, o `rsync -a` do workflow pulou o
+  `versao.txt` (mesmo tamanho, gravado no mesmo segundo do clone da `publicacao`); o conteúdo foi
+  ao ar, mas o marcador ficou em `764b1e9`. Correção: `rsync -a --checksum` em
+  `.github/workflows/publicar.yml`, em pull request à espera de merge.
 - **Versão em inglês, Etapa 1 (documentos):** decisões D85 a D104 registradas, glossário
   (`docs/GLOSSARIO-EN.md`) e plano (`docs/PLANO-INGLES.md`) aprovados pelo autor em 19/11/2026.
-  Ponto em aberto: A20 ("Legal and Political Sciences", à espera de confirmação do autor).
+  Enviada à `main` (PR #19, merge `2d01169`). Ponto em aberto: A20 ("Legal and Political Sciences", à espera de confirmação do autor).
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da Etapa 1 da versão em inglês** (só documentos).
-2. **Corrigir o `versao.txt` que não muda** (pendência acima), por pull request próprio, se o autor
-   aprovar; depois do merge, conferir no ar com `NODE_USE_ENV_PROXY=1 npm run conferir:publicado`.
-3. **Etapa 2a da versão em inglês** (só refatoração, chave desligada; `docs/PLANO-INGLES.md`), só
-   depois da aprovação da Etapa 1, numa branch nova a partir da `main` atualizada.
+1. **Aprovação e merge do pull request da D105** (correção do `rsync`).
+2. **Depois do merge, conferir no ar** que o `versao.txt` mostra o commit do merge
+   (`NODE_USE_ENV_PROXY=1 npm run conferir:publicado`).
+3. **Etapa 2a da versão em inglês** (só refatoração, chave desligada; `docs/PLANO-INGLES.md`),
+   numa branch nova a partir da `main` atualizada.
 4. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
