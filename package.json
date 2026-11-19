@@ -15,7 +15,8 @@
     "imagens": "node scripts/reservar-imagens.mjs",
     "lighthouse": "node scripts/lighthouse.mjs",
     "capturas:salvar": "node scripts/capturas.mjs --salvar",
-    "conferir:publicado": "node scripts/conferir-publicado.mjs"
+    "conferir:publicado": "node scripts/conferir-publicado.mjs",
+    "comparar": "node scripts/comparar-builds.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "0.4.10",

@@ -2,6 +2,7 @@
 import type { Bloco } from '../../lib/blocos';
 import { comAtributos, envolverTrecho } from '../../lib/blocos';
 import LinkCapitulo from './LinkCapitulo.astro';
+import { ancora } from '../../lib/ancoras';
 
 interface Props { bloco: Bloco }
 const { bloco } = Astro.props;
@@ -23,7 +24,7 @@ const r = (el: string, extra: Record<string, string> = {}) => comAtributos(el, {
       <Fragment set:html={r(pUso)} />
     </div>
     <div class="texto mt-10">
-      <Fragment set:html={r(envolverTrecho(pRecall, 'Falta uma ferramenta nos dois países: o recall.', 'ferramenta-nome'), { class: 'ferramenta-falta' })} />
+      <Fragment set:html={r(envolverTrecho(pRecall, ancora('home', 'faltaRecall'),'ferramenta-nome'), { class: 'ferramenta-falta' })} />
     </div>
     <div class="texto mt-10 max-w-(--container-texto)">
       <Fragment set:html={r(pLimites, { class: 'ferramentas-limites' })} />

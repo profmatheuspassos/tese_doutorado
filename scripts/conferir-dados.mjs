@@ -8,19 +8,45 @@
  *     (src/lib/rotulos.mjs); {caminho|extenso} e {caminho|extenso_f} escrevem o número por extenso
  *     (masculino ou feminino), como o texto aprovado faz ("oito referendos", "duas nacionais");
  *     com inicial maiúscula ({caminho|Extenso_f}), o número abre a frase ("Quatro viraram lei");
- *  4. nenhum número com vírgula decimal escrito à mão nos componentes e páginas.
+ *  4. nenhum número com vírgula decimal escrito à mão nos componentes e páginas;
+ *  5. trava do dados.json (D94): a impressão SHA-256 do arquivo, sem os campos da versão em inglês,
+ *     precisa ser a do dados.json aprovado (ver IMPRESSAO_DADOS).
  * Qualquer diferença encerra com erro.
  */
+import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { formatarValor, lerCaminho } from '../src/lib/rotulos.mjs';
+import { idioma } from '../src/lib/idiomas.mjs';
 
 const raiz = new URL('..', import.meta.url).pathname;
 const ler = (p) => readFileSync(join(raiz, p), 'utf8');
 const dados = JSON.parse(ler('src/data/dados.json'));
 const erros = [];
-const fmt = (n) => n.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+// Textos e números em português (src/lib/idiomas.mjs).
+const PT = idioma('pt-br');
+const fmt = (n) => n.toLocaleString(PT.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const espacos = (s) => s.replace(/\s+/g, ' ');
+
+// 5. Trava do dados.json (D94). Impressão do dados.json da main em b9562f3 (idêntico ao de
+// 45fa138: mesmo blob 62d305c, sem mudança desde c45fcfa). Só os campos da versão em inglês ficam
+// fora da conta, e só nestes dois lugares: usos[i].frases_en e usos[i].itens[j].frase_en. Todo o
+// resto entra, inclusive as frases em português e a ordem das chaves; espaços e quebras de linha
+// não entram, porque não são dado. Qualquer mudança faz o build falhar. A impressão fica aqui, e
+// não num "git show main", para funcionar igual no Actions (que clona um commit só) e no local.
+const IMPRESSAO_DADOS = 'd1a09f15d2ed28d5ea7b558983e0f458d6c5808889ab104da307015a35066bc8';
+function impressaoDados(objeto) {
+  const copia = structuredClone(objeto);
+  for (const u of Array.isArray(copia.usos) ? copia.usos : []) {
+    if (u && typeof u === 'object') {
+      delete u.frases_en;
+      for (const item of Array.isArray(u.itens) ? u.itens : []) if (item && typeof item === 'object') delete item.frase_en;
+    }
+  }
+  return createHash('sha256').update(JSON.stringify(copia), 'utf8').digest('hex');
+}
+const impressao = impressaoDados(dados);
+if (impressao !== IMPRESSAO_DADOS) erros.push(`dados.json mudou fora de frases_en e frase_en (impressão ${impressao}, esperada ${IMPRESSAO_DADOS}). Os dados e as frases em português estão travados (D94).`);
 
 // 1. JSON x plano
 const serie = dados.confianca_instituicoes_br;
@@ -60,7 +86,7 @@ function valorNaFrase(serie, caminho, formato) {
   const v = lerCaminho(serie, caminho);
   if (!formato) {
     const chaves = caminho.split('.').filter((p) => !/^\d+$/.test(p));
-    return formatarValor(v, chaves[chaves.length - 1]);
+    return formatarValor(v, chaves[chaves.length - 1], PT.locale);
   }
   if (!/^[eE]xtenso(_f)?$/.test(formato)) throw new Error(`formato desconhecido: |${formato}`);
   if (!Number.isInteger(v) || v < 0 || v >= EXTENSO.length) throw new Error(`sem extenso para ${caminho} = ${v}`);
@@ -69,7 +95,7 @@ function valorNaFrase(serie, caminho, formato) {
 }
 let frases = 0;
 for (const u of dados.usos) {
-  const md = espacos(ler(`src/content/pt-br/${u.pagina}.md`));
+  const md = espacos(ler(`${PT.pasta}/${u.pagina}.md`));
   const procurar = (frase, rotulo) => {
     frases++;
     if (!md.includes(espacos(frase))) erros.push(`${u.pagina} ${u.bloco}: não achei no texto aprovado a frase "${frase}" (${rotulo}).`);
@@ -116,4 +142,4 @@ if (erros.length) {
   erros.forEach((e) => console.error(' - ' + e));
   process.exit(1);
 }
-console.log(`conferir-dados: ok (${celulas} células contra o plano, somas conferidas, ${frases} frases nos textos, ${arquivos.length} arquivos de código sem números soltos)`);
+console.log(`conferir-dados: ok (${celulas} células contra o plano, somas conferidas, ${frases} frases nos textos, ${arquivos.length} arquivos de código sem números soltos, dados.json com a impressão aprovada ${IMPRESSAO_DADOS.slice(0, 12)}…)`);

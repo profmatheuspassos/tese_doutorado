@@ -4,6 +4,7 @@ import { comAtributos, envolverTrecho } from '../../lib/blocos';
 import { comMarcas } from '../../lib/checklist';
 import '../../styles/checklist.css';
 import { t } from '../../i18n';
+import { ancora } from '../../lib/ancoras';
 import LinkCapitulo from './LinkCapitulo.astro';
 
 interface Props { bloco: Bloco }
@@ -27,7 +28,7 @@ const r = (el: string) => comAtributos(el, { 'data-revelar': '' });
       <Fragment set:html={listaComMarcas} />
 
       <Fragment set:html={r(pGoverno)} />
-      <Fragment set:html={comAtributos(envolverTrecho(pFinal, 'No papel, são democracias.', 'no-papel-destaque'), { 'data-revelar': '', class: 'no-papel-final' })} />
+      <Fragment set:html={comAtributos(envolverTrecho(pFinal, ancora('home', 'noPapel'),'no-papel-destaque'), { 'data-revelar': '', class: 'no-papel-final' })} />
       <LinkCapitulo n={1} class="mt-10" />
     </div>
   </div>

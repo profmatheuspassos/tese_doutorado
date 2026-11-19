@@ -125,7 +125,10 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e resumo do Lighthouse |
 | `docs/capturas/fase-4/` | Capturas das páginas novas (D56) e `lighthouse/resumo.md` de todas as páginas (só o resumo é versionado, D59) |
 | `docs/capturas/fase-5/` | `lighthouse/resumo.md` medido no endereço publicado |
-| `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: home (`index.astro`), "Sobre a tese" (`sobre.astro`), 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
+| `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: rotas da home (`index.astro`), "Sobre a tese" (`sobre.astro`) e 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
+| `src/components/paginas/` | Corpo da home (`Home.astro`) e de "Sobre a tese" (`Sobre.astro`), com a prop `idioma`; as rotas só escolhem o idioma |
+| `src/lib/idiomas.mjs` | Tabela única dos idiomas (pasta, coleção, prefixo de rota, `lang`, `og:locale`, `hreflang`, locale dos números, rótulos) e `idiomaDaRota()`; hoje só o português (Etapa 2a) |
+| `src/lib/ancoras.ts` | Trechos do texto aprovado que os componentes procuram, por idioma e por página; hoje só em português |
 | `src/pages/capitulos/[slug].astro`, `src/layouts/Capitulo.astro` | Rotas dos capítulos (lidas dos `.md`) e modelo das páginas internas |
 | `src/components/capitulo/`, `src/components/capitulos/`, `src/components/interativos/` | Abertura, bloco de texto, progresso e navegação; composição de cada capítulo; interativos (explorador etc.) |
 | `src/lib/blocos.ts` | Divide o HTML de cada `.md` nos blocos `Bn`; só acrescenta atributos, envoltórios e desenhos sem texto, nunca texto (inclui `rotularCelulas`, tabela em cartões no celular, e `anexarEmCelulas`, barras ao lado dos números de uma tabela) |
@@ -140,6 +143,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74, D79) e cache (D75) |
 | `scripts/gerar-versao.mjs` | Gera `dist/versao.txt` a cada build: commit da `main` e data/hora UTC (D78), para saber qual versão está no ar |
 | `scripts/conferir-publicado.mjs` | Testes no endereço real depois de publicar (`npm run conferir:publicado`) |
+| `scripts/comparar-builds.mjs` | Prova de que o português não muda (D94): build da branch contra o da `main` (HTML e `.htaccess` normalizados, bytes, texto e pixels nas 8 páginas x 3 larguras x 3 cenários, console) e lista dos pacotes de `/_astro/` que mudaram; `--controle` compara a `main` com ela mesma (`npm run comparar -- --referencia <dist da main>`) |
 | `src/lib/site.mjs`, `src/lib/imagens.mjs` | Endereço final do site (D72); lista única das imagens com nome, tamanho e teto de peso |
 | `src/pages/sitemap.xml.ts`, `src/pages/robots.txt.ts` | Sitemap e robots, gerados no build |
 | `.github/workflows/publicar.yml` | Build com as conferências em todo PR e, a cada merge na `main`, publicação na branch `publicacao` (D71), que a Hostinger implanta pelo aplicativo "Implante de GitHub", sem webhook (D78) |
@@ -302,17 +306,23 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 - **`versao.txt` que não mudou (D105):** no merge de `b9562f3`, o `rsync -a` do workflow pulou o
   `versao.txt` (mesmo tamanho, gravado no mesmo segundo do clone da `publicacao`); o conteúdo foi
   ao ar, mas o marcador ficou em `764b1e9`. Correção: `rsync -a --checksum` em
-  `.github/workflows/publicar.yml`, em pull request à espera de merge.
+  `.github/workflows/publicar.yml`. Enviada à `main` (PR #20, merge `45fa138`). Conferido no ar em
+  19/11/2026: o `versao.txt` mostra `45fa138` e `conferir:publicado` passou (282 testes).
 - **Versão em inglês, Etapa 1 (documentos):** decisões D85 a D104 registradas, glossário
   (`docs/GLOSSARIO-EN.md`) e plano (`docs/PLANO-INGLES.md`) aprovados pelo autor em 19/11/2026.
   Enviada à `main` (PR #19, merge `2d01169`). Ponto em aberto: A20 ("Legal and Political Sciences", à espera de confirmação do autor).
+- **Versão em inglês, Etapa 2a (só refatoração, chave desligada):** `idiomas.mjs`, locale nos
+  formatadores, `paginas.ts` com idioma, corpo da home e de "Sobre" como componentes, `ancoras.ts`,
+  trava do `dados.json` no `conferir-dados.mjs` (impressão de `b9562f3`, D94) e
+  `scripts/comparar-builds.mjs`. Português idêntico ao da `main` pela prova. Em pull request, à
+  espera da aprovação do autor.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da D105** (correção do `rsync`).
+1. **Aprovação e merge do pull request da Etapa 2a**; registrar a aprovação em `docs/DECISOES.md`.
 2. **Depois do merge, conferir no ar** que o `versao.txt` mostra o commit do merge
    (`NODE_USE_ENV_PROXY=1 npm run conferir:publicado`).
-3. **Etapa 2a da versão em inglês** (só refatoração, chave desligada; `docs/PLANO-INGLES.md`),
+3. **Etapa 2b da versão em inglês** (estrutura bilíngue, chave desligada; `docs/PLANO-INGLES.md`),
    numa branch nova a partir da `main` atualizada.
 4. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).

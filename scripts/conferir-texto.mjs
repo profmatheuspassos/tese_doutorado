@@ -13,12 +13,15 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { expandirDados, formatarValor } from '../src/lib/rotulos.mjs';
+import { idioma } from '../src/lib/idiomas.mjs';
 
 const exigir = createRequire(import.meta.url);
 const { chromium } = exigir('playwright');
 const raiz = new URL('..', import.meta.url).pathname;
-const pastaMd = join(raiz, 'src/content/pt-br');
-const i18n = JSON.parse(readFileSync(join(raiz, 'src/i18n/pt-br.json'), 'utf8'));
+// Textos, rótulos e números em português (src/lib/idiomas.mjs).
+const PT = idioma('pt-br');
+const pastaMd = join(raiz, PT.pasta);
+const i18n = JSON.parse(readFileSync(join(raiz, PT.rotulos), 'utf8'));
 const dados = JSON.parse(readFileSync(join(raiz, 'src/data/dados.json'), 'utf8'));
 
 const TOKEN = /[\p{L}\p{N}]+(?:[,.'-][\p{L}\p{N}]+)*%?/gu;
@@ -62,7 +65,7 @@ const variaveis = {
 };
 for (const bruto of juntar(i18n)) {
   if (bruto === i18n._sobre) continue;
-  const s = expandirDados(bruto, dados);
+  const s = expandirDados(bruto, dados, PT.locale);
   if (s.includes('{n}') && s.includes('{titulo}')) { caps.forEach((c) => permitidos.add(s.replace('{n}', c.n).replace('{titulo}', c.titulo))); continue; }
   if (!s.includes('{')) { permitidos.add(s); continue; }
   const re = escapar(s).replace(/\\\{(\w+)\\\}/g, (_, k) => {
@@ -77,8 +80,8 @@ permitidos.add('%');
 const numeros = new Set();
 const andarDados = (v, chave = '') => {
   if (typeof v === 'number') {
-    const f = formatarValor(v, chave);
-    const umaCasa = v.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    const f = formatarValor(v, chave, PT.locale);
+    const umaCasa = v.toLocaleString(PT.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
     [f, umaCasa].forEach((x) => { numeros.add(x); numeros.add(`${x}%`); });
   } else if (Array.isArray(v)) v.forEach((x) => andarDados(x, chave));
   else if (v && typeof v === 'object') Object.entries(v).forEach(([k, x]) => andarDados(x, k));

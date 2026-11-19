@@ -2,6 +2,7 @@
 import type { Bloco } from '../../lib/blocos';
 import { comAtributos, envolverTrecho } from '../../lib/blocos';
 import LinkCapitulo from './LinkCapitulo.astro';
+import { ancora } from '../../lib/ancoras';
 
 interface Props { bloco: Bloco }
 const { bloco } = Astro.props;
@@ -21,7 +22,7 @@ const pontosBolha = [[8.5, 9], [14, 8], [11, 12.5], [15.5, 13], [8, 14.5]];
   <div class="margem mx-auto max-w-(--container-figura)">
     <div class="texto max-w-(--container-texto)">
       <Fragment set:html={r(h2)} />
-      <Fragment set:html={r(envolverTrecho(pPromessa, 'Não resolve.', 'frase-forte'), { class: 'atalho-promessa' })} />
+      <Fragment set:html={r(envolverTrecho(pPromessa, ancora('home', 'naoResolve'),'frase-forte'), { class: 'atalho-promessa' })} />
     </div>
 
     <div class="atalho-cartoes mt-12 grid gap-4 md:mt-16 md:grid-cols-2 md:gap-5">
@@ -63,7 +64,7 @@ const pontosBolha = [[8.5, 9], [14, 8], [11, 12.5], [15.5, 13], [8, 14.5]];
     </div>
 
     <div class="texto mt-14 max-w-(--container-texto) md:mt-20">
-      <Fragment set:html={r(envolverTrecho(pFecho, 'É preciso algo mais.', 'frase-forte frase-forte-bloco'), { class: 'atalho-fecho' })} />
+      <Fragment set:html={r(envolverTrecho(pFecho, ancora('home', 'precisoAlgoMais'),'frase-forte frase-forte-bloco'), { class: 'atalho-fecho' })} />
     </div>
     <LinkCapitulo n={3} class="mt-10" />
   </div>
