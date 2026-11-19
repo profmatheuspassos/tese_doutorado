@@ -17,6 +17,7 @@ import Copiar from '../interativos/Copiar.astro';
 import { pagina } from '../../lib/paginas';
 import { atributosEmTag, atributosNaColuna, comAtributos, envolverTrecho, usarBlocos } from '../../lib/blocos';
 import type { CodigoIdioma } from '../../lib/idiomas.mjs';
+import { ancora } from '../../lib/ancoras';
 
 interface Props { idioma: CodigoIdioma }
 const { idioma } = Astro.props;
@@ -37,8 +38,8 @@ const ficha = (el: string, i: number) => (i === iFicha
 // B6 — as três referências: cada bloco <pre> segue o rótulo em negrito do formato.
 const formatos = ['ABNT', 'APA', 'BibTeX'] as const;
 const titulos: Record<string, string> = {
-  ABNT: 'Cidadania Ativa e Governança sob a perspectiva do Direito Eleitoral comparado',
-  APA: 'Cidadania ativa e governança sob a perspectiva do direito eleitoral comparado',
+  ABNT: ancora('sobre', 'tituloAbnt', idioma),
+  APA: ancora('sobre', 'tituloApa', idioma),
 };
 const indices = formatos.map((f) => {
   const i = B6.elementos.findIndex((el) => el === `<p><strong>${f}</strong></p>`);
