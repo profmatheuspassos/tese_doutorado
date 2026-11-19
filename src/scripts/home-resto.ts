@@ -17,7 +17,8 @@ import { crescer } from './comum/crescer';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const formato = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+// O contador usa o locale do idioma da página (atributo lang do <html>).
+const formato = new Intl.NumberFormat(document.documentElement.lang || 'pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const sobe = { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' };
 const mm = gsap.matchMedia();
 const cederVez = () => new Promise<void>((ok) => setTimeout(ok, 0));

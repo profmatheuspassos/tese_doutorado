@@ -14,12 +14,15 @@
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { formatarValor, lerCaminho } from '../src/lib/rotulos.mjs';
+import { idioma } from '../src/lib/idiomas.mjs';
 
 const raiz = new URL('..', import.meta.url).pathname;
 const ler = (p) => readFileSync(join(raiz, p), 'utf8');
 const dados = JSON.parse(ler('src/data/dados.json'));
 const erros = [];
-const fmt = (n) => n.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+// Textos e números em português (src/lib/idiomas.mjs).
+const PT = idioma('pt-br');
+const fmt = (n) => n.toLocaleString(PT.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const espacos = (s) => s.replace(/\s+/g, ' ');
 
 // 1. JSON x plano
@@ -60,7 +63,7 @@ function valorNaFrase(serie, caminho, formato) {
   const v = lerCaminho(serie, caminho);
   if (!formato) {
     const chaves = caminho.split('.').filter((p) => !/^\d+$/.test(p));
-    return formatarValor(v, chaves[chaves.length - 1]);
+    return formatarValor(v, chaves[chaves.length - 1], PT.locale);
   }
   if (!/^[eE]xtenso(_f)?$/.test(formato)) throw new Error(`formato desconhecido: |${formato}`);
   if (!Number.isInteger(v) || v < 0 || v >= EXTENSO.length) throw new Error(`sem extenso para ${caminho} = ${v}`);
@@ -69,7 +72,7 @@ function valorNaFrase(serie, caminho, formato) {
 }
 let frases = 0;
 for (const u of dados.usos) {
-  const md = espacos(ler(`src/content/pt-br/${u.pagina}.md`));
+  const md = espacos(ler(`${PT.pasta}/${u.pagina}.md`));
   const procurar = (frase, rotulo) => {
     frases++;
     if (!md.includes(espacos(frase))) erros.push(`${u.pagina} ${u.bloco}: não achei no texto aprovado a frase "${frase}" (${rotulo}).`);
