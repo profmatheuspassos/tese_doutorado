@@ -1,0 +1,50 @@
+---
+/**
+ * Corpo da home (blocos B0 a B9), montado a partir do .md aprovado do idioma pedido. A rota
+ * (src/pages/index.astro) só escolhe o idioma.
+ */
+import Base from '../../layouts/Base.astro';
+import Abertura from '../home/Abertura.astro';
+import NaPratica from '../home/NaPratica.astro';
+import Cena from '../home/Cena.astro';
+import NoPapel from '../home/NoPapel.astro';
+import OCirculo from '../home/OCirculo.astro';
+import Atalho from '../home/Atalho.astro';
+import Proposta from '../home/Proposta.astro';
+import Ferramentas from '../home/Ferramentas.astro';
+import Conclusoes from '../home/Conclusoes.astro';
+import { pagina } from '../../lib/paginas';
+import { t } from '../../i18n';
+import type { CodigoIdioma } from '../../lib/idiomas.mjs';
+
+interface Props { idioma: CodigoIdioma }
+const { idioma } = Astro.props;
+
+const { dados, blocos } = await pagina('home', idioma);
+const usados = new Set<string>();
+const b = (id: string) => {
+  const bloco = blocos.get(id);
+  if (!bloco) throw new Error(`Bloco ausente na home: ${id}`);
+  usados.add(id);
+  return bloco;
+};
+const B = Object.fromEntries(['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9'].map((id) => [id, b(id)]));
+const sobrando = [...blocos.keys()].filter((id) => !usados.has(id));
+if (sobrando.length) throw new Error(`Blocos da home sem lugar na página: ${sobrando.join(', ')}`);
+---
+<Base titulo={t('titulo_home', { titulo: dados.titulo }, idioma)} descricao={dados.subtitulo}>
+  <Abertura bloco={B.B0} />
+  <Cena bloco={B.B1} />
+  <NoPapel bloco={B.B2} />
+  <NaPratica bloco={B.B3} />
+  <OCirculo bloco={B.B4} />
+  <Atalho bloco={B.B5} />
+  <Proposta bloco={B.B6} />
+  <Ferramentas bloco={B.B7} />
+  <Conclusoes bloco={B.B8} />
+  <div slot="rodape" class="texto [&_p]:text-pequeno" data-bloco="B9" set:html={B.B9.html} />
+</Base>
+
+<script>
+  import '../../scripts/home';
+</script>
