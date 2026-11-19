@@ -8,8 +8,9 @@ Matheus Passos Silva (Faculdade de Direito da Universidade de Lisboa, 2022; orie
 Prof. Doutor Jorge Miranda). A tese compara Portugal e Brasil.
 
 **Não é a publicação da tese.** É uma versão de divulgação, reescrita em linguagem simples e
-fiel ao argumento original. Idioma: português do Brasil, com a estrutura pronta para uma
-versão em inglês no futuro (nada é traduzido agora).
+fiel ao argumento original. Idioma: português do Brasil. Uma versão em inglês americano está em
+preparação (D85 a D104; plano em `docs/PLANO-INGLES.md`): tradução do texto aprovado em
+português, em `/en/`, desligada no build de produção até o lançamento (D92).
 
 Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch principal `main`.
 
@@ -73,6 +74,18 @@ Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch pri
   **índice de 50 ou mais** (faixa "fácil"). O índice é conferência, não meta: não piorar o
   texto para melhorar o número.
 
+### Versão em inglês (D85 a D104)
+- A fonte da tradução é o **texto aprovado em português** (`src/content/pt-br/` e
+  `src/i18n/pt-br.json`), não a tese. Nenhuma ideia, dado ou nuance acrescentada ou retirada;
+  explicação para o leitor estrangeiro só curta, só definição, aprovada como decisão (D85).
+- Antes de traduzir, ler `docs/GLOSSARIO-EN.md`: termo aprovado é usado sempre igual (D86). As
+  decisões D1 a D84 valem também para o inglês.
+- O português não muda; a única adição às páginas em português é o seletor de idioma (D93). Toda
+  frase em inglês que não seja tradução só entra com texto aprovado pelo autor.
+- Inglês fica desligado na produção pela chave `INGLES_PUBLICADO` até a Etapa 4 (D92).
+- Legibilidade em inglês: Flesch-Kincaid Grade Level 8 ou menos como conferência, com o Flesch
+  Reading Ease ao lado (D89). A D16 (tamanho) não vale para o inglês.
+
 ### Site (Fases 3 a 5)
 - Astro + Tailwind + GSAP (ScrollTrigger); saída 100% estática; fonte Inter hospedada
   localmente.
@@ -100,6 +113,8 @@ se as 880 notas de rodapé foram distribuídas.
 |---|---|
 | `docs/PLANO-CONTEUDO.md` | Argumento em 10 linhas, estrutura do site, o que entra em cada página, dados e diagramas |
 | `docs/DECISOES.md` | Decisões do autor e pontos em aberto |
+| `docs/PLANO-INGLES.md` | Plano aprovado da versão em inglês (D94): inventário, arquitetura, conferências, rastreabilidade, etapas 1, 2a, 2b, 3 e 4 |
+| `docs/GLOSSARIO-EN.md` | Glossário aprovado da versão em inglês: estilo, termos, títulos, referências e rótulos T1 a T52 (D86, D95 a D104) |
 | `docs/notas-leitura/` | Notas detalhadas por capítulo (argumento, conceitos, dados com ano e fonte, trechos de destaque, seção de origem) |
 | `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
 | `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
@@ -172,7 +187,7 @@ Depois de publicar (detalhes em `docs/PUBLICACAO.md`):
 NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 ```
 
-## Estado atual (18 de novembro de 2026)
+## Estado atual (19 de novembro de 2026)
 
 - **Fase 1 concluída e aprovada.**
 - **Fase 2 concluída e aprovada** (17/11/2026): home, capítulos 1 a 5 e "Sobre a tese" escritos e
@@ -281,12 +296,26 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   force push). Não vão para o site, publicado da branch `publicacao`.
 - **Linha sobre as ilustrações (D83):** frase aprovada pelo autor em 18/11/2026 no fim do parágrafo
   sobre IA da página "Sobre a tese" (bloco B1) e no README. "Sobre a tese": 464 palavras, índice
-  53,4 (bloco B1: 54,7 → 51,3).
+  53,4 (bloco B1: 54,7 → 51,3). Enviada à `main` (PR #17, merge `764b1e9`).
+- **Maiúsculas das disciplinas (D84):** "Direito, Ciência Política e Sociologia" em "Sobre a tese",
+  B3. Enviada à `main` (PR #18, merge `b9562f3`).
+- **Pendência na publicação (achada em 19/11/2026):** o site no ar tem o conteúdo de `b9562f3`
+  (a página "Sobre a tese" já mostra a D84, e a branch `publicacao` tem o commit "Publica
+  main@b9562f3"), mas o `versao.txt` no ar e na `publicacao` ainda mostra `764b1e9`. Causa, pelo
+  log do Actions (run 44345625144): o `versao.txt` foi gravado às 16:27:05 e a `publicacao` foi
+  clonada no mesmo segundo; o `rsync -a` do workflow compara tamanho e hora, os dois eram iguais, e
+  o arquivo não foi copiado. Correção sugerida, à espera da aprovação do autor: `rsync -a
+  --checksum` em `.github/workflows/publicar.yml`, por pull request próprio.
+- **Versão em inglês, Etapa 1 (documentos):** decisões D85 a D104 registradas, glossário
+  (`docs/GLOSSARIO-EN.md`) e plano (`docs/PLANO-INGLES.md`) aprovados pelo autor em 19/11/2026.
+  Ponto em aberto: A20 ("Legal and Political Sciences", à espera de confirmação do autor).
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da D82 e da D83** (merge comum; não há arquivos grandes).
-   Depois do merge, conferir que o `versao.txt` no ar mostra o novo commit (`NODE_USE_ENV_PROXY=1 npm
-   run conferir:publicado`) e que a página "Sobre a tese" traz a frase das ilustrações.
-2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+1. **Aprovação e merge do pull request da Etapa 1 da versão em inglês** (só documentos).
+2. **Corrigir o `versao.txt` que não muda** (pendência acima), por pull request próprio, se o autor
+   aprovar; depois do merge, conferir no ar com `NODE_USE_ENV_PROXY=1 npm run conferir:publicado`.
+3. **Etapa 2a da versão em inglês** (só refatoração, chave desligada; `docs/PLANO-INGLES.md`), só
+   depois da aprovação da Etapa 1, numa branch nova a partir da `main` atualizada.
+4. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
