@@ -18,13 +18,19 @@
  * versao.txt (D78): no ar, no formato certo, no-cache, com o commit esperado (COMMIT_ESPERADO ou o
  * último da main).
  * Links públicos: repositório no GitHub sem login (D41), depósito da tese, licenças (D76).
+ * Versão em inglês (D91, D92, D108), pela chave INGLES_PUBLICADO:
+ *  - desligada: /en/ e /en/404/ respondem 404 com a página em português; nenhuma página com
+ *    hreflang, og:locale:alternate ou seletor de idioma; sitemap sem alternates;
+ *  - ligada (Etapa 4): páginas em inglês, hreflang recíproco (pt-BR, en, x-default), seletor,
+ *    /en/rota-que-nao-existe/ com a 404 em inglês, sitemap com alternates, licença deed.en.
  *
  * Atrás de um proxy (como na nuvem), rode com NODE_USE_ENV_PROXY=1.
  */
 import { CABECALHOS_FIXOS, CACHE, hash } from './gerar-htaccess.mjs';
 import { FORMATO_VERSAO } from './gerar-versao.mjs';
-import { SITE_FINAL, site } from '../src/lib/site.mjs';
-import { readFileSync, readdirSync } from 'node:fs';
+import { SITE_FINAL, site, INGLES_PUBLICADO } from '../src/lib/site.mjs';
+import { IDIOMAS, IDIOMA_PADRAO } from '../src/lib/idiomas.mjs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
 
@@ -33,8 +39,17 @@ const S = site();
 const HOST_S = new URL(S).host;
 const PRINCIPAL = 'profmatheuspassos.com.br';
 const DESTINO = 'https://profmatheus.com';
-const rotas = readdirSync(join(raiz, 'src/content/pt-br')).filter((f) => f.endsWith('.md'))
-  .map((f) => readFileSync(join(raiz, 'src/content/pt-br', f), 'utf8').match(/^rota:\s*"?(.*?)"?$/m)[1]).sort();
+// Páginas no ar: as do português e, com o inglês publicado (D92), as do inglês.
+const aprovadas = Object.entries(IDIOMAS).flatMap(([codigo, i]) => {
+  const pasta = join(raiz, i.pasta);
+  if (!existsSync(pasta)) return [];
+  return readdirSync(pasta).filter((f) => f.endsWith('.md')).map((f) => {
+    const fm = readFileSync(join(pasta, f), 'utf8');
+    return { codigo, pagina: fm.match(/^pagina:\s*"?(.*?)"?$/m)[1], rota: fm.match(/^rota:\s*"?(.*?)"?$/m)[1] };
+  });
+});
+const noAr = aprovadas.filter((p) => p.codigo === IDIOMA_PADRAO || INGLES_PUBLICADO);
+const rotas = noAr.map((p) => p.rota).sort();
 
 const erros = [];
 const avisos = [];
@@ -74,6 +89,29 @@ function conferirCabecalhos(rotulo, r, html) {
 }
 const cacheEsperado = (url) => CACHE.find((c) => c.extensoes.includes((new URL(url).pathname.match(/\.(\w+)$/)?.[1]) || 'html'))?.valor;
 
+// Versão em inglês na página (D91, D92): lang, hreflang, og:locale:alternate e seletor.
+const alternates = (html) => [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/g)].map((m) => `${m[1]} ${m[2]}`).sort();
+const temSeletor = (html) => /data-seletor-idioma/.test(html);
+function conferirIdioma(rota, html) {
+  const p = aprovadas.find((x) => x.rota === rota);
+  const lang = html.match(/<html lang="([^"]*)"/)?.[1];
+  conferir(lang === IDIOMAS[p.codigo].lang, `${rota}: <html lang="${lang}"> (esperado ${IDIOMAS[p.codigo].lang})`);
+  if (!INGLES_PUBLICADO) {
+    conferir(!alternates(html).length && !/hreflang=/.test(html), `${rota}: hreflang no ar com o inglês desligado`);
+    conferir(!/og:locale:alternate/.test(html), `${rota}: og:locale:alternate no ar com o inglês desligado`);
+    conferir(!temSeletor(html), `${rota}: seletor de idioma no ar com o inglês desligado`);
+    return;
+  }
+  const par = aprovadas.find((x) => x.codigo !== p.codigo && x.pagina === p.pagina);
+  conferir(Boolean(par), `${rota}: sem par no outro idioma, com o inglês publicado`);
+  if (!par) return;
+  const pt = p.codigo === IDIOMA_PADRAO ? p.rota : par.rota;
+  const en = p.codigo === IDIOMA_PADRAO ? par.rota : p.rota;
+  const certo = [`${IDIOMAS[IDIOMA_PADRAO].hreflang} ${S}${pt}`, `${IDIOMAS.en.hreflang} ${S}${en}`, `x-default ${S}${pt}`].sort();
+  conferir(alternates(html).join('|') === certo.join('|'), `${rota}: hreflang ${JSON.stringify(alternates(html))} (esperado ${JSON.stringify(certo)})`);
+  conferir(temSeletor(html) && html.includes(`href="${par.rota}" lang="${IDIOMAS[par.codigo].lang}" hreflang="${IDIOMAS[par.codigo].hreflang}"`), `${rota}: seletor ausente ou sem o link para ${par.rota}`);
+}
+
 // --- Subdomínio ---
 let primeiroHtml = '';
 for (const rota of rotas) {
@@ -83,6 +121,7 @@ for (const rota of rotas) {
   conferir(r.status === 200, `${url}: status ${r.status} (esperado 200, sem redirecionamento)`);
   if (r.status !== 200) continue;
   if (!primeiroHtml) primeiroHtml = html;
+  conferirIdioma(rota, html);
   const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
   conferir(canonical === url, `${url}: canonical ${canonical}`);
   conferir(html.match(/<meta property="og:url" content="([^"]+)"/)?.[1] === url, `${url}: og:url diferente`);
@@ -132,6 +171,17 @@ const r404 = await pedir(`${S}/rota-que-nao-existe/`);
 const h404 = await r404.text();
 conferir(r404.status === 404 && h404.includes('Página não encontrada'), `404: status ${r404.status}, página "Página não encontrada" ${h404.includes('Página não encontrada') ? 'presente' : 'ausente'}`);
 conferirCabecalhos('404', r404, h404);
+// Versão em inglês: desligada, nada em /en/ (a 404 em português responde); ligada, a 404 em inglês.
+for (const caminho of ['/en/', '/en/404/', '/en/rota-que-nao-existe/']) {
+  const r = await pedir(`${S}${caminho}`);
+  const html = await r.text();
+  if (!INGLES_PUBLICADO) {
+    conferir(r.status === 404 && html.includes('Página não encontrada') && !html.includes('Page not found') && !temSeletor(html), `${caminho}: status ${r.status}; com o inglês desligado, esperado 404 com a página em português, sem seletor`);
+  } else if (caminho === '/en/rota-que-nao-existe/') {
+    conferir(r.status === 404 && html.includes('Page not found') && /<html lang="en-US">/.test(html), `${caminho}: status ${r.status}; esperado 404 com a página em inglês`);
+    conferirCabecalhos(caminho, r, html);
+  }
+}
 for (const caminho of ['/.git/HEAD', '/.git/config', '/.htaccess']) {
   const r = await pedir(`${S}${caminho}`);
   // O servidor da Hostinger barra .git e .htaccess antes do .htaccess do site (403); o resto
@@ -178,6 +228,8 @@ for (const caminho of [asset(/href="(\/_astro\/[^"]+\.css)"/), asset(/src="(\/_a
 const sitemap = await (await pedir(`${S}/sitemap.xml`)).text();
 const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 conferir(locs.length === rotas.length, `sitemap com ${locs.length} URLs (esperado ${rotas.length})`);
+conferir(INGLES_PUBLICADO || !/xhtml:link|xmlns:xhtml/.test(sitemap), 'sitemap com alternates no ar com o inglês desligado');
+if (INGLES_PUBLICADO) conferir((sitemap.match(/<xhtml:link /g) ?? []).length === 3 * rotas.length, `sitemap sem os três alternates em cada uma das ${rotas.length} URLs`);
 for (const loc of locs) conferir((await pedir(loc)).status === 200, `sitemap: ${loc} não responde 200`);
 const robots = await (await pedir(`${S}/robots.txt`)).text();
 conferir(robots.includes(`Sitemap: ${S}/sitemap.xml`), 'robots.txt sem a linha do sitemap');
@@ -192,7 +244,8 @@ for (const host of [PRINCIPAL, `www.${PRINCIPAL}`]) {
 }
 
 // --- Links públicos ---
-for (const url of ['https://github.com/profmatheuspassos/tese_doutorado', 'https://github.com/profmatheuspassos/tese_doutorado/blob/main/LICENSE', 'https://hdl.handle.net/10451/57093', 'https://creativecommons.org/licenses/by-nc-nd/4.0/deed.pt-br']) {
+const licencas = Object.values(IDIOMAS).filter((i, k) => k === 0 || INGLES_PUBLICADO).map((i) => i.licencaCc);
+for (const url of ['https://github.com/profmatheuspassos/tese_doutorado', 'https://github.com/profmatheuspassos/tese_doutorado/blob/main/LICENSE', 'https://hdl.handle.net/10451/57093', ...licencas]) {
   try {
     const r = await fetch(url, { redirect: 'follow', headers: { 'User-Agent': 'conferir-publicado' } });
     conferir(r.status === 200, `${url}: status ${r.status} sem login (esperado 200)`);
