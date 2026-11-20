@@ -1,8 +1,10 @@
 ---
 /**
  * Abertura das páginas internas (bloco B0): imagem no topo (se houver), "Capítulo N", o h1 e
- * os parágrafos do B0, e o título original do capítulo (T13). O h1 e os parágrafos são a fatia
- * exata do .md; o que é interface fica marcado com data-ui.
+ * os parágrafos do B0, e o título original do capítulo (T13). Numa página em inglês, o original
+ * leva o lang do português e vem seguido da tradução, com o rótulo T52 em linha própria, na mesma
+ * classe do T13 (sem regra de CSS nova). O h1 e os parágrafos são a fatia exata do .md; o que é
+ * interface fica marcado com data-ui.
  */
 import type { Bloco } from '../../lib/blocos';
 import { comAtributos } from '../../lib/blocos';
@@ -14,11 +16,13 @@ interface Props {
   bloco: Bloco;
   n?: number;
   tituloOriginal?: string;
+  traducaoTituloOriginal?: string;
+  langTituloOriginal?: string;
   imagem?: string; // "cap2-abertura.webp" (2520×1080)
   tema: 'claro' | 'nevoa' | 'escuro';
   comLateral?: boolean;
 }
-const { bloco, n, tituloOriginal, imagem, tema, comLateral = false } = Astro.props;
+const { bloco, n, tituloOriginal, traducaoTituloOriginal, langTituloOriginal, imagem, tema, comLateral = false } = Astro.props;
 const [h1, ...paragrafos] = bloco.elementos;
 if (!h1?.startsWith('<h1') || !paragrafos.length || !paragrafos.every((p) => p.startsWith('<p'))) throw new Error('B0 fora do formato esperado (h1 + parágrafos).');
 const secao = { claro: 'secao-clara', nevoa: 'secao-nevoa', escuro: 'secao-escura' }[tema];
@@ -36,7 +40,9 @@ const secao = { claro: 'secao-clara', nevoa: 'secao-nevoa', escuro: 'secao-escur
       {tituloOriginal && (
         <p class="abertura-original" data-ui>
           <span class="abertura-original-rotulo">{t('titulo_na_tese')}</span>
-          <span class="abertura-original-titulo">{tituloOriginal}</span>
+          <span class="abertura-original-titulo" lang={langTituloOriginal}>{tituloOriginal}</span>
+          {traducaoTituloOriginal && <span class="abertura-original-rotulo">{t('traducao')}</span>}
+          {traducaoTituloOriginal && <span>{traducaoTituloOriginal}</span>}
         </p>
       )}
       <div class="abertura-lead">

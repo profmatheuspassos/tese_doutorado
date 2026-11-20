@@ -9,7 +9,7 @@ import Capitulo from '../../layouts/Capitulo.astro';
 import BlocoTexto from '../capitulo/BlocoTexto.astro';
 import LinhaDoTempo from '../graficos/LinhaDoTempo.astro';
 import ChecklistLegenda from '../graficos/ChecklistLegenda.astro';
-import { pagina } from '../../lib/paginas';
+import { pagina, tituloNaTese } from '../../lib/paginas';
 import { comAtributos, rotularCelulas, usarBlocos } from '../../lib/blocos';
 import { comMarcas } from '../../lib/checklist';
 import { idiomaAtual } from '../../i18n';
@@ -17,6 +17,7 @@ import { idiomaAtual } from '../../i18n';
 const idioma = idiomaAtual(Astro.url);
 
 const { dados: meta, blocos } = await pagina('capitulo-1', idioma);
+const naTese = await tituloNaTese('capitulo-1', idioma);
 const { b, conferir } = usarBlocos(blocos, 'capitulo-1');
 const B0 = b('B0');
 const [B1, B2, B3, B4, B5, B6, B7, B8, B9] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9'].map(b);
@@ -32,7 +33,7 @@ const iTabela = B8.elementos.findIndex((el) => el.startsWith('<table'));
 if (iTabela < 1) throw new Error('capitulo-1 B8: tabela não encontrada.');
 const tabela = (el: string, i: number) => (i === iTabela ? comAtributos(rotularCelulas(el), { 'data-lado-a-lado': '' }) : el);
 ---
-<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={meta.titulo_original} imagem="cap1-abertura.webp" tema="nevoa">
+<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={naTese.original} traducaoTituloOriginal={naTese.traducao} langTituloOriginal={naTese.langOriginal} imagem="cap1-abertura.webp" tema="nevoa">
   <BlocoTexto bloco={B1}>
     <LinhaDoTempo slot="apos-0" />
   </BlocoTexto>
