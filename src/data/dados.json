@@ -168,9 +168,9 @@
       "resposta": "nenhuma",
       "anos": [2010, 2017],
       "itens": [
-        { "instituicao": "partidos", "rotulo": "grafico.partidos", "frase": "nos partidos passou de {2010}% para {2017}%" },
-        { "instituicao": "governo", "rotulo": "grafico.governo", "frase": "no governo, de {2010}% para {2017}%" },
-        { "instituicao": "congresso", "rotulo": "grafico.congresso", "frase": "no Congresso Nacional, de {2010}% para {2017}%" }
+        { "instituicao": "partidos", "rotulo": "grafico.partidos", "frase": "nos partidos passou de {2010}% para {2017}%", "frase_en": "in parties went from {2010}% to {2017}%" },
+        { "instituicao": "governo", "rotulo": "grafico.governo", "frase": "no governo, de {2010}% para {2017}%", "frase_en": "in the government, from {2010}% to {2017}%" },
+        { "instituicao": "congresso", "rotulo": "grafico.congresso", "frase": "no Congresso Nacional, de {2010}% para {2017}%", "frase_en": "in the National Congress, from {2010}% to {2017}%" }
       ]
     },
     {
@@ -178,7 +178,8 @@
       "bloco": "B3",
       "grafico": "numero-grande",
       "serie": "confianca_interpessoal_br",
-      "frases": ["No Brasil, em {ano}, {nao_pode_confiar}% dos entrevistados disseram que não se pode confiar"]
+      "frases": ["No Brasil, em {ano}, {nao_pode_confiar}% dos entrevistados disseram que não se pode confiar"],
+      "frases_en": ["In Brazil, in {ano}, {nao_pode_confiar}% of respondents said that most people cannot be trusted"]
     },
     {
       "pagina": "capitulo-2",
