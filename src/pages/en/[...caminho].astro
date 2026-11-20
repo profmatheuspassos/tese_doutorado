@@ -3,11 +3,11 @@
  * Rotas da versão em inglês (D91, D92), todas a partir de um arquivo só. Com a chave desligada
  * (inglesAtivo() falso, src/lib/site.mjs), getStaticPaths devolve lista vazia: nenhuma rota /en/
  * existe no build. Ligada, gera as páginas em inglês que já existem em src/content/en/ (home,
- * capítulos com composição, "About") e a 404 em inglês, em /en/404/.
+ * capítulos com composição, "About"). A 404 em inglês tem rota própria (src/pages/en/[erro].astro),
+ * para levar só o CSS da 404, como a 404 em português.
  */
 import Home from '../../components/paginas/Home.astro';
 import Sobre from '../../components/paginas/Sobre.astro';
-import Pagina404 from '../../components/paginas/Pagina404.astro';
 import Capitulo1 from '../../components/capitulos/Capitulo1.astro';
 import Capitulo2 from '../../components/capitulos/Capitulo2.astro';
 import Capitulo3 from '../../components/capitulos/Capitulo3.astro';
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
     if (!Composicao) throw new Error(`Página em inglês sem composição: ${p.data.pagina}`);
     return { params: { caminho }, props: { Composicao } };
   });
-  return [...paginas, { params: { caminho: '404' }, props: { Composicao: Pagina404 } }];
+  return paginas;
 }
 
 const { Composicao } = Astro.props;

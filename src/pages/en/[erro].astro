@@ -1,0 +1,14 @@
+---
+/**
+ * 404 em inglês, em /en/404/ (D91, D92), servida pelo dist/en/.htaccess. Rota própria, que só
+ * importa a 404, para levar o mesmo CSS da 404 em português. Com a chave desligada
+ * (inglesAtivo() falso, src/lib/site.mjs), getStaticPaths devolve lista vazia e a rota não existe.
+ */
+import Pagina404 from '../../components/paginas/Pagina404.astro';
+import { inglesAtivo } from '../../lib/site.mjs';
+
+export function getStaticPaths() {
+  return inglesAtivo() ? [{ params: { erro: '404' } }] : [];
+}
+---
+<Pagina404 idioma="en" />

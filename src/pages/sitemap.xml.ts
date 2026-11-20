@@ -32,6 +32,8 @@ export const GET: APIRoute = async ({ site }) => {
       .map(([h, r]) => `\n    <xhtml:link rel="alternate" hreflang="${h}" href="${abs(r)}"/>`).join('');
     return `  <url>\n    <loc>${abs(e.rota)}</loc>${alt}\n  </url>`;
   });
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${linhas.join('\n')}\n</urlset>\n`;
+  // O espaço de nomes xhtml só entra quando há alternates (página com par).
+  const xhtml = entradas.some((e) => e.ptRota && e.enRota) ? ' xmlns:xhtml="http://www.w3.org/1999/xhtml"' : '';
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"${xhtml}>\n${linhas.join('\n')}\n</urlset>\n`;
   return new Response(xml, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } });
 };
