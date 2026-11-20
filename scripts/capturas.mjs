@@ -348,15 +348,26 @@ const TESTES = {
     // Explorador: escolher cada instituição muda a largura de "nenhuma confiança" para o valor do
     // dados.json, também sem JavaScript; só a tabela da instituição escolhida fica visível.
     const serie = dados.confianca_instituicoes_br;
+    const lerExplorador = (inst) => pagina.evaluate((i) => {
+      const linhas = [...document.querySelectorAll('[data-explorador] .exp-linha')];
+      const larguras = linhas.map((l) => { const s = l.querySelector('.exp-seg-nenhuma'); return (s.getBoundingClientRect().width / s.parentElement.getBoundingClientRect().width) * 100; });
+      const tabelas = [...document.querySelectorAll('[data-explorador] .exp-tabela')].filter((t) => getComputedStyle(t).display !== 'none').map((t) => t.dataset.i);
+      return { larguras, tabelas, escolhido: i };
+    }, inst);
+    const confere = (r, inst) => serie.anos.every((_, k) => Math.abs(r.larguras[k] - serie.instituicoes[inst].valores.nenhuma[k]) <= 0.6);
     for (const inst of ['partidos', 'tse', 'congresso']) {
       await pagina.locator(`#exp-${inst}`).check();
-      await pagina.waitForTimeout(c.nome === 'movimento-reduzido' ? 50 : 900);
-      const r = await pagina.evaluate((i) => {
-        const linhas = [...document.querySelectorAll('[data-explorador] .exp-linha')];
-        const larguras = linhas.map((l) => { const s = l.querySelector('.exp-seg-nenhuma'); return (s.getBoundingClientRect().width / s.parentElement.getBoundingClientRect().width) * 100; });
-        const tabelas = [...document.querySelectorAll('[data-explorador] .exp-tabela')].filter((t) => getComputedStyle(t).display !== 'none').map((t) => t.dataset.i);
-        return { larguras, tabelas, escolhido: i };
-      }, inst);
+      let r;
+      if (c.nome === 'movimento-reduzido') {
+        // Até a barra mostrar o valor esperado, com limite de 2 s (antes: 50 ms fixos). Uma leitura
+        // logo depois da troca falhou com a máquina carregada (1 de 162 combinações; D112).
+        const limite = Date.now() + 2000;
+        r = await lerExplorador(inst);
+        while (!confere(r, inst) && Date.now() < limite) { await pagina.waitForTimeout(50); r = await lerExplorador(inst); }
+      } else {
+        await pagina.waitForTimeout(900);
+        r = await lerExplorador(inst);
+      }
       serie.anos.forEach((ano, k) => {
         const esperado = serie.instituicoes[inst].valores.nenhuma[k];
         if (Math.abs(r.larguras[k] - esperado) > 0.6) erros.push(`${rotulo}: explorador, ${inst} ${ano}: "nenhuma" com ${r.larguras[k].toFixed(1)}%, esperado ${esperado}%`);
