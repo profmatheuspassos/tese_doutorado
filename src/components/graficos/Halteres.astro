@@ -4,9 +4,10 @@
  * Lê tudo de dados.json (uso registrado para a página e o bloco). Repete os
  * números da lista do texto, por isso fica fora da leitura de tela.
  */
-import { t } from '../../i18n';
+import { rotulosDe } from '../../i18n';
 import { uso, valorQuadro } from '../../lib/dados';
 import { formatarPct } from '../../lib/numeros';
+const { t, locale } = rotulosDe(Astro.url);
 
 interface Props { pagina: string; bloco: string; class?: string }
 const { pagina, bloco, class: classe } = Astro.props;
@@ -29,8 +30,8 @@ const linhas = u.itens!.map((item) => {
       <div class="halteres-rotulo">{l.rotulo}</div>
       <div class="halteres-trilho">
         <span class="halteres-barra" data-barra style={`left:${l.a}%;width:${l.b - l.a}%`}></span>
-        <span class="valor valor-a" style={`left:${l.a}%`}>{formatarPct(l.a)}</span>
-        <span class="valor valor-b" data-valor-b style={`left:${l.b}%`}>{formatarPct(l.b)}</span>
+        <span class="valor valor-a" style={`left:${l.a}%`}>{formatarPct(l.a, 1, locale)}</span>
+        <span class="valor valor-b" data-valor-b style={`left:${l.b}%`}>{formatarPct(l.b, 1, locale)}</span>
         <i class="ponto ponto-a" style={`left:${l.a}%`}></i>
         <i class="ponto ponto-b" data-ponto-b data-de={l.a} data-para={l.b} style={`left:${l.b}%`}></i>
       </div>

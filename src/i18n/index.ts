@@ -43,3 +43,19 @@ export function mapa(caminho: string, idioma: Idioma = 'pt-br'): Record<string, 
   if (!valor || typeof valor !== 'object' || Array.isArray(valor)) throw new Error(`Mapa inexistente: ${caminho} (${idioma})`);
   return Object.fromEntries(Object.entries(valor as Record<string, string>).map(([k, v]) => [k, expandirDados(v, dados, localeDe(idioma))]));
 }
+
+/**
+ * Rótulos presos ao idioma da página (pela rota). Nos componentes:
+ *   const { t, lista, mapa, idioma, locale } = rotulosDe(Astro.url);
+ * As chamadas t('...'), lista('...') e mapa('...') ficam como antes.
+ */
+export function rotulosDe(url: URL) {
+  const idioma = idiomaAtual(url);
+  return {
+    idioma,
+    locale: localeDe(idioma),
+    t: (caminho: string, vars: Record<string, string | number> = {}) => t(caminho, vars, idioma),
+    lista: (caminho: string) => lista(caminho, idioma),
+    mapa: (caminho: string) => mapa(caminho, idioma),
+  };
+}

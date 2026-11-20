@@ -10,7 +10,8 @@
  * reduzido, a troca é imediata. Marcas e cabeçalho são aria-hidden: o texto diz o mesmo. Sem
  * suporte a :has(), o alternador e a linha de estado somem e fica o estado inicial.
  */
-import { t } from '../../i18n';
+import { rotulosDe } from '../../i18n';
+const { t } = rotulosDe(Astro.url);
 
 interface Props { parte: 'topo' | 'estado' }
 const { parte } = Astro.props;

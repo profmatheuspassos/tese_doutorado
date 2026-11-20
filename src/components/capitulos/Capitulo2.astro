@@ -13,8 +13,11 @@ import { pagina } from '../../lib/paginas';
 import { comAtributos, prefixar, usarBlocos } from '../../lib/blocos';
 import { dados, uso } from '../../lib/dados';
 import { ancora } from '../../lib/ancoras';
+import { idiomaAtual } from '../../i18n';
 
-const { dados: meta, blocos } = await pagina('capitulo-2');
+const idioma = idiomaAtual(Astro.url);
+
+const { dados: meta, blocos } = await pagina('capitulo-2', idioma);
 const { b, conferir } = usarBlocos(blocos, 'capitulo-2');
 const B0 = b('B0');
 const [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10'].map(b);
@@ -22,7 +25,7 @@ conferir();
 
 // B2 — escada: ícone do degrau (1 a 3) no início de cada parágrafo; o primeiro, onde fica a
 // maioria, ganha destaque em tinta (neutro: os degraus valem para os dois países).
-if (B2.elementos.length !== 5 || !B2.elementos.slice(1, 4).every((p) => p.startsWith('<p>')) || !B2.elementos[1].includes(ancora('capitulo-2', 'estarPresente'))) {
+if (B2.elementos.length !== 5 || !B2.elementos.slice(1, 4).every((p) => p.startsWith('<p>')) || !B2.elementos[1].includes(ancora('capitulo-2', 'estarPresente', idioma))) {
   throw new Error('capitulo-2 B2 fora do formato esperado (h2 + três degraus + fecho).');
 }
 const iconeDegrau = (k: number) => {

@@ -7,8 +7,9 @@
  * Passos na horizontal a partir de 768 px; na vertical no celular. Aparecem em sequência ao
  * entrar na tela (data-anima, só com movimento normal).
  */
-import { lista, t } from '../../i18n';
+import { rotulosDe } from '../../i18n';
 import { uso } from '../../lib/dados';
+const { lista, t } = rotulosDe(Astro.url);
 
 uso('capitulo-5', 'B1', 'caminho-referendo');
 const portugal = lista('caminho_referendo.portugal');

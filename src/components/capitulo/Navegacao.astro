@@ -4,17 +4,19 @@
  * título da página de destino. A ordem é a do site: Início, capítulos 1 a 5, "Sobre a tese".
  * Em "Sobre", que é a última, o segundo link é "Voltar ao início" (T10).
  */
-import { t } from '../../i18n';
-import { capitulos, sobre, url } from '../../lib/paginas';
+import { rotulosDe } from '../../i18n';
+import { navegacao, url } from '../../lib/paginas';
 
 interface Props { rota: string }
 const { rota } = Astro.props;
-const caps = await capitulos();
-const pSobre = await sobre();
-const ordem: { rota: string; titulo: string; prefixo?: string }[] = [
-  { rota: '/', titulo: t('inicio') },
-  ...caps.map((c) => ({ rota: c.rota, titulo: c.titulo, prefixo: t('capitulo', { n: c.n }) })),
-  { rota: pSobre.rota, titulo: pSobre.titulo },
+const { t, idioma } = rotulosDe(Astro.url);
+// Itens do idioma da página; em pré-visualização, página ainda sem tradução vem em português,
+// com lang="pt-BR" no título (src/lib/paginas.ts).
+const nav = await navegacao(idioma);
+const ordem: { rota: string; titulo: string; prefixo?: string; lang?: string }[] = [
+  { rota: nav.inicio.rota, titulo: t('inicio') },
+  ...nav.capitulos.map((c) => ({ rota: c.rota, titulo: c.titulo, prefixo: t('capitulo', { n: c.n }), lang: c.lang })),
+  { rota: nav.sobre.rota, titulo: nav.sobre.titulo, lang: nav.sobre.lang },
 ];
 const i = ordem.findIndex((p) => p.rota === rota);
 if (i < 1) throw new Error(`Página fora da ordem de navegação: ${rota}`);
@@ -30,7 +32,7 @@ const seta = (sentido: 'esq' | 'dir') => sentido === 'dir' ? 'M3 8h10M9 4l4 4-4 
         {t('anterior')}
       </span>
       {anterior.prefixo && <span class="nav-pagina-prefixo">{anterior.prefixo}</span>}
-      <span class="nav-pagina-titulo">{anterior.titulo}</span>
+      <span class="nav-pagina-titulo" lang={anterior.lang}>{anterior.titulo}</span>
     </a>
     {proxima ? (
       <a class="nav-pagina sm:text-right" href={url(proxima.rota)} rel="next">
@@ -39,10 +41,10 @@ const seta = (sentido: 'esq' | 'dir') => sentido === 'dir' ? 'M3 8h10M9 4l4 4-4 
           <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={seta('dir')} /></svg>
         </span>
         {proxima.prefixo && <span class="nav-pagina-prefixo">{proxima.prefixo}</span>}
-        <span class="nav-pagina-titulo">{proxima.titulo}</span>
+        <span class="nav-pagina-titulo" lang={proxima.lang}>{proxima.titulo}</span>
       </a>
     ) : (
-      <a class="nav-pagina sm:text-right" href={url('/')}>
+      <a class="nav-pagina sm:text-right" href={url(nav.inicio.rota)}>
         <span class="nav-pagina-rotulo sm:justify-end">
           {t('voltar_inicio')}
           <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={seta('dir')} /></svg>

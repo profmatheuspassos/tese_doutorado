@@ -12,8 +12,11 @@ import ChecklistLegenda from '../graficos/ChecklistLegenda.astro';
 import { pagina } from '../../lib/paginas';
 import { comAtributos, rotularCelulas, usarBlocos } from '../../lib/blocos';
 import { comMarcas } from '../../lib/checklist';
+import { idiomaAtual } from '../../i18n';
 
-const { dados: meta, blocos } = await pagina('capitulo-1');
+const idioma = idiomaAtual(Astro.url);
+
+const { dados: meta, blocos } = await pagina('capitulo-1', idioma);
 const { b, conferir } = usarBlocos(blocos, 'capitulo-1');
 const B0 = b('B0');
 const [B1, B2, B3, B4, B5, B6, B7, B8, B9] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9'].map(b);

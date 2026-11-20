@@ -14,15 +14,19 @@ import { anexarEmCelulas, comAtributos, usarBlocos } from '../../lib/blocos';
 import { dados, uso } from '../../lib/dados';
 import { formatarInteiro } from '../../lib/numeros';
 import { ancora } from '../../lib/ancoras';
+import { idiomaAtual } from '../../i18n';
+import { localeDe } from '../../lib/idiomas.mjs';
 
-const { dados: meta, blocos } = await pagina('capitulo-5');
+const idioma = idiomaAtual(Astro.url);
+
+const { dados: meta, blocos } = await pagina('capitulo-5', idioma);
 const { b, conferir } = usarBlocos(blocos, 'capitulo-5');
 const B0 = b('B0');
 const [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10', 'B11'].map(b);
 conferir();
 
 // B1 — o caminho entra depois de "Só o Congresso Nacional convoca a consulta."
-const iBrasil = B1.elementos.findIndex((el) => el.includes(ancora('capitulo-5', 'soCongresso')));
+const iBrasil = B1.elementos.findIndex((el) => el.includes(ancora('capitulo-5', 'soCongresso', idioma)));
 if (iBrasil < 1) throw new Error('capitulo-5 B1: parágrafo do Brasil não encontrado.');
 
 // B5 — tabela das petições: cada número ganha uma barra do mesmo tamanho relativo. O número da
@@ -34,7 +38,7 @@ const iTabela = B5.elementos.findIndex((el) => el.startsWith('<table'));
 if (iTabela < 1) throw new Error('capitulo-5 B5: tabela das petições não encontrada.');
 const barra = (linha: number, texto: string) => {
   const v = peticoes[linha];
-  if (v === undefined || texto !== formatarInteiro(v)) throw new Error(`capitulo-5 B5: linha ${linha + 1} da tabela ("${texto}") difere do dados.json (${v}).`);
+  if (v === undefined || texto !== formatarInteiro(v, localeDe(idioma))) throw new Error(`capitulo-5 B5: linha ${linha + 1} da tabela ("${texto}") difere do dados.json (${v}).`);
   return `<span class="peticoes-barra" style="--p:${(v / maximo).toFixed(4)}" aria-hidden="true"></span>`;
 };
 const tabela = (el: string, i: number) => (i === iTabela ? comAtributos(anexarEmCelulas(el, 1, barra), { class: 'tabela-peticoes' }) : el);

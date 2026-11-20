@@ -4,8 +4,9 @@
  * estilos comuns do checklist e a animação de desenho das marcas (como na home, D53).
  * A lista em si recebe as marcas por comMarcas (src/lib/checklist.ts).
  */
-import { t } from '../../i18n';
+import { rotulosDe } from '../../i18n';
 import '../../styles/checklist.css';
+const { t } = rotulosDe(Astro.url);
 ---
 <div class="checklist-legenda" aria-hidden="true" data-ui>
   <span><i class="ponto-pais bg-ramo"></i>{t('paises.portugal')}</span>

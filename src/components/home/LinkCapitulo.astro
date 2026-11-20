@@ -1,9 +1,10 @@
 ---
-import { t } from '../../i18n';
-import { capitulos, url } from '../../lib/paginas';
+import { rotulosDe } from '../../i18n';
+import { navegacao, url } from '../../lib/paginas';
 interface Props { n: number; class?: string }
 const { n, class: classe } = Astro.props;
-const cap = (await capitulos()).find((c) => c.n === n);
+const { t, idioma } = rotulosDe(Astro.url);
+const cap = (await navegacao(idioma)).capitulos.find((c) => c.n === n);
 if (!cap) throw new Error(`Capítulo ${n} inexistente`);
 // A última palavra e a seta ficam juntas, para a seta nunca cair sozinha na linha de baixo.
 const rotulo = t('leia_capitulo', { n, titulo: cap.titulo });

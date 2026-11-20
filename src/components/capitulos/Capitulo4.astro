@@ -16,8 +16,11 @@ import { usarBlocos } from '../../lib/blocos';
 import { marcasQuemDecide } from '../../lib/quemDecide';
 import { dados, uso } from '../../lib/dados';
 import { ancora } from '../../lib/ancoras';
+import { idiomaAtual } from '../../i18n';
 
-const { dados: meta, blocos } = await pagina('capitulo-4');
+const idioma = idiomaAtual(Astro.url);
+
+const { dados: meta, blocos } = await pagina('capitulo-4', idioma);
 const { b, conferir } = usarBlocos(blocos, 'capitulo-4');
 const B0 = b('B0');
 const [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11, B12] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10', 'B11', 'B12'].map(b);
@@ -25,12 +28,12 @@ conferir();
 
 // B3 — a lista das cinco etapas, com o alternador antes e a linha de estado depois.
 const iEtapas = B3.elementos.findIndex((el) => el.startsWith('<ol'));
-if (iEtapas < 1 || !B3.elementos[iEtapas - 1].includes(ancora('capitulo-4', 'cincoEtapas'))) throw new Error('capitulo-4 B3: lista das cinco etapas fora do lugar esperado.');
+if (iEtapas < 1 || !B3.elementos[iEtapas - 1].includes(ancora('capitulo-4', 'cincoEtapas', idioma))) throw new Error('capitulo-4 B3: lista das cinco etapas fora do lugar esperado.');
 const etapas = (el: string, i: number) => (i === iEtapas ? marcasQuemDecide(el) : el);
 
 // B7 — 0,22% em destaque, antes do parágrafo que traz o número.
 uso('capitulo-4', 'B7', 'numero-grande');
-const iFreguesias = B7.elementos.findIndex((el) => el.includes(ancora('capitulo-4', 'daPopulacao')));
+const iFreguesias = B7.elementos.findIndex((el) => el.includes(ancora('capitulo-4', 'daPopulacao', idioma)));
 if (iFreguesias < 1) throw new Error('capitulo-4 B7: parágrafo das freguesias com reunião de todos os eleitores não encontrado.');
 
 // B9 — o ramo e a semente entram depois da lista das três mudanças.
@@ -39,7 +42,7 @@ if (iMudancas < 1 || (B9.elementos[iMudancas].match(/<li[\s>]/g) ?? []).length !
 
 // B11 — o círculo fecha o bloco, depois de "Assim o círculo vicioso começa a girar ao contrário."
 const fimB11 = B11.elementos.length - 1;
-if (!B11.elementos[fimB11].includes(ancora('capitulo-4', 'girarAoContrario'))) throw new Error('capitulo-4 B11: a última frase mudou.');
+if (!B11.elementos[fimB11].includes(ancora('capitulo-4', 'girarAoContrario', idioma))) throw new Error('capitulo-4 B11: a última frase mudou.');
 ---
 <Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={meta.titulo_original} imagem="cap4-abertura.webp" tema="nevoa">
   <BlocoTexto bloco={B1} />

@@ -7,8 +7,9 @@
  * Sem JS: o bloco interativo fica escondido e aparece uma tira estática com três momentos.
  * Todo texto vem dos rótulos aprovados (T27 a T32); o script não tem texto próprio.
  */
-import { mapa, t } from '../../i18n';
+import { rotulosDe } from '../../i18n';
 import { grade, FORMAS, type Forma } from '../../lib/bolha';
+const { mapa, t } = rotulosDe(Astro.url);
 
 const nomes = mapa('bolha.formas');
 if (Object.keys(nomes).join() !== FORMAS.join()) throw new Error('Bolha: formas dos rótulos e do cálculo não batem.');

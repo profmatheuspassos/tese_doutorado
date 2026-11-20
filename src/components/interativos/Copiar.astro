@@ -1,7 +1,7 @@
 ---
 /**
  * Botão "Copiar" de uma referência ("Sobre a tese", B6). Rótulos T43 a T48 (D52); o script não
- * tem texto próprio: tudo vem dos atributos data-*, montados aqui a partir do pt-br.json.
+ * tem texto próprio: tudo vem dos atributos data-*, montados aqui a partir dos rótulos do idioma da página.
  * - Copia o texto simples do bloco da referência (sem negrito nem itálico). No ABNT,
  *   "[data de acesso]" vira a data do dia no padrão ABNT ("17 nov. 2026", meses em T48).
  * - Depois de copiar, o botão mostra "Copiado" (T45) por 2 s (texto e nome acessível) e a região
@@ -10,10 +10,13 @@
  * Sem JavaScript, o botão não aparece (hidden): a referência fica visível e selecionável, com
  * "[data de acesso]" como está no texto aprovado.
  */
-import { t, lista } from '../../i18n';
+import { lista, rotulosDe } from '../../i18n';
 
 interface Props { formato: 'ABNT' | 'APA' | 'BibTeX'; alvo: string }
 const { formato, alvo } = Astro.props;
+const { t } = rotulosDe(Astro.url);
+// Meses do "Acesso em" (T48) sempre em português: o ABNT é igual nos dois idiomas (D99).
+const meses = lista('citar.meses', 'pt-br');
 ---
 <div class="cit-acoes" data-ui data-copiar hidden>
   <button
@@ -26,7 +29,7 @@ const { formato, alvo } = Astro.props;
     data-copiado={t('citar.copiado')}
     data-aviso={t('citar.aviso', { formato })}
     data-falha={t('citar.falha')}
-    data-meses={JSON.stringify(lista('citar.meses'))}
+    data-meses={JSON.stringify(meses)}
   >{t('citar.copiar')}</button>
   <div class="cit-aviso" aria-live="polite" data-aviso-regiao></div>
 </div>
