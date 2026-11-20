@@ -14,7 +14,8 @@
  *       tabela, blocos de código, trechos em negrito e links;
  *     - por bloco, os mesmos números, depois de ler cada formato (1.473.063 / 1,473,063;
  *       92,9 / 92.9; "60 mil" / 60,000) e os números por extenso de dois a mil; no inglês, "both"
- *       conta como 2 só antes de substantivo no plural (D110);
+ *       conta como 2 só antes de substantivo no plural (D110); no português, o século em romanos
+ *       ("século XIX") conta como o número, que o inglês escreve em algarismos ("19th century");
  *     - os links internos do inglês levam a páginas em inglês (em pré-visualização, também a uma
  *       página em português que ainda não tem tradução).
  *
@@ -119,10 +120,17 @@ const ehPlural = (palavra) => {
   const p = palavra.toLowerCase();
   return PLURAIS_IRREGULARES.has(p) || (p.endsWith('s') && !NAO_PLURAIS.has(p));
 };
+// Séculos em algarismos romanos no português ("século XIX", "séculos XVIII") contam como o número
+// (19, 18), porque o inglês escreve "19th century" e o "19" entra na conta (capítulo 1, B1 e B2).
+// Só logo depois de "século" ou "séculos"; nenhum outro romano conta.
+const ROMANOS = { I: 1, V: 5, X: 10, L: 50, C: 100 };
+const romano = (r) => [...r].reduce((t, c, i, a) => t + (ROMANOS[c] < (ROMANOS[a[i + 1]] ?? 0) ? -ROMANOS[c] : ROMANOS[c]), 0);
+const SECULO = /(?<![\p{L}])(séculos?)\s+([IVXLC]+)(?![\p{L}])/gu;
 /** Números de um bloco, como valores ("60 mil" = 60000; "1.473.063" = 1473063; "92,9" = 92.9). */
 function numeros(texto, lingua) {
   let s = texto.replace(/\]\([^)]*\)/g, ']').replace(/<!--[\s\S]*?-->/g, ' ');
   const valores = [];
+  if (lingua === 'pt') s = s.replace(SECULO, (_, palavra, r) => { valores.push(romano(r)); return palavra; });
   const [milhar, decimal] = lingua === 'pt' ? ['\\.', ','] : [',', '\\.'];
   // No português, "60 mil" é um número só (o "mil" é consumido junto).
   const mil = lingua === 'pt' ? '(\\s+mil\\b)?' : '()';
