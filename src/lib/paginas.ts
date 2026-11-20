@@ -36,7 +36,8 @@ export async function tituloNaTese(id: string, idioma: CodigoIdioma = IDIOMA_PAD
   const original = (await getEntry(colecao(IDIOMA_PADRAO), id))?.data.titulo_original;
   if (!original) throw new Error(`Página sem titulo_original no português: ${id}`);
   if (idioma === IDIOMA_PADRAO) return { original };
-  const traducao = (await getEntry(colecao(idioma), id))?.data.traducao_titulo_original;
+  const dados = (await getEntry(colecao(idioma), id))?.data;
+  const traducao = dados && 'traducao_titulo_original' in dados ? dados.traducao_titulo_original : undefined;
   if (!traducao) throw new Error(`Página sem traducao_titulo_original (${idioma}): ${id}`);
   return { original, traducao, langOriginal: dadosIdioma(IDIOMA_PADRAO).lang };
 }
