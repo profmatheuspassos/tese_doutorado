@@ -142,7 +142,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `src/lib/plugin-sem-quebra.mjs` | Impede quebra de linha em palavras com hífen, sem trocar caractere |
 | `src/data/dados.json` | Único arquivo de números do site (Quadros 1 a 5 e outros), com os usos por página |
 | `src/i18n/pt-br.json`, `src/i18n/en.json` | Rótulos de interface aprovados (D43, D52, D100, D107); nenhum outro texto de interface. T50 e T51 (seletor) nos dois; T52 só no inglês; T48 só no português |
-| `src/styles/global.css` | Tokens de design (D45); `src/content/en/` fora da busca de classes do Tailwind (`@source not`, D114) |
+| `src/styles/global.css` | Tokens de design (D45); o Tailwind só procura classes em `src/` (`source("..")` no `@import`, D115), com `src/content/en/` fora (`@source not`, D114) |
 | `src/scripts/home.ts`, `src/scripts/home-resto.ts` | Animações GSAP da home (só com `prefers-reduced-motion: no-preference`): a abertura na carga; o resto (ScrollTrigger e blocos B1 a B8) quando o navegador fica ocioso, um bloco por tarefa (D67) |
 | `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, paridade português/inglês (rótulos e pares de páginas), contraste, imagens (nome, tamanho, peso), texto por idioma (palavras, aspas, rótulos, atributos, pelo `lang` mais próximo), recursos de terceiros, links internos (link quebrado faz o build falhar) e publicação (canonical, Open Graph, `lang`, `hreflang`, seletor, sitemap, robots, CSP, `.htaccess` da pasta principal e da `en/`, trava da chave no Actions) |
 | `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74, D79) e cache (D75); com a 404 em inglês no build, também `dist/en/.htaccess` |
@@ -361,18 +361,30 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   `.grow`). Regra nova das capturas versionadas: mesmo conteúdo e só posição até 2 px entra no commit
   sem parar (D114). Provas: chave desligada, zero diferença em 72 de 72 e nenhum pacote de
   `/_astro/` mudado; chave ligada, português idêntico em 72 de 72 tirando só o previsto pelos pares.
-  Lighthouse do capítulo 2: 100 no celular (pior de 5) e no computador. Em pull request, à espera da
-  aprovação do autor.
+  Lighthouse do capítulo 2: 100 no celular (pior de 5) e no computador. Aprovada (D114) e enviada à
+  `main` (PR #25, merge `bee3fb3`); no ar sem nada em inglês (D115: `versao.txt` com `bee3fb3`, 314
+  testes, nenhum `en/` na `publicacao`).
+- **Correção do CSS (D115):** depois do merge de `bee3fb3`, o CSS publicado voltou a ter `.grow`: o
+  Tailwind lia o projeto inteiro, e os commits de documentação do PR #25, posteriores à prova, citam
+  "grow". `src/styles/global.css` passa a `@import "tailwindcss" source("..");` (só `src/`), mantido o
+  `@source not "../content/en";`. Saem do `Base.css` só `.grow`, `.static`, `.contents`, `.rounded` e
+  `.italic`, nenhuma usada em HTML algum. Prova no último commit do PR: chave desligada e ligada, zero
+  diferença em 72 de 72. Regra nova: a prova final contra a `main` roda no último commit do PR, depois
+  dos commits de documentação. Em pull request, à espera da aprovação do autor.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request do capítulo 2 em inglês**; registrar em `docs/DECISOES.md` e
-   conferir no ar que nada em inglês foi publicado (`versao.txt` com o hash completo em
-   `COMMIT_ESPERADO`, `conferir:publicado`, nenhum `en/` na `publicacao`).
+1. **Aprovação e merge do pull request da correção do CSS (D115)**; registrar em `docs/DECISOES.md` e
+   conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`, `conferir:publicado`, nenhum
+   `en/` na `publicacao`, e o `Base.css` publicado sem `.grow`, `.static`, `.contents`, `.rounded` e
+   `.italic`).
 2. **Capítulo 3 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
    `Capitulo3.astro` passa a usar `tituloNaTese`, como os capítulos 1 e 2; conferir se algum
    componente do capítulo 3 compara rótulos com o `dados.json` em português (como o explorador fazia).
    As capturas da home em inglês em 375 px (`B5` a `B8`) podem ser refeitas ali (D114). Na tradução
    de "About", trocar o destino do link do B9 da home de `/sobre/` para `/en/about/`.
+   **Procedimento de cada página (D115):** a prova final contra a `main` (`comparar-builds`, chave
+   desligada e ligada) roda no **último commit do PR, depois dos commits de documentação**; se algum
+   commit entrar depois dela, a prova roda de novo.
 3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
