@@ -18,6 +18,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { expandirDados, formatarValor } from '../src/lib/rotulos.mjs';
 import { IDIOMAS } from '../src/lib/idiomas.mjs';
+import { INGLES_PUBLICADO } from '../src/lib/site.mjs';
 
 const exigir = createRequire(import.meta.url);
 const { chromium } = exigir('playwright');
@@ -106,6 +107,25 @@ const aprovadoNoLang = (s, lang) => {
 };
 const paginas = Object.values(porIdioma).flatMap((x) => x.paginas);
 
+// Pré-visualização (Etapa 3): enquanto faltar tradução, o link "Read chapter N" (T5) de uma página
+// em inglês leva ao capítulo em português, com o título em português (src/lib/paginas.ts). Esse
+// rótulo misto só é aceito com o inglês desligado na produção e com o título inteiro dentro de
+// lang="pt-BR" (LinkCapitulo.astro). Com o inglês publicado, não há capítulo sem tradução.
+const t5Provisorios = new Map();
+if (!INGLES_PUBLICADO) {
+  const t5En = JSON.parse(readFileSync(join(raiz, IDIOMAS.en.rotulos), 'utf8')).leia_capitulo;
+  const capsEn = new Set(porIdioma.en.paginas.filter((p) => p.meta.capitulo).map((p) => p.meta.pagina));
+  for (const p of porIdioma['pt-br'].paginas.filter((x) => x.meta.capitulo && !capsEn.has(x.meta.pagina))) {
+    t5Provisorios.set(t5En.replace('{n}', p.meta.capitulo).replace('{titulo}', p.meta.titulo), p.meta.titulo);
+  }
+}
+const t5ProvisorioOk = (s) => {
+  const titulo = t5Provisorios.get(s.t);
+  if (titulo === undefined || codigoDoLang(s.lang) !== 'en') return false;
+  const emPortugues = (s.partesLang ?? []).filter((x) => codigoDoLang(x.lang) === 'pt-br').map((x) => x.t).join('').replace(/\s+/g, ' ').trim();
+  return emPortugues === titulo;
+};
+
 const navegador = await chromium.launch();
 const contexto = await navegador.newContext({ javaScriptEnabled: false });
 const erros = [];
@@ -136,7 +156,10 @@ for (const p of paginas) {
       return { texto: partes.join(' '), fora };
     };
     // Rótulos divididos em vários nós (ex.: última palavra presa à seta) são conferidos inteiros.
-    const rotulos = [...document.querySelectorAll('[data-rotulo]')].map((el) => comLang(el.textContent.replace(/\s+/g, ' ').trim(), el));
+    const rotulos = [...document.querySelectorAll('[data-rotulo]')].map((el) => ({
+      ...comLang(el.textContent.replace(/\s+/g, ' ').trim(), el),
+      partesLang: [...el.querySelectorAll('[lang]')].map((x) => ({ lang: x.getAttribute('lang'), t: x.textContent })),
+    }));
     // Atributos que o leitor de tela lê também são texto de interface. Imagens: alt="" (D47).
     const atributos = [...document.querySelectorAll('body [aria-label], body [title]')].flatMap((el) => [el.getAttribute('aria-label'), el.getAttribute('title')].filter(Boolean).map((t) => comLang(t, el)));
     const alts = [...document.querySelectorAll('img')].map((i) => i.getAttribute('alt'));
@@ -173,7 +196,7 @@ for (const p of paginas) {
   r.alts.forEach((a) => { if (a !== '') erros.push(`${p.arquivo}: imagem com alt diferente de "" (D47): "${a}"`); });
   const soltos = [...r.foraDosBlocos, ...r.porBloco.flatMap((b) => b.fora), ...r.rotulos, ...r.atributos];
   for (const s of soltos) {
-    if (!aprovadoNoLang(s.t, s.lang)) erros.push(`${p.arquivo}: texto de interface não aprovado (${s.lang}): "${s.t}"`);
+    if (!aprovadoNoLang(s.t, s.lang) && !t5ProvisorioOk(s)) erros.push(`${p.arquivo}: texto de interface não aprovado (${s.lang}): "${s.t}"`);
   }
   console.log(`  ${p.arquivo}: ${publicados.length} palavras e ${aspasPublicadas} aspas conferidas em ${ids.length} blocos; ${soltos.length} rótulos de interface conferidos; <title>: ${r.titulo}`);
 }

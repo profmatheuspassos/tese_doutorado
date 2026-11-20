@@ -1,6 +1,7 @@
 ---
 import { rotulosDe } from '../../i18n';
 import { navegacao, url } from '../../lib/paginas';
+import { idioma as dadosIdioma, IDIOMA_PADRAO } from '../../lib/idiomas.mjs';
 interface Props { n: number; class?: string }
 const { n, class: classe } = Astro.props;
 const { t, idioma } = rotulosDe(Astro.url);
@@ -11,9 +12,23 @@ const rotulo = t('leia_capitulo', { n, titulo: cap.titulo });
 const corte = rotulo.lastIndexOf(' ');
 const inicio = rotulo.slice(0, corte + 1);
 const ultima = rotulo.slice(corte + 1);
+// Em pré-visualização, capítulo ainda sem tradução vem em português (src/lib/paginas.ts): o título
+// fica num span com o lang dele, e o link ganha o hreflang do destino, como no cabeçalho e no rodapé.
+// No português, cap.lang não existe e o HTML sai como antes.
+const hreflang = cap.lang ? dadosIdioma(IDIOMA_PADRAO).hreflang : undefined;
+const antesDoTitulo = cap.lang ? rotulo.slice(0, rotulo.lastIndexOf(cap.titulo)) : '';
+const corteTitulo = cap.titulo.lastIndexOf(' ');
+const tituloInicio = cap.titulo.slice(0, corteTitulo + 1);
+const tituloUltima = cap.titulo.slice(corteTitulo + 1);
 ---
 <p class={classe} data-ui>
-  <a class="link-capitulo" data-rotulo href={url(cap.rota)}>
-    <span class="link-capitulo-texto">{inicio}<span class="whitespace-nowrap">{ultima}<svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span></span>
-  </a>
+  {cap.lang ? (
+    <a class="link-capitulo" data-rotulo href={url(cap.rota)} hreflang={hreflang}>
+      <span class="link-capitulo-texto">{antesDoTitulo}{tituloInicio && <span lang={cap.lang}>{tituloInicio}</span>}<span class="whitespace-nowrap"><span lang={cap.lang}>{tituloUltima}</span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span></span>
+    </a>
+  ) : (
+    <a class="link-capitulo" data-rotulo href={url(cap.rota)}>
+      <span class="link-capitulo-texto">{inicio}<span class="whitespace-nowrap">{ultima}<svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span></span>
+    </a>
+  )}
 </p>

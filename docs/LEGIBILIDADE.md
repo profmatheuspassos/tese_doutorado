@@ -361,3 +361,35 @@ dá mais peso a cada uma.
   Nomes próprios só na ficha (autor, orientador, instituições).
 - "A tese" aparece três vezes no corpo (D15).
 
+
+## Resultados da versão em inglês (D89)
+
+Medição com `python3 scripts/legibilidade_en.py` (CMU, `cmudict` fixado), num ambiente virtual fora
+do repositório. Referência de conferência: FKGL 8 ou menos; FRE ao lado. A D16 (tamanho) não vale
+para o inglês.
+
+| Página | Palavras visíveis | Palavras no texto corrido | Frases | Palavras/frase | Sílabas/palavra | FKGL | FRE | Fora do CMU | "the dissertation" |
+|---|---|---|---|---|---|---|---|---|---|
+| Home | 1.842 | 1.652 | 149 | 11,1 | 1,62 | 7,9 | 58,4 | 40 (2,4%) | 4 |
+
+### Home em inglês (20/11/2026)
+
+`src/content/en/home.md`, tradução aprovada com TE1 a TE8 (D110). **FKGL 7,9**, dentro da referência
+de 8 ou menos; **FRE 58,4**. O português da mesma página tem 1.770 palavras visíveis; o inglês, 1.842
+(a tradução fiel dá o tamanho, D89).
+
+**Palavras fora do CMU (sílabas por regra):** 40, 2,4% do texto corrido. Quase todas são números
+(anos e percentuais, que contam como duas sílabas, como no português) e nomes em português
+(Fundação, Latinobarómetro, Opinião, Passos, Pública, São). Nenhuma palavra comum do inglês caiu na
+regra.
+
+**Frases longas:** uma acima de 25 palavras, no B6 (28 palavras): "If they realize that harm to the
+others ends up coming back to hurt them, they look for a solution that is good enough for all of
+them." É a frase do exemplo das cinco pessoas, na forma ajustada pelo autor; não foi dividida, porque
+dividir não é ajuste de texto aprovado.
+
+**"The dissertation":** 4 pela contagem do script (B4, B5, B6 e o link do B9), mais "the doctoral
+dissertation" no B0, que o script não conta: as mesmas cinco menções de "a tese" no português (D15).
+
+**Estimativa do plano x medição:** a estimativa à mão, com regra simples de sílabas, deu FKGL perto
+de 7,5 e FRE perto de 60; o CMU conta um pouco mais de sílabas (1,62 por palavra, contra 1,59).

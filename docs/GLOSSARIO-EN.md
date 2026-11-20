@@ -110,6 +110,10 @@ Para cada termo, as duas opções consideradas e a escolhida.
 | linguagem simples | plain language |
 | Latinobarómetro; Portal de Opinião Pública; Fundação Francisco Manuel dos Santos; CAPES | Mantidos como estão (nomes próprios) |
 | "nós contra eles"; "um de nós" | "us versus them"; "one of us" |
+| dirigente(s) (de partido) | party official(s) (D110, TE1; "leaders" fica para "governantes") |
+| programa (de partido) | platform (D110, TE2) |
+| o digital (substantivo) | the digital world (D110, TE3) |
+| controle da Justiça | oversight by the courts (D110, TE4) |
 
 ## 5. Títulos das páginas e rotas (D91, D96)
 

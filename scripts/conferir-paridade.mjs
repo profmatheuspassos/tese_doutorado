@@ -13,7 +13,8 @@
  *     - por bloco, o mesmo número de parágrafos, itens de lista, títulos, linhas e colunas de
  *       tabela, blocos de código, trechos em negrito e links;
  *     - por bloco, os mesmos números, depois de ler cada formato (1.473.063 / 1,473,063;
- *       92,9 / 92.9; "60 mil" / 60,000) e os números por extenso de dois a mil;
+ *       92,9 / 92.9; "60 mil" / 60,000) e os números por extenso de dois a mil; no inglês, "both"
+ *       conta como 2 só antes de substantivo no plural (D110);
  *     - os links internos do inglês levam a páginas em inglês (em pré-visualização, também a uma
  *       página em português que ainda não tem tradução).
  *
@@ -106,6 +107,18 @@ const EXTENSO = {
   pt: { dois: 2, duas: 2, três: 3, quatro: 4, cinco: 5, seis: 6, sete: 7, oito: 8, nove: 9, dez: 10, onze: 11, doze: 12, treze: 13, catorze: 14, quatorze: 14, quinze: 15, dezesseis: 16, dezessete: 17, dezoito: 18, dezenove: 19, vinte: 20, trinta: 30, quarenta: 40, cinquenta: 50, sessenta: 60, setenta: 70, oitenta: 80, noventa: 90, cem: 100, mil: 1000 },
   en: { two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90, hundred: 100, thousand: 1000 },
 };
+// "both" (D110, pedido do autor): conta como 2 só logo antes de um substantivo no plural ("both
+// countries", "both sides"), que traduz "os dois países". "Both ... and" não conta, porque traduz
+// "tanto ... quanto" ("both in the constitution ... and in the electoral laws"). Sem dicionário, o
+// plural é a palavra seguinte terminada em "s" que não seja uma palavra gramatical terminada em "s",
+// ou um plural irregular da lista. "Both of", "both in", "both the" não contam.
+const BOTH_PLURAL = /\bboth\s+([\p{L}]+)/giu;
+const NAO_PLURAIS = new Set(['as', 'is', 'was', 'has', 'does', 'this', 'thus', 'his', 'its', 'us', 'yes', 'less', 'unless']);
+const PLURAIS_IRREGULARES = new Set(['people', 'children', 'men', 'women']);
+const ehPlural = (palavra) => {
+  const p = palavra.toLowerCase();
+  return PLURAIS_IRREGULARES.has(p) || (p.endsWith('s') && !NAO_PLURAIS.has(p));
+};
 /** Números de um bloco, como valores ("60 mil" = 60000; "1.473.063" = 1473063; "92,9" = 92.9). */
 function numeros(texto, lingua) {
   let s = texto.replace(/\]\([^)]*\)/g, ']').replace(/<!--[\s\S]*?-->/g, ' ');
@@ -123,6 +136,7 @@ function numeros(texto, lingua) {
     const v = EXTENSO[lingua][palavra];
     if (v !== undefined) valores.push(v);
   }
+  if (lingua === 'en') for (const _ of s.matchAll(BOTH_PLURAL)) if (ehPlural(_[1])) valores.push(2);
   return valores.sort((a, b) => a - b);
 }
 

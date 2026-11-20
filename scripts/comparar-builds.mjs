@@ -20,6 +20,16 @@
  *     páginas ou pelo nome sem o hash) e os que só existem de um lado, com tamanho e o que mudou.
  *     Esta parte informa; a justificativa de cada pacote vai no relatório da etapa.
  *
+ * Com --ingles (Etapa 3; os dois builds com INGLES=1), a prova é a da chave ligada: compara só o
+ * português (fica de fora o que está em en/ e o sitemap, que ganha as páginas em inglês e é conferido
+ * pelo conferir-publicacao). No HTML, antes da comparação, tira dos dois lados o seletor de idioma
+ * ([data-seletor-idioma], com a classe ml-auto que o menu ganha para dar lugar a ele), as linhas
+ * <link rel="alternate" hreflang> e o og:locale:alternate, e conta
+ * o que tirou: na referência, nada; no candidato, só a home (seletor e hreflang) e a 404 em
+ * português (só o seletor, D108). No .htaccess, só aceita a mais na CSP hashes de trechos em linha
+ * que existem apenas nas páginas em inglês. No navegador, o seletor e o og:locale:alternate saem do
+ * DOM antes do texto e da captura; o resto precisa ser idêntico, texto e pixels.
+ *
  * Com --controle, a referência é comparada com ela mesma (dois servidores, duas rodadas de
  * captura independentes): precisa dar zero diferença, para provar que o método não tem ruído.
  *
@@ -40,6 +50,7 @@ const raiz = new URL('..', import.meta.url).pathname;
 
 const arg = (nome) => { const i = process.argv.indexOf(nome); return i > 0 ? process.argv[i + 1] : undefined; };
 const controle = process.argv.includes('--controle');
+const ingles = process.argv.includes('--ingles');
 const pastaRef = arg('--referencia') && resolve(arg('--referencia'));
 const pastaCand = controle ? pastaRef : resolve(arg('--candidato') || join(raiz, 'dist'));
 const saida = resolve(arg('--saida') || join(tmpdir(), controle ? 'comparar-controle' : 'comparar'));
@@ -56,7 +67,52 @@ const listar = (pasta) => {
   andar(pasta);
   return lista.sort();
 };
-const foraDaComparacao = (f) => f.startsWith('_astro/') || f === 'versao.txt';
+const foraDaComparacao = (f) => f.startsWith('_astro/') || f === 'versao.txt' || (ingles && (f.startsWith('en/') || f === 'sitemap.xml'));
+
+// --ingles: o que a chave ligada acrescenta às páginas em português, tirado antes da comparação.
+const TIRAR_INGLES = {
+  seletor: /<nav[^>]*\bdata-seletor-idioma\b[^>]*>[\s\S]*?<\/nav>/g,
+  hreflang: /<link rel="alternate" hreflang="[^"]*" href="[^"]*">/g,
+  ogAlternate: /<meta property="og:locale:alternate" content="[^"]*">/g,
+};
+// A classe que o cabeçalho põe no menu só quando há seletor (Cabecalho.astro, "ml-auto"), para abrir
+// lugar ao seletor à direita: volta ao que é sem seletor e entra na contagem como parte dele.
+const MENU_COM_SELETOR = /(<nav aria-label="[^"]*" class="hidden lg:block) ml-auto"/g;
+const tirados = { referencia: {}, candidato: {} };
+function tirarIngles(texto, lado, f) {
+  if (!ingles || !f.endsWith('.html')) return texto;
+  for (const [nome, re] of Object.entries(TIRAR_INGLES)) {
+    const n = (texto.match(re) ?? []).length;
+    if (n) (tirados[lado][f] ??= {})[nome] = n;
+    texto = texto.replace(re, '');
+  }
+  const nMenu = (texto.match(MENU_COM_SELETOR) ?? []).length;
+  if (nMenu) (tirados[lado][f] ??= {}).menuComSeletor = nMenu;
+  return texto.replace(MENU_COM_SELETOR, '$1"');
+}
+// --ingles: hashes de trechos em linha (<script>, <style>) por grupo de páginas do candidato.
+function hashesEmLinha(pasta, filtro) {
+  const conjunto = new Set();
+  for (const f of listar(pasta).filter((x) => x.endsWith('.html') && filtro(x))) {
+    for (const m of readFileSync(join(pasta, f), 'utf8').matchAll(/<(script|style)\b[^>]*>([\s\S]*?)<\/\1>/g)) {
+      if (m[2]) conjunto.add(`'sha256-${createHash('sha256').update(m[2]).digest('base64')}'`);
+    }
+  }
+  return conjunto;
+}
+const hashesSoIngles = [];
+function cspSoComOPortugues(textoCand, textoRef) {
+  if (!ingles) return textoCand;
+  const daRef = new Set(textoRef.match(/'sha256-[^']+'/g) ?? []);
+  const doEn = hashesEmLinha(pastaCand, (f) => f.startsWith('en/'));
+  const doPt = hashesEmLinha(pastaCand, (f) => !f.startsWith('en/'));
+  return textoCand.replace(/ ?'sha256-[^']+'/g, (m) => {
+    const h = m.trim();
+    if (daRef.has(h) || !doEn.has(h) || doPt.has(h)) return m;
+    hashesSoIngles.push(h);
+    return '';
+  });
+}
 
 // ---------------------------------------------------------------------------------------------
 // 1 e 2. Arquivos e bytes.
@@ -81,13 +137,25 @@ for (const f of compRef.filter((x) => compCand.includes(x))) {
     else falhar('bytes', `${f}: conteúdo diferente (${a.length} x ${b.length} bytes)`);
     continue;
   }
-  const na = normalizar(a.toString('utf8'));
-  const nb = normalizar(b.toString('utf8'));
+  const na = normalizar(tirarIngles(a.toString('utf8'), 'referencia', f));
+  let nb = normalizar(tirarIngles(b.toString('utf8'), 'candidato', f));
+  if (f === '.htaccess') nb = cspSoComOPortugues(nb, na);
   if (na === nb) { iguaisNormalizados++; continue; }
   let i = 0;
   while (i < na.length && na[i] === nb[i]) i++;
   const trecho = (s) => JSON.stringify(s.slice(Math.max(0, i - 120), i + 120));
   falhar('bytes', `${f}: diferente depois da troca dos nomes de /_astro/, a partir do caractere ${i}.\n      referência: ${trecho(na)}\n      candidato:  ${trecho(nb)}`);
+}
+if (ingles) {
+  const esperado = { 'index.html': ['seletor', 'menuComSeletor', 'hreflang', 'ogAlternate'], '404.html': ['seletor', 'menuComSeletor'] };
+  for (const [f, itens] of Object.entries(tirados.referencia)) falhar('ingles', `referência ${f}: tinha ${JSON.stringify(itens)} (esperado nada)`);
+  for (const [f, itens] of Object.entries(tirados.candidato)) {
+    const nomes = Object.keys(itens).sort().join();
+    if (!esperado[f]) falhar('ingles', `candidato ${f}: tinha ${JSON.stringify(itens)} (só a home e a 404 em português podem ter)`);
+    else if (nomes !== [...esperado[f]].sort().join()) falhar('ingles', `candidato ${f}: tinha ${JSON.stringify(itens)} (esperado ${esperado[f].join(', ')})`);
+  }
+  for (const f of Object.keys(esperado)) if (!tirados.candidato[f]) falhar('ingles', `candidato ${f}: sem ${esperado[f].join(', ')}`);
+  console.log(`--ingles: tirado do candidato ${JSON.stringify(tirados.candidato)}; da referência ${JSON.stringify(tirados.referencia)}; hashes da CSP só das páginas em inglês: ${hashesSoIngles.length ? hashesSoIngles.join(' ') : 'nenhum'}`);
 }
 console.log(`1-2. arquivos e bytes: ${compRef.length} arquivos na referência e ${compCand.length} no candidato (fora /_astro/ e versao.txt); ${iguaisBytes} idênticos byte a byte; ${iguaisNormalizados} .html/.htaccess idênticos depois da troca dos nomes de /_astro/`);
 
@@ -195,6 +263,7 @@ async function visitar(base, rota, c, w, rotulo) {
   for (let y = 0; y < alturaTotal; y += passo) { await pagina.mouse.wheel(0, passo); await pagina.waitForTimeout(c.nome === 'normal' ? 120 : 10); }
   await pagina.waitForTimeout(c.nome === 'normal' ? 2200 : 100);
   await pagina.evaluate(() => scrollTo(0, 0));
+  if (ingles) await pagina.evaluate(() => document.querySelectorAll('[data-seletor-idioma], meta[property="og:locale:alternate"]').forEach((el) => el.remove()));
   await pagina.waitForTimeout(300);
   const texto = await pagina.evaluate(() => JSON.stringify({
     titulo: document.title,
@@ -281,7 +350,7 @@ console.log(`5. console: ${falhas.filter((f) => f.startsWith('[console]')).lengt
 console.log(`6. pacotes de /_astro/: ${iguais.length} iguais, ${pares.size} mudaram de nome, ${linhasPacotes.length - pares.size} sem par`);
 linhasPacotes.forEach((l) => console.log(l));
 
-const modo = controle ? 'controle (referência contra ela mesma)' : `candidato ${pastaCand} contra a referência ${pastaRef}`;
+const modo = `${controle ? 'controle (referência contra ela mesma)' : `candidato ${pastaCand} contra a referência ${pastaRef}`}${ingles ? ', chave ligada (--ingles)' : ''}`;
 writeFileSync(join(saida, 'resultado.txt'), `${modo}\n${falhas.length ? falhas.join('\n') : 'nenhuma diferença'}\n\nPacotes:\n${linhasPacotes.join('\n')}\n`);
 if (falhas.length) {
   console.error(`comparar-builds: ${falhas.length} diferença(s) (${modo})`);

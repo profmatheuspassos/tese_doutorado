@@ -8,13 +8,14 @@
  *     (src/lib/rotulos.mjs); {caminho|extenso} e {caminho|extenso_f} escrevem o número por extenso
  *     (masculino ou feminino), como o texto aprovado faz ("oito referendos", "duas nacionais");
  *     com inicial maiúscula ({caminho|Extenso_f}), o número abre a frase ("Quatro viraram lei");
+ *     Nas páginas já traduzidas, frase_en e frases_en no .md em inglês, com números en-US (3b);
  *  4. nenhum número com vírgula decimal escrito à mão nos componentes e páginas;
  *  5. trava do dados.json (D94): a impressão SHA-256 do arquivo, sem os campos da versão em inglês,
  *     precisa ser a do dados.json aprovado (ver IMPRESSAO_DADOS).
  * Qualquer diferença encerra com erro.
  */
 import { createHash } from 'node:crypto';
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { formatarValor, lerCaminho } from '../src/lib/rotulos.mjs';
 import { idioma } from '../src/lib/idiomas.mjs';
@@ -122,6 +123,53 @@ for (const u of dados.usos) {
   }
 }
 
+// 3b. JSON x textos aprovados em inglês (D85, D90; docs/PLANO-INGLES.md, seção c). Para cada página
+// que já tem tradução em src/content/en/, cada uso precisa da frase em inglês (frase_en nos itens,
+// frases_en nos demais), com os números no formato en-US e os por extenso em inglês. Página ainda
+// sem tradução: nada a conferir. Os números continuam só no dados.json.
+const EN = idioma('en');
+const fmtEn = (n) => n.toLocaleString(EN.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const EXTENSO_EN = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+function valorNaFraseEn(serie, caminho, formato) {
+  const v = lerCaminho(serie, caminho);
+  if (!formato) {
+    const chaves = caminho.split('.').filter((p) => !/^\d+$/.test(p));
+    return formatarValor(v, chaves[chaves.length - 1], EN.locale);
+  }
+  if (!/^[eE]xtenso(_f)?$/.test(formato)) throw new Error(`formato desconhecido: |${formato}`);
+  if (!Number.isInteger(v) || v < 0 || v >= EXTENSO_EN.length) throw new Error(`sem extenso em inglês para ${caminho} = ${v}`);
+  const palavra = EXTENSO_EN[v];
+  return formato[0] === 'E' ? palavra[0].toUpperCase() + palavra.slice(1) : palavra;
+}
+let frasesEn = 0;
+for (const u of dados.usos) {
+  const arquivoEn = join(raiz, EN.pasta, `${u.pagina}.md`);
+  if (!existsSync(arquivoEn)) continue;
+  const md = espacos(readFileSync(arquivoEn, 'utf8'));
+  const procurar = (frase, rotulo) => {
+    frasesEn++;
+    if (!md.includes(espacos(frase))) erros.push(`${u.pagina} ${u.bloco} (en): não achei no texto aprovado em inglês a frase "${frase}" (${rotulo}).`);
+  };
+  if (u.itens) {
+    for (const item of u.itens) {
+      if (typeof item.frase_en !== 'string') { erros.push(`${u.pagina} ${u.bloco} (en): item ${item.instituicao} sem frase_en (a página já tem tradução).`); continue; }
+      const inst = serie.instituicoes[item.instituicao];
+      const frase = item.frase_en.replace(/\{(\d{4})\}/g, (_, ano) => fmtEn(inst.valores[u.resposta][serie.anos.indexOf(Number(ano))]));
+      procurar(frase, `${item.instituicao}, ${u.resposta}`);
+    }
+  }
+  if (u.frases) {
+    if (!Array.isArray(u.frases_en) || u.frases_en.length !== u.frases.length) { erros.push(`${u.pagina} ${u.bloco} (en): frases_en ausente ou com quantidade diferente de frases (a página já tem tradução).`); continue; }
+    const s = dados[u.serie];
+    for (const modelo of u.frases_en) {
+      let frase;
+      try { frase = modelo.replace(/\{([\w.]+)(?:\|(\w+))?\}/g, (_, caminho, formato) => valorNaFraseEn(s, caminho, formato)); }
+      catch (e) { erros.push(`${u.pagina} ${u.bloco} (en): ${e.message} (${u.serie})`); continue; }
+      procurar(frase, u.serie);
+    }
+  }
+}
+
 // 4. Números escritos à mão no código
 const pastas = ['src/components', 'src/pages', 'src/layouts', 'src/lib'];
 const arquivos = [];
@@ -142,4 +190,4 @@ if (erros.length) {
   erros.forEach((e) => console.error(' - ' + e));
   process.exit(1);
 }
-console.log(`conferir-dados: ok (${celulas} células contra o plano, somas conferidas, ${frases} frases nos textos, ${arquivos.length} arquivos de código sem números soltos, dados.json com a impressão aprovada ${IMPRESSAO_DADOS.slice(0, 12)}…)`);
+console.log(`conferir-dados: ok (${celulas} células contra o plano, somas conferidas, ${frases} frases nos textos, ${frasesEn} em inglês, ${arquivos.length} arquivos de código sem números soltos, dados.json com a impressão aprovada ${IMPRESSAO_DADOS.slice(0, 12)}…)`);

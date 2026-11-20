@@ -32,7 +32,16 @@ type Parciais = { [P in keyof Ancoras]?: { [C in keyof Ancoras[P]]?: string } };
 
 const ANCORAS: Record<CodigoIdioma, Parciais> = {
   'pt-br': PT,
-  en: {},
+  en: {
+    // Procuradas no HTML já convertido pelo Astro: apóstrofo curvo, como sai na página (D48).
+    home: {
+      naoBasta: 'It’s not enough.',
+      naoResolve: 'It doesn’t fix it.',
+      precisoAlgoMais: 'Something more is needed.',
+      noPapel: 'On paper, they are democracies.',
+      faltaRecall: 'Both countries are missing one tool: the recall.',
+    },
+  },
 };
 
 /** Trecho procurado numa página, no idioma pedido (padrão: português). */
