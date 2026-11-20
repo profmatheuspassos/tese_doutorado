@@ -373,6 +373,7 @@ para o inglês.
 | Home | 1.842 | 1.652 | 149 | 11,1 | 1,62 | 7,9 | 58,4 | 40 (2,4%) | 4 |
 | Capítulo 1 | 1.735 | 1.539 | 129 | 11,9 | 1,64 | 8,4 | 56,0 | 21 (1,4%) | 2 |
 | Capítulo 2 | 1.850 | 1.776 | 157 | 11,3 | 1,58 | 7,5 | 61,4 | 51 (2,9%) | 2 |
+| Capítulo 3 | 1.861 | 1.678 | 144 | 11,7 | 1,65 | 8,4 | 55,6 | 22 (1,3%) | 4 |
 
 ### Home em inglês (20/11/2026)
 
@@ -440,3 +441,24 @@ autor" (B7) virou "In the author's view".
 **Estimativa do plano x medição:** a estimativa com regra simples de sílabas deu FKGL perto de 7,7 e
 FRE perto de 60; aqui o CMU contou menos sílabas que a regra (1,58 contra 1,60), e a medição ficou
 abaixo da estimativa.
+
+### Capítulo 3 em inglês (20/11/2026)
+
+`src/content/en/capitulo-3.md`, tradução aprovada com TE25 a TE33 e a revisão do autor (D117).
+**FKGL 8,4**, um pouco acima da referência de 8 ou menos, como o capítulo 1; **FRE 55,6**. As frases
+são curtas (as mesmas 144 do português, 11,7 palavras por frase), mas as palavras são longas (1,65
+sílaba), com o vocabulário do capítulo (democracy, participation, representation, deliberative,
+bureaucracy); o português da mesma página já é o de índice mais baixo entre os capítulos 1 a 3 (58,2).
+O índice é conferência, não meta (D89): o texto aprovado não foi simplificado para baixar o número. O
+português tem 1.794 palavras visíveis; o inglês, 1.861.
+
+**Palavras fora do CMU (sílabas por regra):** 22, 1,3% do texto corrido. São números (anos,
+percentuais, idades e o valor em dólares, que contam como duas sílabas) e "livestreams".
+
+**Frases longas:** nenhuma acima de 25 palavras. A maior tem 25, no B0 ("In the face of a tired
+democracy, a chorus is growing: …").
+
+**"The dissertation":** 4 (B3, B9, B10 e B11), as mesmas quatro menções de "a tese" no português (D15).
+
+**Estimativa do plano x medição:** a estimativa com regra simples de sílabas deu FKGL 8,6 (esperado com o
+CMU, de 8,3 a 8,5) e FRE 54,3; a medição ficou dentro da faixa esperada (8,4 e 55,6).

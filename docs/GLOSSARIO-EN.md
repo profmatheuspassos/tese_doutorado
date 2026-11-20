@@ -120,6 +120,9 @@ Para cada termo, as duas opções consideradas e a escolhida.
 | alianças (eleitorais ou de governo) | alliances (D112, TE18) |
 | estatutos (de partido) | party bylaws (D114, TE20; "statutes" seria lido como leis do Legislativo) |
 | estar presente; ativar-se; decidir (degraus de participação) | being present; becoming active; deciding (D114; "to be present" na home, B6) |
+| por sorteio; o sorteio (Atenas) | by lot; drawing lots (D117, TE25) |
+| redes sociais; as redes | social media (D117) |
+| a rede (no sentido geral) | the internet (D117; como na home, B5) |
 
 ## 5. Títulos das páginas e rotas (D91, D96)
 

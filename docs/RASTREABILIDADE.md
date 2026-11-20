@@ -1333,11 +1333,77 @@ capítulo 1, o original vem do `.md` em português, com `lang="pt-BR"`, e a trad
   and the next", "run for office" (TE14), "In the dissertation's view", "over the internet", "give
   their opinion" (T33) (B10).
 - Navegação: "Previous" leva ao capítulo 1 em inglês; "Next", em pré-visualização, ao capítulo 3 em
-  português, com `lang` e `hreflang` pt-BR, até ele ser traduzido.
+  português, com `lang` e `hreflang` pt-BR, até ele ser traduzido. Com o capítulo 3 traduzido (D117),
+  "Next" leva a "The shortcut that doesn’t fix it".
 - **CSS:** a primeira prova mostrou que o Tailwind gerava `.grow{flex-grow:1}` a partir da palavra
   "grow" do B8 ("parties grow weaker"), sem uso em nenhuma página. Por decisão do autor (D114), a pasta
   `src/content/en/` saiu da busca de classes do Tailwind (`@source not "../content/en"` no
   `src/styles/global.css`); o CSS voltou a ser idêntico ao da `main`.
+
+### Capítulo 3 (`src/content/en/capitulo-3.md`)
+
+Tradução aprovada pelo autor em 20/11/2026, no plano da página, com uma revisão (cinco trechos, D117).
+Palavras contadas como na home (texto visível do bloco).
+
+| Bloco en | Título en | Bloco pt | Palavras pt → en | Escolhas de tradução |
+|---|---|---|---|---|
+| B0 | The shortcut that doesn't fix it | B0 | 84 → 90 | — |
+| B1 | Athens: the myth and the reality | B1 | 245 → 252 | TE25, TE26, TE27, TE28 |
+| B2 | Why direct democracy doesn't fit today | B2 | 114 → 118 | — |
+| B3 | Two alternatives, two limits | B3 | 196 → 214 | TE29 |
+| B4 | The digital promise | B4 | 85 → 77 | — |
+| B5 | What happens in practice | B5 | 138 → 144 | TE30 |
+| B6 | The bubble | B6 | 112 → 116 | — |
+| B7 | Not everyone is connected | B7 | 125 → 125 | TE31 |
+| B8 | Seven problems, no solution | B8 | 194 → 207 | TE6 |
+| B9 | When the opponent becomes an enemy | B9 | 113 → 112 | TE32 |
+| B10 | Populism | B10 | 225 → 241 | TE4, TE33 |
+| B11 | Something more is needed | B11 | 163 → 165 | — |
+| **Total** | | | **1.794 → 1.861** | |
+
+**Título.** No front matter, `titulo: "The shortcut that doesn’t fix it"`, com o apóstrofo curvo (D114).
+**Título na tese:** como nos capítulos 1 e 2, o original vem do `.md` em português, com `lang="pt-BR"`,
+e a tradução (`traducao_titulo_original`, seção 6 do glossário) vem abaixo do rótulo T52. O
+`Capitulo3.astro` passou a usar `tituloNaTese` (português igual).
+
+**Dados.** O capítulo 3 não tem uso no `src/data/dados.json` (nem no português); nenhum `frase_en`. A
+legenda do estádio é o T33 do `en.json` ("30,000").
+
+**Observações do capítulo 3.**
+- Âncora do B2 em inglês: `impossible` (`src/lib/ancoras.ts`), no primeiro parágrafo, para a imagem do
+  estádio entrar depois dele. "Impossible to question" (B10) fica em outro bloco.
+- A bolha (B6) não muda: todo texto vem de T27 a T32. O teste da bolha no `scripts/capturas.mjs` passou
+  a esperar o contador pelo rótulo do idioma da página (T30), e não "1 de 4" em português.
+- "Redes", "redes sociais" = "social media" (B3, B4, B5, B6, B10); "a rede" no sentido geral = "the
+  internet" (tabela do B8), como na home, B5; no B6, "A rede também" = "So is social media". Entram na
+  seção 4 do glossário (D117), com "by lot" / "drawing lots" (TE25).
+- "Nenhuma das duas" (B3) = "either of the two": "either of them" faria a paridade perder o 2 de
+  "duas". "A lição é dupla" (B1) = "twofold", que a paridade não lê, como "dupla".
+- "Justiça" (B10) = "the courts", padrão da TE4. "Consultas populares" = "public votes"; "o governante" =
+  "Leaders"; "fiscalizam" = "monitors", como no capítulo 1, B3. "Salvadora da pátria" (B4) sem aspas,
+  como no português deste bloco.
+- "Para a tese" (B9, B10) = "In the dissertation's view"; "a tese" aparece quatro vezes, como "the
+  dissertation" (B3, B9, B10 e B11).
+- Revisão do autor no plano: B1 "Key posts, however, such as generals and finance officials, were
+  elected."; B2 "even greater"; B3 "have been putting forward proposals and voting on them since
+  2008"; B5 "Politicians cheapen themselves."; B10 "Social media has become".
+- Frases e termos reaproveitados da home (D110) e dos capítulos 1 e 2 (D112, D114): o título (D96; home
+  B5); "over the internet", "doesn't fix", "make it worse" (B0); "what is known as" (B0; cap. 1 B1);
+  "ancient Athens", "were left out" (B1; cap. 1 B1); "fulfill the will of the people" (B2; cap. 2 B5);
+  "between elections" (B3); "success is measured in likes", "one of us", "us versus them" (B5); "searches
+  for … recipes", "only vegetarian recipes" (B6; na home, "starts seeing", aqui "starts showing", porque
+  o português muda de "passa a ver" para "passam a mostrar"); "Not everyone is connected", "aged 16 to
+  74", "the first three months of", "lived in homes with access" (B7; aqui "used" e "of the
+  population", porque o português diz "usaram" e "da população"); "seven problems … identified in
+  representative democracy" e as sete linhas da coluna "Problem" (B8, iguais à home, inclusive
+  "Conflict between groups"); "No; it makes it worse", "No guarantee", "at any cost" (B8); "When the
+  opponent becomes an enemy", "With an opponent, you can negotiate. An enemy "must be destroyed"",
+  "people stop seeing themselves as part of a whole" (B9); "a degeneration of democracy", "puts
+  themselves above the law" (B10; na home, "rules"); a frase "Voting every day, instead of every four
+  years, …" (B11, idêntica), "Something more is needed", "complement representation, not replace it",
+  "direct participation tools", "the subject of the next chapter" (B11).
+- Navegação: "Previous" leva ao capítulo 2 em inglês; "Next", em pré-visualização, ao capítulo 4 em
+  português, com `lang` e `hreflang` pt-BR, até ele ser traduzido.
 
 ### Escolhas de tradução
 
@@ -1371,6 +1437,15 @@ não entra na lista.
 | TE22 | capítulo 2, B8 (título) | "A política virou audiência" | "Politics became a ratings game" | Expressão | "Audiência" aqui é a da TV; "audience" sozinho seria lido como "público". "Ratings game" é a disputa por audiência | D114 |
 | TE23 | capítulo 2, B8 | "Eleitores e partidos se acomodam" | "Voters and parties become complacent" | Expressão | "Accommodate themselves" mudaria o sentido; "complacent" é o acomodado que para de se mexer | D114 |
 | TE24 | capítulo 2, B10 | "Nenhuma a segue à risca" | "Neither follows it to the letter" | Expressão | O literal não existe em inglês; "to the letter" é a forma usual | D114 |
+| TE25 | capítulo 3, B1 | "por sorteio"; "sorteadas"; "o sorteio" | "by lot"; "filled by lot"; "drawing lots" | Termo fora do glossário | "By lot" é o termo usual para Atenas e é curto; "lottery" puxaria para jogo de azar. Entra na seção 4 do glossário | D117 |
+| TE26 | capítulo 3, B1 | "magistrado"; "vagas de magistrado" | "magistrates"; "magistrate posts" | Termo fora do glossário | Termo usual em inglês para os cargos atenienses; o texto já define ("which handled the administration"). Só nesta página | D117 |
+| TE27 | capítulo 3, B1 | "onde todos decidiriam tudo" | "where everyone supposedly decided everything" | Expressão | O futuro do pretérito marca a crença; "would decide" soaria hipotético em inglês | D117 |
+| TE28 | capítulo 3, B1 | "para que todos tivessem as mesmas condições" | "so that everyone would be on an equal footing" | Expressão | O literal ("the same conditions") fica estranho; "on an equal footing" é a forma usual | D117 |
+| TE29 | capítulo 3, B3 | "Porto Alegre" | "The Brazilian city of Porto Alegre" | Explicação | O leitor estrangeiro não sabe que Porto Alegre é brasileira, e o capítulo compara Portugal e Brasil; sem fato novo | D117 |
+| TE30 | capítulo 3, B5 | "O político se banaliza"; "entra em bate-boca" | "Politicians cheapen themselves"; "get into heated arguments" | Expressão | Sem equivalente literal; o sentido é perder a estatura e brigar como qualquer um. Revisão do autor | D117 |
+| TE31 | capítulo 3, B7 | "ainda pesam no bolso de muita gente" | "still strain many people's budgets" | Expressão | O literal ("weigh in the pocket") não existe em inglês | D117 |
+| TE32 | capítulo 3, B9 | "de hoje para amanhã" (entre aspas) | "on the spot" (entre aspas) | Expressão | O literal não existe; "on the spot" dá a pressa sem reflexão. "Overnight" já é a TE7, de outra expressão | D117 |
+| TE33 | capítulo 3, B10 | "só mais um na massa de manobra" | "just one more pawn in the crowd" | Expressão | "Massa de manobra" não tem equivalente; "pawn" é quem é manobrado | D117 |
 
 **Explicações não propostas na home.** "Portal de Opinião Pública" e "Fundação Francisco Manuel dos
 Santos" ficam como estão, porque a frase já os apresenta como fonte dos dados. "Título de eleitor"
@@ -1385,3 +1460,6 @@ outra explicação foi proposta.
 Santos" ficam como na home (a frase já os apresenta como fonte); o Latinobarómetro já vem explicado no
 texto ("an opinion survey carried out in several countries"); o capítulo não nomeia a Assembleia da
 República.
+
+**Explicações no capítulo 3.** Uma: "The Brazilian city of" antes de Porto Alegre (TE29, D117). Lisboa
+e Atenas dispensam; o Conselho de Atenas vem do contexto; o algoritmo já vem definido no texto.
