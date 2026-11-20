@@ -422,7 +422,8 @@ async function testarSeletor(pagina, rotulo, pg, w) {
     return {
       onde: n.closest('header details') ? 'painel' : n.closest('header') ? 'cabecalho' : n.closest('footer') ? 'rodape' : '?',
       nome: n.getAttribute('aria-label'),
-      visivel: r.width > 0 && r.height > 0 && getComputedStyle(n).visibility !== 'hidden',
+      // checkVisibility enxerga o conteúdo de um <details> fechado (content-visibility).
+      visivel: r.width > 0 && r.height > 0 && n.checkVisibility({ visibilityProperty: true, contentVisibilityAuto: true }),
       atual: atual && { lang: atual.getAttribute('lang'), texto: atual.textContent.trim(), tag: atual.tagName },
       link: a && { href: a.getAttribute('href'), lang: a.getAttribute('lang'), hreflang: a.getAttribute('hreflang'), texto: a.textContent.trim() },
       textos: [...n.querySelectorAll('li')].filter((li) => !li.closest('[aria-hidden="true"]')).map((li) => li.textContent.trim()),
@@ -448,9 +449,9 @@ async function testarSeletor(pagina, rotulo, pg, w) {
     await pagina.locator('header details summary').click();
     const painel = await pagina.evaluate(() => {
       const n = document.querySelector('header details [data-seletor-idioma]');
-      const lista = document.querySelector('header details nav > ul');
+      const lista = document.querySelector('header details nav:not([data-seletor-idioma]) > ul');
       const r = n.getBoundingClientRect();
-      return { visivel: r.width > 0 && r.height > 0, acima: r.bottom <= lista.getBoundingClientRect().top + 1, dentro: r.right <= innerWidth };
+      return { visivel: r.width > 0 && r.height > 0 && n.checkVisibility({ visibilityProperty: true }), acima: r.bottom <= lista.getBoundingClientRect().top + 1, dentro: r.right <= innerWidth };
     });
     if (!painel.visivel || !painel.acima || !painel.dentro) erros.push(`${rotulo}: seletor no painel do menu fora do lugar: ${JSON.stringify(painel)}`);
     await pagina.locator('header details summary').click();
@@ -483,7 +484,7 @@ async function testarCabecalho(pg, url) {
       const caixa = (el) => { const r = el.getBoundingClientRect(); return { x0: r.left, x1: r.right, y0: r.top, y1: r.bottom, linhas: el.getClientRects().length, texto: el.textContent.trim() }; };
       const header = document.querySelector('header');
       const marca = header.querySelector(':scope > div > a');
-      const itens = [...header.querySelectorAll(':scope > div > nav li a')];
+      const itens = [...header.querySelectorAll(':scope > div > nav:not([data-seletor-idioma]) li a')];
       const seletor = header.querySelector(':scope > div > [data-seletor-idioma]');
       const partes = [marca, ...itens, ...(seletor ? [...seletor.querySelectorAll('li > a, li > span')] : [])].map(caixa);
       return { altura: header.getBoundingClientRect().height, partes, excedente: document.documentElement.scrollWidth - document.documentElement.clientWidth, temSeletor: Boolean(seletor) };
