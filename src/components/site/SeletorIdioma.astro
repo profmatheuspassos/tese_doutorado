@@ -1,0 +1,35 @@
+---
+/**
+ * Seletor de idioma (D91, D101, D108). Texto "Português · English" (T51); o ponto é desenho
+ * (um círculo em SVG, aria-hidden, sem texto). O idioma da página fica marcado com aria-current e não é link; o outro é link para
+ * a página equivalente, com lang e hreflang. Nome acessível: T50 no idioma da página.
+ * Sem bandeiras e sem redirecionamento automático. Só utilitários do Tailwind, sem <style>: um
+ * <style> de componente importado entraria no CSS de todas as páginas, mesmo sem o seletor.
+ * Quem decide se ele aparece e para onde leva é o layout (src/layouts/Base.astro), pela prop destino.
+ */
+import { rotulosDe } from '../../i18n';
+import { IDIOMAS, type CodigoIdioma } from '../../lib/idiomas.mjs';
+import { url } from '../../lib/paginas';
+
+interface Props { destino: string; tema?: 'claro' | 'escuro'; class?: string }
+const { destino, tema = 'claro', class: classe } = Astro.props;
+const { t, idioma } = rotulosDe(Astro.url);
+const ordem: CodigoIdioma[] = ['pt-br', 'en'];
+const cores = tema === 'escuro'
+  ? { atual: 'font-semibold text-gelo', link: 'text-gelo-2 underline underline-offset-4 hover:text-gelo', ponto: 'text-linha-escuro' }
+  : { atual: 'font-semibold text-tinta', link: 'text-tinta-2 underline underline-offset-4 hover:text-tinta', ponto: 'text-tinta-2' };
+---
+<nav aria-label={t('seletor_idioma.nome')} data-ui data-seletor-idioma class={classe}>
+  <ul class="flex items-center gap-2 whitespace-nowrap">
+    {ordem.map((codigo, i) => (
+      <>
+        {i > 0 && <li aria-hidden="true" class={cores.ponto}><svg width="4" height="4" viewBox="0 0 4 4" class="block"><circle cx="2" cy="2" r="1.5" fill="currentColor" /></svg></li>}
+        <li>
+          {codigo === idioma
+            ? <span aria-current="true" lang={IDIOMAS[codigo].lang} class={cores.atual}>{t(`seletor_idioma.idiomas.${codigo}`)}</span>
+            : <a href={url(destino)} lang={IDIOMAS[codigo].lang} hreflang={IDIOMAS[codigo].hreflang} class={cores.link}>{t(`seletor_idioma.idiomas.${codigo}`)}</a>}
+        </li>
+      </>
+    ))}
+  </ul>
+</nav>

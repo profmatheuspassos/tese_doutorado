@@ -5,9 +5,12 @@ import interLatinExt from '@fontsource-variable/inter/files/inter-latin-ext-wght
 import LinkPular from '../components/site/LinkPular.astro';
 import Cabecalho from '../components/site/Cabecalho.astro';
 import Rodape from '../components/site/Rodape.astro';
-import { url } from '../lib/paginas';
+import { inicioDe, parDe, url } from '../lib/paginas';
 import { getEntry } from 'astro:content';
 import { IMAGEM_OG } from '../lib/imagens.mjs';
+import { idioma as dadosIdioma, IDIOMA_PADRAO, outroIdioma } from '../lib/idiomas.mjs';
+import { inglesAtivo } from '../lib/site.mjs';
+import { idiomaAtual } from '../i18n';
 
 interface Props {
   titulo: string; // <title> completo (T11)
@@ -16,13 +19,33 @@ interface Props {
 }
 const { titulo, descricao, indexar = true } = Astro.props;
 
+// Idioma da página, pela rota (D91): lang do <html>, og:locale e nome do site.
+const idioma = idiomaAtual(Astro.url);
+const dadosDoIdioma = dadosIdioma(idioma);
+
 // Endereço canônico e compartilhamento (D72, D73). Só textos já aprovados: o <title> (T11), a
-// descrição (T12 ou a da página) e o título da home como nome do site.
+// descrição (T12 ou a da página) e o título da home do idioma como nome do site.
 if (!Astro.site) throw new Error('Falta o "site" no astro.config.mjs.');
 const canonica = new URL(Astro.url.pathname, Astro.site).href;
 const imagemOg = new URL(url(`/img/${IMAGEM_OG.nome}`), Astro.site).href;
-const nomeSite = (await getEntry('paginas', 'home'))?.data.titulo;
-if (!nomeSite) throw new Error('Página "home" sem título para o og:site_name.');
+const nomeSite = indexar ? (await getEntry(dadosDoIdioma.colecao, 'home'))?.data.titulo : undefined;
+if (indexar && !nomeSite) throw new Error(`Página "home" (${idioma}) sem título para o og:site_name.`);
+
+// Versão em inglês (D91, D92, D108): só com o inglês ativo. Página com par: seletor para o par,
+// hreflang pt-BR, en e x-default (português) e og:locale:alternate. 404: seletor para o início do
+// outro idioma, se ele existe, sem hreflang. Sem par, nada.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const rotaAtual = Astro.url.pathname.startsWith(base) ? Astro.url.pathname.slice(base.length) || '/' : Astro.url.pathname;
+const outro = outroIdioma(idioma);
+const par = inglesAtivo() && indexar ? await parDe(rotaAtual, idioma) : undefined;
+const destinoSeletor = !inglesAtivo() ? undefined : indexar ? par : await inicioDe(outro);
+const alternativas = par
+  ? [
+      { hreflang: dadosDoIdioma.hreflang, href: canonica },
+      { hreflang: dadosIdioma(outro).hreflang, href: new URL(url(par), Astro.site).href },
+    ].sort((a, b) => (a.hreflang === dadosIdioma(IDIOMA_PADRAO).hreflang ? -1 : b.hreflang === dadosIdioma(IDIOMA_PADRAO).hreflang ? 1 : 0))
+  : [];
+const xDefault = alternativas.find((a) => a.hreflang === dadosIdioma(IDIOMA_PADRAO).hreflang)?.href;
 
 // Fonte Inter Variable servida pelo próprio site (só latim e latim estendido).
 const fontes = `
@@ -34,7 +57,7 @@ const fontes = `
 const marcaJs = `document.documentElement.classList.add('js');setTimeout(function(){var h=document.documentElement;if(!h.classList.contains('anim-pronto'))h.classList.add('anim-falhou')},3000);`;
 ---
 <!doctype html>
-<html lang="pt-BR">
+<html lang={dadosDoIdioma.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,6 +66,8 @@ const marcaJs = `document.documentElement.classList.add('js');setTimeout(functio
     {indexar ? (
       <>
         <link rel="canonical" href={canonica} />
+        {alternativas.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+        {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault} />}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonica} />
         <meta property="og:title" content={titulo} />
@@ -50,7 +75,8 @@ const marcaJs = `document.documentElement.classList.add('js');setTimeout(functio
         <meta property="og:image" content={imagemOg} />
         <meta property="og:image:width" content={String(IMAGEM_OG.largura)} />
         <meta property="og:image:height" content={String(IMAGEM_OG.altura)} />
-        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:locale" content={dadosDoIdioma.ogLocale} />
+        {par && <meta property="og:locale:alternate" content={dadosIdioma(outro).ogLocale} />}
         <meta property="og:site_name" content={nomeSite} />
         <meta name="twitter:card" content="summary_large_image" />
       </>
@@ -64,14 +90,14 @@ const marcaJs = `document.documentElement.classList.add('js');setTimeout(functio
   </head>
   <body class="antialiased">
     <LinkPular />
-    <Cabecalho />
+    <Cabecalho seletor={destinoSeletor} />
     <main id="conteudo" tabindex="-1">
       <slot />
     </main>
     {Astro.slots.has('rodape') ? (
-      <Rodape comTexto>
+      <Rodape comTexto seletor={destinoSeletor}>
         <slot name="rodape" />
       </Rodape>
-    ) : <Rodape />}
+    ) : <Rodape seletor={destinoSeletor} />}
   </body>
 </html>
