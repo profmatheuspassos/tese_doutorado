@@ -1,5 +1,6 @@
 # Publicação do site (decisão D71).
-# - Pull request para a main: roda o build com todas as conferências, sem publicar.
+# - Pull request para a main: roda dois builds com todas as conferências, sem publicar: um de
+#   pré-visualização com o inglês ligado (INGLES=1) e outro como vai ao ar (D92, D94).
 # - Merge na main (ou execução manual): roda o mesmo build e, se tudo passar, grava o site pronto
 #   (dist/, com o .htaccess) na branch "publicacao", com um commit normal (nunca force push).
 #   A Hostinger puxa essa branch pelo aplicativo "Implante de GitHub" (implantação automática, D78);
@@ -48,8 +49,16 @@ jobs:
           npm install --no-save "playwright@${PLAYWRIGHT_VERSAO}"
           npx playwright install --with-deps chromium
 
-      - name: Build com todas as conferências
+      # Só em pull request: o inglês ligado para pré-visualizar e conferir (D92). Nunca publica; o
+      # conferir-publicacao recusa INGLES=1 no Actions fora de pull request.
+      - name: Build de pré-visualização, com o inglês (só em PR)
+        if: github.event_name == 'pull_request'
+        env:
+          INGLES: '1'
         run: npm run build
+
+      - name: Build com todas as conferências (como vai ao ar)
+        run: rm -rf dist && npm run build
 
       - name: Gravar na branch publicacao
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
