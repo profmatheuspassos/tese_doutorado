@@ -11,9 +11,10 @@
  * na home; "Não existe." nos dois países (T41), sem alternador; o exemplo da Califórnia (T42)
  * fica num <details>, com o funil 172 → 9 → 6.
  */
-import { mapa, t } from '../../i18n';
+import { rotulosDe } from '../../i18n';
 import { dados, uso } from '../../lib/dados';
 import { formatarInteiro } from '../../lib/numeros';
+const { mapa, t, locale } = rotulosDe(Astro.url);
 
 for (const bloco of ['B2', 'B3', 'B5', 'B6', 'B7']) uso('capitulo-5', bloco, 'cartoes');
 const nomes = mapa('ferramentas.nomes');
@@ -82,7 +83,7 @@ const funil = [
               <figure class="ft-funil">
                 {funil.map((e) => (
                   <div class="ft-funil-etapa">
-                    <span class="ft-funil-n">{formatarInteiro(e.n)}</span>
+                    <span class="ft-funil-n">{formatarInteiro(e.n, locale)}</span>
                     <span class="ft-funil-direita">
                       <span class="ft-funil-barra" style={`--p:${e.n / rc.tentativas}`} aria-hidden="true"></span>
                       <span class="ft-funil-rotulo">{e.rotulo}</span>

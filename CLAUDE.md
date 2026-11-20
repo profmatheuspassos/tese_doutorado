@@ -125,36 +125,40 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e resumo do Lighthouse |
 | `docs/capturas/fase-4/` | Capturas das páginas novas (D56) e `lighthouse/resumo.md` de todas as páginas (só o resumo é versionado, D59) |
 | `docs/capturas/fase-5/` | `lighthouse/resumo.md` medido no endereço publicado |
-| `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: rotas da home (`index.astro`), "Sobre a tese" (`sobre.astro`) e 404, layout base, componentes por bloco, motivo ramo/semente, gráficos e diagramas |
-| `src/components/paginas/` | Corpo da home (`Home.astro`) e de "Sobre a tese" (`Sobre.astro`), com a prop `idioma`; as rotas só escolhem o idioma |
-| `src/lib/idiomas.mjs` | Tabela única dos idiomas (pasta, coleção, prefixo de rota, `lang`, `og:locale`, `hreflang`, locale dos números, rótulos) e `idiomaDaRota()`; hoje só o português (Etapa 2a) |
-| `src/lib/ancoras.ts` | Trechos do texto aprovado que os componentes procuram, por idioma e por página; hoje só em português |
+| `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: rotas da home (`index.astro`), "Sobre a tese" (`sobre.astro`) e 404, layout base (`lang`, `og:locale`, `hreflang` e seletor pelo idioma), componentes por bloco, motivo ramo/semente, gráficos e diagramas |
+| `src/pages/en/[...caminho].astro`, `src/pages/en/[erro].astro` | Rotas da versão em inglês e 404 em inglês (`/en/404/`); `getStaticPaths` vazio com a chave desligada (D92) |
+| `src/components/site/SeletorIdioma.astro` | Seletor "Português · English" (D91, D101, D108): só com o inglês ativo e com destino (par ou, na 404, o início do outro idioma) |
+| `src/components/paginas/` | Corpo da home (`Home.astro`), de "Sobre a tese" (`Sobre.astro`) e da 404 (`Pagina404.astro`), com a prop `idioma`; as rotas só escolhem o idioma. Os demais componentes acham o idioma pela rota (`rotulosDe(Astro.url)` em `src/i18n/index.ts`) |
+| `src/lib/idiomas.mjs` | Tabela única dos idiomas, português e inglês (pasta, coleção, prefixo de rota, `lang`, `og:locale`, `hreflang`, locale dos números, rótulos, link da licença) e `idiomaDaRota()` |
+| `src/lib/ancoras.ts` | Trechos do texto aprovado que os componentes procuram, por idioma e por página; o inglês entra com cada página traduzida (Etapa 3) |
+| `src/lib/paginas.ts` | Páginas por idioma, `parDe` (página equivalente no outro idioma), `inicioDe` e `navegacao` (em pré-visualização, página sem tradução vem em português, com `lang="pt-BR"`) |
 | `src/pages/capitulos/[slug].astro`, `src/layouts/Capitulo.astro` | Rotas dos capítulos (lidas dos `.md`) e modelo das páginas internas |
 | `src/components/capitulo/`, `src/components/capitulos/`, `src/components/interativos/` | Abertura, bloco de texto, progresso e navegação; composição de cada capítulo; interativos (explorador etc.) |
 | `src/lib/blocos.ts` | Divide o HTML de cada `.md` nos blocos `Bn`; só acrescenta atributos, envoltórios e desenhos sem texto, nunca texto (inclui `rotularCelulas`, tabela em cartões no celular, e `anexarEmCelulas`, barras ao lado dos números de uma tabela) |
 | `src/lib/checklist.ts`, `src/lib/quemDecide.ts`, `src/styles/checklist.css`, `src/scripts/comum/` | Peças comuns à home e aos capítulos: marcas do checklist e do "quem decide", observadores de entrada na tela, animação do checklist, revelação dos visuais, troca de rótulos do círculo virtuoso (`circulo.ts`), ramo que engrossa e semente que brota (`crescer.ts`); alternador em pílulas no `global.css` |
-| `src/lib/rotulos.mjs` | Marcadores `{d:caminho}` nos rótulos, trocados pelos valores do `dados.json` (usado pelo site e pelas conferências) |
+| `src/lib/rotulos.mjs` | Marcadores `{d:caminho}` nos rótulos, trocados pelos valores do `dados.json` (usado pelo site e pelas conferências); `{d:caminho\|mil}` escreve o valor vezes mil ("60,000") |
 | `src/lib/plugin-sem-quebra.mjs` | Impede quebra de linha em palavras com hífen, sem trocar caractere |
 | `src/data/dados.json` | Único arquivo de números do site (Quadros 1 a 5 e outros), com os usos por página |
-| `src/i18n/pt-br.json` | Rótulos de interface aprovados (D43, D52); nenhum outro texto de interface |
+| `src/i18n/pt-br.json`, `src/i18n/en.json` | Rótulos de interface aprovados (D43, D52, D100, D107); nenhum outro texto de interface. T50 e T51 (seletor) nos dois; T52 só no inglês; T48 só no português |
 | `src/styles/global.css` | Tokens de design (D45) |
 | `src/scripts/home.ts`, `src/scripts/home-resto.ts` | Animações GSAP da home (só com `prefers-reduced-motion: no-preference`): a abertura na carga; o resto (ScrollTrigger e blocos B1 a B8) quando o navegador fica ocioso, um bloco por tarefa (D67) |
-| `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, contraste, imagens (nome, tamanho, peso), texto (palavras, aspas, rótulos, atributos), recursos de terceiros, links internos (link quebrado faz o build falhar) e publicação (canonical, Open Graph, sitemap, robots, CSP, `.htaccess` da pasta principal) |
-| `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74, D79) e cache (D75) |
+| `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, paridade português/inglês (rótulos e pares de páginas), contraste, imagens (nome, tamanho, peso), texto por idioma (palavras, aspas, rótulos, atributos, pelo `lang` mais próximo), recursos de terceiros, links internos (link quebrado faz o build falhar) e publicação (canonical, Open Graph, `lang`, `hreflang`, seletor, sitemap, robots, CSP, `.htaccess` da pasta principal e da `en/`, trava da chave no Actions) |
+| `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74, D79) e cache (D75); com a 404 em inglês no build, também `dist/en/.htaccess` |
 | `scripts/gerar-versao.mjs` | Gera `dist/versao.txt` a cada build: commit da `main` e data/hora UTC (D78), para saber qual versão está no ar |
-| `scripts/conferir-publicado.mjs` | Testes no endereço real depois de publicar (`npm run conferir:publicado`) |
+| `scripts/conferir-publicado.mjs` | Testes no endereço real depois de publicar (`npm run conferir:publicado`); com o inglês desligado, prova que nada em inglês está no ar |
 | `scripts/comparar-builds.mjs` | Prova de que o português não muda (D94): build da branch contra o da `main` (HTML e `.htaccess` normalizados, bytes, texto e pixels nas 8 páginas x 3 larguras x 3 cenários, console) e lista dos pacotes de `/_astro/` que mudaram; `--controle` compara a `main` com ela mesma (`npm run comparar -- --referencia <dist da main>`) |
-| `src/lib/site.mjs`, `src/lib/imagens.mjs` | Endereço final do site (D72); lista única das imagens com nome, tamanho e teto de peso |
+| `src/lib/site.mjs`, `src/lib/imagens.mjs` | Endereço final do site (D72) e chave da versão em inglês (`INGLES_PUBLICADO`, `inglesAtivo()`, D92); lista única das imagens com nome, tamanho e teto de peso |
 | `src/pages/sitemap.xml.ts`, `src/pages/robots.txt.ts` | Sitemap e robots, gerados no build |
-| `.github/workflows/publicar.yml` | Build com as conferências em todo PR e, a cada merge na `main`, publicação na branch `publicacao` (D71), que a Hostinger implanta pelo aplicativo "Implante de GitHub", sem webhook (D78) |
+| `.github/workflows/publicar.yml` | Em todo PR, dois builds com as conferências (pré-visualização com `INGLES=1` e o de produção); a cada merge na `main`, só o de produção e a publicação na branch `publicacao` (D71), que a Hostinger implanta pelo aplicativo "Implante de GitHub", sem webhook (D78) |
 | `hospedagem/htaccess-dominio-principal` | `.htaccess` da pasta principal do domínio na Hostinger: redireciona o domínio principal para profmatheus.com (D77) |
 | `docs/PUBLICACAO.md` | Como o site chega ao ar, passo a passo do hPanel, troca de imagens e testes depois de publicar |
 | `LICENSE`, `LICENSE-CONTEUDO.md` | Código sob MIT; textos e imagens sob CC BY-NC-ND 4.0 (D76) |
 | `scripts/variantes-imagens.mjs` | Gera as larguras 840 e 1680 das imagens para o `srcset` (em `public/img/variantes/`, fora do Git) |
-| `scripts/capturas.mjs`, `scripts/lighthouse.mjs` | Testes no navegador em todas as páginas do build (3 larguras x 3 cenários, salto para cada bloco, axe, teclado, interativos, botão copiar, com os cabeçalhos do `.htaccess` e zero violações de CSP) e Lighthouse (home no celular em cinco rodadas, registrada a pior; D67). Com `BASE_URL` / `LIGHTHOUSE_URL`, rodam no endereço publicado |
+| `scripts/capturas.mjs`, `scripts/lighthouse.mjs` | Testes no navegador em todas as páginas do build, nos dois idiomas (3 larguras x 3 cenários, salto para cada bloco, axe, teclado, interativos, botão copiar, 404 de cada idioma, seletor e cabeçalho de 1024 a 1280 px, com os cabeçalhos do `.htaccess` e zero violações de CSP) e Lighthouse (home de cada idioma no celular em cinco rodadas, registrada a pior; D67). Com `BASE_URL` / `LIGHTHOUSE_URL`, rodam no endereço publicado |
 | `scripts/reservar-imagens.mjs` | Cria os espaços reservados em `public/img/` sem sobrescrever imagens finais |
 | `scripts/converter.sh` | Recria `conteudo/` a partir de `fonte/` |
 | `scripts/legibilidade.py` | Mede tamanho e legibilidade de uma página |
+| `scripts/legibilidade_en.py`, `scripts/requirements-legibilidade.txt` | Legibilidade em inglês (FKGL e Flesch Reading Ease, sílabas pelo CMU, D89), com `cmudict` fixado; `--teste` confere o script |
 | `fonte/`, `conteudo/` | Fora do Git |
 
 ## Comandos do site
@@ -191,7 +195,7 @@ Depois de publicar (detalhes em `docs/PUBLICACAO.md`):
 NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 ```
 
-## Estado atual (19 de novembro de 2026)
+## Estado atual (20 de novembro de 2026)
 
 - **Fase 1 concluída e aprovada.**
 - **Fase 2 concluída e aprovada** (17/11/2026): home, capítulos 1 a 5 e "Sobre a tese" escritos e
@@ -314,15 +318,25 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 - **Versão em inglês, Etapa 2a (só refatoração, chave desligada):** `idiomas.mjs`, locale nos
   formatadores, `paginas.ts` com idioma, corpo da home e de "Sobre" como componentes, `ancoras.ts`,
   trava do `dados.json` no `conferir-dados.mjs` (impressão de `b9562f3`, D94) e
-  `scripts/comparar-builds.mjs`. Português idêntico ao da `main` pela prova. Em pull request, à
-  espera da aprovação do autor.
+  `scripts/comparar-builds.mjs`. Português idêntico ao da `main` pela prova. **Aprovada (D106)** e
+  enviada à `main` (PR #21, merge `4064a63`); no ar conferido (282 testes).
+- **Versão em inglês, Etapa 2b (estrutura bilíngue, chave desligada):** `en.json` (T1 a T52, com o
+  apóstrofo curvo da D107), entrada do inglês em `idiomas.mjs`, chave `INGLES_PUBLICADO`, coleção
+  `paginasEn` vazia, componentes pelo idioma da rota, `lang`/`og:locale`/`hreflang` pelo idioma,
+  seletor (D101, D108), rotas `/en/` e 404 em inglês, sitemap e `dist/en/.htaccess` condicionados à
+  chave; conferências por idioma (paridade nova, texto, publicação com a trava, terceiros),
+  capturas, Lighthouse e `conferir-publicado` para os dois idiomas; `legibilidade_en.py`; workflow
+  com dois builds em PR. Decisões D106 a D108. Português idêntico ao da `main` pela prova. Em pull
+  request, à espera da aprovação do autor.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da Etapa 2a**; registrar a aprovação em `docs/DECISOES.md`.
-2. **Depois do merge, conferir no ar** que o `versao.txt` mostra o commit do merge
-   (`NODE_USE_ENV_PROXY=1 npm run conferir:publicado`).
-3. **Etapa 2b da versão em inglês** (estrutura bilíngue, chave desligada; `docs/PLANO-INGLES.md`),
-   numa branch nova a partir da `main` atualizada.
+1. **Aprovação e merge do pull request da Etapa 2b**; registrar a aprovação em `docs/DECISOES.md`.
+2. **Depois do merge, conferir no ar** que o `versao.txt` mostra o commit do merge e que nada em
+   inglês foi publicado (`NODE_USE_ENV_PROXY=1 npm run conferir:publicado`; e nenhum `en/` na
+   branch `publicacao`).
+3. **Etapa 3 da versão em inglês** (tradução, uma página por vez, começando pela home;
+   `docs/PLANO-INGLES.md`), numa branch nova a partir da `main` atualizada. Na home, medir de novo o
+   cabeçalho com o seletor entre 1024 e 1280 px (D108).
 4. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).

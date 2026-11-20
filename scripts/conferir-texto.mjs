@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 /**
- * Garante que o texto publicado é o texto aprovado, palavra por palavra.
- *  - Para cada página do build que corresponde a um .md de src/content/pt-br/, junta o texto dos
- *    elementos [data-bloco] (sem os trechos aria-hidden e data-ui) e compara com o .md.
+ * Garante que o texto publicado é o texto aprovado, palavra por palavra, em cada idioma
+ * (src/lib/idiomas.mjs).
+ *  - Para cada página do build que corresponde a um .md aprovado (src/content/pt-br/ ou
+ *    src/content/en/), junta o texto dos elementos [data-bloco] (sem os trechos aria-hidden e
+ *    data-ui) e compara com o .md.
  *  - Todo texto visível fora dos blocos (navegação, rótulos, gráficos) precisa ser um rótulo
- *    aprovado de src/i18n/pt-br.json, um título de página, um ano ou número dos dados, ou o
- *    contato da D7.
+ *    aprovado do idioma, um título de página, um ano ou número dos dados (no formato do idioma),
+ *    ou o contato da D7. O idioma de cada texto é o do lang mais próximo: numa página em inglês,
+ *    o que está dentro de lang="pt-BR" (título original, página ainda sem tradução) é conferido
+ *    contra o português, e vice-versa (o "English" do seletor numa página em português).
  * Lê o HTML estático (JavaScript desligado). Usa o Playwright já instalado no ambiente.
  */
 import { createRequire } from 'node:module';
@@ -13,15 +17,11 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { expandirDados, formatarValor } from '../src/lib/rotulos.mjs';
-import { idioma } from '../src/lib/idiomas.mjs';
+import { IDIOMAS } from '../src/lib/idiomas.mjs';
 
 const exigir = createRequire(import.meta.url);
 const { chromium } = exigir('playwright');
 const raiz = new URL('..', import.meta.url).pathname;
-// Textos, rótulos e números em português (src/lib/idiomas.mjs).
-const PT = idioma('pt-br');
-const pastaMd = join(raiz, PT.pasta);
-const i18n = JSON.parse(readFileSync(join(raiz, PT.rotulos), 'utf8'));
 const dados = JSON.parse(readFileSync(join(raiz, 'src/data/dados.json'), 'utf8'));
 
 const TOKEN = /[\p{L}\p{N}]+(?:[,.'-][\p{L}\p{N}]+)*%?/gu;
@@ -30,7 +30,7 @@ const normalizar = (s) => s.replace(/[“”„‟]/g, '"').replace(/[‘’‚�
 const tokens = (s) => normalizar(s).match(TOKEN) ?? [];
 const aspas = (s) => (normalizar(s).match(/"/g) ?? []).length;
 
-function lerMd(arquivo) {
+function lerMd(pastaMd, arquivo) {
   const bruto = readFileSync(join(pastaMd, arquivo), 'utf8');
   const fm = bruto.match(/^---\n([\s\S]*?)\n---\n/);
   const meta = Object.fromEntries((fm?.[1] ?? '').split('\n').map((l) => l.match(/^(\w+):\s*"?(.*?)"?$/)).filter(Boolean).map((m) => [m[1], m[2]]));
@@ -45,49 +45,66 @@ function lerMd(arquivo) {
   return { meta, marcas, tokens: tokens(corpo), aspas: aspas(corpo) };
 }
 
-const paginas = readdirSync(pastaMd).filter((f) => f.endsWith('.md')).map((f) => ({ arquivo: f, ...lerMd(f) }));
-
-// Textos permitidos fora dos blocos: rótulos aprovados (com os marcadores {d:...} trocados pelos
-// valores do dados.json), títulos e títulos originais das páginas, o contato da D7 e os números
-// do dados.json, formatados como o site os mostra.
-const permitidos = new Set();
-const padroes = [];
 const juntar = (v) => (typeof v === 'string' ? [v] : Array.isArray(v) ? v.flatMap(juntar) : typeof v === 'object' ? Object.values(v).flatMap(juntar) : []);
-const caps = paginas.filter((p) => p.meta.capitulo).map((p) => ({ n: p.meta.capitulo, titulo: p.meta.titulo }));
 const escapar = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-// Valores possíveis de cada variável de interface (as demais variáveis fazem o build falhar).
-const variaveis = {
-  instituicao: Object.values(i18n.explorador?.instituicoes ?? {}),
-  forma: Object.values(i18n.bolha?.formas ?? {}),
-  formato: ['ABNT', 'APA', 'BibTeX'],
-  titulo: [...paginas.map((p) => p.meta.titulo), i18n.nao_encontrada],
-  n: null, // número inteiro
-};
-for (const bruto of juntar(i18n)) {
-  if (bruto === i18n._sobre) continue;
-  const s = expandirDados(bruto, dados, PT.locale);
-  if (s.includes('{n}') && s.includes('{titulo}')) { caps.forEach((c) => permitidos.add(s.replace('{n}', c.n).replace('{titulo}', c.titulo))); continue; }
-  if (!s.includes('{')) { permitidos.add(s); continue; }
-  const re = escapar(s).replace(/\\\{(\w+)\\\}/g, (_, k) => {
-    if (!(k in variaveis)) throw new Error(`Variável sem valores conhecidos no rótulo "${bruto}": {${k}}`);
-    return variaveis[k] ? `(?:${variaveis[k].map(escapar).join('|')})` : '\\d+';
-  });
-  padroes.push(new RegExp(`^${re}$`));
+
+/**
+ * Textos aprovados de um idioma: rótulos (com os marcadores {d:...} trocados pelos valores do
+ * dados.json, no formato do idioma), títulos e títulos originais das páginas do idioma, o contato
+ * da D7 e os números do dados.json, formatados como o site os mostra.
+ */
+function montarIdioma(codigo) {
+  const I = IDIOMAS[codigo];
+  const pastaMd = join(raiz, I.pasta);
+  const i18n = JSON.parse(readFileSync(join(raiz, I.rotulos), 'utf8'));
+  const paginas = existsSync(pastaMd) ? readdirSync(pastaMd).filter((f) => f.endsWith('.md')).map((f) => ({ arquivo: `${codigo}/${f}`, codigo, ...lerMd(pastaMd, f) })) : [];
+  const permitidos = new Set();
+  const padroes = [];
+  const caps = paginas.filter((p) => p.meta.capitulo).map((p) => ({ n: p.meta.capitulo, titulo: p.meta.titulo }));
+  // Valores possíveis de cada variável de interface (as demais variáveis fazem o build falhar).
+  const variaveis = {
+    instituicao: Object.values(i18n.explorador?.instituicoes ?? {}),
+    forma: Object.values(i18n.bolha?.formas ?? {}),
+    formato: ['ABNT', 'APA', 'BibTeX'],
+    titulo: [...paginas.map((p) => p.meta.titulo), i18n.nao_encontrada],
+    n: null, // número inteiro
+  };
+  for (const bruto of juntar(i18n)) {
+    if (bruto === i18n._sobre) continue;
+    const s = expandirDados(bruto, dados, I.locale);
+    if (s.includes('{n}') && s.includes('{titulo}')) { caps.forEach((c) => permitidos.add(s.replace('{n}', c.n).replace('{titulo}', c.titulo))); continue; }
+    if (!s.includes('{')) { permitidos.add(s); continue; }
+    const re = escapar(s).replace(/\\\{(\w+)\\\}/g, (_, k) => {
+      if (!(k in variaveis)) throw new Error(`Variável sem valores conhecidos no rótulo "${bruto}" (${codigo}): {${k}}`);
+      return variaveis[k] ? `(?:${variaveis[k].map(escapar).join('|')})` : '\\d+';
+    });
+    padroes.push(new RegExp(`^${re}$`));
+  }
+  paginas.forEach((p) => { permitidos.add(p.meta.titulo); if (p.meta.titulo_original) permitidos.add(p.meta.titulo_original); });
+  permitidos.add('contato@profmatheus.com'); // D7
+  permitidos.add('%');
+  const numeros = new Set();
+  const andarDados = (v, chave = '') => {
+    if (typeof v === 'number') {
+      const f = formatarValor(v, chave, I.locale);
+      const umaCasa = v.toLocaleString(I.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      [f, umaCasa].forEach((x) => { numeros.add(x); numeros.add(`${x}%`); });
+    } else if (Array.isArray(v)) v.forEach((x) => andarDados(x, chave));
+    else if (v && typeof v === 'object') Object.entries(v).forEach(([k, x]) => andarDados(x, k));
+  };
+  andarDados(dados);
+  const aprovado = (s) => permitidos.has(s) || numeros.has(s) || padroes.some((r) => r.test(s));
+  return { paginas, aprovado };
 }
-paginas.forEach((p) => { permitidos.add(p.meta.titulo); if (p.meta.titulo_original) permitidos.add(p.meta.titulo_original); });
-permitidos.add('contato@profmatheus.com'); // D7
-permitidos.add('%');
-const numeros = new Set();
-const andarDados = (v, chave = '') => {
-  if (typeof v === 'number') {
-    const f = formatarValor(v, chave, PT.locale);
-    const umaCasa = v.toLocaleString(PT.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-    [f, umaCasa].forEach((x) => { numeros.add(x); numeros.add(`${x}%`); });
-  } else if (Array.isArray(v)) v.forEach((x) => andarDados(x, chave));
-  else if (v && typeof v === 'object') Object.entries(v).forEach(([k, x]) => andarDados(x, k));
+
+const porIdioma = Object.fromEntries(Object.keys(IDIOMAS).map((c) => [c, montarIdioma(c)]));
+// lang do HTML → idioma da tabela ("pt-BR" → "pt-br"; "en-US" ou "en" → "en").
+const codigoDoLang = (lang) => Object.keys(IDIOMAS).find((c) => [IDIOMAS[c].lang, IDIOMAS[c].hreflang].map((x) => x.toLowerCase()).includes(String(lang).toLowerCase()));
+const aprovadoNoLang = (s, lang) => {
+  const c = codigoDoLang(lang);
+  return Boolean(c) && porIdioma[c].aprovado(s);
 };
-andarDados(dados);
-const aprovado = (s) => permitidos.has(s) || numeros.has(s) || padroes.some((r) => r.test(s));
+const paginas = Object.values(porIdioma).flatMap((x) => x.paginas);
 
 const navegador = await chromium.launch();
 const contexto = await navegador.newContext({ javaScriptEnabled: false });
@@ -101,6 +118,8 @@ for (const p of paginas) {
   const pagina = await contexto.newPage();
   await pagina.goto(pathToFileURL(html).href);
   const r = await pagina.evaluate(() => {
+    // Cada texto solto vai com o lang mais próximo, que escolhe o idioma da conferência.
+    const comLang = (t, el) => ({ t, lang: el.closest('[lang]')?.getAttribute('lang') ?? '' });
     const pular = (el) => el.closest('[aria-hidden="true"], [data-ui], script, style, template');
     const textoDe = (raizEl, dentroBloco) => {
       const w = document.createTreeWalker(raizEl, NodeFilter.SHOW_TEXT);
@@ -112,14 +131,14 @@ for (const p of paginas) {
         const t = n.textContent;
         if (!t.trim()) continue;
         if (dentroBloco && !pular(el)) partes.push(t);
-        else fora.push(t.trim());
+        else fora.push(comLang(t.trim(), el));
       }
       return { texto: partes.join(' '), fora };
     };
     // Rótulos divididos em vários nós (ex.: última palavra presa à seta) são conferidos inteiros.
-    const rotulos = [...document.querySelectorAll('[data-rotulo]')].map((el) => el.textContent.replace(/\s+/g, ' ').trim());
+    const rotulos = [...document.querySelectorAll('[data-rotulo]')].map((el) => comLang(el.textContent.replace(/\s+/g, ' ').trim(), el));
     // Atributos que o leitor de tela lê também são texto de interface. Imagens: alt="" (D47).
-    const atributos = [...document.querySelectorAll('body [aria-label], body [title]')].flatMap((el) => [el.getAttribute('aria-label'), el.getAttribute('title')]).filter(Boolean);
+    const atributos = [...document.querySelectorAll('body [aria-label], body [title]')].flatMap((el) => [el.getAttribute('aria-label'), el.getAttribute('title')].filter(Boolean).map((t) => comLang(t, el)));
     const alts = [...document.querySelectorAll('img')].map((i) => i.getAttribute('alt'));
     const blocos = [...document.querySelectorAll('[data-bloco]')];
     const porBloco = blocos.map((b) => ({ id: b.dataset.bloco, ...textoDe(b, true) }));
@@ -129,7 +148,7 @@ for (const p of paginas) {
     for (let n = w.nextNode(); n; n = w.nextNode()) {
       const el = n.parentElement;
       if (!el || el.closest('script, style, template, [data-bloco], [data-rotulo]') || !n.textContent.trim()) continue;
-      foraDosBlocos.push(n.textContent.trim());
+      foraDosBlocos.push(comLang(n.textContent.trim(), el));
     }
     return { porBloco, foraDosBlocos, rotulos, atributos, alts, titulo: document.title };
   });
@@ -154,7 +173,7 @@ for (const p of paginas) {
   r.alts.forEach((a) => { if (a !== '') erros.push(`${p.arquivo}: imagem com alt diferente de "" (D47): "${a}"`); });
   const soltos = [...r.foraDosBlocos, ...r.porBloco.flatMap((b) => b.fora), ...r.rotulos, ...r.atributos];
   for (const s of soltos) {
-    if (!aprovado(s)) erros.push(`${p.arquivo}: texto de interface não aprovado: "${s}"`);
+    if (!aprovadoNoLang(s.t, s.lang)) erros.push(`${p.arquivo}: texto de interface não aprovado (${s.lang}): "${s.t}"`);
   }
   console.log(`  ${p.arquivo}: ${publicados.length} palavras e ${aspasPublicadas} aspas conferidas em ${ids.length} blocos; ${soltos.length} rótulos de interface conferidos; <title>: ${r.titulo}`);
 }
@@ -170,20 +189,23 @@ for (const html of htmlDoBuild.filter((h) => !rotasMd.has(h))) {
   const pagina = await contexto.newPage();
   await pagina.goto(pathToFileURL(html).href);
   const textos = await pagina.evaluate(() => {
+    const comLang = (t, el) => ({ t, lang: el.closest('[lang]')?.getAttribute('lang') ?? '' });
     const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     const saida = [];
     for (let n = w.nextNode(); n; n = w.nextNode()) {
       const el = n.parentElement;
       if (!el || el.closest('script, style, template, [data-rotulo]') || !n.textContent.trim()) continue;
-      saida.push(n.textContent.trim());
+      saida.push(comLang(n.textContent.trim(), el));
     }
     // Rótulos divididos em vários nós (ex.: a linha de licença com links) são conferidos inteiros.
-    document.querySelectorAll('[data-rotulo]').forEach((el) => saida.push(el.textContent.replace(/\s+/g, ' ').trim()));
+    document.querySelectorAll('[data-rotulo]').forEach((el) => saida.push(comLang(el.textContent.replace(/\s+/g, ' ').trim(), el)));
+    // Nomes acessíveis (ex.: "Menu", T50 do seletor de idioma).
+    document.querySelectorAll('body [aria-label], body [title]').forEach((el) => [el.getAttribute('aria-label'), el.getAttribute('title')].filter(Boolean).forEach((t) => saida.push(comLang(t, el))));
     return { saida, titulo: document.title };
   });
   await pagina.close();
   const nome = html.slice(join(raiz, 'dist').length + 1);
-  textos.saida.forEach((s) => { if (!aprovado(s)) erros.push(`${nome}: texto de interface não aprovado: "${s}"`); });
+  textos.saida.forEach((s) => { if (!aprovadoNoLang(s.t, s.lang)) erros.push(`${nome}: texto de interface não aprovado (${s.lang}): "${s.t}"`); });
   console.log(`  ${nome}: ${textos.saida.length} textos de interface conferidos; <title>: ${textos.titulo}`);
 }
 await navegador.close();
@@ -194,4 +216,5 @@ if (erros.length) {
   erros.forEach((e) => console.error(' - ' + e));
   process.exit(1);
 }
-console.log(`conferir-texto: ok (${conferidas} página(s) idênticas ao texto aprovado; ${htmlDoBuild.length - conferidas} sem .md, só com rótulos aprovados)`);
+const porLingua = Object.keys(IDIOMAS).map((c) => `${porIdioma[c].paginas.filter((p) => existsSync(join(raiz, 'dist', p.meta.rota, 'index.html'))).length} em ${c}`).join(', ');
+console.log(`conferir-texto: ok (${conferidas} página(s) idênticas ao texto aprovado: ${porLingua}; ${htmlDoBuild.length - conferidas} sem .md, só com rótulos aprovados)`);

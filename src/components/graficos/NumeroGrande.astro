@@ -1,11 +1,13 @@
 ---
 import { formatar } from '../../lib/numeros';
+import { rotulosDe } from '../../i18n';
 /** Número em destaque. Repete um dado que já está no texto, por isso fica fora da leitura de tela. */
 interface Props { valor: number; casas?: number; class?: string }
 const { valor, casas = 1, class: classe } = Astro.props;
+const { locale } = rotulosDe(Astro.url);
 ---
 <p class:list={['numero-grande', classe]} aria-hidden="true">
-  <span data-contador={valor} data-casas={casas}>{formatar(valor, casas)}</span><span class="numero-grande-pct">%</span>
+  <span data-contador={valor} data-casas={casas}>{formatar(valor, casas, locale)}</span><span class="numero-grande-pct">%</span>
 </p>
 
 <style>

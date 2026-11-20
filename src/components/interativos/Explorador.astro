@@ -8,7 +8,8 @@
  */
 import { dados, uso } from '../../lib/dados';
 import { formatar } from '../../lib/numeros';
-import { mapa, t } from '../../i18n';
+import { rotulosDe } from '../../i18n';
+const { mapa, t, locale } = rotulosDe(Astro.url);
 
 uso('capitulo-2', 'B4', 'explorador');
 const serie = dados.confianca_instituicoes_br;
@@ -61,7 +62,7 @@ const classeValor = (v: number) => (v < 6 ? 'exp-valor-nunca' : v < 11 ? 'exp-va
             <span class={`exp-seg exp-seg-${r}`} style={`width:calc(var(--v-${r}-${a}) * 1%)`}>
               {instituicoes.map((i) => {
                 const v = valores(i)[r][a];
-                return <span class:list={['exp-valor', classeValor(v)]} data-i={i}>{formatar(v)}</span>;
+                return <span class:list={['exp-valor', classeValor(v)]} data-i={i}>{formatar(v, 1, locale)}</span>;
               })}
             </span>
           ))}
@@ -82,7 +83,7 @@ const classeValor = (v: number) => (v < 6 ? 'exp-valor-nunca' : v < 11 ? 'exp-va
         </thead>
         <tbody>
           {respostas.map((r) => (
-            <tr><th scope="row">{rotulos[r]}</th>{valores(i)[r].map((v) => <td>{formatar(v)}</td>)}</tr>
+            <tr><th scope="row">{rotulos[r]}</th>{valores(i)[r].map((v) => <td>{formatar(v, 1, locale)}</td>)}</tr>
           ))}
         </tbody>
       </table>

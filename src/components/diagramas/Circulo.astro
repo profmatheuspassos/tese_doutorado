@@ -8,7 +8,8 @@
  * Rótulos T8/T9 em HTML sobre o SVG. Tudo aria-hidden: o texto do bloco já diz o mesmo.
  * Com `transicao`, o virtuoso traz também os rótulos do vicioso, que o script troca ao rolar.
  */
-import { lista } from '../../i18n';
+import { rotulosDe } from '../../i18n';
+const { lista } = rotulosDe(Astro.url);
 
 interface Props {
   estado: 'vicioso' | 'virtuoso';

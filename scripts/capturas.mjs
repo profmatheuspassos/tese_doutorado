@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Testes no navegador sobre o build (astro preview), em todas as páginas que o build tem
- * (home, capítulos já feitos, "Sobre", 404):
+ * Testes no navegador sobre o build (astro preview), em todas as páginas que o build tem, nos
+ * dois idiomas (home, capítulos, "Sobre" e a 404 de cada idioma; o inglês só com INGLES=1):
  *  - 375, 768 e 1440 px, nos cenários normal, movimento reduzido e sem JavaScript;
  *  - nenhuma rolagem horizontal;
  *  - todo o texto dos blocos visível (opacidade 1, com tamanho) depois da rolagem;
@@ -9,7 +9,12 @@
  *  - acessibilidade com axe-core (WCAG 2.2 A/AA), sem violações;
  *  - teclado: o primeiro Tab leva ao link "Pular para o conteúdo", visível;
  *  - nenhum erro no console e nenhuma requisição para fora do site;
- *  - testes próprios de cada página (interativos, com e sem JS; barra de progresso).
+ *  - testes próprios de cada página (interativos, com e sem JS; barra de progresso), com os
+ *    rótulos do idioma da página;
+ *  - seletor de idioma, onde existe (D91, D101, D108): nome acessível igual ao T50 do idioma da
+ *    página, idioma atual com aria-current, link com lang, hreflang e destino certo, alcançável pelo
+ *    teclado; no cabeçalho a partir de 1024 px e no topo do painel do menu abaixo disso; e o
+ *    cabeçalho em 1024, 1152 e 1280 px: uma linha, nada sobreposto, sem rolagem horizontal.
  *
  * Cabeçalhos (Fase 5): no servidor local, cada resposta recebe os cabeçalhos de segurança do
  * dist/.htaccess (CSP por hash incluída), e qualquer violação da CSP é erro. Com BASE_URL
@@ -19,7 +24,8 @@
  * Capturas versionadas (cenário normal, 375 e 1440 px, densidade 2x, JPEG 70) só com --salvar:
  *   node scripts/capturas.mjs --salvar home,capitulo-2
  * Home em docs/capturas/fase-3/ (D49); páginas novas em docs/capturas/fase-4/ (D56), com os
- * blocos listados em CAPTURAS. As demais capturas vão para a pasta de rascunho fora do
+ * blocos listados em CAPTURAS; páginas em inglês ("en-home", "en-capitulo-2"...) em
+ * docs/capturas/ingles/ (D102). As demais capturas vão para a pasta de rascunho fora do
  * repositório (CAPTURAS_RASCUNHO).
  */
 import { createRequire } from 'node:module';
@@ -27,12 +33,16 @@ import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { IDIOMAS, IDIOMA_PADRAO, outroIdioma } from '../src/lib/idiomas.mjs';
+import { INGLES_PUBLICADO } from '../src/lib/site.mjs';
 
 const exigir = createRequire(import.meta.url);
 const { chromium } = exigir('playwright');
 const raiz = new URL('..', import.meta.url).pathname;
 const dados = JSON.parse(readFileSync(join(raiz, 'src/data/dados.json'), 'utf8'));
-const i18n = JSON.parse(readFileSync(join(raiz, 'src/i18n/pt-br.json'), 'utf8'));
+// Rótulos de cada idioma. Os testes leem `i18n`, trocado para o idioma de cada página no laço.
+const ROTULOS = Object.fromEntries(Object.entries(IDIOMAS).map(([c, i]) => [c, JSON.parse(readFileSync(join(raiz, i.rotulos), 'utf8'))]));
+let i18n = ROTULOS['pt-br'];
 const rascunho = process.env.CAPTURAS_RASCUNHO || join(tmpdir(), 'capturas');
 mkdirSync(rascunho, { recursive: true });
 const argSalvar = process.argv.indexOf('--salvar');
@@ -52,13 +62,30 @@ const CAPTURAS = {
 // Endereço publicado (opcional). Sem ele, os testes rodam no build local.
 const NO_AR = process.env.BASE_URL?.replace(/\/$/, '');
 
-// Páginas: lidas dos .md aprovados; entram as que existem no build (ou todas, no endereço publicado).
-const paginas = readdirSync(join(raiz, 'src/content/pt-br')).filter((f) => f.endsWith('.md')).map((f) => {
-  const fm = readFileSync(join(raiz, 'src/content/pt-br', f), 'utf8').match(/^---\n([\s\S]*?)\n---/)[1];
-  const rota = fm.match(/^rota:\s*"?(.*?)"?$/m)[1];
-  return { nome: f.replace(/\.md$/, ''), rota };
-}).filter((p) => NO_AR || existsSync(join(raiz, 'dist', p.rota, 'index.html')))
-  .sort((a, b) => (a.rota === '/' ? -1 : b.rota === '/' ? 1 : a.rota.localeCompare(b.rota)));
+// Páginas: lidas dos .md aprovados dos dois idiomas; entram as que existem no build (ou, no
+// endereço publicado, as do português e, com o inglês publicado, as do inglês).
+const lerPaginas = (codigo) => {
+  const pasta = join(raiz, IDIOMAS[codigo].pasta);
+  if (!existsSync(pasta)) return [];
+  return readdirSync(pasta).filter((f) => f.endsWith('.md')).map((f) => {
+    const fm = readFileSync(join(pasta, f), 'utf8').match(/^---\n([\s\S]*?)\n---/)[1];
+    const pagina = fm.match(/^pagina:\s*"?(.*?)"?$/m)[1];
+    return { codigo, pagina, nome: codigo === IDIOMA_PADRAO ? pagina : `en-${pagina}`, rota: fm.match(/^rota:\s*"?(.*?)"?$/m)[1] };
+  });
+};
+const aprovadas = Object.keys(IDIOMAS).flatMap(lerPaginas);
+const paginas = aprovadas.filter((p) => (NO_AR ? p.codigo === IDIOMA_PADRAO || INGLES_PUBLICADO : existsSync(join(raiz, 'dist', p.rota, 'index.html'))))
+  .sort((a, b) => a.codigo.localeCompare(b.codigo) * -1 || (a.rota === '/' || a.rota === '/en/' ? -1 : b.rota === '/' || b.rota === '/en/' ? 1 : a.rota.localeCompare(b.rota)));
+// 404 de cada idioma: a do português sempre; a do inglês se existe no build (ou se está no ar).
+const existe404En = NO_AR ? INGLES_PUBLICADO : existsSync(join(raiz, 'dist/en/404/index.html'));
+const PAGINAS_404 = [
+  { codigo: 'pt-br', nome: '404', rota: '/rota-que-nao-existe/' },
+  ...(existe404En ? [{ codigo: 'en', nome: 'en-404', rota: '/en/rota-que-nao-existe/' }] : []),
+];
+// Destino esperado do seletor (D91, D108): o par da página; na 404, o início do outro idioma.
+const parDe = (p) => aprovadas.find((x) => x.codigo !== p.codigo && x.pagina === p.pagina);
+const inicioDe = (codigo) => aprovadas.find((x) => x.codigo === codigo && x.pagina === 'home');
+const destinoSeletor = (p) => (p.nome.endsWith('404') ? inicioDe(outroIdioma(p.codigo)) : parDe(p))?.rota;
 
 const PORTA = 4329;
 const BASE = NO_AR || `http://127.0.0.1:${PORTA}`;
@@ -84,6 +111,11 @@ async function novoContexto(opcoes) {
     await ctx.route(`${BASE}/**`, async (r) => {
       if (r.request().url() === `${BASE}/__axe.js`) return r.fallback();
       const resposta = await r.fetch();
+      // O astro preview responde com a 404 da raiz em qualquer endereço; no servidor, o
+      // dist/en/.htaccess troca, dentro de /en/, pela 404 em inglês. Aqui isso é emulado.
+      if (resposta.status() === 404 && existe404En && new URL(r.request().url()).pathname.startsWith('/en/')) {
+        return r.fulfill({ status: 404, headers: { ...resposta.headers(), ...CABECALHOS }, body: readFileSync(join(raiz, 'dist/en/404/index.html')) });
+      }
       await r.fulfill({ response: resposta, headers: { ...resposta.headers(), ...CABECALHOS } });
     });
   }
@@ -140,7 +172,7 @@ const TESTES = {
     }));
     // Estádio (D24, D55): alt vazio e a legenda T33.
     const estadio = await pagina.evaluate(() => ({ alt: document.querySelector('.estadio img')?.getAttribute('alt'), legenda: document.querySelector('.estadio figcaption')?.textContent }));
-    if (estadio.alt !== '' || !estadio.legenda?.startsWith('Imagine 30 mil pessoas')) erros.push(`${rotulo}: estádio sem alt vazio ou sem a legenda T33 (${JSON.stringify(estadio)})`);
+    if (estadio.alt !== '' || estadio.legenda?.trim() !== i18n.estadio_legenda) erros.push(`${rotulo}: estádio sem alt vazio ou sem a legenda T33 (${JSON.stringify(estadio)})`);
     const interativo = await pagina.locator('[data-bolha]').isVisible();
     const tira = await pagina.locator('[data-bolha-tira]').isVisible();
     if (c.nome === 'sem-js') {
@@ -275,7 +307,8 @@ const TESTES = {
     // Copiar o ABNT: texto simples, com a data do dia no padrão ABNT no lugar de "[data de acesso]".
     await pagina.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: BASE });
     const hoje = new Date();
-    const data = `${hoje.getDate()} ${i18n.citar.meses[hoje.getMonth()]} ${hoje.getFullYear()}`;
+    // Meses do ABNT sempre em português (D99).
+    const data = `${hoje.getDate()} ${ROTULOS['pt-br'].citar.meses[hoje.getMonth()]} ${hoje.getFullYear()}`;
     const botaoAbnt = pagina.locator('[data-copiar] button').first();
     await botaoAbnt.click();
     await pagina.waitForTimeout(150);
@@ -373,8 +406,107 @@ async function testarProgresso(pagina, rotulo) {
   await pagina.evaluate(() => scrollTo(0, 0));
 }
 
+// Seletor de idioma (D91, D101, D108). Onde há destino, os três seletores (cabeçalho, painel do
+// menu e rodapé) existem, com o nome acessível T50 do idioma da página, o idioma atual marcado e
+// o link certo; onde não há, nenhum. Visíveis: o do cabeçalho a partir de 1024 px, o do painel só
+// com o menu aberto (abaixo de 1024 px) e o do rodapé sempre.
+async function testarSeletor(pagina, rotulo, pg, w) {
+  const destino = destinoSeletor(pg);
+  const base = new URL(BASE).pathname.replace(/\/$/, '');
+  const outro = outroIdioma(pg.codigo);
+  const nomes = ROTULOS[pg.codigo].seletor_idioma;
+  const sel = await pagina.evaluate(() => [...document.querySelectorAll('[data-seletor-idioma]')].map((n) => {
+    const r = n.getBoundingClientRect();
+    const a = n.querySelector('a');
+    const atual = n.querySelector('[aria-current="true"]');
+    return {
+      onde: n.closest('header details') ? 'painel' : n.closest('header') ? 'cabecalho' : n.closest('footer') ? 'rodape' : '?',
+      nome: n.getAttribute('aria-label'),
+      // checkVisibility enxerga o conteúdo de um <details> fechado (content-visibility).
+      visivel: r.width > 0 && r.height > 0 && n.checkVisibility({ visibilityProperty: true, contentVisibilityAuto: true }),
+      atual: atual && { lang: atual.getAttribute('lang'), texto: atual.textContent.trim(), tag: atual.tagName },
+      link: a && { href: a.getAttribute('href'), lang: a.getAttribute('lang'), hreflang: a.getAttribute('hreflang'), texto: a.textContent.trim() },
+      textos: [...n.querySelectorAll('li')].filter((li) => !li.closest('[aria-hidden="true"]')).map((li) => li.textContent.trim()),
+    };
+  }));
+  if (!destino) {
+    if (sel.length) erros.push(`${rotulo}: seletor de idioma sem destino (sem par)`);
+    return;
+  }
+  if (sel.map((x) => x.onde).join() !== 'cabecalho,painel,rodape') erros.push(`${rotulo}: seletores em ${sel.map((x) => x.onde).join() || 'nenhum lugar'} (esperado cabeçalho, painel e rodapé)`);
+  for (const x of sel) {
+    if (x.nome !== nomes.nome) erros.push(`${rotulo}: seletor (${x.onde}) com nome acessível "${x.nome}" (esperado o T50 do idioma da página: "${nomes.nome}")`);
+    if (x.atual?.lang !== IDIOMAS[pg.codigo].lang || x.atual?.texto !== nomes.idiomas[pg.codigo] || x.atual?.tag === 'A') erros.push(`${rotulo}: seletor (${x.onde}) com o idioma atual errado: ${JSON.stringify(x.atual)}`);
+    const certo = { href: `${base}${destino}`, lang: IDIOMAS[outro].lang, hreflang: IDIOMAS[outro].hreflang, texto: nomes.idiomas[outro] };
+    if (JSON.stringify(x.link) !== JSON.stringify(certo)) erros.push(`${rotulo}: seletor (${x.onde}) com link ${JSON.stringify(x.link)} (esperado ${JSON.stringify(certo)})`);
+    if (x.textos.join(' · ') !== [nomes.idiomas['pt-br'], nomes.idiomas.en].join(' · ')) erros.push(`${rotulo}: seletor (${x.onde}) com texto ${JSON.stringify(x.textos)} (T51)`);
+  }
+  const vis = Object.fromEntries(sel.map((x) => [x.onde, x.visivel]));
+  if (vis.cabecalho !== (w >= 1024) || vis.painel || !vis.rodape) erros.push(`${rotulo}: visibilidade dos seletores ${JSON.stringify(vis)} em ${w}px`);
+  // Abaixo de 1024 px: com o menu aberto, o seletor aparece no topo do painel.
+  if (w < 1024) {
+    await pagina.evaluate(() => scrollTo(0, 0));
+    await pagina.locator('header details summary').click();
+    const painel = await pagina.evaluate(() => {
+      const n = document.querySelector('header details [data-seletor-idioma]');
+      const lista = document.querySelector('header details nav:not([data-seletor-idioma]) > ul');
+      const r = n.getBoundingClientRect();
+      return { visivel: r.width > 0 && r.height > 0 && n.checkVisibility({ visibilityProperty: true }), acima: r.bottom <= lista.getBoundingClientRect().top + 1, dentro: r.right <= innerWidth };
+    });
+    if (!painel.visivel || !painel.acima || !painel.dentro) erros.push(`${rotulo}: seletor no painel do menu fora do lugar: ${JSON.stringify(painel)}`);
+    await pagina.locator('header details summary').click();
+  }
+  // Teclado: o link do seletor visível no topo da página é alcançado com Tab.
+  await pagina.evaluate(() => { scrollTo(0, 0); document.activeElement?.blur(); });
+  if (w < 1024) await pagina.locator('header details summary').click();
+  let alcancou = false;
+  for (let k = 0; k < 30 && !alcancou; k++) {
+    await pagina.keyboard.press('Tab');
+    alcancou = await pagina.evaluate(() => Boolean(document.activeElement?.closest('header [data-seletor-idioma]')) && document.activeElement.tagName === 'A');
+  }
+  if (!alcancou) erros.push(`${rotulo}: o link do seletor no ${w < 1024 ? 'painel do menu' : 'cabeçalho'} não é alcançado com Tab`);
+  if (w < 1024) await pagina.locator('header details summary').click();
+  await pagina.evaluate(() => document.activeElement?.blur());
+}
+
+// Cabeçalho entre 1024 e 1280 px (risco 5 do plano da versão em inglês), nas páginas com seletor:
+// a altura do cabeçalho não muda, cada item fica numa linha, nada se sobrepõe, sem rolagem
+// horizontal. Guarda uma imagem do cabeçalho de cada largura na pasta de rascunho.
+const LARGURAS_CABECALHO = [1024, 1152, 1280];
+async function testarCabecalho(pg, url) {
+  for (const w of LARGURAS_CABECALHO) {
+    const ctx = await novoContexto({ viewport: { width: w, height: 900 }, deviceScaleFactor: 2 });
+    const pagina = await ctx.newPage();
+    const rotulo = `${pg.nome} cabeçalho ${w}px`;
+    await pagina.goto(url, { waitUntil: 'networkidle' });
+    await pagina.evaluate(() => document.fonts.ready.then(() => true));
+    const g = await pagina.evaluate(() => {
+      const caixa = (el) => { const r = el.getBoundingClientRect(); return { x0: r.left, x1: r.right, y0: r.top, y1: r.bottom, linhas: el.getClientRects().length, texto: el.textContent.trim() }; };
+      const header = document.querySelector('header');
+      const marca = header.querySelector(':scope > div > a');
+      const itens = [...header.querySelectorAll(':scope > div > nav:not([data-seletor-idioma]) li a')];
+      const seletor = header.querySelector(':scope > div > [data-seletor-idioma]');
+      const partes = [marca, ...itens, ...(seletor ? [...seletor.querySelectorAll('li > a, li > span')] : [])].map(caixa);
+      return { altura: header.getBoundingClientRect().height, partes, excedente: document.documentElement.scrollWidth - document.documentElement.clientWidth, temSeletor: Boolean(seletor) };
+    });
+    if (!g.temSeletor) erros.push(`${rotulo}: sem seletor no cabeçalho`);
+    if (Math.round(g.altura) !== 49) erros.push(`${rotulo}: cabeçalho com ${g.altura}px de altura (esperado 49, uma linha)`);
+    if (g.excedente > 0) erros.push(`${rotulo}: rolagem horizontal de ${g.excedente}px`);
+    g.partes.forEach((p) => { if (p.linhas !== 1) erros.push(`${rotulo}: "${p.texto}" quebrou em ${p.linhas} linhas`); });
+    for (let i = 1; i < g.partes.length; i++) {
+      const [a, b] = [g.partes[i - 1], g.partes[i]];
+      if (b.x0 < a.x1) erros.push(`${rotulo}: "${a.texto}" e "${b.texto}" se sobrepõem (${a.x1.toFixed(1)} > ${b.x0.toFixed(1)})`);
+    }
+    const folga = g.partes.length > 1 ? (g.partes[1].x0 - g.partes[0].x1).toFixed(0) : '-';
+    resumo.push(`${rotulo.padEnd(36)} altura ${Math.round(g.altura)}px · folga entre o título e o menu ${folga}px · excedente ${g.excedente}px`);
+    await pagina.locator('header').screenshot({ path: join(rascunho, `cabecalho-${pg.nome}-${w}.png`) });
+    await ctx.close();
+  }
+}
+
 for (const pg of paginas) {
   const URL_ = `${BASE}${pg.rota}`;
+  i18n = ROTULOS[pg.codigo];
   for (const c of cenarios) {
     for (const w of larguras) {
       const ctx = await novoContexto({ viewport: { width: w, height: altura(w) }, deviceScaleFactor: 1, ...c.opcoes });
@@ -423,7 +555,7 @@ for (const pg of paginas) {
         const ids = await ps.evaluate(() => [...document.querySelectorAll('[data-bloco]')].map((b) => b.dataset.bloco));
         for (const id of ids.reverse()) {
           await ps.evaluate((a) => document.querySelector(`[data-bloco="${a}"]`).scrollIntoView(), id);
-          await ps.waitForTimeout(pg.nome === 'home' ? 1800 : 600);
+          await ps.waitForTimeout(pg.pagina === 'home' ? 1800 : 600);
           const escondidos = await ps.evaluate((a) => [...document.querySelectorAll(`[data-bloco="${a}"] :is(h1,h2,h3,p,li,td)`)]
             .filter((e) => { const r = e.getBoundingClientRect(); return r.top < innerHeight * 0.85 && r.bottom > 0 && !e.closest('[aria-hidden="true"]'); })
             .filter((e) => { let op = 1; for (let x = e; x; x = x.parentElement) op *= Number(getComputedStyle(x).opacity); return op < 0.99; })
@@ -447,7 +579,8 @@ for (const pg of paginas) {
         await pagina.evaluate(() => document.activeElement.blur());
       }
 
-      if (TESTES[pg.nome]) await TESTES[pg.nome](pagina, rotulo, c, w);
+      if (TESTES[pg.pagina]) await TESTES[pg.pagina](pagina, rotulo, c, w);
+      await testarSeletor(pagina, rotulo, pg, w);
       await testarProgresso(pagina, rotulo);
       await testarNumeros(pagina, rotulo);
 
@@ -460,10 +593,10 @@ for (const pg of paginas) {
       }
 
       await pagina.screenshot({ path: join(rascunho, `${pg.nome}-${c.nome}-${w}.jpg`), fullPage: true, type: 'jpeg', quality: 70 });
-      const config = CAPTURAS[pg.nome];
+      const config = CAPTURAS[pg.pagina];
       const versionada = salvar.has(pg.nome) && config && c.nome === 'normal' && (w === 375 || w === 1440);
       if (versionada) {
-        const pasta = join(raiz, 'docs/capturas', config.pasta);
+        const pasta = join(raiz, 'docs/capturas', pg.codigo === IDIOMA_PADRAO ? config.pasta : 'ingles');
         mkdirSync(pasta, { recursive: true });
         // Só aparência: sem os cabeçalhos, porque a CSP barraria o estilo que tira o cabeçalho fixo da
         // imagem. A CSP já foi testada no contexto principal desta mesma combinação.
@@ -476,7 +609,7 @@ for (const pg of paginas) {
           // Percorre o bloco inteiro antes da captura, para que todas as animações tenham disparado.
           const caixa = await loc.evaluate((el) => { const r = el.getBoundingClientRect(); return { topo: r.top + scrollY, altura: r.height }; });
           for (let y = caixa.topo - 200; y <= caixa.topo + caixa.altura; y += 300) { await p2.evaluate((v) => scrollTo(0, v), y); await p2.waitForTimeout(150); }
-          await p2.waitForTimeout(pg.nome === 'home' ? 2600 : 900);
+          await p2.waitForTimeout(pg.pagina === 'home' ? 2600 : 900);
           // O cabeçalho fixo e a barra de progresso se repetiriam no meio da imagem do bloco.
           await loc.screenshot({ path: join(pasta, `${config.prefixo}${b}-${w}.jpg`), type: 'jpeg', quality: 70, style: 'header{position:static!important}[data-progresso]{display:none!important}' });
         }
@@ -488,23 +621,43 @@ for (const pg of paginas) {
   }
 }
 
-// Página 404: status, sem rolagem horizontal, sem violação do axe; captura versionada com a home.
-for (const w of larguras) {
-  for (const c of cenarios) {
-    const ctx = await novoContexto({ viewport: { width: w, height: altura(w) }, deviceScaleFactor: salvar.has('home') && c.nome === 'normal' && w !== 768 ? 2 : 1, ...c.opcoes });
-    const pagina = await ctx.newPage();
-    const rotulo = `404 ${c.nome} ${w}px`;
-    pagina.on('pageerror', (e) => erros.push(`${rotulo}: erro de JS: ${e.message}`));
-    const resp = await pagina.goto(`${BASE}/rota-que-nao-existe/`, { waitUntil: 'networkidle' });
-    if (resp.status() !== 404) erros.push(`${rotulo}: status ${resp.status()} (esperado 404)`);
-    const excedente = await pagina.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    if (excedente > 0) erros.push(`${rotulo}: rolagem horizontal de ${excedente}px`);
-    if (c.nome === 'movimento-reduzido') (await axe(pagina)).forEach((v) => erros.push(`${rotulo}: axe: ${v}`));
-    if (salvar.has('home') && c.nome === 'normal' && w !== 768) await pagina.screenshot({ path: join(raiz, 'docs/capturas/fase-3', `404-${w}.jpg`), type: 'jpeg', quality: 70 });
-    await ctx.close();
+// Páginas 404 de cada idioma: status, título, sem rolagem horizontal, sem violação do axe, link
+// de pular no primeiro Tab, seletor (D108); a do português com captura versionada junto da home.
+for (const pg of PAGINAS_404) {
+  i18n = ROTULOS[pg.codigo];
+  for (const w of larguras) {
+    for (const c of cenarios) {
+      const versionada = pg.codigo === IDIOMA_PADRAO && salvar.has('home') && c.nome === 'normal' && w !== 768;
+      const ctx = await novoContexto({ viewport: { width: w, height: altura(w) }, deviceScaleFactor: versionada ? 2 : 1, ...c.opcoes });
+      const pagina = await ctx.newPage();
+      const rotulo = `${pg.nome} ${c.nome} ${w}px`;
+      pagina.on('pageerror', (e) => erros.push(`${rotulo}: erro de JS: ${e.message}`));
+      pagina.on('request', (r) => { if (!r.url().startsWith(BASE) && !r.url().startsWith('data:')) erros.push(`${rotulo}: requisição para fora: ${r.url()}`); });
+      const resp = await pagina.goto(`${BASE}${pg.rota}`, { waitUntil: 'networkidle' });
+      if (resp.status() !== 404) erros.push(`${rotulo}: status ${resp.status()} (esperado 404)`);
+      const h1 = await pagina.evaluate(() => document.querySelector('h1')?.textContent.trim());
+      if (h1 !== i18n.nao_encontrada) erros.push(`${rotulo}: título "${h1}" (esperado "${i18n.nao_encontrada}")`);
+      const excedente = await pagina.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      if (excedente > 0) erros.push(`${rotulo}: rolagem horizontal de ${excedente}px`);
+      if (c.nome === 'movimento-reduzido') (await axe(pagina)).forEach((v) => erros.push(`${rotulo}: axe: ${v}`));
+      if (c.nome !== 'sem-js' || w === 375) {
+        await pagina.evaluate(() => { scrollTo(0, 0); document.activeElement?.blur(); });
+        await pagina.keyboard.press('Tab');
+        const foco = await pagina.evaluate(() => document.activeElement.getAttribute('href'));
+        if (foco !== '#conteudo') erros.push(`${rotulo}: primeiro Tab não leva ao link de pular (${foco})`);
+        await pagina.evaluate(() => document.activeElement.blur());
+      }
+      await testarSeletor(pagina, rotulo, pg, w);
+      if (versionada) await pagina.screenshot({ path: join(raiz, 'docs/capturas/fase-3', `404-${w}.jpg`), type: 'jpeg', quality: 70 });
+      await ctx.close();
+    }
   }
+  resumo.push(`${pg.nome}: 9 combinações testadas (status, título, rolagem horizontal, axe, teclado, seletor)`);
 }
-resumo.push('404: 9 combinações testadas (status, rolagem horizontal, axe)');
+
+// Cabeçalho entre 1024 e 1280 px em toda página (e 404) com seletor.
+for (const pg of [...paginas, ...PAGINAS_404].filter((p) => destinoSeletor(p))) await testarCabecalho(pg, `${BASE}${pg.rota}`);
+
 await navegador.close();
 servidor?.kill();
 

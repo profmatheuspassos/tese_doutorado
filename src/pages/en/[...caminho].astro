@@ -1,0 +1,36 @@
+---
+/**
+ * Rotas da versão em inglês (D91, D92), todas a partir de um arquivo só. Com a chave desligada
+ * (inglesAtivo() falso, src/lib/site.mjs), getStaticPaths devolve lista vazia: nenhuma rota /en/
+ * existe no build. Ligada, gera as páginas em inglês que já existem em src/content/en/ (home,
+ * capítulos com composição, "About"). A 404 em inglês tem rota própria (src/pages/en/[erro].astro),
+ * para levar só o CSS da 404, como a 404 em português.
+ */
+import Home from '../../components/paginas/Home.astro';
+import Sobre from '../../components/paginas/Sobre.astro';
+import Capitulo1 from '../../components/capitulos/Capitulo1.astro';
+import Capitulo2 from '../../components/capitulos/Capitulo2.astro';
+import Capitulo3 from '../../components/capitulos/Capitulo3.astro';
+import Capitulo4 from '../../components/capitulos/Capitulo4.astro';
+import Capitulo5 from '../../components/capitulos/Capitulo5.astro';
+import { getCollection } from 'astro:content';
+import { idioma } from '../../lib/idiomas.mjs';
+import { inglesAtivo } from '../../lib/site.mjs';
+
+export async function getStaticPaths() {
+  if (!inglesAtivo()) return [];
+  const { colecao, prefixo } = idioma('en');
+  const capitulos = { 1: Capitulo1, 2: Capitulo2, 3: Capitulo3, 4: Capitulo4, 5: Capitulo5 } as Record<number, typeof Capitulo1>;
+  const paginas = (await getCollection(colecao)).map((p) => {
+    if (!p.data.rota.startsWith(prefixo)) throw new Error(`Rota em inglês fora de ${prefixo}: ${p.data.rota}`);
+    const caminho = p.data.rota.slice(prefixo.length).replace(/\/$/, '') || undefined;
+    const Composicao = p.data.pagina === 'home' ? Home : p.data.pagina === 'sobre' ? Sobre : capitulos[p.data.capitulo ?? 0];
+    if (!Composicao) throw new Error(`Página em inglês sem composição: ${p.data.pagina}`);
+    return { params: { caminho }, props: { Composicao } };
+  });
+  return paginas;
+}
+
+const { Composicao } = Astro.props;
+---
+<Composicao idioma="en" />

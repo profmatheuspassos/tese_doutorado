@@ -1,0 +1,27 @@
+---
+/**
+ * Corpo da página 404 (T9, T10), no idioma pedido. Em português, src/pages/404.astro; em inglês,
+ * /en/404/ (src/pages/en/[...caminho].astro), servida pelo dist/en/.htaccess. "Voltar ao início"
+ * leva ao início do idioma, ou ao início em português se ele ainda não existe (pré-visualização).
+ */
+import Base from '../../layouts/Base.astro';
+import Sementes from '../motivo/Sementes.astro';
+import { t } from '../../i18n';
+import { inicioDe, url } from '../../lib/paginas';
+import type { CodigoIdioma } from '../../lib/idiomas.mjs';
+
+interface Props { idioma: CodigoIdioma }
+const { idioma } = Astro.props;
+const inicio = (await inicioDe(idioma)) ?? '/';
+---
+<Base titulo={t('titulo_pagina', { titulo: t('nao_encontrada', {}, idioma) }, idioma)} indexar={false}>
+  <section class="secao-clara margem mx-auto flex min-h-[calc(100svh-3rem)] max-w-(--container-figura) flex-col justify-center py-24" data-ui>
+    <Sementes class="mb-10 h-6 w-28 text-semente" />
+    <h1 class="max-w-[16ch] text-titulo font-extrabold text-tinta text-balance">{t('nao_encontrada', {}, idioma)}</h1>
+    <p class="mt-8">
+      <a class="link-capitulo" href={url(inicio)}>
+        <span class="link-capitulo-texto">{t('voltar_inicio', {}, idioma)}</span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+      </a>
+    </p>
+  </section>
+</Base>

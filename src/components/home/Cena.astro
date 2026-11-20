@@ -3,6 +3,9 @@ import type { Bloco } from '../../lib/blocos';
 import { comAtributos, envolverTrecho } from '../../lib/blocos';
 import { url } from '../../lib/paginas';
 import { ancora } from '../../lib/ancoras';
+import { idiomaAtual } from '../../i18n';
+
+const idioma = idiomaAtual(Astro.url);
 
 interface Props { bloco: Bloco }
 const { bloco } = Astro.props;
@@ -28,7 +31,7 @@ const r = (el: string, extra: Record<string, string> = {}) => comAtributos(el, {
       <Fragment set:html={r(h2)} />
       <Fragment set:html={r(p1, { 'data-passo': '1' })} />
       <Fragment set:html={r(p2, { 'data-passo': '2' })} />
-      <Fragment set:html={r(envolverTrecho(p3, ancora('home', 'naoBasta'),'cena-nao-basta'), { 'data-passo': '3' })} />
+      <Fragment set:html={r(envolverTrecho(p3, ancora('home', 'naoBasta', idioma),'cena-nao-basta'), { 'data-passo': '3' })} />
     </div>
   </div>
 </section>

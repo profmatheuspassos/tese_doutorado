@@ -10,17 +10,18 @@ import Imagem from '../site/Imagem.astro';
 import Bolha from '../interativos/Bolha.astro';
 import { pagina } from '../../lib/paginas';
 import { rotularCelulas, usarBlocos } from '../../lib/blocos';
-import { t } from '../../i18n';
+import { rotulosDe } from '../../i18n';
 import { ancora } from '../../lib/ancoras';
+const { t, idioma } = rotulosDe(Astro.url);
 
-const { dados: meta, blocos } = await pagina('capitulo-3');
+const { dados: meta, blocos } = await pagina('capitulo-3', idioma);
 const { b, conferir } = usarBlocos(blocos, 'capitulo-3');
 const B0 = b('B0');
 const [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10', 'B11'].map(b);
 conferir();
 
 // B2 — o estádio entra depois do primeiro parágrafo ("... é impossível").
-if (!B2.elementos[1]?.includes(ancora('capitulo-3', 'impossivel'))) throw new Error('capitulo-3 B2: o primeiro parágrafo mudou de lugar.');
+if (!B2.elementos[1]?.includes(ancora('capitulo-3', 'impossivel', idioma))) throw new Error('capitulo-3 B2: o primeiro parágrafo mudou de lugar.');
 // B6 — a bolha entra depois do último parágrafo.
 const fimB6 = B6.elementos.length - 1;
 // B8 — tabela dos sete problemas.

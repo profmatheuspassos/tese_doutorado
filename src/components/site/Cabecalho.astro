@@ -1,16 +1,23 @@
 ---
-import { getEntry } from 'astro:content';
-import { t } from '../../i18n';
-import { capitulos, sobre, url } from '../../lib/paginas';
+/**
+ * Cabeçalho fixo: título do site, menu (a partir de 1024 px) ou botão "Menu" com painel (abaixo).
+ * Itens do idioma da página (src/lib/paginas.ts, navegacao). Com a prop seletor (a rota de destino),
+ * o seletor de idioma entra à direita do menu a partir de 1024 px e no topo do painel abaixo disso
+ * (D101). Sem ela, a marcação é exatamente a de antes da versão em inglês.
+ */
+import { rotulosDe } from '../../i18n';
+import { navegacao, url } from '../../lib/paginas';
+import SeletorIdioma from './SeletorIdioma.astro';
 
-const home = await getEntry('paginas', 'home');
-const caps = await capitulos();
-const pSobre = await sobre();
+interface Props { seletor?: string }
+const { seletor } = Astro.props;
+const { t, idioma } = rotulosDe(Astro.url);
+const nav = await navegacao(idioma);
 const atual = Astro.url.pathname;
-const itens: { rota: string; curto: string; longo: string; prefixo?: string }[] = [
-  { rota: '/', curto: t('inicio'), longo: t('inicio') },
-  ...caps.map((c) => ({ rota: c.rota, curto: t('capitulo', { n: c.n }), longo: c.titulo, prefixo: t('capitulo', { n: c.n }) })),
-  { rota: pSobre.rota, curto: pSobre.titulo, longo: pSobre.titulo },
+const itens: { rota: string; curto: string; longo: string; prefixo?: string; lang?: string }[] = [
+  { rota: nav.inicio.rota, curto: t('inicio'), longo: t('inicio') },
+  ...nav.capitulos.map((c) => ({ rota: c.rota, curto: t('capitulo', { n: c.n }), longo: c.titulo, prefixo: t('capitulo', { n: c.n }), lang: c.lang })),
+  { rota: nav.sobre.rota, curto: nav.sobre.titulo, longo: nav.sobre.titulo, lang: nav.sobre.lang },
 ];
 const ehAtual = (rota: string) => atual === url(rota);
 ---
@@ -19,9 +26,9 @@ const ehAtual = (rota: string) => atual === url(rota);
   class="sticky top-0 z-40 border-b border-tinta/10 bg-branco/85 backdrop-blur-xl backdrop-saturate-150"
 >
   <div class="margem mx-auto flex h-12 max-w-(--container-figura) items-center justify-between gap-4">
-    <a href={url('/')} class="text-[0.9375rem] font-semibold tracking-tight text-tinta">{home!.data.titulo}</a>
+    <a href={url(nav.inicio.rota)} class="text-[0.9375rem] font-semibold tracking-tight text-tinta" lang={nav.inicio.lang}>{nav.inicio.titulo}</a>
 
-    <nav aria-label={t('menu')} class="hidden lg:block">
+    <nav aria-label={t('menu')} class:list={['hidden lg:block', seletor && 'ml-auto']}>
       <ul class="flex items-center gap-5 text-[0.8125rem] text-tinta-2">
         {itens.map((i) => (
           <li>
@@ -29,11 +36,13 @@ const ehAtual = (rota: string) => atual === url(rota);
               href={url(i.rota)}
               aria-current={ehAtual(i.rota) ? 'page' : undefined}
               class:list={['transition-colors hover:text-tinta', ehAtual(i.rota) && 'font-semibold text-tinta']}
+              lang={i.curto === i.longo ? i.lang : undefined}
             >{i.curto}</a>
           </li>
         ))}
       </ul>
     </nav>
+    {seletor && <SeletorIdioma destino={seletor} class="hidden border-l border-tinta/15 pl-4 text-[0.8125rem] lg:block" />}
 
     <details class="menu relative lg:hidden">
       <summary
@@ -43,6 +52,7 @@ const ehAtual = (rota: string) => atual === url(rota);
         {t('menu')}
       </summary>
       <nav aria-label={t('menu')} class="absolute right-0 mt-2 w-[min(22rem,calc(100vw-2rem))] rounded-cartao border border-tinta/10 bg-branco p-2 shadow-[0_12px_40px_-12px_rgb(15_17_20/0.25)]">
+        {seletor && <SeletorIdioma destino={seletor} class="mb-1 border-b border-tinta/10 px-3 pt-1.5 pb-3 text-[0.875rem]" />}
         <ul>
           {itens.map((i) => (
             <li>
@@ -52,7 +62,7 @@ const ehAtual = (rota: string) => atual === url(rota);
                 class="block rounded-lg px-3 py-2.5 hover:bg-nevoa"
               >
                 {i.prefixo && <span class="block text-[0.8125rem] text-tinta-2">{i.prefixo}</span>}
-                <span class="block text-[0.9375rem] font-medium text-tinta">{i.longo}</span>
+                <span class="block text-[0.9375rem] font-medium text-tinta" lang={i.lang}>{i.longo}</span>
               </a>
             </li>
           ))}

@@ -7,7 +7,8 @@
  */
 import Ramo from '../motivo/Ramo.astro';
 import Solo from '../motivo/Solo.astro';
-import { t } from '../../i18n';
+import { rotulosDe } from '../../i18n';
+const { t } = rotulosDe(Astro.url);
 ---
 <div class="crescimento largo" aria-hidden="true" data-ui data-crescimento>
   <div class="crescimento-pais crescimento-pt">

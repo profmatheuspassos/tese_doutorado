@@ -1,0 +1,9 @@
+# Dependências do scripts/legibilidade_en.py (D89). Só para medir no computador; não entram no
+# build nem no site. Versões fixadas, com as dependências também fixadas.
+#   python3 -m venv .venv-legibilidade && .venv-legibilidade/bin/pip install -r scripts/requirements-legibilidade.txt
+# O cmudict tem licença GPL-3.0-or-later: é instalado à parte e só importado pelo script; nada
+# dele é copiado para o repositório.
+cmudict==1.1.3
+importlib-metadata==10.1.0
+importlib-resources==7.1.0
+zipp==4.1.2

@@ -5,7 +5,8 @@
  * Cor neutra (tinta): vale para os dois países. Horizontal a partir de 640 px; vertical no
  * celular. Os nós aparecem em sequência ao entrar na tela (data-anima, só com movimento normal).
  */
-import { lista } from '../../i18n';
+import { rotulosDe } from '../../i18n';
+const { lista } = rotulosDe(Astro.url);
 
 const etapas = lista('linha_do_tempo');
 if (etapas.length !== 3) throw new Error('A linha do tempo precisa de três etapas (T18).');

@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
  * Roda o Lighthouse (pacote local) sobre o build, no celular e no desktop, com o Chromium já
- * instalado no ambiente, em todas as páginas que o build tem (lidas dos .md aprovados).
- * Falha se alguma categoria ficar abaixo de 90. A home no celular, onde a nota oscila mais, roda
+ * instalado no ambiente, em todas as páginas que o build tem (lidas dos .md aprovados dos dois
+ * idiomas; o inglês só existe no build com INGLES=1 ou com o inglês publicado).
+ * Falha se alguma categoria ficar abaixo de 90. A home de cada idioma no celular, onde a nota oscila mais, roda
  * RODADAS_HOME vezes (padrão 5): todas precisam passar, e o resumo registra a pior rodada, com as
  * notas de desempenho de todas. Só o resumo vai para o repositório
  * (docs/capturas/fase-4/lighthouse/resumo.md, D59); os relatórios JSON completos ficam numa pasta
@@ -16,6 +17,8 @@ import { spawn, execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { IDIOMAS, IDIOMA_PADRAO } from '../src/lib/idiomas.mjs';
+import { INGLES_PUBLICADO } from '../src/lib/site.mjs';
 
 const raiz = new URL('..', import.meta.url).pathname;
 const PORTA = 4331;
@@ -29,9 +32,17 @@ const rascunho = process.env.LIGHTHOUSE_RASCUNHO || join(tmpdir(), 'lighthouse')
 mkdirSync(pasta, { recursive: true });
 mkdirSync(rascunho, { recursive: true });
 
-const paginas = readdirSync(join(raiz, 'src/content/pt-br')).filter((f) => f.endsWith('.md')).map((f) => {
-  const fm = readFileSync(join(raiz, 'src/content/pt-br', f), 'utf8').match(/^---\n([\s\S]*?)\n---/)[1];
-  return { nome: f.replace(/\.md$/, ''), rota: fm.match(/^rota:\s*"?(.*?)"?$/m)[1] };
+// Páginas dos dois idiomas (src/lib/idiomas.mjs) que existem no build; no endereço publicado, as
+// do português e, com o inglês publicado, também as do inglês. Nomes: "home", "capitulo-2"... e
+// "en-home", "en-capitulo-2"... A home de cada idioma roda RODADAS_HOME vezes no celular (D67).
+const paginas = Object.entries(IDIOMAS).flatMap(([codigo, i]) => {
+  const pasta = join(raiz, i.pasta);
+  if (!existsSync(pasta) || (NO_AR && codigo !== IDIOMA_PADRAO && !INGLES_PUBLICADO)) return [];
+  return readdirSync(pasta).filter((f) => f.endsWith('.md')).map((f) => {
+    const fm = readFileSync(join(pasta, f), 'utf8').match(/^---\n([\s\S]*?)\n---/)[1];
+    const pagina = fm.match(/^pagina:\s*"?(.*?)"?$/m)[1];
+    return { pagina, nome: codigo === IDIOMA_PADRAO ? pagina : `en-${pagina}`, rota: fm.match(/^rota:\s*"?(.*?)"?$/m)[1] };
+  });
 }).filter((p) => NO_AR || existsSync(join(raiz, 'dist', p.rota, 'index.html')))
   .sort((a, b) => (a.rota === '/' ? -1 : b.rota === '/' ? 1 : a.rota.localeCompare(b.rota)));
 
@@ -49,7 +60,7 @@ let categorias = [];
 try {
   for (const pg of paginas) {
     for (const modo of ['celular', 'desktop']) {
-      const vezes = pg.nome === 'home' && modo === 'celular' ? RODADAS_HOME : 1;
+      const vezes = pg.pagina === 'home' && modo === 'celular' ? RODADAS_HOME : 1;
       const rodadas = [];
       for (let k = 0; k < vezes; k++) {
         const saida = join(rascunho, `${pg.nome}-${modo}${vezes > 1 ? `-${k + 1}` : ''}.json`);

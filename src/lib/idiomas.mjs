@@ -2,8 +2,8 @@
  * Idiomas do site (D91, D92). Tabela única, usada pelo site (src/) e pelas conferências
  * (scripts/), para que o texto publicado e o texto conferido usem as mesmas regras.
  *
- * Etapa 2a da versão em inglês: só o português está registrado. A entrada do inglês entra na
- * Etapa 2b, com os rótulos aprovados (docs/PLANO-INGLES.md).
+ * O inglês está registrado desde a Etapa 2b, mas só gera páginas com a chave ligada
+ * (inglesAtivo(), src/lib/site.mjs). Com a chave desligada, nenhuma rota /en/ existe.
  *
  * Campos de cada idioma:
  *  - pasta: textos aprovados (Markdown);
@@ -11,7 +11,8 @@
  *  - prefixo: começo das rotas do idioma ("/" para o português);
  *  - lang: atributo lang do <html>; ogLocale: og:locale; hreflang: valor do hreflang;
  *  - locale: locale do Intl para números;
- *  - rotulos: arquivo dos rótulos de interface.
+ *  - rotulos: arquivo dos rótulos de interface;
+ *  - licencaCc: link da licença CC BY-NC-ND 4.0 no rodapé (T49, D76), na língua da página.
  */
 export const IDIOMAS = {
   'pt-br': {
@@ -23,6 +24,18 @@ export const IDIOMAS = {
     hreflang: 'pt-BR',
     locale: 'pt-BR',
     rotulos: 'src/i18n/pt-br.json',
+    licencaCc: 'https://creativecommons.org/licenses/by-nc-nd/4.0/deed.pt-br',
+  },
+  en: {
+    pasta: 'src/content/en',
+    colecao: 'paginasEn',
+    prefixo: '/en/',
+    lang: 'en-US',
+    ogLocale: 'en_US',
+    hreflang: 'en',
+    locale: 'en-US',
+    rotulos: 'src/i18n/en.json',
+    licencaCc: 'https://creativecommons.org/licenses/by-nc-nd/4.0/deed.en',
   },
 };
 
@@ -38,9 +51,12 @@ export function idioma(codigo = IDIOMA_PADRAO) {
 /** Locale do Intl de um idioma ("pt-br" → "pt-BR"). */
 export const localeDe = (codigo = IDIOMA_PADRAO) => idioma(codigo).locale;
 
+/** O outro idioma do site (são dois). */
+export const outroIdioma = (codigo = IDIOMA_PADRAO) => (codigo === 'en' ? 'pt-br' : 'en');
+
 /**
  * Idioma de uma rota do site. Tira o caminho-base da publicação (BASE_PATH) e escolhe o idioma
- * de prefixo mais longo que casa com o começo da rota. Com só o português, é sempre "pt-br".
+ * de prefixo mais longo que casa com o começo da rota ("/en/..." é inglês; o resto, português).
  */
 export function idiomaDaRota(rota, caminhoBase = '/') {
   const baseSemBarra = caminhoBase.replace(/\/$/, '');

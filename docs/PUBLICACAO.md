@@ -21,8 +21,28 @@ primeiro merge depois da D78).
    commit novo na `publicacao` e, com a implantação automática ligada, copia a branch para
    `public_html/tese`.
 
-Em pull requests para a `main`, o mesmo workflow roda só o build com as conferências, sem
-publicar. Para republicar sem mudar nada: GitHub → Actions → Publicar → "Run workflow".
+Em pull requests para a `main`, o mesmo workflow roda dois builds com todas as conferências, sem
+publicar: primeiro um de pré-visualização com o inglês ligado (`INGLES=1`), depois o build como vai
+ao ar. No merge, só o segundo roda. Para republicar sem mudar nada: GitHub → Actions → Publicar →
+"Run workflow".
+
+## Versão em inglês: a chave (D92)
+
+A versão em inglês fica desligada no ar até o lançamento por uma chave única,
+`INGLES_PUBLICADO = false` em `src/lib/site.mjs`. Desligada, o build de produção não tem nenhuma
+rota `/en/`, nenhum seletor de idioma, nenhum `hreflang` e o sitemap de sempre. A variável
+`INGLES=1` liga o inglês só para pré-visualizar (build local e o build extra dos pull requests);
+não publica nada. Travas:
+
+- o `conferir-publicacao`, no build, falha se o build desligado tiver `dist/en/`, `hreflang`,
+  `og:locale:alternate`, alternates no sitemap ou seletor; e, no GitHub Actions, falha se
+  `INGLES=1` aparecer fora de pull request;
+- o `conferir:publicado`, no ar, confere que `/en/` e `/en/404/` respondem 404 com a página em
+  português e que nenhuma página tem `hreflang`, `og:locale:alternate` ou seletor.
+
+O lançamento (Etapa 4) é um pull request que muda a chave para `true`. Com o inglês ligado, o build
+grava também `dist/en/.htaccess` (uma linha: `ErrorDocument 404 /en/404/index.html`), para a 404
+em inglês responder dentro de `/en/`.
 
 **Nunca editar a branch `publicacao` à mão.** Ela é refeita a cada publicação.
 
@@ -58,6 +78,7 @@ O teste no ar (`npm run conferir:publicado`) faz essa comparação sozinho.
 |---|---|---|
 | `dist/.htaccess`, gerado por `scripts/gerar-htaccess.mjs` a cada build | pasta do subdomínio (`public_html/tese`) | pela branch `publicacao` |
 | `hospedagem/htaccess-dominio-principal` | `public_html/.htaccess` | colado à mão uma vez (passo 9) |
+| `dist/en/.htaccess`, só com o inglês ligado (D92) | `public_html/tese/en` | pela branch `publicacao` |
 
 O do subdomínio força HTTPS e o host canônico, serve a página 404 do site, esconde a pasta `.git`
 e envia os cabeçalhos de segurança (D74) e de cache (D75). O da pasta principal só redireciona o
@@ -209,7 +230,9 @@ com o commit esperado (o último da `main`, ou `COMMIT_ESPERADO=<commit>`); o do
 `www` redirecionando para profmatheus.com (em `http://`, o servidor passa antes por `https://`, um
 passo a mais, registrado como aviso) e `/tese/` para o subdomínio; e os links públicos
 (repositório sem login, depósito, licenças). Erro de rede num site de terceiros fica como "não
-testado daqui".
+testado daqui". Com o inglês desligado, confere também que nada em inglês está no ar (seção "Versão
+em inglês: a chave"); com ele ligado, as páginas em inglês, o `hreflang`, o seletor e a 404 em
+inglês.
 
 Numa sessão na nuvem, a rede precisa liberar `tese.profmatheuspassos.com.br`,
 `profmatheuspassos.com.br`, `www.profmatheuspassos.com.br`, `hdl.handle.net`,

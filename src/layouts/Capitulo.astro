@@ -10,7 +10,8 @@ import Progresso from '../components/capitulo/Progresso.astro';
 import Navegacao from '../components/capitulo/Navegacao.astro';
 import type { Bloco } from '../lib/blocos';
 import { textoSimples } from '../lib/blocos';
-import { t } from '../i18n';
+import { rotulosDe } from '../i18n';
+const { t } = rotulosDe(Astro.url);
 
 interface Props {
   rota: string;

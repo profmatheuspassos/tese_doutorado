@@ -8,10 +8,12 @@
  * cabeçalhos de segurança, cache por tipo de arquivo e compressão. Só usa mod_rewrite,
  * mod_headers e mod_deflate, que o LiteSpeed da Hostinger entende.
  *
+ * Com a 404 em inglês no build (inglês ativo, D92), grava também dist/en/.htaccess (htaccessIngles).
+ *
  * Exporta cabecalhos() e cspDoBuild() para as conferências e para os testes no navegador.
  */
 import { createHash } from 'node:crypto';
-import { readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { site, base } from '../src/lib/site.mjs';
@@ -137,9 +139,21 @@ ${linhasCache}
 `;
 }
 
+/**
+ * .htaccess da pasta en/ (D91, D92): só existe com a 404 em inglês no build (inglês ativo). Uma
+ * linha, sem regra de reescrita, para herdar do .htaccess principal HTTPS, host canônico e
+ * cabeçalhos: endereço inexistente dentro de /en/ responde com a 404 em inglês.
+ */
+export const htaccessIngles = () => `ErrorDocument 404 ${base()}en/404/index.html\n`;
+export const temIngles404 = () => existsSync(join(dist, 'en', '404', 'index.html'));
+
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const texto = htaccess();
   writeFileSync(join(dist, '.htaccess'), texto);
+  if (temIngles404()) {
+    writeFileSync(join(dist, 'en', '.htaccess'), htaccessIngles());
+    console.log('gerar-htaccess: dist/en/.htaccess com a 404 em inglês');
+  }
   const { scripts, estilos } = hashesEmLinha();
   console.log(`gerar-htaccess: ok (dist/.htaccess para ${new URL(site()).host}; CSP com ${scripts.length} hash(es) de script e ${estilos.length} de estilo)`);
 }
