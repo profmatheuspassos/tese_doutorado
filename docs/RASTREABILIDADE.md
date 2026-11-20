@@ -1178,3 +1178,72 @@ texto; os rótulos novos são os aprovados (T43 a T48; D52).
    referências ficam visíveis e selecionáveis, com "[data de acesso]" como está no texto aprovado.
 4. **Contato (B7).** O parágrafo do texto vira cartão, com o link `mailto:` dele. Nada novo.
 5. **Navegação final.** "Anterior" (Capítulo 5) e "Voltar ao início" (T10): é a última página.
+
+---
+
+## Versão em inglês
+
+A versão em inglês é tradução do texto aprovado em português (D85), não da tese. Cada bloco em
+inglês tem o mesmo `Bn` do bloco em português, com o comentário `<!-- Bn | nome | tradução de
+pt-br/<pagina>.md, Bn -->`; a origem na tese é a do bloco em português, acima. A paridade (blocos,
+estrutura, números e links) é conferida a cada build por `scripts/conferir-paridade.mjs`.
+
+### Home (`src/content/en/home.md`)
+
+Tradução aprovada pelo autor em 20/11/2026, com uma revisão (D110). Palavras contadas como no
+`scripts/legibilidade.py` e no `scripts/legibilidade_en.py` (texto visível do bloco).
+
+| Bloco en | Título en | Bloco pt | Palavras pt → en | Escolhas de tradução |
+|---|---|---|---|---|
+| B0 | Revitalize, not replace | B0 | 81 → 84 | — |
+| B1 | A scene | B1 | 89 → 88 | — |
+| B2 | On paper, everything is fine | B2 | 131 → 141 | — |
+| B3 | In practice, trust collapses | B3 | 146 → 159 | TE8 |
+| B4 | A circle that feeds itself | B4 | 181 → 184 | TE1, TE2, TE5 |
+| B5 | The shortcut that doesn't fix it | B5 | 198 → 201 | TE3 |
+| B6 | Citizens at the center | B6 | 413 → 430 | — |
+| B7 | The tools that already exist (and one that's missing) | B7 | 170 → 179 | TE4 |
+| B8 | The conclusions | B8 | 328 → 337 | TE3, TE6, TE7 |
+| B9 | (rodapé) | B9 | 33 → 39 | — |
+| **Total** | | | **1.770 → 1.842** | |
+
+**Dados em inglês.** As frases do B3 com números ("in parties went from 40.3% to 72.4%" e as outras
+duas; "In Brazil, in 2017, 92.9% of respondents said that most people cannot be trusted") estão em
+`frase_en` e `frases_en` do `src/data/dados.json` e são conferidas no `.md` em inglês, com os números
+em `en-US`, por `scripts/conferir-dados.mjs`. Os valores continuam só no `dados.json`.
+
+**Observações da home.**
+- Os negritos do B4 e do B6 usam as palavras do T8 onde o português usa as do T8 (cinco de seis). O
+  terceiro negrito do B4 não é o T8 nem no português ("As pessoas deixam de se ver como parte de um
+  todo"); o T8 "political fragmentation" vem na frase seguinte, como no português.
+- "Both countries" (B0, B6, B7) traduz "os dois países"; a paridade conta "both" como 2 só antes de
+  substantivo no plural (D110). "Both in the constitution … and in the electoral laws" (B2) traduz
+  "tanto … quanto" e não conta.
+- O link do B9 tem o texto "About the dissertation" (título aprovado) e leva a `/sobre/` até "About"
+  ser traduzida; nessa tradução, muda só o destino, para `/en/about/`. A paridade só aceita esse caso
+  com o inglês desligado na produção.
+- Em pré-visualização, os links "Read chapter N" levam aos capítulos em português, com o título
+  marcado com `lang="pt-BR"` e o link com `hreflang="pt-BR"`, enquanto eles não forem traduzidos.
+- "Turn the other way" (B6) fica como forma fixa para a âncora do capítulo 4, B11.
+
+### Escolhas de tradução
+
+Uma linha por escolha. Tipos: **explicação** (definição curta, sem fato novo), **expressão**
+(idiomatismo que, literal, mudaria o sentido) e **termo fora do glossário**. Dividir ou juntar frases
+não entra na lista.
+
+| # | Página, bloco | Trecho em português | Trecho em inglês | Tipo | Por quê | Decisão |
+|---|---|---|---|---|---|---|
+| TE1 | home, B4 | "poucos dirigentes decidem programa e candidatos" | "a few party officials decide the platform and the candidates" | Termo fora do glossário | "Leaders" já é "governantes" no glossário; "party officials" separa quem dirige o partido de quem governa | D110 |
+| TE2 | home, B4 | "decidem programa" | "decide the platform" | Termo fora do glossário | Nos EUA, o programa de um partido é "platform"; "program" seria lido como programa de governo | D110 |
+| TE3 | home, B5 e B8 (cabeçalho da tabela) | "O digital aprofunda a fragmentação"; "O digital resolve?" | "The digital world deepens the fragmentation"; "Does the digital world fix it?" | Termo fora do glossário | "O digital" como substantivo não tem equivalente; "digital" sozinho, como substantivo, fica vago | D110 |
+| TE4 | home, B7 | "controle da Justiça" | "oversight by the courts" | Termo fora do glossário | Mesmo padrão do glossário ("ir à Justiça" = "go to court"; "Justiça Eleitoral" = "electoral courts") | D110 |
+| TE5 | home, B4 | "Cada um cuida de si" | "Everyone looks out for themselves" | Expressão | O literal "takes care of themselves" sugere cuidar da saúde | D110 |
+| TE6 | home, B8 (tabela) | "Cultura e valores nivelados por baixo" | "Culture and values dumbed down" | Expressão | "Nivelar por baixo" literal não faz sentido em inglês; "dumbed down" é a expressão americana equivalente | D110 |
+| TE7 | home, B8 | "de uma hora para outra" | "overnight" | Expressão | O literal ("from one hour to another") não existe em inglês | D110 |
+| TE8 | home, B3 | "com uma queda forte entre 2010 e 2017" | "with a sharp drop in trust between 2010 and 2017" | Explicação | "In trust" está implícito no português (a queda é da confiança, assunto do parágrafo); sem fato novo | D110 |
+
+**Explicações não propostas na home.** "Portal de Opinião Pública" e "Fundação Francisco Manuel dos
+Santos" ficam como estão, porque a frase já os apresenta como fonte dos dados. "Título de eleitor"
+vira "voter registration card", que se explica sozinho.
+
