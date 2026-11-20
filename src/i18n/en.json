@@ -1,0 +1,163 @@
+{
+  "_sobre": "Rótulos de interface em inglês aprovados pelo autor (D100; docs/GLOSSARIO-EN.md, seção 7), com o apóstrofo curvo da D107. Mesmas chaves do pt-br.json, sem citar.meses (T48 não é traduzido, D99) e com traducao (T52). Nenhum outro texto de interface pode aparecer nas páginas em inglês. {n} = número do capítulo; {titulo} = campo titulo do .md da página; {d:caminho} = valor do src/data/dados.json, conferido no build; {d:caminho|mil} = o valor vezes mil, com separador (o português diz \"60 mil\").",
+  "pular": "Skip to content",
+  "menu": "Menu",
+  "inicio": "Home",
+  "capitulo": "Chapter {n}",
+  "leia_capitulo": "Read chapter {n}: {titulo}",
+  "grafico": {
+    "partidos": "Parties",
+    "governo": "Government",
+    "congresso": "National Congress"
+  },
+  "paises": {
+    "portugal": "Portugal",
+    "brasil": "Brazil"
+  },
+  "circulo_vicioso": [
+    "Citizens pull away",
+    "Parties close themselves off",
+    "Political fragmentation"
+  ],
+  "circulo_virtuoso": [
+    "Feeling part of the community",
+    "Active citizenship",
+    "More open parties"
+  ],
+  "nao_encontrada": "Page not found",
+  "voltar_inicio": "Back to home",
+  "licenca": "Texts and images under the CC BY-NC-ND 4.0 license. Code under the MIT license.",
+  "titulo_home": "{titulo} · Matheus Passos Silva",
+  "titulo_pagina": "{titulo} · Revitalize, not replace",
+  "titulo_na_tese": "Title in the dissertation",
+  "traducao": "Translation",
+  "anterior": "Previous",
+  "a_seguir": "Next",
+  "continue_leitura": "Keep reading",
+  "explorador": {
+    "escolha": "Choose an institution",
+    "instituicoes": {
+      "congresso": "National Congress",
+      "governo": "Government",
+      "judiciario": "Judiciary",
+      "tse": "Superior Electoral Court",
+      "partidos": "Political parties"
+    },
+    "respostas": {
+      "muita": "A lot of trust",
+      "um_pouco": "Some trust",
+      "pouca": "Little trust",
+      "nenhuma": "No trust at all",
+      "nao_sabe": "Don’t know",
+      "nao_responde": "Prefer not to answer"
+    },
+    "fonte": "Source: {d:confianca_instituicoes_br.fonte}. Question: “How much trust do you have in this institution?” Interviews: {d:confianca_instituicoes_br.entrevistas.0} ({d:confianca_instituicoes_br.anos.0}), {d:confianca_instituicoes_br.entrevistas.1} ({d:confianca_instituicoes_br.anos.1}), and {d:confianca_instituicoes_br.entrevistas.2} ({d:confianca_instituicoes_br.anos.2}).",
+    "ver_tabela": "See the numbers in a table",
+    "resposta": "Answer",
+    "legenda_tabela": "{instituicao}, in %"
+  },
+  "linha_do_tempo": [
+    "Subject",
+    "Representative government",
+    "Representative democracy"
+  ],
+  "bolha": {
+    "dica": "Tap what you would like and see what the screen starts to show.",
+    "formas": {
+      "circulo": "circle",
+      "quadrado": "square",
+      "triangulo": "triangle",
+      "losango": "diamond"
+    },
+    "curtir": "Like: {forma}",
+    "contador": "Card types on screen: {n} of 4",
+    "mostrar": "Show what stopped appearing",
+    "recomecar": "Start over"
+  },
+  "estadio_legenda": "Imagine 30,000 people in a stadium, with no microphone, all with the right to propose laws and give their opinion. Discussing a single proposal would already be hard.",
+  "quem_decide": {
+    "legenda": "Governance model",
+    "opcoes": {
+      "governo": "Government-centered",
+      "cidadaos": "Citizen-centered"
+    },
+    "cidadaos": "Citizens",
+    "estado": {
+      "governo": "Citizens are left out of all five stages.",
+      "cidadaos": "Citizens can take part in any of the five stages."
+    }
+  },
+  "caminho_referendo": {
+    "portugal": [
+      "Citizens gather {d:referendo_pt.assinaturas_mil|mil} signatures",
+      "The Assembly of the Republic approves",
+      "The Constitutional Court reviews",
+      "The President of the Republic calls it or refuses",
+      "Vote: binding only if more than half of registered voters take part"
+    ],
+    "brasil": [
+      "Only the National Congress calls it"
+    ]
+  },
+  "ferramentas": {
+    "nomes": {
+      "referendo": "Referendum",
+      "iniciativa": "Citizens’ initiative",
+      "peticao": "Petition",
+      "acao_popular": "Citizen lawsuit",
+      "recall": "Recall"
+    },
+    "linhas": {
+      "como": "How it works",
+      "uso": "How much it was used"
+    },
+    "celulas": {
+      "referendo": {
+        "pt_como": "Citizens can propose one, with {d:referendo_pt.assinaturas_mil|mil} signatures, but the Assembly, the Constitutional Court, and the President can block it.",
+        "pt_uso": "{d:referendo_pt.total} referendums from {d:referendo_pt.de} to {d:referendo_pt.ate}: {d:referendo_pt.nacionais} national and {d:referendo_pt.locais} local.",
+        "br_como": "Only the National Congress calls it. Citizens cannot propose one.",
+        "br_uso": "{d:consultas_br.total} public votes from {d:consultas_br.de} to {d:consultas_br.ate}: {d:consultas_br.nacionais} national and {d:consultas_br.locais} local."
+      },
+      "iniciativa": {
+        "pt_como": "{d:iniciativa_pt.assinaturas_mil|mil} signatures, which can be sent online.",
+        "pt_uso": "{d:iniciativa_pt.total} initiatives from {d:iniciativa_pt.de} to {d:iniciativa_pt.ate}; {d:iniciativa_pt.viraram_lei} became law.",
+        "br_como": "{d:iniciativa_br.percentual_eleitorado}% of the electorate in at least {d:iniciativa_br.estados} states: {d:iniciativa_br.assinaturas} signatures, based on the {d:iniciativa_br.ano} electorate, all on paper.",
+        "br_uso": "{d:iniciativa_br.leis_federais} federal laws from {d:iniciativa_br.de} to {d:iniciativa_br.ate}; formally, none as a citizens’ initiative."
+      },
+      "peticao": {
+        "pt_como": "A right of political participation, with its own law. Gives the right to a reply.",
+        "pt_uso": "Have signed one: {d:peticoes_assinadas.pt.0.valor}% ({d:peticoes_assinadas.pt.0.de} to {d:peticoes_assinadas.pt.0.ate}) and {d:peticoes_assinadas.pt.1.valor}% ({d:peticoes_assinadas.pt.1.ano}).",
+        "br_como": "An individual right, with no law of its own. Gives the right to a reply.",
+        "br_uso": "Say they have signed one: {d:peticoes_assinadas.br.valor}% ({d:peticoes_assinadas.br.ano})."
+      },
+      "acao_popular": {
+        "pt_como": "A right of political participation.",
+        "br_como": "An individual right; follows a 1965 law."
+      }
+    },
+    "nao_existe": "Does not exist.",
+    "california": {
+      "botao": "See the California example",
+      "funil": {
+        "tentativas": "attempts",
+        "votacoes": "made it to the ballot",
+        "remocoes": "removed the official from office"
+      },
+      "legenda": "California, state offices, {d:recall_california.de} to {d:recall_california.ate}"
+    }
+  },
+  "citar": {
+    "copiar": "Copy",
+    "copiar_nome": "Copy the {formato} reference",
+    "copiado": "Copied",
+    "aviso": "{formato} reference copied.",
+    "falha": "Couldn’t copy. The text is now selected: use Ctrl+C (or Cmd+C on a Mac)."
+  },
+  "seletor_idioma": {
+    "nome": "Language",
+    "idiomas": {
+      "pt-br": "Português",
+      "en": "English"
+    }
+  }
+}

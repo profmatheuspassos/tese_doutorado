@@ -6,6 +6,9 @@
  * Formato dos números: anos (chave "ano", "anos", "de", "ate" ou "desde") ficam como estão
  * (2018); inteiros levam ponto de milhar (1.473.063); decimais saem com as casas que têm no
  * JSON, com vírgula (0,22; 92,9). O locale do Intl é um parâmetro (padrão pt-BR, src/lib/idiomas.mjs).
+ *
+ * Modificador {d:caminho|mil}: escreve o valor vezes mil, com separador ("60,000" em inglês). O
+ * dados.json guarda 60 porque o português diz "60 mil"; o inglês precisa do número inteiro.
  */
 const CHAVES_DE_ANO = /^(ano|anos|de|ate|desde)$/;
 
@@ -24,11 +27,16 @@ export function lerCaminho(dados, caminho) {
   return v;
 }
 
-/** Troca cada {d:caminho} pelo valor formatado. A chave usada no formato é a do último trecho
- * não numérico do caminho (em "anos.0", a chave é "anos"). */
+/** Troca cada {d:caminho} (ou {d:caminho|mil}) pelo valor formatado. A chave usada no formato é a
+ * do último trecho não numérico do caminho (em "anos.0", a chave é "anos"). */
 export function expandirDados(texto, dados, locale = 'pt-BR') {
-  return texto.replace(/\{d:([\w.]+)\}/g, (_, caminho) => {
+  return texto.replace(/\{d:([\w.]+)(\|mil)?\}/g, (_, caminho, mil) => {
     const partes = caminho.split('.').filter((p) => !/^\d+$/.test(p));
-    return formatarValor(lerCaminho(dados, caminho), partes[partes.length - 1], locale);
+    const valor = lerCaminho(dados, caminho);
+    if (mil) {
+      if (typeof valor !== 'number' || !Number.isInteger(valor)) throw new Error(`{d:${caminho}|mil} pede um inteiro no dados.json`);
+      return (valor * 1000).toLocaleString(locale, { maximumFractionDigits: 0 });
+    }
+    return formatarValor(valor, partes[partes.length - 1], locale);
   });
 }
