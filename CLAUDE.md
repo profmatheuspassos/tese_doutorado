@@ -378,14 +378,13 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   referência de 8, aceito pela D89; FRE 55,6; "the dissertation" 4 vezes). `Capitulo3.astro` com
   `tituloNaTese`; âncora `impossible`; teste da bolha com o contador pelo rótulo do idioma. Bolha em
   inglês testada nos três cenários. Lighthouse do capítulo 3: 100 no celular (pior de 5) e no
-  computador. Em pull request, à espera da aprovação do autor.
+  computador. Aprovada (D117) e enviada à `main` (PR #27, merge `12ba916`); no ar sem nada em inglês
+  (D118: `versao.txt` com `12ba916`, 314 testes, nenhum `en/` na `publicacao`, CSS sem as cinco regras).
+- **Versão em inglês, Etapa 3, capítulo 4:** em andamento na branch da sessão.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request do capítulo 3 em inglês (D117)**; registrar em
-   `docs/DECISOES.md` e conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`,
-   `conferir:publicado`, nenhum `en/` na `publicacao`).
-2. **Capítulo 4 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
+1. **Capítulo 4 em inglês**, em andamento, a partir da `main` em `12ba916`.
    `Capitulo4.astro` passa a usar `tituloNaTese`, como os capítulos 1 a 3; conferir os componentes do
    capítulo 4 (quem decide, ramo e semente, círculo virtuoso) e os testes do `scripts/capturas.mjs`
    que dependam de texto em português; âncoras `cincoEtapas`, `daPopulacao` e `girarAoContrario` em
@@ -394,5 +393,5 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
    **Procedimento de cada página (D115):** a prova final contra a `main` (`comparar-builds`, chave
    desligada e ligada) roda no **último commit do PR, depois dos commits de documentação**; se algum
    commit entrar depois dela, a prova roda de novo.
-3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
