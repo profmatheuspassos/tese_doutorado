@@ -1,5 +1,7 @@
-@import "tailwindcss";
-/* Palavras comuns em inglês nos textos (como "grow") viram classes do Tailwind; D114. */
+@import "tailwindcss" source("..");
+/* source(".."): o Tailwind só procura classes em src/ (o caminho é relativo a src/styles/), não em
+   docs/, scripts/ ou README, cujas palavras (como "grow") viravam regras sem uso; D115.
+   @source not: dentro de src/, tira também os textos em inglês, pelo mesmo motivo; D114. */
 @source not "../content/en";
 
 /*
