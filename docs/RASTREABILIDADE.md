@@ -1405,6 +1405,97 @@ legenda do estádio é o T33 do `en.json` ("30,000").
 - Navegação: "Previous" leva ao capítulo 2 em inglês; "Next", em pré-visualização, ao capítulo 4 em
   português, com `lang` e `hreflang` pt-BR, até ele ser traduzido.
 
+### Capítulo 4 (`src/content/en/capitulo-4.md`)
+
+Tradução aprovada pelo autor em 20/11/2026, no plano da página, com uma revisão (oito trechos, D119).
+Palavras contadas como na home (texto visível do bloco).
+
+| Bloco en | Título en | Bloco pt | Palavras pt → en | Escolhas de tradução |
+|---|---|---|---|---|
+| B0 | Citizens at the center | B0 | 96 → 111 | TE34 |
+| B1 | Feeling part of the community | B1 | 137 → 152 | TE4 |
+| B2 | Logic, not kindness | B2 | 84 → 106 | TE35 |
+| B3 | From passive to active citizenship | B3 | 199 → 201 | — |
+| B4 | Close to home | B4 | 93 → 101 | TE34 |
+| B5 | Apathetic because powerless | B5 | 92 → 102 | — |
+| B6 | An example that already exists | B6 | 53 → 53 | TE36 |
+| B7 | Portugal: the branches are thin and need tending | B7 | 207 → 226 | TE37 |
+| B8 | Brazil: the seeds are planted, but the ground is arid | B8 | 222 → 224 | TE38, TE39, TE40 |
+| B9 | Being present is not deciding | B9 | 223 → 228 | TE41, TE42 |
+| B10 | Parties that are democratic on the inside | B10 | 144 → 152 | TE1 |
+| B11 | From a vicious to a virtuous circle | B11 | 153 → 168 | TE1 |
+| B12 | The objections | B12 | 88 → 104 | — |
+| **Total** | | | **1.791 → 1.928** | |
+
+**Título.** No front matter, `titulo: "Citizens at the center"` (sem apóstrofo). **Título na tese:** como
+nos capítulos 1 a 3, o original vem do `.md` em português, com `lang="pt-BR"`, e a tradução
+(`traducao_titulo_original`, seção 6 do glossário) vem abaixo do rótulo T52. O `Capitulo4.astro` passou
+a usar `tituloNaTese` (português igual: build idêntico ao da `main`).
+
+**Dados.** O uso do B7 (`numero-grande`, `freguesias_plenario_pt`) ganhou `frases_en`, com as mesmas
+chaves das duas frases em português: "In parishes with up to {eleitores_max} voters" e "By the
+author's calculations, based on the {ano} census, there are only {freguesias} of these parishes, with
+{habitantes} inhabitants: {percentual}% of the population." (150; 2011; 129; 23,466; 0.22). A
+impressão do `dados.json` (D94) não mudou.
+
+**Observações do capítulo 4.**
+- Âncoras em inglês (`src/lib/ancoras.ts`): `five stages` (B3, parágrafo antes da lista das cinco
+  etapas), `% of the population` (B7, parágrafo do 0.22%) e `turn the other way` (B11, última frase,
+  como na home, B6). Cada uma aparece uma única vez na página.
+- "Quem decide o quê", ramo e semente e círculo virtuoso não mudam: todo texto vem dos rótulos (T6, T7,
+  T8, T34 a T36). O teste do capítulo 4 no `scripts/capturas.mjs` já usava os rótulos do idioma da
+  página; nenhuma mudança.
+- B9, título "Presença não é decisão" = "Being present is not deciding", com o degrau "being present"
+  do glossário (D114) e a frase da home ("to be present, not to decide").
+- B3, etapas (D65: inicial maiúscula, sem pontuação) no gerúndio: "Defining what goes on the agenda",
+  "Planning", "Deciding", "Carrying out", "Evaluating". "Executar" = "Carrying out", mais simples que
+  "Implementing"; "Definir", e não "Deciding", para não repetir a etapa 3. "Etapas" = "stages" (B3, B8 e
+  T36) e "consultiva / decisória" = "advisory / decision-making" entram na seção 4 do glossário (D119).
+- B1 "acesso à Justiça" = "access to the courts", padrão da TE4. B8 "governantes" = "leaders"
+  (glossário). B10 e B11 "dirigentes" = "party officials" (TE1), menos em "Seus dirigentes" = "Their
+  officials" (revisão do autor); "Os líderes" = "The leaders".
+- Citações curtas em tradução própria, como na TE17: "extremamente não democrática" = "extremely
+  undemocratic" (B10); "incentiva-se a participação" = "participation is encouraged" (B9); "ideias que
+  revelam a inquietação" = "ideas that reveal unease" (B12).
+- B12 "suas propostas" = "these proposals", sem pronome para o autor. "Lá" / "aqui" (B4) = "out there" /
+  "here", entre aspas como no português.
+- "A tese" aparece três vezes (B7, B9, B10), como "the dissertation"; "Para a tese" (B10) = "In the
+  dissertation's view"; "para o autor" (B8) = "in the author's view".
+- B2: a frase "If they realize that harm to the others ends up coming back to hurt them, …" (28
+  palavras) é idêntica à da home (B6), por decisão do autor (D119), para a mesma frase não sair de dois
+  jeitos no site.
+- Revisão do autor no plano: B3 "citizens organize themselves and, together with public authorities,
+  decide on public policies"; B5 "there are few forms of participation that actually work"; B6 "its own
+  duties"; B7 "if my proposals are not even considered locally, what chance do they have nationally?"
+  (TE37); B8 "Hearings are used more by leaders … than by citizens …"; B9 "and a European directive had
+  existed since 1995"; B10 "Their officials are appointed, not elected."; B11 "Parties close themselves
+  off for three reasons" (T8).
+- Paridade: "nos dois países" = "in both countries" (B8, B9); "as duas constituições" = "both
+  constitutions" (B10); "os dois lados" = "the two sides" (B11); "cem anos" = "a hundred years" (B0,
+  B2, B12); séculos XIX e XXI = "19th" e "21st".
+- Frases e termos reaproveitados da home (D110) e dos capítulos 1 a 3 (D112, D114, D117): o título
+  (glossário, seção 5; home B6); "three parts" (B0); "democratic on the inside" (B0, B10, B11; home B4,
+  capítulo 2, B7); "Feeling part of the community" (T8), "The technical name is patriotic
+  identification", "see themselves … as responsible … for the community where they live" (B1); "the
+  smallest division of local government in Portugal" (B1; capítulo 1, B6); "Imagine five people …",
+  "at any cost, there is no agreement" e a frase "If they realize …" (B2, idêntica); "Public policies
+  are the actions public authorities take to solve collective problems", "act alongside the State, not
+  against it or in its place", "government-centered" e "citizen-centered governance" (B3); "five
+  stages", "left out of all", "take part in any" (B3; T36); "because they feel powerless" (B5); os
+  títulos de B7 e B8 (home B6); "requires the State to encourage participation" (B7; capítulo 1, B9);
+  "In parishes …", "In the others, citizens can …", "the assembly only votes on … if it wants to" (B7);
+  "the situation is even less favorable", "30 forms of participation beyond voting" (B8); "In the
+  author's view" (B8); "In both countries, the rules make room for citizens to be present, not to
+  decide." e "Culture does not change through the law alone, but it also changes through it." (B9,
+  idênticas); "provisional leadership to last up to eight years" (B10; capítulo 2, B7); "In June
+  2019 … 26 of 35", "provisional committees", "party officials", "alliances", "party members" (B10);
+  "Parties close themselves off" (B11; T8); "Those who get involved in neighborhood issues", "turn to
+  the party", "so as not to lose these supporters, … need to open up", "the vicious circle starts to
+  turn the other way" (B11; home B6); "direct participation tools", "the tools that already exist" e
+  "one that is missing", "the subject of the … chapter" (B12; capítulo 3, B11; título do capítulo 5).
+- Navegação: "Previous" leva ao capítulo 3 em inglês; "Next", em pré-visualização, ao capítulo 5 em
+  português, com `lang` e `hreflang` pt-BR, até ele ser traduzido.
+
 ### Escolhas de tradução
 
 Uma linha por escolha. Tipos: **explicação** (definição curta, sem fato novo), **expressão**
@@ -1446,6 +1537,15 @@ não entra na lista.
 | TE31 | capítulo 3, B7 | "ainda pesam no bolso de muita gente" | "still strain many people's budgets" | Expressão | O literal ("weigh in the pocket") não existe em inglês | D117 |
 | TE32 | capítulo 3, B9 | "de hoje para amanhã" (entre aspas) | "on the spot" (entre aspas) | Expressão | O literal não existe; "on the spot" dá a pressa sem reflexão. "Overnight" já é a TE7, de outra expressão | D117 |
 | TE33 | capítulo 3, B10 | "só mais um na massa de manobra" | "just one more pawn in the crowd" | Expressão | "Massa de manobra" não tem equivalente; "pawn" é quem é manobrado | D117 |
+| TE34 | capítulo 4, B0 e B4 | "cobrá-los"; "cobrar resultados" | "holding them accountable"; "demand results" | Expressão | "Charge" em inglês é cobrar dinheiro; "hold accountable" e "demand results" são o sentido de exigir do eleito | D119 |
+| TE35 | capítulo 4, B2 | "Impor bondade seria coisa de regime fechado" | "Imposing kindness would be typical of a closed regime" | Expressão | "Coisa de" não tem literal; "typical of" mantém o sentido sem acrescentar nada | D119 |
+| TE36 | capítulo 4, B6 | "favorecerem a iniciativa própria dos cidadãos" | "to support citizens who take the initiative" | Termo fora do glossário | "Citizens' own initiative" seria lido como a "citizens' initiative" do glossário (iniciativa popular), outro mecanismo; aqui é agir por conta própria | D119 |
+| TE37 | capítulo 4, B7 | "O efeito é uma bola de neve: … que dirá no nacional" | "The result is a snowball effect: … what chance do they have nationally?" | Expressão | "Bola de neve" está na lista de idiomatismos do plano; "snowball effect" é a forma inglesa; "que dirá" = "what chance do they have". Revisão do autor | D119 |
+| TE38 | capítulo 4, B8 | "sua lei básica" (do município) | "its own charter" | Termo fora do glossário | O glossário já dá "municipal charter" para a lei orgânica municipal, que é a "lei básica" do texto; "basic law" lembraria a constituição alemã | D119 |
+| TE39 | capítulo 4, B8 | "muito mais consultiva do que decisória" | "much more advisory than decision-making" | Termo fora do glossário | "Consultative" é mais pesado; "advisory" é o termo usual para órgão que opina sem decidir. Entra na seção 4 do glossário | D119 |
+| TE40 | capítulo 4, B8 | "Bater o martelo cabe só ao poder público" | "The final say belongs only to public authorities" | Expressão | Idiomatismo listado no plano em inglês ("bater o martelo"); o literal não tem esse sentido em inglês | D119 |
+| TE41 | capítulo 4, B9 | "não cabe a "iluminados" tutelar os demais" | "it is not up to the "enlightened" to act as guardians of everyone else" | Expressão | "Tutelar" não tem verbo direto em inglês; "act as guardians" dá a ideia de tratar os outros como tutelados. Aspas mantidas | D119 |
+| TE42 | capítulo 4, B9 | "só virou assunto de todos" | "only became everyone's concern" | Expressão | O literal ("everyone's subject") não existe em inglês | D119 |
 
 **Explicações não propostas na home.** "Portal de Opinião Pública" e "Fundação Francisco Manuel dos
 Santos" ficam como estão, porque a frase já os apresenta como fonte dos dados. "Título de eleitor"
@@ -1463,3 +1563,7 @@ República.
 
 **Explicações no capítulo 3.** Uma: "The Brazilian city of" antes de Porto Alegre (TE29, D117). Lisboa
 e Atenas dispensam; o Conselho de Atenas vem do contexto; o algoritmo já vem definido no texto.
+
+**Explicações no capítulo 4.** Nenhuma. Freguesia já vem definida no B1; Estatuto da Cidade e plano
+diretor já vêm explicados no B8 ("City Statute", "master plan" e "city council" são do glossário);
+Itália e RGPD ("GDPR") dispensam.

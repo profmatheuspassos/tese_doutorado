@@ -374,6 +374,7 @@ para o inglês.
 | Capítulo 1 | 1.735 | 1.539 | 129 | 11,9 | 1,64 | 8,4 | 56,0 | 21 (1,4%) | 2 |
 | Capítulo 2 | 1.850 | 1.776 | 157 | 11,3 | 1,58 | 7,5 | 61,4 | 51 (2,9%) | 2 |
 | Capítulo 3 | 1.861 | 1.678 | 144 | 11,7 | 1,65 | 8,4 | 55,6 | 22 (1,3%) | 4 |
+| Capítulo 4 | 1.928 | 1.856 | 151 | 12,3 | 1,65 | 8,7 | 54,8 | 21 (1,1%) | 3 |
 
 ### Home em inglês (20/11/2026)
 
@@ -462,3 +463,26 @@ democracy, a chorus is growing: …").
 
 **Estimativa do plano x medição:** a estimativa com regra simples de sílabas deu FKGL 8,6 (esperado com o
 CMU, de 8,3 a 8,5) e FRE 54,3; a medição ficou dentro da faixa esperada (8,4 e 55,6).
+
+### Capítulo 4 em inglês (20/11/2026)
+
+`src/content/en/capitulo-4.md`, tradução aprovada com TE34 a TE42 e a revisão do autor (D119).
+**FKGL 8,7**, acima da referência de 8 ou menos, como os capítulos 1 e 3; **FRE 54,8**. As frases são
+um pouco mais longas que as dos capítulos anteriores (151 frases, 12,3 palavras por frase) e o
+vocabulário é o do capítulo (citizenship, participation, governance, decentralization,
+representation); o português da mesma página tem índice 58,9. O índice é conferência, não meta
+(D89): o texto aprovado não foi simplificado para baixar o número. O português tem 1.791 palavras
+visíveis; o inglês, 1.928.
+
+**Palavras fora do CMU (sílabas por regra):** 21, 1,1% do texto corrido. São números (anos,
+percentuais, quantidades), que contam como duas sílabas, e "GDPR".
+
+**Frases longas:** uma acima de 25 palavras, no B2 (28 palavras): "If they realize that harm to the
+others ends up coming back to hurt them, they look for a solution that is good enough for all of
+them." É idêntica à frase da home (B6), por decisão do autor (D119). Depois dela, a maior tem 23.
+
+**"The dissertation":** 3 (B7, B9 e B10), as mesmas três menções de "a tese" no português (D15).
+
+**Estimativa do plano x medição:** a estimativa só com a regra de sílabas deu FKGL 8,95 (esperado com
+o CMU, de 8,7 a 8,8) e FRE 52,8 (esperado de 54 a 54,5); a medição ficou dentro e um pouco acima da
+faixa esperada (8,7 e 54,8).
