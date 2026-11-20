@@ -119,7 +119,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
 | `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
-| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home e o capítulo 1, D110 e D112) |
+| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home e os capítulos 1 e 2, D110, D112 e D114) |
 | `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
 | `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
 | `docs/PLANO-FASE-5.md` | Plano aprovado da Fase 5 (publicação), com os ajustes da D78 e D79 |
@@ -142,7 +142,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `src/lib/plugin-sem-quebra.mjs` | Impede quebra de linha em palavras com hífen, sem trocar caractere |
 | `src/data/dados.json` | Único arquivo de números do site (Quadros 1 a 5 e outros), com os usos por página |
 | `src/i18n/pt-br.json`, `src/i18n/en.json` | Rótulos de interface aprovados (D43, D52, D100, D107); nenhum outro texto de interface. T50 e T51 (seletor) nos dois; T52 só no inglês; T48 só no português |
-| `src/styles/global.css` | Tokens de design (D45) |
+| `src/styles/global.css` | Tokens de design (D45); `src/content/en/` fora da busca de classes do Tailwind (`@source not`, D114) |
 | `src/scripts/home.ts`, `src/scripts/home-resto.ts` | Animações GSAP da home (só com `prefers-reduced-motion: no-preference`): a abertura na carga; o resto (ScrollTrigger e blocos B1 a B8) quando o navegador fica ocioso, um bloco por tarefa (D67) |
 | `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, paridade português/inglês (rótulos e pares de páginas), contraste, imagens (nome, tamanho, peso), texto por idioma (palavras, aspas, rótulos, atributos, pelo `lang` mais próximo), recursos de terceiros, links internos (link quebrado faz o build falhar) e publicação (canonical, Open Graph, `lang`, `hreflang`, seletor, sitemap, robots, CSP, `.htaccess` da pasta principal e da `en/`, trava da chave no Actions) |
 | `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74, D79) e cache (D75); com a 404 em inglês no build, também `dist/en/.htaccess` |
@@ -351,15 +351,28 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   capítulo 2 até o valor esperado (limite de 2 s), depois de 1 falha em 99 combinações. Provas:
   chave desligada, zero diferença em 72 de 72; chave ligada, português idêntico em 72 de 72 tirando
   só o previsto pelos pares. Lighthouse do capítulo 1: 99 no celular (pior de 5), 100 no computador.
-  Em pull request, à espera da aprovação do autor.
+  Aprovada (D112) e enviada à `main` (PR #24, merge `68133af`); no ar sem nada em inglês (D113:
+  `versao.txt` com `68133af`, 314 testes, nenhum `en/` na `publicacao`).
+- **Versão em inglês, Etapa 3, capítulo 2:** tradução aprovada no plano, com uma revisão do autor
+  (D114: TE19 a TE24; "party bylaws" e os três degraus no glossário; título com apóstrofo curvo).
+  `src/content/en/capitulo-2.md` (1.850 palavras; FKGL 7,5; FRE 61,4; "the dissertation" 2 vezes).
+  `Explorador.astro` compara rótulos com o `dados.json` só no português; `Capitulo2.astro` com
+  `tituloNaTese`; `src/content/en/` fora da busca de classes do Tailwind (a palavra "grow" gerava
+  `.grow`). Regra nova das capturas versionadas: mesmo conteúdo e só posição até 2 px entra no commit
+  sem parar (D114). Provas: chave desligada, zero diferença em 72 de 72 e nenhum pacote de
+  `/_astro/` mudado; chave ligada, português idêntico em 72 de 72 tirando só o previsto pelos pares.
+  Lighthouse do capítulo 2: 100 no celular (pior de 5) e no computador. Em pull request, à espera da
+  aprovação do autor.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request do capítulo 1 em inglês**; registrar em `docs/DECISOES.md` e
-   conferir no ar que nada em inglês foi publicado (`versao.txt`, `conferir:publicado`, nenhum `en/`
-   na `publicacao`).
-2. **Capítulo 2 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
-   No capítulo 2, `Capitulo2.astro` passa a usar `tituloNaTese`, como o capítulo 1. Na tradução de
-   "About", trocar o destino do link do B9 da home de `/sobre/` para `/en/about/`.
+1. **Aprovação e merge do pull request do capítulo 2 em inglês**; registrar em `docs/DECISOES.md` e
+   conferir no ar que nada em inglês foi publicado (`versao.txt` com o hash completo em
+   `COMMIT_ESPERADO`, `conferir:publicado`, nenhum `en/` na `publicacao`).
+2. **Capítulo 3 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
+   `Capitulo3.astro` passa a usar `tituloNaTese`, como os capítulos 1 e 2; conferir se algum
+   componente do capítulo 3 compara rótulos com o `dados.json` em português (como o explorador fazia).
+   As capturas da home em inglês em 375 px (`B5` a `B8`) podem ser refeitas ali (D114). Na tradução
+   de "About", trocar o destino do link do B9 da home de `/sobre/` para `/en/about/`.
 3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).

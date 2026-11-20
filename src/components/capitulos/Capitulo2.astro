@@ -9,7 +9,7 @@ import BlocoTexto from '../capitulo/BlocoTexto.astro';
 import Circulo from '../diagramas/Circulo.astro';
 import NumeroGrande from '../graficos/NumeroGrande.astro';
 import Explorador from '../interativos/Explorador.astro';
-import { pagina } from '../../lib/paginas';
+import { pagina, tituloNaTese } from '../../lib/paginas';
 import { comAtributos, prefixar, usarBlocos } from '../../lib/blocos';
 import { dados, uso } from '../../lib/dados';
 import { ancora } from '../../lib/ancoras';
@@ -18,6 +18,7 @@ import { idiomaAtual } from '../../i18n';
 const idioma = idiomaAtual(Astro.url);
 
 const { dados: meta, blocos } = await pagina('capitulo-2', idioma);
+const naTese = await tituloNaTese('capitulo-2', idioma);
 const { b, conferir } = usarBlocos(blocos, 'capitulo-2');
 const B0 = b('B0');
 const [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10'].map(b);
@@ -46,7 +47,7 @@ if (!B4.elementos[3]?.startsWith('<table') || !B4.elementos[4]?.startsWith('<p')
 uso('capitulo-2', 'B4', 'numero-grande');
 const tabelaB4 = (el: string, i: number) => (i === 3 ? comAtributos(el, { class: 'tabela-numeros' }) : el);
 ---
-<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={meta.titulo_original} imagem="cap2-abertura.webp" tema="escuro">
+<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={naTese.original} traducaoTituloOriginal={naTese.traducao} langTituloOriginal={naTese.langOriginal} imagem="cap2-abertura.webp" tema="escuro">
   <Circulo slot="lateral" estado="vicioso" tema="escuro" class="circulo-abertura" />
 
   <BlocoTexto bloco={B1} />

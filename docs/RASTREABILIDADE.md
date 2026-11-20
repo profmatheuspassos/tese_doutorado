@@ -1268,7 +1268,76 @@ apresentação, D112).
 - "Para o autor" (B7) = "In the author's view"; "a tese" aparece duas vezes, como "the dissertation"
   (B3 e B9).
 - Navegação: "Previous" leva à home em inglês; "Next", em pré-visualização, ao capítulo 2 em
+  português, com `lang` e `hreflang` pt-BR, até ele ser traduzido. Com o capítulo 2 traduzido (D114),
+  "Next" leva a "What isn’t working".
+
+### Capítulo 2 (`src/content/en/capitulo-2.md`)
+
+Tradução aprovada pelo autor em 20/11/2026, no plano da página, com uma revisão (cinco trechos, D114).
+Palavras contadas como na home (texto visível do bloco).
+
+| Bloco en | Título en | Bloco pt | Palavras pt → en | Escolhas de tradução |
+|---|---|---|---|---|
+| B0 | What isn't working | B0 | 76 → 73 | — |
+| B1 | Participating is not the same as getting involved | B1 | 115 → 123 | — |
+| B2 | Three steps of participation | B2 | 115 → 125 | — |
+| B3 | Portugal's numbers | B3 | 175 → 177 | TE19 |
+| B4 | Brazil's numbers | B4 | 152 → 151 | — |
+| B5 | A perfect and empty election | B5 | 154 → 169 | — |
+| B6 | Why people give up | B6 | 177 → 194 | — |
+| B7 | Parties closed in on themselves | B7 | 250 → 248 | TE1, TE20, TE21 |
+| B8 | Politics became a ratings game | B8 | 155 → 155 | TE2, TE22, TE23 |
+| B9 | Everyone for themselves | B9 | 204 → 206 | — |
+| B10 | Two ways to see democracy | B10 | 224 → 229 | TE14, TE24 |
+| **Total** | | | **1.797 → 1.850** | |
+
+**Título.** No front matter, `titulo: "What isn’t working"` com o apóstrofo curvo (D114), para
+`<title>`, menu, rodapé, navegação e "Read chapter 2" saírem iguais ao h1. **Título na tese:** como no
+capítulo 1, o original vem do `.md` em português, com `lang="pt-BR"`, e a tradução
+(`traducao_titulo_original`, seção 6 do glossário) vem abaixo do rótulo T52.
+
+**Dados em inglês.** As cinco linhas da tabela do B4 (`frase_en` do uso "tabela") e as frases "In
+2017, only 6.8% of respondents" e "Another 92.9% said no" (`frases_en` dos usos "texto" e
+"numero-grande") estão no `src/data/dados.json` e são conferidas no `.md` em inglês, com os números em
+`en-US`, por `scripts/conferir-dados.mjs`. Os nomes da tabela são os do T22 e do explorador
+(`en.json`). Os valores continuam só no `dados.json`.
+
+**Observações do capítulo 2.**
+- Âncora do B2 em inglês: `<strong>being present</strong>` (`src/lib/ancoras.ts`), para o destaque
+  do primeiro degrau da escada.
+- A pergunta do B4 é a mesma frase do T24; "no trust at all" é o T23 e o termo da home.
+- "Some hundreds or thousands" (B2) fica no plural: "a few hundred" faria a paridade contar 100, que
+  o português ("centenas") não tem. "Only two times" (B7) traduz "duas vezes": a paridade conta
+  "duas" como 2 e não lê "twice".
+- Nenhum "both" no texto: o capítulo não diz "os dois países".
+- Personagens hipotéticos do B5 no masculino ("himself", "his wife"), como no português ("solteiro",
+  "esposa", "nele").
+- "Para o autor" (B7) = "In the author's view"; "a tese" aparece duas vezes, como "the dissertation"
+  (B1 e B10).
+- "Procurar" (o eleito, um político) = "reach out to" nas duas vezes do B10; "resolve" = "fix", como
+  na home e no título do capítulo 3.
+- Revisão do autor no plano: B3 "did not turn out"; B7 "Party bylaws are more about image than
+  reality."; B8 "the last resort" e "create the impression"; B9 "It's" com maiúscula dentro das aspas.
+- Frases e termos reaproveitados da home (D110) e do capítulo 1 (D112): "Parties close themselves
+  off." (B0, T8); "… is not the same as getting involved" (B1, título; na home, "Voting"); "picks
+  just anyone … because they think" (B1); "condo association meeting", "water and sewage services",
+  "what belongs to everyone" (B1); "The reasoning fits in a single question: why participate, if the
+  result …" (B2; aqui "is never any different", na home "never changes"); "from time to time" (B2);
+  "the Portal de Opinião Pública of the Fundação Francisco Manuel dos Santos" (B3); "most people can
+  be trusted" (B4; na home, "cannot"); "The sharp drop in trust" (B4, TE8); "electoral courts" (B4);
+  "cast a blank vote, or spoil their ballot" (B5); "turning out … is optional" (B5); "the gateway to
+  power", "democratic on the inside", "practice falls short" (B7); "party officials" (TE1), "This is
+  called", "In the author's view", "provisional leadership" (B7); "one of us", "the party's
+  platform" (TE2), "saviors of the nation" (B8); "political fragmentation", "part of a whole",
+  "kindness", "altruism", "labor unions and nongovernmental organizations" (B9); "Between one election
+  and the next", "run for office" (TE14), "In the dissertation's view", "over the internet", "give
+  their opinion" (T33) (B10).
+- Navegação: "Previous" leva ao capítulo 1 em inglês; "Next", em pré-visualização, ao capítulo 3 em
   português, com `lang` e `hreflang` pt-BR, até ele ser traduzido.
+- **CSS:** a primeira prova mostrou que o Tailwind gerava `.grow{flex-grow:1}` a partir da palavra
+  "grow" do B8 ("parties grow weaker"), sem uso em nenhuma página. Por decisão do autor (D114), a pasta
+  `src/content/en/` saiu da busca de classes do Tailwind (`@source not "../content/en"` no
+  `src/styles/global.css`); o CSS voltou a ser idêntico ao da `main`.
 
 ### Escolhas de tradução
 
@@ -1296,6 +1365,12 @@ não entra na lista.
 | TE16 | capítulo 1, B6 e B7 | "a dignidade da pessoa humana" | "human dignity" | Termo fora do glossário | Forma usual em inglês; "dignity of the human person" é jargão jurídico | D112 |
 | TE17 | capítulo 1, B6 e B7 | "assegurar e incentivar a participação democrática dos cidadãos"; "Todo o poder emana do povo, que o exerce por meio de representantes eleitos ou diretamente" | "to ensure and encourage the democratic participation of citizens"; "All power comes from the people, who exercise it through elected representatives or directly" | Expressão | Tradução nossa, em linguagem simples, não a tradução oficial das constituições; "emana" vira "comes from" | D112 |
 | TE18 | capítulo 1, B2 e B7 | "alianças" | "alliances" | Termo fora do glossário | Serve aos dois usos do texto (apoio ao governo no B2, coligação eleitoral no B7); "coalitions" puxaria só para coalizão de governo | D112 |
+| TE19 | capítulo 2, B3 | "um ponto fora da curva" | "an outlier" | Expressão | O literal ("a point off the curve") não existe em inglês; "outlier" é o termo usual para um dado que foge do padrão | D114 |
+| TE20 | capítulo 2, B7 | "Os estatutos" (do partido) | "Party bylaws" | Termo fora do glossário | Nos EUA, as regras internas de uma organização são "bylaws"; "statutes" seria lido como leis do Legislativo | D114 |
+| TE21 | capítulo 2, B7 | "uma cortina de fumaça" | "a smokescreen" | Expressão | Idiomatismo listado no plano da versão em inglês; "smokescreen" é a forma inglesa, com o mesmo sentido | D114 |
+| TE22 | capítulo 2, B8 (título) | "A política virou audiência" | "Politics became a ratings game" | Expressão | "Audiência" aqui é a da TV; "audience" sozinho seria lido como "público". "Ratings game" é a disputa por audiência | D114 |
+| TE23 | capítulo 2, B8 | "Eleitores e partidos se acomodam" | "Voters and parties become complacent" | Expressão | "Accommodate themselves" mudaria o sentido; "complacent" é o acomodado que para de se mexer | D114 |
+| TE24 | capítulo 2, B10 | "Nenhuma a segue à risca" | "Neither follows it to the letter" | Expressão | O literal não existe em inglês; "to the letter" é a forma usual | D114 |
 
 **Explicações não propostas na home.** "Portal de Opinião Pública" e "Fundação Francisco Manuel dos
 Santos" ficam como estão, porque a frase já os apresenta como fonte dos dados. "Título de eleitor"
@@ -1305,3 +1380,8 @@ vira "voter registration card", que se explica sozinho.
 **Explicações no capítulo 1.** Só a da D104 (TE15, "Brazilian reais"). Freguesia, cláusula de
 barreira, fundo partidário e lista fechada e aberta já vêm definidos no texto aprovado; nenhuma
 outra explicação foi proposta.
+
+**Explicações no capítulo 2.** Nenhuma. "Portal de Opinião Pública" e "Fundação Francisco Manuel dos
+Santos" ficam como na home (a frase já os apresenta como fonte); o Latinobarómetro já vem explicado no
+texto ("an opinion survey carried out in several countries"); o capítulo não nomeia a Assembleia da
+República.

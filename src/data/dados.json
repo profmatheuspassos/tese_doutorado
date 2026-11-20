@@ -189,11 +189,11 @@
       "resposta": "nenhuma",
       "anos": [2006, 2010, 2017],
       "itens": [
-        { "instituicao": "congresso", "frase": "| Congresso Nacional | {2006}% | {2010}% | {2017}% |" },
-        { "instituicao": "governo", "frase": "| Governo | {2006}% | {2010}% | {2017}% |" },
-        { "instituicao": "judiciario", "frase": "| Poder Judiciário | {2006}% | {2010}% | {2017}% |" },
-        { "instituicao": "tse", "frase": "| Tribunal Superior Eleitoral | {2006}% | {2010}% | {2017}% |" },
-        { "instituicao": "partidos", "frase": "| Partidos políticos | {2006}% | {2010}% | {2017}% |" }
+        { "instituicao": "congresso", "frase": "| Congresso Nacional | {2006}% | {2010}% | {2017}% |", "frase_en": "| National Congress | {2006}% | {2010}% | {2017}% |" },
+        { "instituicao": "governo", "frase": "| Governo | {2006}% | {2010}% | {2017}% |", "frase_en": "| Government | {2006}% | {2010}% | {2017}% |" },
+        { "instituicao": "judiciario", "frase": "| Poder Judiciário | {2006}% | {2010}% | {2017}% |", "frase_en": "| Judiciary | {2006}% | {2010}% | {2017}% |" },
+        { "instituicao": "tse", "frase": "| Tribunal Superior Eleitoral | {2006}% | {2010}% | {2017}% |", "frase_en": "| Superior Electoral Court | {2006}% | {2010}% | {2017}% |" },
+        { "instituicao": "partidos", "frase": "| Partidos políticos | {2006}% | {2010}% | {2017}% |", "frase_en": "| Political parties | {2006}% | {2010}% | {2017}% |" }
       ]
     },
     {
@@ -201,7 +201,8 @@
       "bloco": "B4",
       "grafico": "texto",
       "serie": "confianca_interpessoal_br",
-      "frases": ["Em {ano}, só {pode_confiar}% dos entrevistados", "Outros {nao_pode_confiar}% disseram que não"]
+      "frases": ["Em {ano}, só {pode_confiar}% dos entrevistados", "Outros {nao_pode_confiar}% disseram que não"],
+      "frases_en": ["In {ano}, only {pode_confiar}% of respondents", "Another {nao_pode_confiar}% said no"]
     },
     {
       "pagina": "capitulo-2",
@@ -216,7 +217,8 @@
       "bloco": "B4",
       "grafico": "numero-grande",
       "serie": "confianca_interpessoal_br",
-      "frases": ["Outros {nao_pode_confiar}% disseram que não"]
+      "frases": ["Outros {nao_pode_confiar}% disseram que não"],
+      "frases_en": ["Another {nao_pode_confiar}% said no"]
     },
     {
       "pagina": "capitulo-4",

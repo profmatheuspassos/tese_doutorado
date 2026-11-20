@@ -41,6 +41,7 @@ const ANCORAS: Record<CodigoIdioma, Parciais> = {
       noPapel: 'On paper, they are democracies.',
       faltaRecall: 'Both countries are missing one tool: the recall.',
     },
+    'capitulo-2': { estarPresente: '<strong>being present</strong>' },
   },
 };
 

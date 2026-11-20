@@ -9,7 +9,8 @@
 import { dados, uso } from '../../lib/dados';
 import { formatar } from '../../lib/numeros';
 import { rotulosDe } from '../../i18n';
-const { mapa, t, locale } = rotulosDe(Astro.url);
+import { IDIOMA_PADRAO } from '../../lib/idiomas.mjs';
+const { mapa, t, locale, idioma } = rotulosDe(Astro.url);
 
 uso('capitulo-2', 'B4', 'explorador');
 const serie = dados.confianca_instituicoes_br;
@@ -19,9 +20,14 @@ const instituicoes = Object.keys(serie.instituicoes) as (keyof typeof serie.inst
 const respostas = Object.keys(serie.respostas) as (keyof typeof serie.respostas)[];
 if (instituicoes.join() !== Object.keys(nomes).join()) throw new Error('Explorador: instituições do JSON e dos rótulos não batem.');
 if (respostas.join() !== Object.keys(rotulos).join()) throw new Error('Explorador: respostas do JSON e dos rótulos não batem.');
-respostas.forEach((r) => {
-  if (serie.respostas[r] !== rotulos[r]) throw new Error(`Explorador: rótulo "${rotulos[r]}" difere do dados.json ("${serie.respostas[r]}").`);
-});
+// Os nomes das respostas no dados.json estão em português (e travados, D94): a comparação vale só
+// para a página em português. No inglês, os rótulos são o T23 aprovado do en.json, conferido pelo
+// conferir-texto; as chaves continuam conferidas acima.
+if (idioma === IDIOMA_PADRAO) {
+  respostas.forEach((r) => {
+    if (serie.respostas[r] !== rotulos[r]) throw new Error(`Explorador: rótulo "${rotulos[r]}" difere do dados.json ("${serie.respostas[r]}").`);
+  });
+}
 const valores = (i: (typeof instituicoes)[number]) => serie.instituicoes[i].valores as Record<string, number[]>;
 const PADRAO = 'congresso';
 

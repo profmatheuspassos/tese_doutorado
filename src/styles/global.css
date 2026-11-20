@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Palavras comuns em inglês nos textos (como "grow") viram classes do Tailwind; D114. */
+@source not "../content/en";
 
 /*
  * Tokens de design (Fase 3, plano aprovado em 17/11/2026).
