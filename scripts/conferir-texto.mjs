@@ -81,7 +81,13 @@ function montarIdioma(codigo) {
     });
     padroes.push(new RegExp(`^${re}$`));
   }
-  paginas.forEach((p) => { permitidos.add(p.meta.titulo); if (p.meta.titulo_original) permitidos.add(p.meta.titulo_original); });
+  // Título original (português) e, nos capítulos em inglês, a tradução dele (T52). O original numa
+  // página em inglês só passa dentro de lang="pt-BR", porque só o português o aprova.
+  paginas.forEach((p) => {
+    permitidos.add(p.meta.titulo);
+    if (p.meta.titulo_original) permitidos.add(p.meta.titulo_original);
+    if (p.meta.traducao_titulo_original) permitidos.add(p.meta.traducao_titulo_original);
+  });
   permitidos.add('contato@profmatheus.com'); // D7
   permitidos.add('%');
   const numeros = new Set();
