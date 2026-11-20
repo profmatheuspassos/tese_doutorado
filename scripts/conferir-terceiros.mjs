@@ -18,6 +18,8 @@ const LINKS_PERMITIDOS = [
   /^https:\/\/github\.com\/profmatheuspassos\/tese_doutorado\/?$/,
   /^https:\/\/github\.com\/profmatheuspassos\/tese_doutorado\/blob\/main\/LICENSE$/,
   /^https:\/\/creativecommons\.org\/licenses\/by-nc-nd\/4\.0\/deed\.pt-br$/,
+  // Mesma licença, na página em inglês (T49 em inglês, D100).
+  /^https:\/\/creativecommons\.org\/licenses\/by-nc-nd\/4\.0\/deed\.en$/,
   /^mailto:/,
 ];
 // Endereço absoluto do próprio site (canonical, D72) não é de terceiros.
