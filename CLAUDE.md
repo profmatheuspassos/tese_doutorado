@@ -119,12 +119,14 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
 | `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
+| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home, D110) |
 | `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
 | `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
 | `docs/PLANO-FASE-5.md` | Plano aprovado da Fase 5 (publicação), com os ajustes da D78 e D79 |
 | `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e resumo do Lighthouse |
 | `docs/capturas/fase-4/` | Capturas das páginas novas (D56) e `lighthouse/resumo.md` de todas as páginas (só o resumo é versionado, D59) |
 | `docs/capturas/fase-5/` | `lighthouse/resumo.md` medido no endereço publicado |
+| `docs/capturas/ingles/` | Capturas versionadas das páginas em inglês (D102) e `lighthouse/resumo.md` delas, do build com `INGLES=1` |
 | `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: rotas da home (`index.astro`), "Sobre a tese" (`sobre.astro`) e 404, layout base (`lang`, `og:locale`, `hreflang` e seletor pelo idioma), componentes por bloco, motivo ramo/semente, gráficos e diagramas |
 | `src/pages/en/[...caminho].astro`, `src/pages/en/[erro].astro` | Rotas da versão em inglês e 404 em inglês (`/en/404/`); `getStaticPaths` vazio com a chave desligada (D92) |
 | `src/components/site/SeletorIdioma.astro` | Seletor "Português · English" (D91, D101, D108): só com o inglês ativo e com destino (par ou, na 404, o início do outro idioma) |
@@ -146,7 +148,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74, D79) e cache (D75); com a 404 em inglês no build, também `dist/en/.htaccess` |
 | `scripts/gerar-versao.mjs` | Gera `dist/versao.txt` a cada build: commit da `main` e data/hora UTC (D78), para saber qual versão está no ar |
 | `scripts/conferir-publicado.mjs` | Testes no endereço real depois de publicar (`npm run conferir:publicado`); com o inglês desligado, prova que nada em inglês está no ar |
-| `scripts/comparar-builds.mjs` | Prova de que o português não muda (D94): build da branch contra o da `main` (HTML e `.htaccess` normalizados, bytes, texto e pixels nas 8 páginas x 3 larguras x 3 cenários, console) e lista dos pacotes de `/_astro/` que mudaram; `--controle` compara a `main` com ela mesma (`npm run comparar -- --referencia <dist da main>`) |
+| `scripts/comparar-builds.mjs` | Prova de que o português não muda (D94): build da branch contra o da `main` (HTML e `.htaccess` normalizados, bytes, texto e pixels nas 8 páginas x 3 larguras x 3 cenários, console) e lista dos pacotes de `/_astro/` que mudaram; `--controle` compara a `main` com ela mesma (`npm run comparar -- --referencia <dist da main>`); `--ingles` faz a prova da chave ligada (os dois builds com `INGLES=1`): português idêntico tirando seletor, `ml-auto` do menu, `hreflang` e `og:locale:alternate`, só na home e na 404 |
 | `src/lib/site.mjs`, `src/lib/imagens.mjs` | Endereço final do site (D72) e chave da versão em inglês (`INGLES_PUBLICADO`, `inglesAtivo()`, D92); lista única das imagens com nome, tamanho e teto de peso |
 | `src/pages/sitemap.xml.ts`, `src/pages/robots.txt.ts` | Sitemap e robots, gerados no build |
 | `.github/workflows/publicar.yml` | Em todo PR, dois builds com as conferências (pré-visualização com `INGLES=1` e o de produção); a cada merge na `main`, só o de produção e a publicação na branch `publicacao` (D71), que a Hostinger implanta pelo aplicativo "Implante de GitHub", sem webhook (D78) |
@@ -330,10 +332,21 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   **Aprovada (D109)** e enviada à `main` (PR #22, merge `6f66a55`); no ar, `versao.txt` com
   `6f66a55`, `conferir:publicado` passou (314 testes) e nenhum `en/` na branch `publicacao`.
 
+- **Versão em inglês, Etapa 3, home:** tradução aprovada no plano, com uma revisão (D110: TE1 a TE8;
+  "both" conta como 2 só antes de substantivo no plural). `src/content/en/home.md` (1.842 palavras;
+  FKGL 7,9; FRE 58,4; "the dissertation" 4 vezes), `frase_en`/`frases_en` no `dados.json` (impressão
+  igual) e conferidas pelo `conferir-dados`, âncoras em inglês, "Read chapter N" com `lang`/`hreflang`
+  para capítulo ainda sem tradução (só pré-visualização), `comparar-builds --ingles`, resumo do
+  Lighthouse do inglês à parte. Provas: chave desligada, zero diferença em 72 de 72 contra a `main`;
+  chave ligada, português idêntico em 72 de 72 tirando seletor e `hreflang` (home e 404). Em pull
+  request, à espera da aprovação do autor.
+
 ## Próximo passo
 
-1. **Etapa 3 da versão em inglês, home** (`src/content/en/home.md`; plano aprovado com a tradução,
-   D110): execução, PR e relatório, com o cabeçalho medido de novo entre 1024 e 1280 px (D108).
-   Depois, parar; o capítulo 1 só com aprovação.
-2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+1. **Aprovação e merge do pull request da home em inglês**; registrar a aprovação em
+   `docs/DECISOES.md` e conferir no ar que nada em inglês foi publicado (`versao.txt`,
+   `conferir:publicado`, nenhum `en/` na `publicacao`).
+2. **Capítulo 1 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
+   Na tradução de "About", trocar o destino do link do B9 da home de `/sobre/` para `/en/about/`.
+3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
