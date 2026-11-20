@@ -360,7 +360,7 @@ const TESTES = {
       let r;
       if (c.nome === 'movimento-reduzido') {
         // Até a barra mostrar o valor esperado, com limite de 2 s (antes: 50 ms fixos). Uma leitura
-        // logo depois da troca falhou com a máquina carregada (1 de 162 combinações; D112).
+        // logo depois da troca falhou com a máquina carregada (1 de 99 combinações; D112).
         const limite = Date.now() + 2000;
         r = await lerExplorador(inst);
         while (!confere(r, inst) && Date.now() < limite) { await pagina.waitForTimeout(50); r = await lerExplorador(inst); }
