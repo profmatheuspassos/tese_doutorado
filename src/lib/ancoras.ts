@@ -42,6 +42,7 @@ const ANCORAS: Record<CodigoIdioma, Parciais> = {
       faltaRecall: 'Both countries are missing one tool: the recall.',
     },
     'capitulo-2': { estarPresente: '<strong>being present</strong>' },
+    'capitulo-3': { impossivel: 'impossible' },
   },
 };
 

@@ -183,13 +183,13 @@ const TESTES = {
     // Quatro curtidas na mesma forma: um tipo só na tela.
     for (let k = 0; k < 4; k++) await pagina.locator('.bl-cartao[data-forma="triangulo"]').first().click();
     let e = await estado();
-    if (!e.contador.endsWith('1 de 4') || new Set(e.formas).size !== 1 || e.formas[0] !== 'triangulo') erros.push(`${rotulo}: bolha depois de 4 curtidas: ${JSON.stringify(e)}`);
+    if (e.contador !== i18n.bolha.contador.replace('{n}', '1') || new Set(e.formas).size !== 1 || e.formas[0] !== 'triangulo') erros.push(`${rotulo}: bolha depois de 4 curtidas: ${JSON.stringify(e)}`);
     await pagina.locator('[data-mostrar]').click();
     e = await estado();
     if (e.sumidas !== 3) erros.push(`${rotulo}: "Mostrar o que deixou de aparecer" mostrou ${e.sumidas} formas (esperado 3)`);
     await pagina.locator('[data-recomecar]').click();
     e = await estado();
-    if (!e.contador.endsWith('4 de 4') || new Set(e.formas).size !== 4 || e.sumidas !== 0) erros.push(`${rotulo}: "Recomeçar" não voltou ao início: ${JSON.stringify(e)}`);
+    if (e.contador !== i18n.bolha.contador.replace('{n}', '4') || new Set(e.formas).size !== 4 || e.sumidas !== 0) erros.push(`${rotulo}: "Recomeçar" não voltou ao início: ${JSON.stringify(e)}`);
     // Teclado: Enter num cartão conta como curtida.
     const curtida = await pagina.locator('.bl-cartao').first().getAttribute('data-forma');
     await pagina.locator('.bl-cartao').first().focus();
