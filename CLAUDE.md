@@ -119,7 +119,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
 | `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
-| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home e os capítulos 1 a 3, D110, D112, D114 e D117) |
+| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home e os capítulos 1 a 4, D110, D112, D114, D117 e D119) |
 | `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
 | `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
 | `docs/PLANO-FASE-5.md` | Plano aprovado da Fase 5 (publicação), com os ajustes da D78 e D79 |
@@ -380,18 +380,28 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   inglês testada nos três cenários. Lighthouse do capítulo 3: 100 no celular (pior de 5) e no
   computador. Aprovada (D117) e enviada à `main` (PR #27, merge `12ba916`); no ar sem nada em inglês
   (D118: `versao.txt` com `12ba916`, 314 testes, nenhum `en/` na `publicacao`, CSS sem as cinco regras).
-- **Versão em inglês, Etapa 3, capítulo 4:** em andamento na branch da sessão.
+- **Versão em inglês, Etapa 3, capítulo 4:** tradução aprovada no plano, com uma revisão do autor
+  (D119: TE34 a TE42; TE37 "what chance do they have"; "stages" e "advisory / decision-making" no
+  glossário; frase de 28 palavras do B2 idêntica à da home). `src/content/en/capitulo-4.md` (1.928
+  palavras; FKGL 8,7, acima da referência de 8, aceito pela D89; FRE 54,8; "the dissertation" 3
+  vezes). `Capitulo4.astro` com `tituloNaTese`; âncoras `five stages`, `% of the population` e `turn the
+  other way`; `frases_en` do B7 no `dados.json`. `.qd-col` com `justify-self: center` ("Government", 78
+  px numa coluna de 72 em 375 px; português igual). Lighthouse do capítulo 4: 100 no celular (pior de
+  5) e no computador. Em pull request, à espera da aprovação do autor.
 
 ## Próximo passo
 
-1. **Capítulo 4 em inglês**, em andamento, a partir da `main` em `12ba916`.
-   `Capitulo4.astro` passa a usar `tituloNaTese`, como os capítulos 1 a 3; conferir os componentes do
-   capítulo 4 (quem decide, ramo e semente, círculo virtuoso) e os testes do `scripts/capturas.mjs`
-   que dependam de texto em português; âncoras `cincoEtapas`, `daPopulacao` e `girarAoContrario` em
-   inglês ("turn the other way", home B6). Na tradução de "About", trocar o destino do link do B9 da
-   home de `/sobre/` para `/en/about/`.
+1. **Aprovação e merge do pull request do capítulo 4 em inglês (D119)**; registrar em
+   `docs/DECISOES.md` como D120 e conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`,
+   `conferir:publicado`, nenhum `en/` na `publicacao`, Base CSS sem as cinco regras da D115).
+2. **Capítulo 5 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
+   `Capitulo5.astro` passa a usar `tituloNaTese`, como os capítulos 1 a 4; conferir os componentes do
+   capítulo 5 (caminho do referendo, barras das petições, cartões das ferramentas, funil da Califórnia)
+   e os testes do `scripts/capturas.mjs` que dependam de texto em português; âncora `soCongresso` em
+   inglês; títulos com apóstrofo curvo ("(and one that’s missing)", D114). Na tradução de "About",
+   trocar o destino do link do B9 da home de `/sobre/` para `/en/about/`.
    **Procedimento de cada página (D115):** a prova final contra a `main` (`comparar-builds`, chave
    desligada e ligada) roda no **último commit do PR, depois dos commits de documentação**; se algum
    commit entrar depois dela, a prova roda de novo.
-2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
