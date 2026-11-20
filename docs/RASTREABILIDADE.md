@@ -1226,6 +1226,50 @@ em `en-US`, por `scripts/conferir-dados.mjs`. Os valores continuam só no `dados
   marcado com `lang="pt-BR"` e o link com `hreflang="pt-BR"`, enquanto eles não forem traduzidos.
 - "Turn the other way" (B6) fica como forma fixa para a âncora do capítulo 4, B11.
 
+### Capítulo 1 (`src/content/en/capitulo-1.md`)
+
+Tradução aprovada pelo autor em 20/11/2026, no plano da página, com uma revisão (dez trechos, D112).
+Palavras contadas como na home (texto visível do bloco).
+
+| Bloco en | Título en | Bloco pt | Palavras pt → en | Escolhas de tradução |
+|---|---|---|---|---|
+| B0 | On paper, everything is fine | B0 | 74 → 77 | TE9 |
+| B1 | From subject to citizen | B1 | 265 → 285 | TE10, TE11 |
+| B2 | Why parties became the centerpiece | B2 | 150 → 143 | TE12, TE18 |
+| B3 | A majority is a count, not the truth | B3 | 173 → 181 | — |
+| B4 | The nine rules of the game | B4 | 190 → 198 | TE13 |
+| B5 | Two ways to be a citizen | B5 | 156 → 172 | TE14 |
+| B6 | What Portugal's constitution says | B6 | 185 → 176 | TE16, TE17 |
+| B7 | What Brazil's constitution says | B7 | 249 → 253 | TE15, TE16, TE17, TE18 |
+| B8 | Side by side | B8 | 134 → 142 | — |
+| B9 | And in practice? | B9 | 104 → 108 | — |
+| **Total** | | | **1.680 → 1.735** | |
+
+**Título na tese.** O `.md` em inglês não tem `titulo_original`: o original vem do `.md` em português
+e aparece com `lang="pt-BR"`; a tradução vem do campo `traducao_titulo_original` (seção 6 do
+glossário), abaixo do rótulo T52 ("Translation"), em linha própria e sem dois-pontos (escolha de
+apresentação, D112).
+
+**Observações do capítulo 1.**
+- Frases e termos reaproveitados da home em inglês (D110): o título ("On paper, everything is
+  fine"); "the people elect individuals … on their behalf" (B1); as regras do B4, que repetem a
+  lista do B2 da home em forma de frase ("elected by the people"; "regardless of race, religion,
+  income, or sex"; "the same weight"; "at least two parties"; "… or the minority's right to become
+  the majority one day"); "A democratic government also needs to respond to citizens and be
+  accountable to them." (B4, idêntica); "the most important law in" e "the smallest division of
+  local government" (B6); "replace the elected assembly with a meeting of all voters" (B6); "submit
+  bills" (B7); "what belongs to everyone" (B3); "freedom of expression" (B5).
+- Linha "Referendum" do B8: "Binding only if more than half of registered voters take part", a
+  mesma forma do T37.
+- "Nos dois" (B5) virou "in both senses": o "sentidos" está implícito no português; "both senses"
+  conta como 2 na paridade (D110).
+- Séculos: "século XIX" (romanos) = "19th century"; a paridade lê os romanos depois de "século"
+  (D112).
+- "Para o autor" (B7) = "In the author's view"; "a tese" aparece duas vezes, como "the dissertation"
+  (B3 e B9).
+- Navegação: "Previous" leva à home em inglês; "Next", em pré-visualização, ao capítulo 2 em
+  português, com `lang` e `hreflang` pt-BR, até ele ser traduzido.
+
 ### Escolhas de tradução
 
 Uma linha por escolha. Tipos: **explicação** (definição curta, sem fato novo), **expressão**
@@ -1242,8 +1286,22 @@ não entra na lista.
 | TE6 | home, B8 (tabela) | "Cultura e valores nivelados por baixo" | "Culture and values dumbed down" | Expressão | "Nivelar por baixo" literal não faz sentido em inglês; "dumbed down" é a expressão americana equivalente | D110 |
 | TE7 | home, B8 | "de uma hora para outra" | "overnight" | Expressão | O literal ("from one hour to another") não existe em inglês | D110 |
 | TE8 | home, B3 | "com uma queda forte entre 2010 e 2017" | "with a sharp drop in trust between 2010 and 2017" | Explicação | "In trust" está implícito no português (a queda é da confiança, assunto do parágrafo); sem fato novo | D110 |
+| TE9 | capítulo 1, B0 | "monta essa régua"; "o que a régua pede" | "builds that yardstick"; "what the yardstick calls for" | Expressão | "Ruler" seria lido como governante; "yardstick" é a régua-padrão de comparação em inglês americano | D112 |
+| TE10 | capítulo 1, B1 | "súditas do governante" | "subjects of the ruler" | Termo fora do glossário | O glossário dá "leader" para "governante"; num Estado absolutista, "ruler" é o termo usual. Só neste contexto, fora do glossário | D112 |
+| TE11 | capítulo 1, B1 | "os nomes de peso da elite" | "the big names of the elite" | Expressão | O literal ("names of weight") não existe em inglês | D112 |
+| TE12 | capítulo 1, B2 | "propaganda o ano todo" | "year-round campaigning" | Termo fora do glossário | "Propaganda" em inglês é manipulação política (falso cognato); "publicity", em inglês americano, é atenção da mídia. Revisão do autor | D112 |
+| TE13 | capítulo 1, B4 | "o chefe de Estado" | "the head of state" | Termo fora do glossário | Expressão fixa em inglês, em minúscula; exceção à regra do "the State", que vale para o Estado como entidade | D112 |
+| TE14 | capítulo 1, B5 | "votar e ser votado" | "vote and run for office" | Expressão | "Be voted for" é literal e estranho; "run for office" é como se diz o direito de ser candidato | D112 |
+| TE15 | capítulo 1, B7 | "R$ 3,51" | "R$3.51 (Brazilian reais)" | Explicação | Forma exata da D104; sem conversão de moeda | D112 |
+| TE16 | capítulo 1, B6 e B7 | "a dignidade da pessoa humana" | "human dignity" | Termo fora do glossário | Forma usual em inglês; "dignity of the human person" é jargão jurídico | D112 |
+| TE17 | capítulo 1, B6 e B7 | "assegurar e incentivar a participação democrática dos cidadãos"; "Todo o poder emana do povo, que o exerce por meio de representantes eleitos ou diretamente" | "to ensure and encourage the democratic participation of citizens"; "All power comes from the people, who exercise it through elected representatives or directly" | Expressão | Tradução nossa, em linguagem simples, não a tradução oficial das constituições; "emana" vira "comes from" | D112 |
+| TE18 | capítulo 1, B2 e B7 | "alianças" | "alliances" | Termo fora do glossário | Serve aos dois usos do texto (apoio ao governo no B2, coligação eleitoral no B7); "coalitions" puxaria só para coalizão de governo | D112 |
 
 **Explicações não propostas na home.** "Portal de Opinião Pública" e "Fundação Francisco Manuel dos
 Santos" ficam como estão, porque a frase já os apresenta como fonte dos dados. "Título de eleitor"
 vira "voter registration card", que se explica sozinho.
 
+
+**Explicações no capítulo 1.** Só a da D104 (TE15, "Brazilian reais"). Freguesia, cláusula de
+barreira, fundo partidário e lista fechada e aberta já vêm definidos no texto aprovado; nenhuma
+outra explicação foi proposta.

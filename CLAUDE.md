@@ -119,7 +119,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
 | `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
-| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home, D110) |
+| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home e o capítulo 1, D110 e D112) |
 | `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
 | `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
 | `docs/PLANO-FASE-5.md` | Plano aprovado da Fase 5 (publicação), com os ajustes da D78 e D79 |
@@ -338,15 +338,28 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   igual) e conferidas pelo `conferir-dados`, âncoras em inglês, "Read chapter N" com `lang`/`hreflang`
   para capítulo ainda sem tradução (só pré-visualização), `comparar-builds --ingles`, resumo do
   Lighthouse do inglês à parte. Provas: chave desligada, zero diferença em 72 de 72 contra a `main`;
-  chave ligada, português idêntico em 72 de 72 tirando seletor e `hreflang` (home e 404). Em pull
-  request, à espera da aprovação do autor.
+  chave ligada, português idêntico em 72 de 72 tirando seletor e `hreflang` (home e 404). Aprovada
+  (D110) e enviada à `main` (PR #23, merge `46aad3b`); no ar sem nada em inglês (D111: `versao.txt`
+  com `46aad3b`, 314 testes, nenhum `en/` na `publicacao`).
+- **Versão em inglês, Etapa 3, capítulo 1:** tradução aprovada no plano, com uma revisão do autor
+  (D112: TE9 a TE18; TE12, TE13, TE16 e TE18 no glossário). `src/content/en/capitulo-1.md` (1.735
+  palavras; FKGL 8,4, acima da referência de 8, aceito pela D89; FRE 56,0; "the dissertation" 2
+  vezes). Título na tese com o original em `lang="pt-BR"` e a tradução sob o T52 (`tituloNaTese` em
+  `src/lib/paginas.ts`); navegação com `hreflang` para página sem tradução. Scripts: paridade lê o
+  século em romanos; `comparar-builds --ingles` tira o esperado dos pares do `sitemap.xml` de cada
+  build; Lighthouse com 5 rodadas no celular em cada página em inglês; espera do explorador do
+  capítulo 2 até o valor esperado (limite de 2 s), depois de 1 falha em 99 combinações. Provas:
+  chave desligada, zero diferença em 72 de 72; chave ligada, português idêntico em 72 de 72 tirando
+  só o previsto pelos pares. Lighthouse do capítulo 1: 99 no celular (pior de 5), 100 no computador.
+  Em pull request, à espera da aprovação do autor.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da home em inglês**; registrar a aprovação em
-   `docs/DECISOES.md` e conferir no ar que nada em inglês foi publicado (`versao.txt`,
-   `conferir:publicado`, nenhum `en/` na `publicacao`).
-2. **Capítulo 1 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
-   Na tradução de "About", trocar o destino do link do B9 da home de `/sobre/` para `/en/about/`.
+1. **Aprovação e merge do pull request do capítulo 1 em inglês**; registrar em `docs/DECISOES.md` e
+   conferir no ar que nada em inglês foi publicado (`versao.txt`, `conferir:publicado`, nenhum `en/`
+   na `publicacao`).
+2. **Capítulo 2 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
+   No capítulo 2, `Capitulo2.astro` passa a usar `tituloNaTese`, como o capítulo 1. Na tradução de
+   "About", trocar o destino do link do B9 da home de `/sobre/` para `/en/about/`.
 3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).

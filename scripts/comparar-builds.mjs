@@ -24,9 +24,11 @@
  * português (fica de fora o que está em en/ e o sitemap, que ganha as páginas em inglês e é conferido
  * pelo conferir-publicacao). No HTML, antes da comparação, tira dos dois lados o seletor de idioma
  * ([data-seletor-idioma], com a classe ml-auto que o menu ganha para dar lugar a ele), as linhas
- * <link rel="alternate" hreflang> e o og:locale:alternate, e conta
- * o que tirou: na referência, nada; no candidato, só a home (seletor e hreflang) e a 404 em
- * português (só o seletor, D108). No .htaccess, só aceita a mais na CSP hashes de trechos em linha
+ * <link rel="alternate" hreflang> e o og:locale:alternate, e conta o que tirou. O que se espera
+ * tirar de cada lado sai dos pares que existem no build daquele lado, lidos do sitemap.xml dele:
+ * página em português com par em inglês, os quatro itens; a 404 em português, só o seletor e a classe
+ * do menu, se a home em inglês existe (D108); nas demais, nada. No .htaccess, só aceita a mais na
+ * CSP hashes de trechos em linha
  * que existem apenas nas páginas em inglês. No navegador, o seletor e o og:locale:alternate saem do
  * DOM antes do texto e da captura; o resto precisa ser idêntico, texto e pixels.
  *
@@ -43,6 +45,8 @@ import { createServer } from 'node:http';
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { extname, join, relative, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
+import { IDIOMAS } from '../src/lib/idiomas.mjs';
+import { absoluta } from '../src/lib/site.mjs';
 
 const exigir = createRequire(import.meta.url);
 const { chromium } = exigir('playwright');
@@ -89,6 +93,27 @@ function tirarIngles(texto, lado, f) {
   const nMenu = (texto.match(MENU_COM_SELETOR) ?? []).length;
   if (nMenu) (tirados[lado][f] ??= {}).menuComSeletor = nMenu;
   return texto.replace(MENU_COM_SELETOR, '$1"');
+}
+// --ingles: o que se espera tirar de cada lado sai dos pares que existem no build daquele lado,
+// lidos do sitemap.xml dele (gerado dos .md pelo campo `pagina`; o conferir-publicacao confere os
+// alternates contra o hreflang das páginas). Página em português com par em inglês: seletor, classe
+// do menu, hreflang e og:locale:alternate. A 404 em português: seletor e classe do menu, se a home em
+// inglês existe (D108). Qualquer outra página com algo tirado, ou página com par sem o esperado, é falha.
+const COM_PAR = ['seletor', 'menuComSeletor', 'hreflang', 'ogAlternate'];
+const NA_404 = ['seletor', 'menuComSeletor'];
+function esperadoDosPares(pasta) {
+  const arq = join(pasta, 'sitemap.xml');
+  if (!existsSync(arq)) throw new Error(`--ingles: ${arq} não existe (o build foi feito com INGLES=1?).`);
+  const prefixo = new URL(absoluta('/')).pathname; // base do site (src/lib/site.mjs)
+  const rotaDe = (loc) => `/${new URL(loc).pathname.slice(prefixo.length)}`;
+  const esperado = {};
+  for (const bloco of readFileSync(arq, 'utf8').split('<url>').slice(1)) {
+    const rota = rotaDe(bloco.match(/<loc>([^<]+)<\/loc>/)[1]);
+    if (rota === IDIOMAS.en.prefixo) esperado['404.html'] = NA_404;
+    const temPar = /hreflang="en"/.test(bloco);
+    if (temPar && !rota.startsWith(IDIOMAS.en.prefixo)) esperado[`${rota.slice(1)}index.html`] = COM_PAR;
+  }
+  return esperado;
 }
 // --ingles: hashes de trechos em linha (<script>, <style>) por grupo de páginas do candidato.
 function hashesEmLinha(pasta, filtro) {
@@ -147,15 +172,17 @@ for (const f of compRef.filter((x) => compCand.includes(x))) {
   falhar('bytes', `${f}: diferente depois da troca dos nomes de /_astro/, a partir do caractere ${i}.\n      referência: ${trecho(na)}\n      candidato:  ${trecho(nb)}`);
 }
 if (ingles) {
-  const esperado = { 'index.html': ['seletor', 'menuComSeletor', 'hreflang', 'ogAlternate'], '404.html': ['seletor', 'menuComSeletor'] };
-  for (const [f, itens] of Object.entries(tirados.referencia)) falhar('ingles', `referência ${f}: tinha ${JSON.stringify(itens)} (esperado nada)`);
-  for (const [f, itens] of Object.entries(tirados.candidato)) {
-    const nomes = Object.keys(itens).sort().join();
-    if (!esperado[f]) falhar('ingles', `candidato ${f}: tinha ${JSON.stringify(itens)} (só a home e a 404 em português podem ter)`);
-    else if (nomes !== [...esperado[f]].sort().join()) falhar('ingles', `candidato ${f}: tinha ${JSON.stringify(itens)} (esperado ${esperado[f].join(', ')})`);
+  for (const [lado, pasta] of [['referencia', pastaRef], ['candidato', pastaCand]]) {
+    const esperado = esperadoDosPares(pasta);
+    for (const [f, itens] of Object.entries(tirados[lado])) {
+      const nomes = Object.keys(itens).sort().join();
+      if (!esperado[f]) falhar('ingles', `${lado} ${f}: tinha ${JSON.stringify(itens)} (página sem par em inglês)`);
+      else if (nomes !== [...esperado[f]].sort().join()) falhar('ingles', `${lado} ${f}: tinha ${JSON.stringify(itens)} (esperado ${esperado[f].join(', ')})`);
+    }
+    for (const f of Object.keys(esperado)) if (!tirados[lado][f]) falhar('ingles', `${lado} ${f}: sem ${esperado[f].join(', ')}`);
+    console.log(`--ingles: ${lado}: pares pelo sitemap ${JSON.stringify(Object.keys(esperado))}; tirado ${JSON.stringify(tirados[lado])}`);
   }
-  for (const f of Object.keys(esperado)) if (!tirados.candidato[f]) falhar('ingles', `candidato ${f}: sem ${esperado[f].join(', ')}`);
-  console.log(`--ingles: tirado do candidato ${JSON.stringify(tirados.candidato)}; da referência ${JSON.stringify(tirados.referencia)}; hashes da CSP só das páginas em inglês: ${hashesSoIngles.length ? hashesSoIngles.join(' ') : 'nenhum'}`);
+  console.log(`--ingles: hashes da CSP só das páginas em inglês: ${hashesSoIngles.length ? hashesSoIngles.join(' ') : 'nenhum'}`);
 }
 console.log(`1-2. arquivos e bytes: ${compRef.length} arquivos na referência e ${compCand.length} no candidato (fora /_astro/ e versao.txt); ${iguaisBytes} idênticos byte a byte; ${iguaisNormalizados} .html/.htaccess idênticos depois da troca dos nomes de /_astro/`);
 

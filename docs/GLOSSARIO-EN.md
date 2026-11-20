@@ -114,6 +114,10 @@ Para cada termo, as duas opções consideradas e a escolhida.
 | programa (de partido) | platform (D110, TE2) |
 | o digital (substantivo) | the digital world (D110, TE3) |
 | controle da Justiça | oversight by the courts (D110, TE4) |
+| propaganda (política/partidária) | campaigning (D112, TE12; "publicity" é atenção da mídia) |
+| chefe de Estado | head of state, em minúscula (D112, TE13; exceção ao "the State") |
+| dignidade da pessoa humana | human dignity (D112, TE16) |
+| alianças (eleitorais ou de governo) | alliances (D112, TE18) |
 
 ## 5. Títulos das páginas e rotas (D91, D96)
 
@@ -240,8 +244,8 @@ saem em inglês.
 ## 9. Explicações para o leitor estrangeiro
 
 Explicação curta, só definição, sem fato novo, proposta com o trecho exato na página em que
-aparece e aprovada como decisão (D85). Já decidida: **R$3.51 com "Brazilian reais"** (capítulo 1,
-B7; D104). Previstas para proposta: Assembleia da República; Câmara dos Deputados; título de
+aparece e aprovada como decisão (D85). Já decidida e aplicada: **R$3.51 com "Brazilian reais"**, na forma
+"R$3.51 (Brazilian reais)" (capítulo 1, B7; D104, TE15). Previstas para proposta: Assembleia da República; Câmara dos Deputados; título de
 eleitor; Portal de Opinião Pública e Fundação Francisco Manuel dos Santos. Freguesia, Estatuto da
 Cidade, plano diretor, Lei de Acesso à Informação, cláusula de barreira e comissões provisórias já
 vêm definidos no texto aprovado e não precisam de acréscimo.

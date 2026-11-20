@@ -27,6 +27,21 @@ export async function sobre(idioma: CodigoIdioma = IDIOMA_PADRAO) {
   return { titulo: s.data.titulo, rota: s.data.rota };
 }
 
+/**
+ * Título do capítulo na tese (T13). O original vem sempre do .md em português; numa página em
+ * inglês, vem também a tradução (T52, campo `traducao_titulo_original`) e o `lang` do original.
+ * Capítulo traduzido sem a tradução do título faz o build falhar.
+ */
+export async function tituloNaTese(id: string, idioma: CodigoIdioma = IDIOMA_PADRAO): Promise<{ original: string; traducao?: string; langOriginal?: string }> {
+  const original = (await getEntry(colecao(IDIOMA_PADRAO), id))?.data.titulo_original;
+  if (!original) throw new Error(`Página sem titulo_original no português: ${id}`);
+  if (idioma === IDIOMA_PADRAO) return { original };
+  const dados = (await getEntry(colecao(idioma), id))?.data;
+  const traducao = dados && 'traducao_titulo_original' in dados ? dados.traducao_titulo_original : undefined;
+  if (!traducao) throw new Error(`Página sem traducao_titulo_original (${idioma}): ${id}`);
+  return { original, traducao, langOriginal: dadosIdioma(IDIOMA_PADRAO).lang };
+}
+
 /** Rota do início de um idioma, se a home desse idioma existe. */
 export async function inicioDe(idioma: CodigoIdioma): Promise<string | undefined> {
   return (await getEntry(colecao(idioma), 'home'))?.data.rota;

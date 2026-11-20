@@ -4,7 +4,7 @@
  * instalado no ambiente, em todas as páginas que o build tem (lidas dos .md aprovados dos dois
  * idiomas; o inglês só existe no build com INGLES=1 ou com o inglês publicado).
  * Falha se alguma categoria ficar abaixo de 90. A home de cada idioma no celular, onde a nota oscila mais, roda
- * RODADAS_HOME vezes (padrão 5): todas precisam passar, e o resumo registra a pior rodada, com as
+ * RODADAS_HOME vezes (padrão 5), e, no build local, também cada página em inglês: todas precisam passar, e o resumo registra a pior rodada, com as
  * notas de desempenho de todas. Só o resumo vai para o repositório
  * (docs/capturas/fase-4/lighthouse/resumo.md, D59); os relatórios JSON completos ficam numa pasta
  * de rascunho fora dele (LIGHTHOUSE_RASCUNHO).
@@ -67,7 +67,9 @@ let categorias = [];
 try {
   for (const pg of paginas) {
     for (const modo of ['celular', 'desktop']) {
-      const vezes = pg.pagina === 'home' && modo === 'celular' ? RODADAS_HOME : 1;
+      // No build local, toda página em inglês também roda RODADAS_HOME vezes no celular (pedido do
+      // autor no capítulo 1 em inglês, D112); no endereço publicado, só a home de cada idioma.
+      const vezes = modo === 'celular' && (pg.pagina === 'home' || (!NO_AR && pg.codigo !== IDIOMA_PADRAO)) ? RODADAS_HOME : 1;
       const rodadas = [];
       for (let k = 0; k < vezes; k++) {
         const saida = join(rascunho, `${pg.nome}-${modo}${vezes > 1 ? `-${k + 1}` : ''}.json`);
@@ -95,15 +97,15 @@ try {
   servidor?.kill();
 }
 const origem = NO_AR ? `Fase 5)\n\nGerado por \`npm run lighthouse\` com \`LIGHTHOUSE_URL=${NO_AR}\`, no endereço publicado.` : 'Fase 4)\n\nGerado por `npm run lighthouse` sobre o build local.';
-const gravar = (destino, titulo, doResumo) => {
+const gravar = (destino, titulo, doResumo, rodadas = `A home no celular roda ${RODADAS_HOME} vezes; a linha dela é a pior rodada.`) => {
   if (!doResumo.length) return;
   mkdirSync(destino, { recursive: true });
-  writeFileSync(join(destino, 'resumo.md'), `# Lighthouse (${titulo} Mínimo exigido: 90 em todas as categorias. A home no celular roda ${RODADAS_HOME} vezes; a linha dela é a pior rodada.\n\n${[`| Página | Modo | ${categorias.join(' | ')} | LCP | CLS | TBT |`, `|${'---|'.repeat(categorias.length + 5)}`, ...doResumo.map((l) => l.texto)].join('\n')}\n`);
+  writeFileSync(join(destino, 'resumo.md'), `# Lighthouse (${titulo} Mínimo exigido: 90 em todas as categorias. ${rodadas}\n\n${[`| Página | Modo | ${categorias.join(' | ')} | LCP | CLS | TBT |`, `|${'---|'.repeat(categorias.length + 5)}`, ...doResumo.map((l) => l.texto)].join('\n')}\n`);
 };
 if (NO_AR) gravar(pasta, origem, linhas);
 else {
   gravar(pasta, origem, linhas.filter((l) => l.codigo === IDIOMA_PADRAO));
-  gravar(pastaIngles, 'versão em inglês)\n\nGerado por `npm run lighthouse` sobre o build local com `INGLES=1` (pré-visualização; nada disso está no ar).', linhas.filter((l) => l.codigo !== IDIOMA_PADRAO));
+  gravar(pastaIngles, 'versão em inglês)\n\nGerado por `npm run lighthouse` sobre o build local com `INGLES=1` (pré-visualização; nada disso está no ar).', linhas.filter((l) => l.codigo !== IDIOMA_PADRAO), `No celular, cada página roda ${RODADAS_HOME} vezes; a linha dela é a pior rodada.`);
 }
 if (erros.length) { console.error('lighthouse: abaixo de 90 -> ' + erros.join('; ')); process.exit(1); }
 console.log(`lighthouse: ok (${paginas.length} página(s), todas as categorias com 90 ou mais; resumo em ${NO_AR ? join(pasta, 'resumo.md') : [...new Set(linhas.map((l) => (l.codigo === IDIOMA_PADRAO ? pasta : pastaIngles)))].map((d) => join(d, 'resumo.md')).join(' e ')}; JSON em ${rascunho})`);

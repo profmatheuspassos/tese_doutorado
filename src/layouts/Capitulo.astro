@@ -19,10 +19,12 @@ interface Props {
   abertura: Bloco;
   n?: number;
   tituloOriginal?: string;
+  traducaoTituloOriginal?: string;
+  langTituloOriginal?: string;
   imagem?: string;
   tema: 'claro' | 'nevoa' | 'escuro';
 }
-const { rota, titulo, abertura, n, tituloOriginal, imagem, tema } = Astro.props;
+const { rota, titulo, abertura, n, tituloOriginal, traducaoTituloOriginal, langTituloOriginal, imagem, tema } = Astro.props;
 const descricao = textoSimples(abertura.elementos[1] ?? '');
 if (!descricao) throw new Error(`Sem parágrafo no B0 para a descrição: ${rota}`);
 const comLateral = Astro.slots.has('lateral');
@@ -30,7 +32,7 @@ const comLateral = Astro.slots.has('lateral');
 <Base titulo={t('titulo_pagina', { titulo })} descricao={descricao}>
   <Progresso />
   <article>
-    <Abertura bloco={abertura} n={n} tituloOriginal={tituloOriginal} imagem={imagem} tema={tema} comLateral={comLateral}>
+    <Abertura bloco={abertura} n={n} tituloOriginal={tituloOriginal} traducaoTituloOriginal={traducaoTituloOriginal} langTituloOriginal={langTituloOriginal} imagem={imagem} tema={tema} comLateral={comLateral}>
       <slot name="lateral" slot="lateral" />
     </Abertura>
     <slot />

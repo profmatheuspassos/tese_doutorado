@@ -371,6 +371,7 @@ para o inglês.
 | Página | Palavras visíveis | Palavras no texto corrido | Frases | Palavras/frase | Sílabas/palavra | FKGL | FRE | Fora do CMU | "the dissertation" |
 |---|---|---|---|---|---|---|---|---|---|
 | Home | 1.842 | 1.652 | 149 | 11,1 | 1,62 | 7,9 | 58,4 | 40 (2,4%) | 4 |
+| Capítulo 1 | 1.735 | 1.539 | 129 | 11,9 | 1,64 | 8,4 | 56,0 | 21 (1,4%) | 2 |
 
 ### Home em inglês (20/11/2026)
 
@@ -393,3 +394,27 @@ dissertation" no B0, que o script não conta: as mesmas cinco menções de "a te
 
 **Estimativa do plano x medição:** a estimativa à mão, com regra simples de sílabas, deu FKGL perto
 de 7,5 e FRE perto de 60; o CMU conta um pouco mais de sílabas (1,62 por palavra, contra 1,59).
+
+### Capítulo 1 em inglês (20/11/2026)
+
+`src/content/en/capitulo-1.md`, tradução aprovada com TE9 a TE18 e a revisão do autor (D112).
+**FKGL 8,4**, um pouco acima da referência de 8 ou menos; **FRE 56,0**. Em relação à home (7,9), as
+frases são um pouco mais longas (11,9 palavras, contra 11,1) e as palavras também (1,64 sílaba,
+contra 1,62), com o vocabulário do capítulo (representative, constitution, democracy,
+organization); as duas coisas somam. O índice é conferência, não meta: o texto aprovado não foi
+simplificado para baixar o número. O
+português da mesma página tem 1.680 palavras visíveis; o inglês, 1.735.
+
+**Palavras fora do CMU (sílabas por regra):** 21, 1,4% do texto corrido. São números (anos, idades,
+percentuais e o valor da multa, que contam como duas sílabas) e "reais".
+
+**Frases longas:** nenhuma acima de 25 palavras. A maior tem 25, no B7 ("In 2006, a change to the
+constitution let parties form different alliances in each race, …").
+
+**"The dissertation":** 2 (B3 e B9), as mesmas duas menções de "a tese" no português (D15). "Para o
+autor" (B7) virou "In the author's view". Na página, o rótulo T13 ("Title in the dissertation")
+aparece fora do texto, como "Título na tese" no português.
+
+**Estimativa do plano x medição:** a estimativa à mão, com regra simples de sílabas, deu FKGL entre
+8,0 e 8,4 e FRE entre 56 e 59; a medição ficou no topo da faixa (8,4 e 56,0), porque o CMU conta mais
+sílabas que a regra (1,64 contra 1,61).
