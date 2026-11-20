@@ -118,6 +118,8 @@ Para cada termo, as duas opções consideradas e a escolhida.
 | chefe de Estado | head of state, em minúscula (D112, TE13; exceção ao "the State") |
 | dignidade da pessoa humana | human dignity (D112, TE16) |
 | alianças (eleitorais ou de governo) | alliances (D112, TE18) |
+| estatutos (de partido) | party bylaws (D114, TE20; "statutes" seria lido como leis do Legislativo) |
+| estar presente; ativar-se; decidir (degraus de participação) | being present; becoming active; deciding (D114; "to be present" na home, B6) |
 
 ## 5. Títulos das páginas e rotas (D91, D96)
 
@@ -126,10 +128,14 @@ Para cada termo, as duas opções consideradas e a escolhida.
 | Home (título do site e h1) | Revitalize, not replace | `/en/` |
 | Home, subtítulo (T12) | Democracy, citizenship, and participation in Portugal and Brazil | — |
 | Capítulo 1 | On paper, everything is fine | `/en/chapters/1-on-paper/` |
-| Capítulo 2 | What isn't working | `/en/chapters/2-what-isnt-working/` |
-| Capítulo 3 | The shortcut that doesn't fix it | `/en/chapters/3-the-digital-shortcut/` |
+| Capítulo 2 | What isn’t working | `/en/chapters/2-what-isnt-working/` |
+| Capítulo 3 | The shortcut that doesn’t fix it | `/en/chapters/3-the-digital-shortcut/` |
 | Capítulo 4 | Citizens at the center | `/en/chapters/4-citizens-at-the-center/` |
-| Capítulo 5 | The tools that already exist (and one that's missing) | `/en/chapters/5-the-tools/` |
+| Capítulo 5 | The tools that already exist (and one that’s missing) | `/en/chapters/5-the-tools/` |
+
+Nos títulos com apóstrofo, o campo `titulo` do front matter usa o apóstrofo curvo (’), como os
+rótulos (D107): assim `<title>`, menu, rodapé, navegação e "Read chapter N" saem iguais ao h1, que o
+Astro curva sozinho no corpo (D114).
 | Sobre a tese | About the dissertation | `/en/about/` |
 | 404 | Page not found | `/en/404/` |
 

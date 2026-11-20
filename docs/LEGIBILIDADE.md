@@ -372,6 +372,7 @@ para o inglês.
 |---|---|---|---|---|---|---|---|---|---|
 | Home | 1.842 | 1.652 | 149 | 11,1 | 1,62 | 7,9 | 58,4 | 40 (2,4%) | 4 |
 | Capítulo 1 | 1.735 | 1.539 | 129 | 11,9 | 1,64 | 8,4 | 56,0 | 21 (1,4%) | 2 |
+| Capítulo 2 | 1.850 | 1.776 | 157 | 11,3 | 1,58 | 7,5 | 61,4 | 51 (2,9%) | 2 |
 
 ### Home em inglês (20/11/2026)
 
@@ -418,3 +419,24 @@ aparece fora do texto, como "Título na tese" no português.
 **Estimativa do plano x medição:** a estimativa à mão, com regra simples de sílabas, deu FKGL entre
 8,0 e 8,4 e FRE entre 56 e 59; a medição ficou no topo da faixa (8,4 e 56,0), porque o CMU conta mais
 sílabas que a regra (1,64 contra 1,61).
+
+### Capítulo 2 em inglês (20/11/2026)
+
+`src/content/en/capitulo-2.md`, tradução aprovada com TE19 a TE24 e a revisão do autor (D114).
+**FKGL 7,5**, dentro da referência de 8 ou menos; **FRE 61,4**. Frases tão curtas quanto as do
+português (as mesmas 157 frases, 11,3 palavras por frase) e palavras mais curtas que as do capítulo 1
+(1,58 sílaba, contra 1,64). O português da mesma página tem 1.797 palavras visíveis; o inglês, 1.850.
+
+**Palavras fora do CMU (sílabas por regra):** 51, 2,9% do texto corrido. São números (anos e
+percentuais, que contam como duas sílabas), nomes em português (Fundação, Latinobarómetro, Opinião,
+Pública) e "oligarchization", que o texto já explica.
+
+**Frases longas:** nenhuma acima de 25 palavras. A maior tem 24, no B6 ("It is up to citizens to
+seek information, …" e "The way out is to give participation a positive meaning, …").
+
+**"The dissertation":** 2 (B1 e B10), as mesmas duas menções de "a tese" no português (D15). "Para o
+autor" (B7) virou "In the author's view".
+
+**Estimativa do plano x medição:** a estimativa com regra simples de sílabas deu FKGL perto de 7,7 e
+FRE perto de 60; aqui o CMU contou menos sílabas que a regra (1,58 contra 1,60), e a medição ficou
+abaixo da estimativa.
