@@ -16,3 +16,7 @@ dist/
 
 # Variantes de imagem geradas no build (scripts/variantes-imagens.mjs)
 public/img/variantes/
+
+# Medição de legibilidade em inglês (scripts/legibilidade_en.py): ambiente virtual e cache do Python
+.venv-legibilidade/
+__pycache__/

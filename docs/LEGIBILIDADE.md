@@ -49,6 +49,54 @@ e deve ser conferida no relatório de 1996 antes de ser citada publicamente.
 - O índice só vê tamanho de frase e de palavra. Não mede ordem das ideias, termos técnicos
   sem explicação nem voz passiva; isso é conferido na revisão.
 
+## Método do inglês (D89)
+
+Medição com `python3 scripts/legibilidade_en.py ARQUIVO.md`, num ambiente com as dependências de
+`scripts/requirements-legibilidade.txt` (`cmudict==1.1.3` e as dependências dele, todas fixadas):
+
+```bash
+python3 -m venv .venv-legibilidade
+```
+
+```bash
+.venv-legibilidade/bin/pip install -r scripts/requirements-legibilidade.txt
+```
+
+**Índices.** Flesch-Kincaid Grade Level (Kincaid et al., 1975) e, ao lado, Flesch Reading Ease
+(Flesch, 1948), nas formas usuais:
+
+```
+FKGL = 0,39 × (palavras por frase) + 11,8 × (sílabas por palavra) − 15,59
+FRE  = 206,835 − 1,015 × (palavras por frase) − 84,6 × (sílabas por palavra)
+```
+
+**Referência de conferência: FKGL 8 ou menos** (8º ano americano, perto do leitor-alvo do
+português). É conferência, não meta: não piorar o texto para melhorar o número. **A D16
+(tamanho de 1.200 a 1.800 palavras) não vale para o inglês**: o tamanho é o que a tradução fiel
+der. As fórmulas foram conferidas pelo teste do próprio script (`--teste`, com um texto contado à
+mão), não nas publicações originais.
+
+**Sílabas.** Pelo dicionário de pronúncia CMU (pacote `cmudict`): conta as vogais da primeira
+pronúncia de cada palavra. Possessivo e contração com apóstrofo reto ou curvo são procurados como
+estão e, se não houver, sem o "'s". Palavras fora do dicionário (nomes portugueses e brasileiros,
+siglas) caem numa regra simples (grupos de vogais, com o "e" mudo final), e **o relatório informa
+quantas palavras e qual percentual caíram na regra, com a lista**. Números contam como uma palavra
+de duas sílabas, como no português.
+
+**Recorte.** O mesmo do script em português (o script em inglês importa as funções dele): o índice
+usa só o texto corrido, cada item de lista conta como uma frase, e ficam de fora o cabeçalho YAML,
+títulos, comentários HTML, blocos de código e tabelas. O tamanho conta todo o texto visível.
+
+**"The dissertation".** O relatório conta as ocorrências no texto visível, com o máximo de cinco
+por página (D15), e marca a página que passar.
+
+**Conferência do script.** `python3 scripts/legibilidade_en.py --teste` confere as sílabas de nove
+palavras no CMU, os dois índices de um texto contado à mão (9 palavras, 2 frases, 9 sílabas: FKGL
+−2,035; FRE 117,6675), a regra de uma palavra fora do CMU e a contagem de "the dissertation".
+
+**Licença do `cmudict`:** GPL-3.0-or-later. É instalado à parte, só para medir; nada dele é
+copiado para o repositório, o build ou o site.
+
 ## Resultados por página
 
 | Página | Palavras visíveis | Palavras no texto corrido | Frases | Palavras/frase | Sílabas/palavra | Índice | Faixa |
