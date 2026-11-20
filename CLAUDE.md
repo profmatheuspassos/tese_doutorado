@@ -370,15 +370,14 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   `@source not "../content/en";`. Saem do `Base.css` só `.grow`, `.static`, `.contents`, `.rounded` e
   `.italic`, nenhuma usada em HTML algum. Prova no último commit do PR: chave desligada e ligada, zero
   diferença em 72 de 72. Regra nova: a prova final contra a `main` roda no último commit do PR, depois
-  dos commits de documentação. Em pull request, à espera da aprovação do autor.
+  dos commits de documentação. Aprovada e enviada à `main` (PR #26, merge `45370ff`); no ar (D116):
+  `versao.txt` com `45370ff`, 314 testes, nenhum `en/` na `publicacao`, CSS sem as cinco regras.
+- **Versão em inglês, Etapa 3, capítulo 3:** tradução aprovada no plano, com uma revisão do autor
+  (D117), em andamento na branch da sessão.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da correção do CSS (D115)**; registrar em `docs/DECISOES.md` e
-   conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`, `conferir:publicado`, nenhum
-   `en/` na `publicacao`, e o `Base.css` publicado sem `.grow`, `.static`, `.contents`, `.rounded` e
-   `.italic`).
-2. **Capítulo 3 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
+1. **Capítulo 3 em inglês** (em andamento).
    `Capitulo3.astro` passa a usar `tituloNaTese`, como os capítulos 1 e 2; conferir se algum
    componente do capítulo 3 compara rótulos com o `dados.json` em português (como o explorador fazia).
    As capturas da home em inglês em 375 px (`B5` a `B8`) podem ser refeitas ali (D114). Na tradução
