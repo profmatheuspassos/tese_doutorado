@@ -188,7 +188,7 @@ T50 a T52 são novos.
 | T18 | Súdito · Governo representativo · Democracia representativa | Subject · Representative government · Representative democracy |
 | T21 | Escolha a instituição | Choose an institution |
 | T22 | Poder Judiciário · Tribunal Superior Eleitoral · Partidos políticos | Judiciary · Superior Electoral Court · Political parties |
-| T23 | Muita confiança · Um pouco de confiança · Pouca confiança · Nenhuma confiança · Não sei responder · Não quero responder | A lot of trust · Some trust · Little trust · No trust at all · Don't know · Prefer not to answer. **"No trust at all" é também o termo do texto do capítulo 2, B4** |
+| T23 | Muita confiança · Um pouco de confiança · Pouca confiança · Nenhuma confiança · Não sei responder · Não quero responder | A lot of trust · Some trust · Little trust · No trust at all · Don’t know · Prefer not to answer. **"No trust at all" é também o termo do texto do capítulo 2, B4** |
 | T24 | Fonte: Latinobarómetro. Pergunta: "Quanta confiança você tem nesta instituição?" Entrevistas: … | Source: Latinobarómetro. Question: "How much trust do you have in this institution?" Interviews: 1,204 (2006), 1,204 (2010), and 1,200 (2017). **A pergunta é a mesma frase do capítulo 2, B4** |
 | T25 | Ver os números em tabela | See the numbers in a table |
 | T26 | Resposta / {instituicao}, em % | Answer / {instituicao}, in % |
@@ -202,7 +202,7 @@ T50 a T52 são novos.
 | T35 | Cidadãos | Citizens |
 | T36 | O cidadão fica de fora das cinco etapas. / O cidadão pode entrar em qualquer uma das cinco etapas. | Citizens are left out of all five stages. / Citizens can take part in any of the five stages. |
 | T37 | Caminho do referendo | Portugal: Citizens gather 60,000 signatures · The Assembly of the Republic approves · The Constitutional Court reviews · The President of the Republic calls it or refuses · Vote: binding only if more than half of registered voters take part. Brazil: Only the National Congress calls it |
-| T38 | Referendo · Iniciativa popular · Petição · Ação popular · Recall | Referendum · Citizens' initiative · Petition · Citizen lawsuit · Recall |
+| T38 | Referendo · Iniciativa popular · Petição · Ação popular · Recall | Referendum · Citizens’ initiative · Petition · Citizen lawsuit · Recall |
 | T39 | Como funciona · Quanto foi usado | How it works · How much it was used |
 | T40 | Referendo, Portugal, como funciona | Citizens can propose one, with 60,000 signatures, but the Assembly, the Constitutional Court, and the President can block it. |
 | T40 | Referendo, Portugal, uso | 8 referendums from 1975 to 2019: 3 national and 5 local. |
@@ -210,14 +210,14 @@ T50 a T52 são novos.
 | T40 | Referendo, Brasil, uso | 5 public votes from 1988 to 2019: 2 national and 3 local. |
 | T40 | Iniciativa, Portugal, como funciona / uso | 20,000 signatures, which can be sent online. / 9 initiatives from 2003 to 2019; 4 became law. |
 | T40 | Iniciativa, Brasil, como funciona | 1% of the electorate in at least 5 states: 1,473,063 signatures, based on the 2018 electorate, all on paper. |
-| T40 | Iniciativa, Brasil, uso | 4 federal laws from 1988 to 2019; formally, none as a citizens' initiative. |
+| T40 | Iniciativa, Brasil, uso | 4 federal laws from 1988 to 2019; formally, none as a citizens’ initiative. |
 | T40 | Petição, Portugal, como funciona / uso | A right of political participation, with its own law. Gives the right to a reply. / Have signed one: 5.4% (2003 to 2011) and 21% (2016). |
 | T40 | Petição, Brasil, como funciona / uso | An individual right, with no law of its own. Gives the right to a reply. / Say they have signed one: 25.4% (2015). |
 | T40 | Ação popular, Portugal / Brasil | A right of political participation. / An individual right; follows a 1965 law. |
 | T41 | Não existe. | Does not exist. |
 | T42 | Ver o exemplo da Califórnia / tentativas · chegaram às urnas · tiraram o eleito do cargo / Califórnia, cargos estaduais, de {de} a {ate} | See the California example / attempts · made it to the ballot · removed the official from office / California, state offices, {de} to {ate} |
 | T43 a T46 | Copiar / Copiar a referência {formato} / Copiado / Referência {formato} copiada. | Copy / Copy the {formato} reference / Copied / {formato} reference copied. |
-| T47 | Não deu para copiar. O texto ficou selecionado: use Ctrl+C (ou Cmd+C no Mac). | Couldn't copy. The text is now selected: use Ctrl+C (or Cmd+C on a Mac). |
+| T47 | Não deu para copiar. O texto ficou selecionado: use Ctrl+C (ou Cmd+C no Mac). | Couldn’t copy. The text is now selected: use Ctrl+C (or Cmd+C on a Mac). |
 | T48 | jan. · fev. · … · dez. | **Não traduzido**: só serve ao ABNT, que fica em português (D99) |
 | T49 | Textos e imagens sob licença CC BY-NC-ND 4.0. Código sob licença MIT. | Texts and images under the CC BY-NC-ND 4.0 license. Code under the MIT license. ("CC BY-NC-ND 4.0" leva a `deed.en`) |
 | **T50** (novo) | Idioma (nome acessível do seletor; **entra também nas páginas em português**) | Language |
