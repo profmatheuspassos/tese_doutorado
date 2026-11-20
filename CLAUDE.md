@@ -326,17 +326,14 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   seletor (D101, D108), rotas `/en/` e 404 em inglês, sitemap e `dist/en/.htaccess` condicionados à
   chave; conferências por idioma (paridade nova, texto, publicação com a trava, terceiros),
   capturas, Lighthouse e `conferir-publicado` para os dois idiomas; `legibilidade_en.py`; workflow
-  com dois builds em PR. Decisões D106 a D108. Português idêntico ao da `main` pela prova. Em pull
-  request, à espera da aprovação do autor.
+  com dois builds em PR. Decisões D106 a D108. Português idêntico ao da `main` pela prova.
+  **Aprovada (D109)** e enviada à `main` (PR #22, merge `6f66a55`); no ar, `versao.txt` com
+  `6f66a55`, `conferir:publicado` passou (314 testes) e nenhum `en/` na branch `publicacao`.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da Etapa 2b**; registrar a aprovação em `docs/DECISOES.md`.
-2. **Depois do merge, conferir no ar** que o `versao.txt` mostra o commit do merge e que nada em
-   inglês foi publicado (`NODE_USE_ENV_PROXY=1 npm run conferir:publicado`; e nenhum `en/` na
-   branch `publicacao`).
-3. **Etapa 3 da versão em inglês** (tradução, uma página por vez, começando pela home;
-   `docs/PLANO-INGLES.md`), numa branch nova a partir da `main` atualizada. Na home, medir de novo o
-   cabeçalho com o seletor entre 1024 e 1280 px (D108).
-4. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+1. **Etapa 3 da versão em inglês, home** (`src/content/en/home.md`; plano aprovado com a tradução,
+   D110): execução, PR e relatório, com o cabeçalho medido de novo entre 1024 e 1280 px (D108).
+   Depois, parar; o capítulo 1 só com aprovação.
+2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
