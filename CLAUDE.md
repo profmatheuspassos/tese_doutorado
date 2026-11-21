@@ -119,7 +119,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
 | `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
-| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home e os capítulos 1 a 4, D110, D112, D114, D117 e D119) |
+| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home e os capítulos 1 a 5, D110, D112, D114, D117, D119 e D121) |
 | `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
 | `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
 | `docs/PLANO-FASE-5.md` | Plano aprovado da Fase 5 (publicação), com os ajustes da D78 e D79 |
@@ -390,18 +390,26 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   5) e no computador. Aprovada (D119) e enviada à `main` (PR #28, merge `d50af80`); no ar sem nada em
   inglês (D120: `versao.txt` com `d50af80`, 314 testes, nenhum `en/` na `publicacao`, CSS sem as cinco
   regras).
+- **Versão em inglês, Etapa 3, capítulo 5:** tradução aprovada no plano, com dois ajustes do autor (B0 e
+  B11) e as explicações TE43 ("Portugal's parliament") e TE46 ("the lower house of Congress") (D121: TE43
+  a TE52; legislaturas da tabela do B5 escritas em inglês nas `frases_en`; lista do B7 com os itens 1, 2 e
+  4 em duas linhas, pela paridade). `src/content/en/capitulo-5.md` (1.921 palavras; FKGL 8,6, acima da
+  referência de 8, aceito pela D89; FRE 56,1; maior frase 25; "the dissertation" 2 vezes).
+  `Capitulo5.astro` com `tituloNaTese`; âncora `Only the National Congress calls`; `frases_en` dos nove
+  usos no `dados.json` (impressão igual). Componentes do capítulo 5 sem mudança; larguras sem transbordo
+  nem rolagem. Lighthouse do capítulo 5: 100 no celular (pior de 5) e no computador. Em pull request, à
+  espera da aprovação do autor.
 
 ## Próximo passo
 
-1. **Capítulo 5 em inglês**, em andamento (plano aprovado pelo autor em 21/11/2026), a partir da `main`
-   em `d50af80`.
-   `Capitulo5.astro` passa a usar `tituloNaTese`, como os capítulos 1 a 4; conferir os componentes do
-   capítulo 5 (caminho do referendo, barras das petições, cartões das ferramentas, funil da Califórnia)
-   e os testes do `scripts/capturas.mjs` que dependam de texto em português; âncora `soCongresso` em
-   inglês; títulos com apóstrofo curvo ("(and one that’s missing)", D114). Na tradução de "About",
-   trocar o destino do link do B9 da home de `/sobre/` para `/en/about/`.
+1. **Aprovação e merge do pull request do capítulo 5 em inglês (D121)**; registrar em
+   `docs/DECISOES.md` como D122 e conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`,
+   `conferir:publicado`, nenhum `en/` na `publicacao`, Base CSS sem as cinco regras da D115).
+2. **"About" em inglês** (`/en/about/`), só depois da aprovação e da confirmação do autor sobre o A20
+   ("Legal and Political Sciences"), numa branch nova a partir da `main` atualizada. Na mesma página,
+   trocar o destino do link do B9 da home em inglês de `/sobre/` para `/en/about/`.
    **Procedimento de cada página (D115):** a prova final contra a `main` (`comparar-builds`, chave
    desligada e ligada) roda no **último commit do PR, depois dos commits de documentação**; se algum
    commit entrar depois dela, a prova roda de novo.
-2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
