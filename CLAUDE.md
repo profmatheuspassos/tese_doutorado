@@ -409,17 +409,16 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   `faculdade` em `ancoras.ts`) e teste novo no `scripts/capturas.mjs`. Link do B9 da home em inglês para
   `/en/about/`. A20 encerrado; glossário com Porto Alegre na seção 9 e a tabela da seção 5 inteira.
   Lighthouse do About: 100 no celular (pior de 5) e no computador. Com ela, as sete páginas têm tradução.
-  Em pull request, à espera da aprovação do autor.
+  Aprovada (D123) e enviada à `main` (PR #30, merge `badb628`); no ar sem nada em inglês (D124:
+  `versao.txt` com `badb628`, 314 testes, nenhum `en/` na `publicacao`, CSS sem as cinco regras).
+- **Versão em inglês, Etapa 4 (lançamento):** plano aprovado pelo autor em 21/11/2026, em andamento
+  na branch da sessão.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request do "About" em inglês (D123)**; registrar em `docs/DECISOES.md`
-   como D124 e conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`,
-   `conferir:publicado`, nenhum `en/` na `publicacao`, Base CSS sem as cinco regras da D115).
-2. **Etapa 4 (lançamento)**, numa branch nova a partir da `main` atualizada, com plano próprio: PR que
-   muda `INGLES_PUBLICADO` para `true`; depois do merge, `conferir:publicado` nas 14 páginas (com
-   `hreflang`, sitemap, seletor e a 404 em inglês no ar), Lighthouse no ar, link do depósito conferido
-   pelo autor também no "About", `docs/PUBLICACAO.md`, `CLAUDE.md` e uma linha no README só com texto
-   aprovado pelo autor.
-3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+1. **Etapa 4 (lançamento)**, em andamento, com o plano aprovado em 21/11/2026: PR que muda
+   `INGLES_PUBLICADO` para `true`; depois do merge (D126), `conferir:publicado` nas 14 páginas (com
+   `hreflang`, sitemap, seletor e a 404 em inglês no ar), Lighthouse no ar e link do depósito conferido
+   pelo autor também no "About".
+2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
