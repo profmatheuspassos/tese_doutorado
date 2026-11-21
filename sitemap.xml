@@ -1,10 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tese.profmatheuspassos.com.br/</loc></url>
-  <url><loc>https://tese.profmatheuspassos.com.br/capitulos/1-no-papel/</loc></url>
-  <url><loc>https://tese.profmatheuspassos.com.br/capitulos/2-o-que-nao-funciona/</loc></url>
-  <url><loc>https://tese.profmatheuspassos.com.br/capitulos/3-o-atalho-digital/</loc></url>
-  <url><loc>https://tese.profmatheuspassos.com.br/capitulos/4-o-cidadao-no-centro/</loc></url>
-  <url><loc>https://tese.profmatheuspassos.com.br/capitulos/5-as-ferramentas/</loc></url>
-  <url><loc>https://tese.profmatheuspassos.com.br/sobre/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/capitulos/1-no-papel/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/1-no-papel/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/1-on-paper/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/1-no-papel/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/capitulos/2-o-que-nao-funciona/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/2-o-que-nao-funciona/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/2-what-isnt-working/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/2-o-que-nao-funciona/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/capitulos/3-o-atalho-digital/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/3-o-atalho-digital/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/3-the-digital-shortcut/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/3-o-atalho-digital/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/capitulos/4-o-cidadao-no-centro/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/4-o-cidadao-no-centro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/4-citizens-at-the-center/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/4-o-cidadao-no-centro/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/capitulos/5-as-ferramentas/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/5-as-ferramentas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/5-the-tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/5-as-ferramentas/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/en/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/sobre/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/sobre/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/en/chapters/1-on-paper/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/1-no-papel/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/1-on-paper/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/1-no-papel/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/en/chapters/2-what-isnt-working/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/2-o-que-nao-funciona/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/2-what-isnt-working/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/2-o-que-nao-funciona/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/en/chapters/3-the-digital-shortcut/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/3-o-atalho-digital/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/3-the-digital-shortcut/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/3-o-atalho-digital/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/en/chapters/4-citizens-at-the-center/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/4-o-cidadao-no-centro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/4-citizens-at-the-center/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/4-o-cidadao-no-centro/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/en/chapters/5-the-tools/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/capitulos/5-as-ferramentas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/chapters/5-the-tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/capitulos/5-as-ferramentas/"/>
+  </url>
+  <url>
+    <loc>https://tese.profmatheuspassos.com.br/sobre/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tese.profmatheuspassos.com.br/sobre/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tese.profmatheuspassos.com.br/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tese.profmatheuspassos.com.br/sobre/"/>
+  </url>
 </urlset>
