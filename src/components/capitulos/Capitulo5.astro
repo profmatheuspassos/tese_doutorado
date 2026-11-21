@@ -9,7 +9,7 @@ import Capitulo from '../../layouts/Capitulo.astro';
 import BlocoTexto from '../capitulo/BlocoTexto.astro';
 import CaminhoReferendo from '../graficos/CaminhoReferendo.astro';
 import Cartoes from '../interativos/Cartoes.astro';
-import { pagina } from '../../lib/paginas';
+import { pagina, tituloNaTese } from '../../lib/paginas';
 import { anexarEmCelulas, comAtributos, usarBlocos } from '../../lib/blocos';
 import { dados, uso } from '../../lib/dados';
 import { formatarInteiro } from '../../lib/numeros';
@@ -20,6 +20,7 @@ import { localeDe } from '../../lib/idiomas.mjs';
 const idioma = idiomaAtual(Astro.url);
 
 const { dados: meta, blocos } = await pagina('capitulo-5', idioma);
+const naTese = await tituloNaTese('capitulo-5', idioma);
 const { b, conferir } = usarBlocos(blocos, 'capitulo-5');
 const B0 = b('B0');
 const [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10', 'B11'].map(b);
@@ -43,7 +44,7 @@ const barra = (linha: number, texto: string) => {
 };
 const tabela = (el: string, i: number) => (i === iTabela ? comAtributos(anexarEmCelulas(el, 1, barra), { class: 'tabela-peticoes' }) : el);
 ---
-<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={meta.titulo_original} imagem="cap5-abertura.webp" tema="nevoa">
+<Capitulo rota={meta.rota} titulo={meta.titulo} abertura={B0} n={meta.capitulo} tituloOriginal={naTese.original} traducaoTituloOriginal={naTese.traducao} langTituloOriginal={naTese.langOriginal} imagem="cap5-abertura.webp" tema="nevoa">
   <BlocoTexto bloco={B1}>
     <CaminhoReferendo slot={`apos-${iBrasil}`} />
   </BlocoTexto>
