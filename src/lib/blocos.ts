@@ -63,13 +63,17 @@ export function comAtributos(elemento: string, atributos: Record<string, string>
 }
 
 /**
- * Envolve um trecho exato de um elemento num <span class="...">, sem mudar o texto.
+ * Envolve um trecho exato de um elemento num <span class="...">, sem mudar o texto. Atributos
+ * opcionais (ex.: lang) entram depois da classe, e classe vazia não entra; sem atributos e com
+ * classe, a marcação é a de sempre.
  * O trecho precisa aparecer exatamente uma vez; se não, o build falha.
  */
-export function envolverTrecho(elemento: string, trecho: string, classe: string): string {
+export function envolverTrecho(elemento: string, trecho: string, classe: string, atributos: Record<string, string> = {}): string {
   const partes = elemento.split(trecho);
   if (partes.length !== 2) throw new Error(`Trecho "${trecho}" aparece ${partes.length - 1} vez(es) no elemento; esperado: 1.`);
-  return `${partes[0]}<span class="${classe}">${trecho}</span>${partes[1]}`;
+  const extra = Object.entries(atributos).map(([k, v]) => ` ${k}="${v.replace(/"/g, '&quot;')}"`).join('');
+  const cls = classe ? ` class="${classe}"` : '';
+  return `${partes[0]}<span${cls}${extra}>${trecho}</span>${partes[1]}`;
 }
 
 /** Garante que um trecho de HTML a inserir não traz texto (desenhos SVG são ignorados). */

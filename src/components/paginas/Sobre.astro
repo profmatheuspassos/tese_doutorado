@@ -16,7 +16,7 @@ import Sementes from '../motivo/Sementes.astro';
 import Copiar from '../interativos/Copiar.astro';
 import { pagina } from '../../lib/paginas';
 import { atributosEmTag, atributosNaColuna, comAtributos, envolverTrecho, usarBlocos } from '../../lib/blocos';
-import type { CodigoIdioma } from '../../lib/idiomas.mjs';
+import { idioma as dadosIdioma, IDIOMA_PADRAO, type CodigoIdioma } from '../../lib/idiomas.mjs';
 import { ancora } from '../../lib/ancoras';
 
 interface Props { idioma: CodigoIdioma }
@@ -28,11 +28,19 @@ const B0 = b('B0');
 const [B1, B2, B3, B4, B5, B6, B7] = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7'].map(b);
 conferir();
 
+// Na página em inglês, o que fica em português (título original, nome da Faculdade, ABNT; D88,
+// D98, D99) leva lang="pt-BR". Na página em português, nada muda.
+const emPortugues = idioma === IDIOMA_PADRAO ? undefined : { lang: dadosIdioma(IDIOMA_PADRAO).lang };
+
 // B2 — ficha.
 const iFicha = B2.elementos.findIndex((el) => el.startsWith('<table'));
 if (iFicha < 1 || !/<thead>\s*<tr>\s*<th><\/th>\s*<th><\/th>\s*<\/tr>\s*<\/thead>/.test(B2.elementos[iFicha])) throw new Error('sobre B2: esperada a tabela da ficha com cabeçalho vazio.');
+// No inglês, o título original fica numa linha própria, antes da linha "Translation: …" (glossário, seção 6).
+const fichaEmIngles = (el: string) => (emPortugues
+  ? envolverTrecho(envolverTrecho(el, ancora('sobre', 'tituloAbnt', idioma), 'block', emPortugues), ancora('sobre', 'faculdade', idioma), '', emPortugues)
+  : el);
 const ficha = (el: string, i: number) => (i === iFicha
-  ? comAtributos(atributosNaColuna(atributosEmTag(el, 'thead', { 'aria-hidden': 'true' }), 0, { role: 'rowheader' }), { class: 'ficha' })
+  ? comAtributos(atributosNaColuna(atributosEmTag(fichaEmIngles(el), 'thead', { 'aria-hidden': 'true' }), 0, { role: 'rowheader' }), { class: 'ficha' })
   : el);
 
 // B6 — as três referências: cada bloco <pre> segue o rótulo em negrito do formato.
@@ -51,8 +59,13 @@ const citacoes = (el: string, i: number) => {
   const k = indices.indexOf(i);
   if (k < 0) return el;
   const f = formatos[k];
-  const comTitulo = titulos[f] ? envolverTrecho(el, titulos[f], `cit-titulo cit-titulo-${f.toLowerCase()}`) : el;
-  return comAtributos(comTitulo, { id: idDe(f), class: f === 'BibTeX' ? 'citacao' : 'citacao citacao-texto' });
+  const comTitulo = titulos[f] ? envolverTrecho(el, titulos[f], `cit-titulo cit-titulo-${f.toLowerCase()}`, f === 'APA' && emPortugues ? emPortugues : {}) : el;
+  // No inglês: o ABNT inteiro fica em português; no BibTeX, só o título.
+  const comLang = !emPortugues ? comTitulo
+    : f === 'ABNT' ? comAtributos(comTitulo, emPortugues)
+    : f === 'BibTeX' ? envolverTrecho(comTitulo, ancora('sobre', 'tituloAbnt', idioma), '', emPortugues)
+    : comTitulo;
+  return comAtributos(comLang, { id: idDe(f), class: f === 'BibTeX' ? 'citacao' : 'citacao citacao-texto' });
 };
 
 // B7 — contato.
