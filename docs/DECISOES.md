@@ -7,7 +7,7 @@ Regra de uso: o que está em "Decididas" vale para todo o site. O que está em "
 segue a proposta indicada **até o autor decidir**, e cada uso deve constar na lista de
 escolhas de interpretação de `docs/RASTREABILIDADE.md` (Fase 2).
 
-## Decididas (17 a 19 de novembro de 2026)
+## Decididas (17 a 21 de novembro de 2026)
 
 | # | Ponto | Decisão |
 |---|---|---|
