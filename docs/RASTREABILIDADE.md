@@ -793,7 +793,7 @@ palavra "cidadão" nas constituições, 89 em Portugal e 11 no Brasil (nota 643)
 
 O texto publicado é o do `capitulo-4.md`, palavra por palavra (conferido a cada build por
 `scripts/conferir-texto.mjs`). O modelo da página é o do capítulo 2 (itens 1 e 2 da seção dele),
-com abertura em névoa e a imagem `cap4-abertura.webp` (`alt=""`, D47; ainda espaço reservado).
+com abertura em névoa e a imagem `cap4-abertura.webp` (`alt=""`, D47; imagem final, D81).
 Nenhuma escolha abaixo acrescenta afirmação ao texto; os rótulos novos são os aprovados (T6, T7,
 T34 a T36; D52).
 
@@ -1018,7 +1018,7 @@ consultas em 31 anos" (nota 730; ver D3).
 
 O texto publicado é o do `capitulo-5.md`, palavra por palavra (conferido a cada build por
 `scripts/conferir-texto.mjs`). O modelo da página é o do capítulo 2, com abertura em névoa e a
-imagem `cap5-abertura.webp` (`alt=""`, D47; ainda espaço reservado). Nenhuma escolha abaixo
+imagem `cap5-abertura.webp` (`alt=""`, D47; imagem final, D81). Nenhuma escolha abaixo
 acrescenta afirmação ao texto; os rótulos novos são os aprovados (T7, T37 a T42; D52).
 
 1. **Números dos rótulos ligados ao texto.** Os números dos cartões e do caminho do referendo

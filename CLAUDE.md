@@ -424,9 +424,9 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   (o LiteSpeed respeita o `ErrorDocument` da subpasta); Base CSS sem as cinco regras; `capturas` no ar ok;
   Lighthouse no ar 98 a 100 nas 14 páginas. Conferência manual do autor no navegador feita em 21/11/2026,
   tudo passou.
+- **Imagem de abertura do capítulo 4 definitiva (D127):** o autor decidiu manter a `cap4-abertura.webp`
+  como está (21/11/2026), o que fecha a possibilidade de refazê-la deixada em aberto na D81.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da D126** (registro da versão em inglês no ar).
-2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
-   segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
+Nenhum passo pendente. Site no ar em português e em inglês (D126); imagens definitivas (D81, D127).
