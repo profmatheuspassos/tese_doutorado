@@ -397,19 +397,17 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   referência de 8, aceito pela D89; FRE 56,1; maior frase 25; "the dissertation" 2 vezes).
   `Capitulo5.astro` com `tituloNaTese`; âncora `Only the National Congress calls`; `frases_en` dos nove
   usos no `dados.json` (impressão igual). Componentes do capítulo 5 sem mudança; larguras sem transbordo
-  nem rolagem. Lighthouse do capítulo 5: 100 no celular (pior de 5) e no computador. Em pull request, à
-  espera da aprovação do autor.
+  nem rolagem. Lighthouse do capítulo 5: 100 no celular (pior de 5) e no computador. Aprovada (D121) e
+  enviada à `main` (PR #29, merge `f7ac84e`); no ar sem nada em inglês (D122: `versao.txt` com
+  `f7ac84e`, 314 testes, nenhum `en/` na `publicacao`, CSS sem as cinco regras).
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request do capítulo 5 em inglês (D121)**; registrar em
-   `docs/DECISOES.md` como D122 e conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`,
-   `conferir:publicado`, nenhum `en/` na `publicacao`, Base CSS sem as cinco regras da D115).
-2. **"About" em inglês** (`/en/about/`), só depois da aprovação e da confirmação do autor sobre o A20
-   ("Legal and Political Sciences"), numa branch nova a partir da `main` atualizada. Na mesma página,
-   trocar o destino do link do B9 da home em inglês de `/sobre/` para `/en/about/`.
+1. **"About" em inglês** (`/en/about/`), com o A20 confirmado pelo autor ("Legal and Political
+   Sciences"), na branch da sessão a partir da `main` atualizada (`f7ac84e`). Na mesma página, o link do
+   B9 da home em inglês passa de `/sobre/` para `/en/about/`.
    **Procedimento de cada página (D115):** a prova final contra a `main` (`comparar-builds`, chave
    desligada e ligada) roda no **último commit do PR, depois dos commits de documentação**; se algum
    commit entrar depois dela, a prova roda de novo.
-3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
