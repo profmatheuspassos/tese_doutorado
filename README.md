@@ -8,6 +8,8 @@ substituí-la.
 
 **No ar:** https://tese.profmatheuspassos.com.br
 
+**Em inglês:** https://tese.profmatheuspassos.com.br/en/ (tradução do texto em português, feita com apoio de inteligência artificial e revisada pelo autor).
+
 O site não é a publicação da tese. É uma versão de divulgação, reescrita para um leitor sem
 formação em Direito e fiel ao argumento original. A versão oficial da tese está no repositório
 da Universidade de Lisboa: https://hdl.handle.net/10451/57093

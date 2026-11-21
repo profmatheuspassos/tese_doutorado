@@ -8,9 +8,9 @@ Matheus Passos Silva (Faculdade de Direito da Universidade de Lisboa, 2022; orie
 Prof. Doutor Jorge Miranda). A tese compara Portugal e Brasil.
 
 **Não é a publicação da tese.** É uma versão de divulgação, reescrita em linguagem simples e
-fiel ao argumento original. Idioma: português do Brasil. Uma versão em inglês americano está em
-preparação (D85 a D104; plano em `docs/PLANO-INGLES.md`): tradução do texto aprovado em
-português, em `/en/`, desligada no build de produção até o lançamento (D92).
+fiel ao argumento original. Idioma: português do Brasil. Há também uma versão em inglês americano
+(D85 a D104; plano em `docs/PLANO-INGLES.md`): tradução do texto aprovado em português, em `/en/`,
+ligada no build de produção pela D125.
 
 Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch principal `main`.
 
@@ -82,7 +82,8 @@ Repositório: https://github.com/profmatheuspassos/tese_doutorado — branch pri
   decisões D1 a D84 valem também para o inglês.
 - O português não muda; a única adição às páginas em português é o seletor de idioma (D93). Toda
   frase em inglês que não seja tradução só entra com texto aprovado pelo autor.
-- Inglês fica desligado na produção pela chave `INGLES_PUBLICADO` até a Etapa 4 (D92).
+- Inglês ligado na produção pela chave `INGLES_PUBLICADO` (D92, D125). Para desligar: `git revert` do
+  commit que a ligou, por pull request (`docs/PUBLICACAO.md`).
 - Legibilidade em inglês: Flesch-Kincaid Grade Level 8 ou menos como conferência, com o Flesch
   Reading Ease ao lado (D89). A D16 (tamanho) não vale para o inglês.
 
@@ -147,11 +148,11 @@ se as 880 notas de rodapé foram distribuídas.
 | `scripts/conferir-*.mjs` | Conferências que rodam em todo build: dados, paridade português/inglês (rótulos e pares de páginas), contraste, imagens (nome, tamanho, peso), texto por idioma (palavras, aspas, rótulos, atributos, pelo `lang` mais próximo), recursos de terceiros, links internos (link quebrado faz o build falhar) e publicação (canonical, Open Graph, `lang`, `hreflang`, seletor, sitemap, robots, CSP, `.htaccess` da pasta principal e da `en/`, trava da chave no Actions) |
 | `scripts/gerar-htaccess.mjs` | Gera `dist/.htaccess` a cada build: HTTPS e host canônico, 404, `.git` escondido, cabeçalhos de segurança com a CSP por hash (D74, D79) e cache (D75); com a 404 em inglês no build, também `dist/en/.htaccess` |
 | `scripts/gerar-versao.mjs` | Gera `dist/versao.txt` a cada build: commit da `main` e data/hora UTC (D78), para saber qual versão está no ar |
-| `scripts/conferir-publicado.mjs` | Testes no endereço real depois de publicar (`npm run conferir:publicado`); com o inglês desligado, prova que nada em inglês está no ar |
+| `scripts/conferir-publicado.mjs` | Testes no endereço real depois de publicar (`npm run conferir:publicado`); com o inglês ligado, as 14 páginas, `hreflang`, sitemap, seletor (também nas 404), a 404 em inglês e, em `/en/`, http→https, barra final e `.htaccess` barrado; com ele desligado, prova que nada em inglês está no ar |
 | `scripts/comparar-builds.mjs` | Prova de que o português não muda (D94): build da branch contra o da `main` (HTML e `.htaccess` normalizados, bytes, texto e pixels nas 8 páginas x 3 larguras x 3 cenários, console) e lista dos pacotes de `/_astro/` que mudaram; `--controle` compara a `main` com ela mesma (`npm run comparar -- --referencia <dist da main>`); `--ingles` faz a prova da chave ligada (os dois builds com `INGLES=1`): português idêntico tirando seletor, `ml-auto` do menu, `hreflang` e `og:locale:alternate`, só na home e na 404 |
-| `src/lib/site.mjs`, `src/lib/imagens.mjs` | Endereço final do site (D72) e chave da versão em inglês (`INGLES_PUBLICADO`, `inglesAtivo()`, D92); lista única das imagens com nome, tamanho e teto de peso |
+| `src/lib/site.mjs`, `src/lib/imagens.mjs` | Endereço final do site (D72) e chave da versão em inglês (`INGLES_PUBLICADO = true` desde a D125, `inglesAtivo()`, D92); lista única das imagens com nome, tamanho e teto de peso |
 | `src/pages/sitemap.xml.ts`, `src/pages/robots.txt.ts` | Sitemap e robots, gerados no build |
-| `.github/workflows/publicar.yml` | Em todo PR, dois builds com as conferências (pré-visualização com `INGLES=1` e o de produção); a cada merge na `main`, só o de produção e a publicação na branch `publicacao` (D71), que a Hostinger implanta pelo aplicativo "Implante de GitHub", sem webhook (D78) |
+| `.github/workflows/publicar.yml` | Em todo PR, o build de produção com as conferências (com o inglês publicado, D125, sem o build de pré-visualização); a cada merge na `main`, o mesmo build e a publicação na branch `publicacao` (D71), que a Hostinger implanta pelo aplicativo "Implante de GitHub", sem webhook (D78) |
 | `hospedagem/htaccess-dominio-principal` | `.htaccess` da pasta principal do domínio na Hostinger: redireciona o domínio principal para profmatheus.com (D77) |
 | `docs/PUBLICACAO.md` | Como o site chega ao ar, passo a passo do hPanel, troca de imagens e testes depois de publicar |
 | `LICENSE`, `LICENSE-CONTEUDO.md` | Código sob MIT; textos e imagens sob CC BY-NC-ND 4.0 (D76) |
