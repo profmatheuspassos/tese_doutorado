@@ -123,6 +123,8 @@ Para cada termo, as duas opções consideradas e a escolhida.
 | por sorteio; o sorteio (Atenas) | by lot; drawing lots (D117, TE25) |
 | redes sociais; as redes | social media (D117) |
 | a rede (no sentido geral) | the internet (D117; como na home, B5) |
+| etapas (de uma política pública) | stages (D119; capítulo 4, B3 e B8, e T36) |
+| consultiva / decisória (participação) | advisory / decision-making (D119, TE39) |
 
 ## 5. Títulos das páginas e rotas (D91, D96)
 

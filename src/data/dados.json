@@ -228,6 +228,10 @@
       "frases": [
         "Nas freguesias com até {eleitores_max} eleitores",
         "Pelas contas do autor, com base no censo de {ano}, são só {freguesias} freguesias, com {habitantes} habitantes: {percentual}% da população."
+      ],
+      "frases_en": [
+        "In parishes with up to {eleitores_max} voters",
+        "By the author's calculations, based on the {ano} census, there are only {freguesias} of these parishes, with {habitantes} inhabitants: {percentual}% of the population."
       ]
     },
     {

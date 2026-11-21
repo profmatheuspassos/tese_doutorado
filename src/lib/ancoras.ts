@@ -43,6 +43,7 @@ const ANCORAS: Record<CodigoIdioma, Parciais> = {
     },
     'capitulo-2': { estarPresente: '<strong>being present</strong>' },
     'capitulo-3': { impossivel: 'impossible' },
+    'capitulo-4': { cincoEtapas: 'five stages', daPopulacao: '% of the population', girarAoContrario: 'turn the other way' },
   },
 };
 
