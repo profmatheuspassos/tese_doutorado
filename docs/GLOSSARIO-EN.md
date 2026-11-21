@@ -255,8 +255,10 @@ saem em inglês.
 ## 9. Explicações para o leitor estrangeiro
 
 Explicação curta, só definição, sem fato novo, proposta com o trecho exato na página em que
-aparece e aprovada como decisão (D85). Já decidida e aplicada: **R$3.51 com "Brazilian reais"**, na forma
-"R$3.51 (Brazilian reais)" (capítulo 1, B7; D104, TE15). Previstas para proposta: Assembleia da República; Câmara dos Deputados; título de
-eleitor; Portal de Opinião Pública e Fundação Francisco Manuel dos Santos. Freguesia, Estatuto da
+aparece e aprovada como decisão (D85). Já decididas e aplicadas: **R$3.51 com "Brazilian reais"**, na forma
+"R$3.51 (Brazilian reais)" (capítulo 1, B7; D104, TE15); **"the Assembly of the Republic, Portugal's parliament"** (capítulo 5, B1;
+D121, TE43); **"the Chamber of Deputies, the lower house of Congress"** (capítulo 5, B3; D121, TE46).
+Título de eleitor, Portal de Opinião Pública e Fundação Francisco Manuel dos Santos ficaram sem
+explicação nas páginas em que apareceram (D110, D114). Freguesia, Estatuto da
 Cidade, plano diretor, Lei de Acesso à Informação, cláusula de barreira e comissões provisórias já
 vêm definidos no texto aprovado e não precisam de acréscimo.
