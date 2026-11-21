@@ -197,7 +197,7 @@ Depois de publicar (detalhes em `docs/PUBLICACAO.md`):
 NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 ```
 
-## Estado atual (20 de novembro de 2026)
+## Estado atual (21 de novembro de 2026)
 
 - **Fase 1 concluída e aprovada.**
 - **Fase 2 concluída e aprovada** (17/11/2026): home, capítulos 1 a 5 e "Sobre a tese" escritos e
@@ -387,14 +387,14 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   vezes). `Capitulo4.astro` com `tituloNaTese`; âncoras `five stages`, `% of the population` e `turn the
   other way`; `frases_en` do B7 no `dados.json`. `.qd-col` com `justify-self: center` ("Government", 78
   px numa coluna de 72 em 375 px; português igual). Lighthouse do capítulo 4: 100 no celular (pior de
-  5) e no computador. Em pull request, à espera da aprovação do autor.
+  5) e no computador. Aprovada (D119) e enviada à `main` (PR #28, merge `d50af80`); no ar sem nada em
+  inglês (D120: `versao.txt` com `d50af80`, 314 testes, nenhum `en/` na `publicacao`, CSS sem as cinco
+  regras).
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request do capítulo 4 em inglês (D119)**; registrar em
-   `docs/DECISOES.md` como D120 e conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`,
-   `conferir:publicado`, nenhum `en/` na `publicacao`, Base CSS sem as cinco regras da D115).
-2. **Capítulo 5 em inglês**, só depois da aprovação, numa branch nova a partir da `main` atualizada.
+1. **Capítulo 5 em inglês**, em andamento (plano aprovado pelo autor em 21/11/2026), a partir da `main`
+   em `d50af80`.
    `Capitulo5.astro` passa a usar `tituloNaTese`, como os capítulos 1 a 4; conferir os componentes do
    capítulo 5 (caminho do referendo, barras das petições, cartões das ferramentas, funil da Califórnia)
    e os testes do `scripts/capturas.mjs` que dependam de texto em português; âncora `soCongresso` em
@@ -403,5 +403,5 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
    **Procedimento de cada página (D115):** a prova final contra a `main` (`comparar-builds`, chave
    desligada e ligada) roda no **último commit do PR, depois dos commits de documentação**; se algum
    commit entrar depois dela, a prova roda de novo.
-3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
+2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
