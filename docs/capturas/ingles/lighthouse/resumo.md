@@ -4,13 +4,15 @@ Gerado por `npm run lighthouse` sobre o build local com `INGLES=1` (pré-visuali
 
 | Página | Modo | Performance | Accessibility | Best Practices | SEO | Agentic Browsing | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|---|
-| en-home | celular, pior de 5 (desempenho: 99, 99, 99, 99, 99) | 99 | 100 | 100 | 100 | 100 | 2.1 s | 0 | 0 ms |
+| en-home | celular, pior de 5 (desempenho: 99, 99, 99, 99, 99) | 99 | 100 | 100 | 100 | 100 | 2.0 s | 0 | 0 ms |
 | en-home | desktop | 100 | 100 | 100 | 100 | 100 | 0.5 s | 0 | 0 ms |
-| en-capitulo-1 | celular, pior de 5 (desempenho: 100, 100, 100, 100, 100) | 100 | 100 | 100 | 100 | 100 | 1.7 s | 0 | 20 ms |
+| en-capitulo-1 | celular, pior de 5 (desempenho: 100, 100, 100, 100, 100) | 100 | 100 | 100 | 100 | 100 | 1.7 s | 0 | 30 ms |
 | en-capitulo-1 | desktop | 100 | 100 | 100 | 100 | 100 | 0.4 s | 0 | 0 ms |
 | en-capitulo-2 | celular, pior de 5 (desempenho: 100, 100, 100, 100, 100) | 100 | 100 | 100 | 100 | 100 | 1.7 s | 0 | 0 ms |
 | en-capitulo-2 | desktop | 100 | 100 | 100 | 100 | 100 | 0.4 s | 0 | 0 ms |
 | en-capitulo-3 | celular, pior de 5 (desempenho: 100, 100, 100, 100, 100) | 100 | 100 | 100 | 100 | 100 | 1.6 s | 0 | 0 ms |
 | en-capitulo-3 | desktop | 100 | 100 | 100 | 100 | 100 | 0.4 s | 0 | 0 ms |
-| en-capitulo-4 | celular, pior de 5 (desempenho: 100, 100, 100, 100, 100) | 100 | 100 | 100 | 100 | 100 | 1.7 s | 0 | 0 ms |
+| en-capitulo-4 | celular, pior de 5 (desempenho: 100, 100, 100, 100, 100) | 100 | 100 | 100 | 100 | 100 | 1.8 s | 0 | 0 ms |
 | en-capitulo-4 | desktop | 100 | 100 | 100 | 100 | 100 | 0.4 s | 0 | 0 ms |
+| en-capitulo-5 | celular, pior de 5 (desempenho: 100, 100, 100, 100, 100) | 100 | 100 | 100 | 100 | 100 | 1.7 s | 0 | 0 ms |
+| en-capitulo-5 | desktop | 100 | 100 | 100 | 100 | 100 | 0.4 s | 0 | 0 ms |
