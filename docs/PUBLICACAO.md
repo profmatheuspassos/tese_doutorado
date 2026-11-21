@@ -28,6 +28,7 @@ publicar. No merge, o mesmo build roda e publica. Para republicar sem mudar nada
 ## Versão em inglês (D92, D125)
 
 A versão em inglês está ligada pela chave `INGLES_PUBLICADO = true` em `src/lib/site.mjs` (D125).
+No ar desde 21/11/2026 (merge `dc44512`, D126).
 O build de produção tem as 14 páginas (sete em cada idioma), o seletor de idioma, o `hreflang`
 (pt-BR, en e x-default, que aponta para o português), o sitemap com as 14 URLs e os alternates, e
 a 404 em inglês. O build falha se alguma página não tiver par no outro idioma. A variável
