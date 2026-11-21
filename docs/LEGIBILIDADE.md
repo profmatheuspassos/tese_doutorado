@@ -376,6 +376,7 @@ para o inglês.
 | Capítulo 3 | 1.861 | 1.678 | 144 | 11,7 | 1,65 | 8,4 | 55,6 | 22 (1,3%) | 4 |
 | Capítulo 4 | 1.928 | 1.856 | 151 | 12,3 | 1,65 | 8,7 | 54,8 | 21 (1,1%) | 3 |
 | Capítulo 5 | 1.921 | 1.825 | 143 | 12,8 | 1,63 | 8,6 | 56,1 | 54 (3,0%) | 2 |
+| About | 500 | 381 | 29 | 13,1 | 1,73 | 9,9 | 47,2 | 6 (1,6%) | 4 |
 
 ### Home em inglês (20/11/2026)
 
@@ -509,3 +510,41 @@ economic and social."), e "Adoption would be gradual: …" (B9). No português, 
 **Plano x medição:** o plano mediu o rascunho na cópia descartável (FKGL 8,6, FRE 56,2, uma frase de
 26 palavras); com os ajustes do autor no B0 e no B11, a medição no plano revisado e no repositório deu
 FKGL 8,6, FRE 56,1, maior frase 25.
+
+### About em inglês (21/11/2026)
+
+`src/content/en/sobre.md`, tradução aprovada com TE53 a TE58 e a TE56 revista ("formed his own view")
+(D123). **FKGL 9,9**, acima da referência de 8 ou menos; **FRE 47,2**. É a página mais curta (381
+palavras no texto corrido, 29 frases), e o peso vai para palavras longas sem troca simples que não mude o
+sentido: democracy, representative(s), participation, dissertation, artificial intelligence (quatro vezes
+no B1, contando a linha da D103) e documented. O português da mesma página também tem o índice mais baixo
+do site (53,4). O índice é conferência, não meta (D89): o texto aprovado não foi simplificado para baixar o
+número. O português tem 464 palavras visíveis; o inglês, 500.
+
+| Bloco | Palavras no texto corrido | Frases | FKGL | FRE |
+|---|---|---|---|---|
+| B0 | 55 | 3 | 12,6 | 37,5 |
+| B1 | 131 | 8 | 11,1 | 44,9 |
+| B3 | 90 | 6 | 10,1 | 49,7 |
+| B4 | 51 | 3 | 13,7 | 27,0 |
+| B5 | 32 | 3 | 5,9 | 71,8 |
+| B6 | 15 | 5 | 5,2 | 62,8 |
+| B7 | 7 | 1 | 12,4 | 18,4 |
+
+Cada bloco medido isolado, com o mesmo script. O B2 (ficha) é tabela e fica fora do índice.
+
+**O que entra na medição.** Como no português: a ficha conta no tamanho e fica fora do índice; as três
+referências (ABNT, APA, BibTeX) são blocos de código e ficam fora do tamanho e do índice.
+
+**Palavras fora do CMU (sílabas por regra):** 6, 1,6% do texto corrido: 2022, ABNT, APA, BibTeX,
+contato, profmatheus.
+
+**Frases longas:** nenhuma acima de 25 palavras. A maior tem 24 (B4, "Another is studying how to use
+technology …"); no português, a maior também tem 24.
+
+**"The dissertation":** 4 no texto visível: 3 no corpo (B1 duas, B5 uma), as mesmas três menções de "a
+tese" no português (D15), mais o h1 "About the dissertation".
+
+**Plano x medição:** o plano mediu o rascunho na cópia descartável (FKGL 10,1, FRE 46,3, com "formed his
+own interpretation"); com a revisão do autor ("formed his own view"), a medição no plano revisado e no
+repositório deu FKGL 9,9, FRE 47,2.
