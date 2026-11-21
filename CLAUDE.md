@@ -127,7 +127,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/capturas/fase-3/` | Capturas versionadas (cenário normal, 375 e 1440 px, por bloco) e resumo do Lighthouse |
 | `docs/capturas/fase-4/` | Capturas das páginas novas (D56) e `lighthouse/resumo.md` de todas as páginas (só o resumo é versionado, D59) |
 | `docs/capturas/fase-5/` | `lighthouse/resumo.md` medido no endereço publicado |
-| `docs/capturas/ingles/` | Capturas versionadas das páginas em inglês (D102) e `lighthouse/resumo.md` delas, do build com `INGLES=1` |
+| `docs/capturas/ingles/` | Capturas versionadas das páginas em inglês (D102) e `lighthouse/resumo.md` delas, do build local de produção (inglês ligado, D125) |
 | `src/pages/`, `src/layouts/`, `src/components/` | Site Astro: rotas da home (`index.astro`), "Sobre a tese" (`sobre.astro`) e 404, layout base (`lang`, `og:locale`, `hreflang` e seletor pelo idioma), componentes por bloco, motivo ramo/semente, gráficos e diagramas |
 | `src/pages/en/[...caminho].astro`, `src/pages/en/[erro].astro` | Rotas da versão em inglês e 404 em inglês (`/en/404/`); `getStaticPaths` vazio com a chave desligada (D92) |
 | `src/components/site/SeletorIdioma.astro` | Seletor "Português · English" (D91, D101, D108): só com o inglês ativo e com destino (par ou, na 404, o início do outro idioma) |
@@ -417,17 +417,16 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   com as conferências do inglês publicado (D125). Provas: o build de produção do PR é idêntico ao de
   pré-visualização da `main` (144 de 144, nenhum pacote mudado); o português só ganha o previsto (72 de
   72 contra o que está no ar); o ensaio da volta (`git revert` do commit da chave) devolve o site no ar
-  byte a byte. Lighthouse 99 a 100 nas 14 páginas. `404-375` antiga mantida. Em pull request, à espera
-  da aprovação do autor.
+  byte a byte. Lighthouse 99 a 100 nas 14 páginas. `404-375` antiga mantida. Aprovada e enviada à
+  `main` (PR #31, merge `dc44512`).
+- **Versão em inglês no ar desde 21/11/2026 (D126):** `versao.txt` com `dc44512`; `conferir:publicado`
+  passou (510 testes); `en/` e `en/.htaccess` na `publicacao`; a 404 em inglês responde dentro de `/en/`
+  (o LiteSpeed respeita o `ErrorDocument` da subpasta); Base CSS sem as cinco regras; `capturas` no ar ok;
+  Lighthouse no ar 98 a 100 nas 14 páginas. Conferência manual do autor no navegador feita em 21/11/2026,
+  tudo passou.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da Etapa 4 (D125)**; depois do merge, D126 em outra sessão:
-   `versao.txt` e `COMMIT_ESPERADO=<hash completo> NODE_USE_ENV_PROXY=1 npm run conferir:publicado` nas
-   14 páginas (com `hreflang`, sitemap, seletor, as duas 404 e `/en/` herdando HTTPS, barra final e
-   cabeçalhos), `en/` na `publicacao`, Base CSS sem as cinco regras da D115, `capturas` e Lighthouse no
-   ar, e o que o autor confere no navegador (seletor, 404 dos dois idiomas, link do depósito no "About" e
-   no "Sobre a tese", licença `deed.en`). Se a 404 em inglês falhar: registrar (D125). Se `/en/` perder
-   cabeçalhos, HTTPS ou barra final, ou responder 500: voltar atrás (`docs/PUBLICACAO.md`).
+1. **Aprovação e merge do pull request da D126** (registro da versão em inglês no ar).
 2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
