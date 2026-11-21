@@ -22,7 +22,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { cspDoBuild, htaccessIngles } from './gerar-htaccess.mjs';
-import { SITE_FINAL, site, base, absoluta, inglesAtivo } from '../src/lib/site.mjs';
+import { SITE_FINAL, site, base, absoluta, inglesAtivo, INGLES_PUBLICADO } from '../src/lib/site.mjs';
 import { IDIOMAS, IDIOMA_PADRAO, idiomaDaRota, outroIdioma } from '../src/lib/idiomas.mjs';
 import { IMAGEM_OG } from '../src/lib/imagens.mjs';
 import { FORMATO_VERSAO } from './gerar-versao.mjs';
@@ -141,6 +141,9 @@ const htEn = join(pastaEn, '.htaccess');
 if (temEn404 !== existsSync(htEn)) erros.push(`dist/en/.htaccess ${temEn404 ? 'ausente' : 'sem a 404 em inglês'}`);
 else if (temEn404 && readFileSync(htEn, 'utf8') !== htaccessIngles()) erros.push(`dist/en/.htaccess diferente de ${JSON.stringify(htaccessIngles())}`);
 
+// Inglês publicado (D92, D125): toda página aprovada tem par no outro idioma.
+if (INGLES_PUBLICADO) aprovadas.filter((p) => !parDe(p.rota)).forEach((p) => erros.push(`${p.codigo} ${p.rota}: sem par no outro idioma, com o inglês publicado`));
+
 // Trava da chave no GitHub Actions (D92): INGLES=1 só em pull request, nunca no que vai ao ar.
 if (process.env.GITHUB_ACTIONS === 'true' && process.env.INGLES === '1' && process.env.GITHUB_EVENT_NAME !== 'pull_request') erros.push(`INGLES=1 no GitHub Actions fora de pull request (evento ${process.env.GITHUB_EVENT_NAME}): o inglês só vai ao ar pela chave INGLES_PUBLICADO (D92)`);
 
@@ -210,6 +213,6 @@ if (erros.length) {
   process.exit(1);
 }
 const modo = ativo
-  ? `pré-visualização com inglês: ${aprovadas.filter((p) => p.codigo === 'en').length} página(s) em inglês com .md, mais a 404 em inglês; hreflang e seletor conferidos`
+  ? `${INGLES_PUBLICADO ? 'inglês publicado' : 'pré-visualização com inglês'}: ${aprovadas.filter((p) => p.codigo === 'en').length} página(s) em inglês com .md, mais a 404 em inglês; hreflang e seletor conferidos`
   : 'inglês desligado: nenhuma rota /en/, nenhum hreflang, nenhum seletor';
 console.log(`conferir-publicacao: ok (${canonicas.length} páginas com canonical e compartilhamento em ${site()}${base()}; sitemap, robots, CSP e .htaccess da pasta principal conferidos; ${modo})`);

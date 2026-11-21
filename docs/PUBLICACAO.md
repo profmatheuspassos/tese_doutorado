@@ -21,28 +21,29 @@ primeiro merge depois da D78).
    commit novo na `publicacao` e, com a implantação automática ligada, copia a branch para
    `public_html/tese`.
 
-Em pull requests para a `main`, o mesmo workflow roda dois builds com todas as conferências, sem
-publicar: primeiro um de pré-visualização com o inglês ligado (`INGLES=1`), depois o build como vai
-ao ar. No merge, só o segundo roda. Para republicar sem mudar nada: GitHub → Actions → Publicar →
-"Run workflow".
+Em pull requests para a `main`, o mesmo workflow roda o build com todas as conferências, sem
+publicar. No merge, o mesmo build roda e publica. Para republicar sem mudar nada: GitHub → Actions
+→ Publicar → "Run workflow".
 
-## Versão em inglês: a chave (D92)
+## Versão em inglês (D92, D125)
 
-A versão em inglês fica desligada no ar até o lançamento por uma chave única,
-`INGLES_PUBLICADO = false` em `src/lib/site.mjs`. Desligada, o build de produção não tem nenhuma
-rota `/en/`, nenhum seletor de idioma, nenhum `hreflang` e o sitemap de sempre. A variável
-`INGLES=1` liga o inglês só para pré-visualizar (build local e o build extra dos pull requests);
-não publica nada. Travas:
+A versão em inglês está ligada pela chave `INGLES_PUBLICADO = true` em `src/lib/site.mjs` (D125).
+O build de produção tem as 14 páginas (sete em cada idioma), o seletor de idioma, o `hreflang`
+(pt-BR, en e x-default, que aponta para o português), o sitemap com as 14 URLs e os alternates, e
+a 404 em inglês. O build falha se alguma página não tiver par no outro idioma. A variável
+`INGLES=1` não muda mais nada; o `conferir-publicacao` continua recusando-a no GitHub Actions
+fora de pull request.
 
-- o `conferir-publicacao`, no build, falha se o build desligado tiver `dist/en/`, `hreflang`,
-  `og:locale:alternate`, alternates no sitemap ou seletor; e, no GitHub Actions, falha se
-  `INGLES=1` aparecer fora de pull request;
-- o `conferir:publicado`, no ar, confere que `/en/` e `/en/404/` respondem 404 com a página em
-  português e que nenhuma página tem `hreflang`, `og:locale:alternate` ou seletor.
+O build grava também `dist/en/.htaccess` (uma linha: `ErrorDocument 404 /en/404/index.html`):
+endereço inexistente dentro de `/en/` responde com a 404 em inglês. Fora de `/en/`, a 404 é a
+do português.
 
-O lançamento (Etapa 4) é um pull request que muda a chave para `true`. Com o inglês ligado, o build
-grava também `dist/en/.htaccess` (uma linha: `ErrorDocument 404 /en/404/index.html`), para a 404
-em inglês responder dentro de `/en/`.
+**Para desligar o inglês**, se algo quebrar no ar: um pull request com o `git revert` do commit
+que ligou a chave (volta a chave para `false` e o build de pré-visualização ao workflow). Depois
+do merge, o workflow publica o site sem `dist/en/`, o `rsync --delete` tira a pasta `en/` da
+branch `publicacao`, e a implantação da Hostinger deve tirá-la do servidor. Confira com
+`npm run conferir:publicado`, que, com a chave desligada, exige `/en/` com a 404 em português e
+nenhum seletor ou `hreflang` no ar.
 
 **Nunca editar a branch `publicacao` à mão.** Ela é refeita a cada publicação.
 
@@ -78,7 +79,7 @@ O teste no ar (`npm run conferir:publicado`) faz essa comparação sozinho.
 |---|---|---|
 | `dist/.htaccess`, gerado por `scripts/gerar-htaccess.mjs` a cada build | pasta do subdomínio (`public_html/tese`) | pela branch `publicacao` |
 | `hospedagem/htaccess-dominio-principal` | `public_html/.htaccess` | colado à mão uma vez (passo 9) |
-| `dist/en/.htaccess`, só com o inglês ligado (D92) | `public_html/tese/en` | pela branch `publicacao` |
+| `dist/en/.htaccess` (inglês ligado, D92, D125) | `public_html/tese/en` | pela branch `publicacao` |
 
 O do subdomínio força HTTPS e o host canônico, serve a página 404 do site, esconde a pasta `.git`
 e envia os cabeçalhos de segurança (D74) e de cache (D75). O da pasta principal só redireciona o
@@ -222,22 +223,23 @@ BASE_URL=https://tese.profmatheuspassos.com.br npm run capturas
 LIGHTHOUSE_URL=https://tese.profmatheuspassos.com.br npm run lighthouse
 ```
 
-`conferir:publicado` confere, no ar: as sete páginas em HTTPS sem redirecionamento, com canonical
-certo; http → https; rota sem barra → com barra; a 404 com status 404; `.git` barrado (403 do
+`conferir:publicado` confere, no ar: as 14 páginas (sete em cada idioma) em HTTPS sem
+redirecionamento, com canonical certo; http → https; rota sem barra → com barra; a 404 com status 404; `.git` barrado (403 do
 servidor ou 404 do site); os cabeçalhos de segurança, sem nenhum repetido nem estranho (herdado da
 pasta principal) e sem resposta vinda da CDN; cache e compressão; sitemap e robots; o `versao.txt`
 com o commit esperado (o último da `main`, ou `COMMIT_ESPERADO=<commit>`); o domínio principal e o
 `www` redirecionando para profmatheus.com (em `http://`, o servidor passa antes por `https://`, um
 passo a mais, registrado como aviso) e `/tese/` para o subdomínio; e os links públicos
 (repositório sem login, depósito, licenças). Erro de rede num site de terceiros fica como "não
-testado daqui". Com o inglês desligado, confere também que nada em inglês está no ar (seção "Versão
-em inglês: a chave"); com ele ligado, as páginas em inglês, o `hreflang`, o seletor e a 404 em
-inglês.
+testado daqui". Com o inglês ligado, confere também as páginas em inglês, o `hreflang`
+recíproco, o seletor (nas 404, para o início do outro idioma), o sitemap com os alternates, a 404
+em inglês dentro de `/en/` e, em `/en/`, o `http → https`, a barra final e o `.htaccess` barrado.
+Com ele desligado, confere que nada em inglês está no ar.
 
 Numa sessão na nuvem, a rede precisa liberar `tese.profmatheuspassos.com.br`,
 `profmatheuspassos.com.br`, `www.profmatheuspassos.com.br`, `hdl.handle.net`,
 `repositorio.ulisboa.pt` e `creativecommons.org` (ambiente "tese_doutorado"). Atrás do proxy,
 os pedidos `http://` vão pelo `curl` com túnel, e o navegador dos testes sai pelo proxy.
 `capturas` roda os testes no navegador com os cabeçalhos reais (inclusive zero violações de CSP),
-e `lighthouse` mede as sete páginas no endereço real (resumo em
+e `lighthouse` mede as 14 páginas no endereço real (resumo em
 `docs/capturas/fase-5/lighthouse/resumo.md`).

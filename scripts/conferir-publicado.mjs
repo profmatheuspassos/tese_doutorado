@@ -22,7 +22,8 @@
  *  - desligada: /en/ e /en/404/ respondem 404 com a página em português; nenhuma página com
  *    hreflang, og:locale:alternate ou seletor de idioma; sitemap sem alternates;
  *  - ligada (Etapa 4): páginas em inglês, hreflang recíproco (pt-BR, en, x-default), seletor,
- *    /en/rota-que-nao-existe/ com a 404 em inglês, sitemap com alternates, licença deed.en.
+ *    /en/rota-que-nao-existe/ com a 404 em inglês, sitemap com alternates, licença deed.en;
+ *    seletor das duas 404, http→https e barra final em /en/, /en/.htaccess barrado.
  *
  * Atrás de um proxy (como na nuvem), rode com NODE_USE_ENV_PROXY=1.
  */
@@ -92,6 +93,14 @@ const cacheEsperado = (url) => CACHE.find((c) => c.extensoes.includes((new URL(u
 // Versão em inglês na página (D91, D92): lang, hreflang, og:locale:alternate e seletor.
 const alternates = (html) => [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/g)].map((m) => `${m[1]} ${m[2]}`).sort();
 const temSeletor = (html) => /data-seletor-idioma/.test(html);
+// Destino de cada seletor da página (cabeçalho, painel do menu e rodapé).
+const destinosSeletor = (html) => [...html.matchAll(/<nav[^>]*data-seletor-idioma[^>]*>[\s\S]*?<a href="([^"]+)"/g)].map((m) => m[1]);
+// 404 com o inglês publicado (D108): três seletores para o início do outro idioma, sem hreflang.
+const conferir404 = (rotulo, html, inicio) => {
+  conferir(!alternates(html).length, `${rotulo}: a 404 não tem hreflang (D108)`);
+  const d = destinosSeletor(html);
+  conferir(d.length === 3 && d.every((x) => x === inicio), `${rotulo}: seletor ${JSON.stringify(d)} (esperado três, para ${inicio})`);
+};
 function conferirIdioma(rota, html) {
   const p = aprovadas.find((x) => x.rota === rota);
   const lang = html.match(/<html lang="([^"]*)"/)?.[1];
@@ -163,14 +172,21 @@ const redirecionaEmCadeia = async (de, para, rotulo) => {
 };
 await redireciona(`http://${HOST_S}/`, `${S}/`, 'http → https');
 await redireciona(`http://${HOST_S}/sobre/`, `${S}/sobre/`, 'http → https');
+if (INGLES_PUBLICADO) await redireciona(`http://${HOST_S}/en/about/`, `${S}/en/about/`, 'http → https em /en/');
 const semBarra = rotas.find((r) => r !== '/').replace(/\/$/, '');
 const rSemBarra = await pedir(`${S}${semBarra}`);
 conferir(rSemBarra.status === 301 && new URL(rSemBarra.headers.get('location') || '', S).href === `${S}${semBarra}/`, `${S}${semBarra}: ${rSemBarra.status} ${rSemBarra.headers.get('location')} (esperado 301 para a rota com barra)`);
+if (INGLES_PUBLICADO) {
+  const semBarraEn = rotas.find((r) => r.startsWith(IDIOMAS.en.prefixo) && r !== IDIOMAS.en.prefixo).replace(/\/$/, '');
+  const r = await pedir(`${S}${semBarraEn}`);
+  conferir(r.status === 301 && new URL(r.headers.get('location') || '', S).href === `${S}${semBarraEn}/`, `${S}${semBarraEn}: ${r.status} ${r.headers.get('location')} (esperado 301 para a rota com barra)`);
+}
 
 const r404 = await pedir(`${S}/rota-que-nao-existe/`);
 const h404 = await r404.text();
 conferir(r404.status === 404 && h404.includes('Página não encontrada'), `404: status ${r404.status}, página "Página não encontrada" ${h404.includes('Página não encontrada') ? 'presente' : 'ausente'}`);
 conferirCabecalhos('404', r404, h404);
+if (INGLES_PUBLICADO) conferir404('404', h404, IDIOMAS.en.prefixo);
 // Versão em inglês: desligada, nada em /en/ (a 404 em português responde); ligada, a 404 em inglês.
 for (const caminho of ['/en/', '/en/404/', '/en/rota-que-nao-existe/']) {
   const r = await pedir(`${S}${caminho}`);
@@ -178,11 +194,12 @@ for (const caminho of ['/en/', '/en/404/', '/en/rota-que-nao-existe/']) {
   if (!INGLES_PUBLICADO) {
     conferir(r.status === 404 && html.includes('Página não encontrada') && !html.includes('Page not found') && !temSeletor(html), `${caminho}: status ${r.status}; com o inglês desligado, esperado 404 com a página em português, sem seletor`);
   } else if (caminho === '/en/rota-que-nao-existe/') {
-    conferir(r.status === 404 && html.includes('Page not found') && /<html lang="en-US">/.test(html), `${caminho}: status ${r.status}; esperado 404 com a página em inglês`);
+    conferir(r.status === 404 && html.includes('Page not found') && !html.includes('Página não encontrada') && /<html lang="en-US">/.test(html), `${caminho}: status ${r.status}; esperado 404 com a página em inglês`);
     conferirCabecalhos(caminho, r, html);
+    conferir404(caminho, html, IDIOMAS[IDIOMA_PADRAO].prefixo);
   }
 }
-for (const caminho of ['/.git/HEAD', '/.git/config', '/.htaccess']) {
+for (const caminho of ['/.git/HEAD', '/.git/config', '/.htaccess', ...(INGLES_PUBLICADO ? ['/en/.htaccess'] : [])]) {
   const r = await pedir(`${S}${caminho}`);
   // O servidor da Hostinger barra .git e .htaccess antes do .htaccess do site (403); o resto
   // que começa com ponto responde 404 pela regra do site. Os dois códigos protegem.

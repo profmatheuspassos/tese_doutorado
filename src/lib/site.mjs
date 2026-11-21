@@ -14,5 +14,5 @@ export const absoluta = (rota) => `${site()}${base().replace(/\/$/, '')}${rota}`
  * só para pré-visualizar (build local e o build extra dos pull requests); não publica nada, e o
  * conferir-publicacao recusa INGLES=1 fora de pull request no GitHub Actions.
  */
-export const INGLES_PUBLICADO = false;
+export const INGLES_PUBLICADO = true;
 export const inglesAtivo = () => INGLES_PUBLICADO || process.env.INGLES === '1';

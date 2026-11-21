@@ -105,7 +105,7 @@ const gravar = (destino, titulo, doResumo, rodadas = `A home no celular roda ${R
 if (NO_AR) gravar(pasta, origem, linhas);
 else {
   gravar(pasta, origem, linhas.filter((l) => l.codigo === IDIOMA_PADRAO));
-  gravar(pastaIngles, 'versão em inglês)\n\nGerado por `npm run lighthouse` sobre o build local com `INGLES=1` (pré-visualização; nada disso está no ar).', linhas.filter((l) => l.codigo !== IDIOMA_PADRAO), `No celular, cada página roda ${RODADAS_HOME} vezes; a linha dela é a pior rodada.`);
+  gravar(pastaIngles, 'versão em inglês)\n\nGerado por `npm run lighthouse` sobre o build local.', linhas.filter((l) => l.codigo !== IDIOMA_PADRAO), `No celular, cada página roda ${RODADAS_HOME} vezes; a linha dela é a pior rodada.`);
 }
 if (erros.length) { console.error('lighthouse: abaixo de 90 -> ' + erros.join('; ')); process.exit(1); }
 console.log(`lighthouse: ok (${paginas.length} página(s), todas as categorias com 90 ou mais; resumo em ${NO_AR ? join(pasta, 'resumo.md') : [...new Set(linhas.map((l) => (l.codigo === IDIOMA_PADRAO ? pasta : pastaIngles)))].map((d) => join(d, 'resumo.md')).join(' e ')}; JSON em ${rascunho})`);
