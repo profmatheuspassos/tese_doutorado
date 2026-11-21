@@ -63,7 +63,7 @@ Para cada termo, as duas opções consideradas e a escolhida.
 | deputado | deputy | representative | **deputy**. "Representative" colide com "representantes" no sentido geral |
 | voto nulo | spoiled (null) vote | spoiled ballot | **spoiled ballot**, sem parênteses (D97) |
 | Faculdade de Direito da Universidade de Lisboa | University of Lisbon School of Law | — | **University of Lisbon School of Law**, nome usado nas páginas em inglês do site da Faculdade (D98). Na ficha: "Faculdade de Direito da Universidade de Lisboa (University of Lisbon School of Law)"; no texto corrido: "University of Lisbon" |
-| Ciências Jurídico-Políticas | Legal and Political Sciences | Legal-Political Sciences | **Legal and Political Sciences**, tradução proposta. **Não conferida em fonte oficial** até o autor confirmar (D98, ponto A20) |
+| Ciências Jurídico-Políticas | Legal and Political Sciences | Legal-Political Sciences | **Legal and Political Sciences**, confirmado pelo autor (D98; A20 encerrado pela D123) |
 | Doutor em Direito | PhD in Law | Doctor of Laws | **PhD in Law**. "Doctor of Laws" nos EUA costuma ser título honorário |
 
 ## 4. Termos fixos
@@ -137,12 +137,12 @@ Para cada termo, as duas opções consideradas e a escolhida.
 | Capítulo 3 | The shortcut that doesn’t fix it | `/en/chapters/3-the-digital-shortcut/` |
 | Capítulo 4 | Citizens at the center | `/en/chapters/4-citizens-at-the-center/` |
 | Capítulo 5 | The tools that already exist (and one that’s missing) | `/en/chapters/5-the-tools/` |
+| Sobre a tese | About the dissertation | `/en/about/` |
+| 404 | Page not found | `/en/404/` |
 
 Nos títulos com apóstrofo, o campo `titulo` do front matter usa o apóstrofo curvo (’), como os
 rótulos (D107): assim `<title>`, menu, rodapé, navegação e "Read chapter N" saem iguais ao h1, que o
 Astro curva sozinho no corpo (D114).
-| Sobre a tese | About the dissertation | `/en/about/` |
-| 404 | Page not found | `/en/404/` |
 
 ## 6. Títulos originais dos capítulos e referências (D88, D98, D99)
 
@@ -155,16 +155,16 @@ marcada com o T52 ("Translation"):
 4. Revaluing representative democracy by giving citizens a central position in the legal and political process
 5. Civic participation as a boost to representative democracy
 
-**Ficha de "About":**
+**Ficha de "About"** (título do bloco: "Fact sheet", D123, TE57; oito linhas, na ordem do português):
 
 | Campo | Em inglês |
 |---|---|
-| Title | Título original, com a linha "Translation: Active Citizenship and Governance from the Perspective of Comparative Electoral Law" |
+| Title | Título original, com a linha "Translation: Active Citizenship and Governance from the Perspective of Comparative Electoral Law" (o original numa linha própria, com `lang="pt-BR"`; D123, TE58) |
 | Institution | Faculdade de Direito da Universidade de Lisboa (University of Lisbon School of Law) |
-| Degree | PhD in Law, specialization in Legal and Political Sciences (especialidade não conferida em fonte oficial, A20) |
+| Degree | PhD in Law, specialization in Legal and Political Sciences |
 | Advisor | Professor Jorge Miranda |
 | Funding | CAPES, a foundation of Brazil's Ministry of Education (grant BEX 1791/15-0; support from 2015 to 2018) |
-| Defense | November 18, 2022 |
+| Year | 2022 (defended on November 18, 2022) (D123, TE58) |
 
 **ABNT:** idêntico ao português (norma brasileira), com `lang="pt-BR"`. O "Acesso em" copiado usa
 os meses em português (T48 não é traduzido).
@@ -257,7 +257,8 @@ saem em inglês.
 Explicação curta, só definição, sem fato novo, proposta com o trecho exato na página em que
 aparece e aprovada como decisão (D85). Já decididas e aplicadas: **R$3.51 com "Brazilian reais"**, na forma
 "R$3.51 (Brazilian reais)" (capítulo 1, B7; D104, TE15); **"the Assembly of the Republic, Portugal's parliament"** (capítulo 5, B1;
-D121, TE43); **"the Chamber of Deputies, the lower house of Congress"** (capítulo 5, B3; D121, TE46).
+D121, TE43); **"the Chamber of Deputies, the lower house of Congress"** (capítulo 5, B3; D121, TE46); **"The Brazilian city of
+Porto Alegre"** (capítulo 3, B3; D117, TE29).
 Título de eleitor, Portal de Opinião Pública e Fundação Francisco Manuel dos Santos ficaram sem
 explicação nas páginas em que apareceram (D110, D114). Freguesia, Estatuto da
 Cidade, plano diretor, Lei de Acesso à Informação, cláusula de barreira e comissões provisórias já
