@@ -1496,6 +1496,88 @@ impressão do `dados.json` (D94) não mudou.
 - Navegação: "Previous" leva ao capítulo 3 em inglês; "Next", em pré-visualização, ao capítulo 5 em
   português, com `lang` e `hreflang` pt-BR, até ele ser traduzido.
 
+### Capítulo 5 (`src/content/en/capitulo-5.md`)
+
+Tradução aprovada pelo autor em 21/11/2026, no plano da página, com dois ajustes de texto (B0 e B11) e
+as explicações TE43 e TE46 (D121). Palavras contadas como na home (texto visível do bloco).
+
+| Bloco en | Título en | Bloco pt | Palavras pt → en | Escolhas de tradução |
+|---|---|---|---|---|
+| B0 | The tools that already exist (and one that's missing) | B0 | 92 → 95 | — |
+| B1 | Referendum: it only happens if Parliament wants one | B1 | 188 → 208 | TE43 |
+| B2 | Almost never used | B2 | 125 → 133 | — |
+| B3 | Citizens' initiative: the bill that changes hands | B3 | 219 → 232 | TE44, TE45, TE46, TE47 |
+| B4 | Petition and citizen lawsuit | B4 | 93 → 104 | — |
+| B5 | What petitions reveal | B5 | 197 → 210 | TE48 |
+| B6 | And in Brazil? | B6 | 118 → 124 | TE49 |
+| B7 | The missing tool: the recall | B7 | 268 → 279 | TE50 |
+| B8 | The criticisms and the answers | B8 | 108 → 107 | — |
+| B9 | Why the recall matters | B9 | 130 → 139 | TE51 |
+| B10 | A complement, with limits | B10 | 124 → 137 | TE4 |
+| B11 | Without equality, there is no democracy | B11 | 138 → 153 | TE52 |
+| **Total** | | | **1.800 → 1.921** | |
+
+**Título.** No front matter, `titulo: "The tools that already exist (and one that’s missing)"`, com o
+apóstrofo curvo (D114); o h1 no corpo com o reto, que o Astro curva. **Título na tese:** como nos
+capítulos 1 a 4, o original vem do `.md` em português, com `lang="pt-BR"`, e a tradução
+(`traducao_titulo_original`, seção 6 do glossário) vem abaixo do rótulo T52. O `Capitulo5.astro` passou
+a usar `tituloNaTese` (português igual: build idêntico ao da `main`, 72 de 72, 18 pacotes iguais).
+
+**Dados.** Os nove usos do capítulo 5 no `dados.json` ganharam `frases_en`, com as mesmas chaves e
+modificadores das frases em português (`extenso`, `extenso_f`, `Extenso_f`, escritos em inglês pelo
+`conferir-dados`); os "mil" viram `{assinaturas_mil},000` ("60,000", "20,000"). **Exceção aprovada
+(D121):** na tabela do B5, as legislaturas ficam escritas em inglês dentro das cinco frases ("| 2002 to
+2005 | {valores.0} |" … "| 2015 to June 2019 | {valores.4} |"), porque o array `legislaturas` está em
+português, não aparece no site (a tabela vem do `.md`) e o `dados.json` está travado (D94). A impressão
+do `dados.json` não mudou; o `conferir-dados` confere 30 frases em inglês.
+
+**Observações do capítulo 5.**
+- Âncora em inglês (`src/lib/ancoras.ts`): `Only the National Congress calls` (B1; o caminho do referendo
+  entra depois desse parágrafo). Aparece uma única vez na página.
+- Caminho do referendo, barras das petições, cartões das ferramentas e funil da Califórnia não mudam:
+  todo texto vem dos rótulos (T7, T37 a T42), e as barras comparam só os números (menores que mil, iguais
+  nos dois idiomas). O teste do capítulo 5 no `scripts/capturas.mjs` não usa texto em português; nenhuma
+  mudança.
+- **Lista do B7 (D121):** o `conferir-paridade` conta como parágrafo a linha de continuação de um item de
+  lista. Como no português, os itens 1, 2 e 4 ficam em duas linhas (continuação com três espaços) e o 3 em
+  uma; com o item 1 numa linha só, a paridade dava 9 parágrafos contra 10. O HTML não muda.
+- **Ajustes do autor no plano:** B0 "As for the constitutions, Portugal's goes much further. Brazil's
+  mentions the tools and leaves almost everything to legislation."; B11 "An ideal democracy would have
+  five principles: free elections; separation of powers; free debate; direct participation, like
+  participatory budgeting; and equality, including economic and social." (25 palavras, uma frase, como no
+  português).
+- "Parlamento" = "Parliament", com maiúscula, como na home (B7, B8). "Consulta" = "public vote" (glossário),
+  ou só "vote" quando o contexto já diz qual. "Justiça" (B10) = "the courts", padrão da TE4.
+- "A tese" aparece duas vezes (B5, B9): "the dissertation's central conclusions" e "In the dissertation's
+  view". "O autor" = "The author"; "nas palavras do autor" = "in the author's words".
+- Citações curtas em tradução própria, como na TE17: "adormecido" = "dormant" (B7); "uma pessoa passiva à
+  espera da próxima eleição" = "a passive person waiting for the next election" (B9); "os menos ruins" =
+  "the least bad" (B10); e a da TE48 (B5).
+- Paridade: "nos dois países" = "in both countries" (B0); "as duas são" = "both tools are" (B4);
+  "nenhum dos dois" = "neither of the two" (B8); "Os dois últimos" = "The last two" (B11); "60 mil" e "20
+  mil" = 60,000 e 20,000; "dois terços" = "two-thirds".
+- Frases e termos reaproveitados da home (D110), dos capítulos 1 a 4 (D112, D114, D117, D119) e dos
+  rótulos: o título (glossário, seção 5; home B7); "the referendum, the citizens' initiative, the
+  petition, and the citizen lawsuit" (T38); "the population votes yes or no on an issue", "citizens
+  gather signatures and submit a bill", "a request … or a complaint to public authorities", "goes to court
+  … what belongs to everyone" e "remove … from office before the end of their term" (home B7); "A
+  referendum only happens if Parliament wants one." (home B7, idêntica); "citizens can propose a
+  referendum" e "binding only if more than half of registered voters take part" (capítulo 1, B6 e B8;
+  T37); "Only the National Congress calls" (T37, T40); "60,000 signatures", "20,000 signatures … can be
+  sent online", "based on the 2018 electorate", "all on paper", "formally … as a citizens' initiative",
+  "became law", "gives the right to a reply", "rights of political participation", "its own law",
+  "individual rights", "follows a 1965 law" (T40); "made it to the ballot", "removed the official from
+  office", "attempts" (T42); "Two-thirds of petitions are collective, and 91.5% pursue a common interest",
+  "93.7% … 84.3% expected to be heard" e "The disenchantment is with elections, not with participation."
+  (home B8, a última idêntica); "Elections … essential, but they aren't enough" (home B8); "necessary, but
+  not sufficient" (home B1); "answering for the result" (home B6); "public property … the environment"
+  (capítulo 1, B3); "direct participation tools" (capítulo 2, B8; capítulo 3, B11; capítulo 4, B12);
+  "semi-direct", "checks and balances", "imperative mandate", "political adventurism", "participatory
+  budgeting", "campaign donors", "pressure groups", "impeachable offense", "notice of intention",
+  "registered voters", "legislative term", "Access to Information Law", "deputy" (glossário).
+- Navegação: "Previous" leva ao capítulo 4 em inglês; "Next", em pré-visualização, a "Sobre a tese" em
+  português, com `lang` e `hreflang` pt-BR, até "About" ser traduzida.
+
 ### Escolhas de tradução
 
 Uma linha por escolha. Tipos: **explicação** (definição curta, sem fato novo), **expressão**
@@ -1546,6 +1628,16 @@ não entra na lista.
 | TE40 | capítulo 4, B8 | "Bater o martelo cabe só ao poder público" | "The final say belongs only to public authorities" | Expressão | Idiomatismo listado no plano em inglês ("bater o martelo"); o literal não tem esse sentido em inglês | D119 |
 | TE41 | capítulo 4, B9 | "não cabe a "iluminados" tutelar os demais" | "it is not up to the "enlightened" to act as guardians of everyone else" | Expressão | "Tutelar" não tem verbo direto em inglês; "act as guardians" dá a ideia de tratar os outros como tutelados. Aspas mantidas | D119 |
 | TE42 | capítulo 4, B9 | "só virou assunto de todos" | "only became everyone's concern" | Expressão | O literal ("everyone's subject") não existe em inglês | D119 |
+| TE43 | capítulo 5, B1 | "A Assembleia da República tem de aprová-la" | "The Assembly of the Republic, Portugal's parliament, has to approve it" | Explicação | Prevista no plano em inglês e no glossário (seção 9); o leitor americano não sabe que é o parlamento, e o mesmo bloco passa a dizer "Parliament"; sem fato novo | D121 |
+| TE44 | capítulo 5, B3 (título) | "o projeto que muda de dono" | "the bill that changes hands" | Expressão | "Changes owners" é literal e estranho; "changes hands" é a forma usual | D121 |
+| TE45 | capítulo 5, B3 | "projetos populares" | "bills proposed by citizens" | Termo fora do glossário | "Popular bills" seria lido como projetos queridos pelo público | D121 |
+| TE46 | capítulo 5, B3 | "a Câmara dos Deputados" | "the Chamber of Deputies, the lower house of Congress," | Explicação | Prevista no plano em inglês (seção 9 do glossário); primeira vez que a Câmara aparece no site em inglês; o leitor não sabe que é parte do Congresso Nacional (B1); sem fato novo | D121 |
+| TE47 | capítulo 5, B3 | "apadrinha" (entre aspas) | "sponsors" (entre aspas) | Expressão | Nos EUA, "sponsor" é o parlamentar que apresenta o projeto, que é o sentido do texto; "godfathers" puxaria para a máfia | D121 |
+| TE48 | capítulo 5, B5 | "o direito está aí, quem quiser que procure" | "the right is there; anyone who wants it can go and find it" | Expressão | Fala citada, em tradução própria e em linguagem simples, como a TE17; "quem quiser que procure" não tem forma literal | D121 |
+| TE49 | capítulo 5, B6 | "Um termômetro" | "One gauge" | Expressão | "Thermometer" como medida de algo social é raro em inglês; "gauge" é a forma usual | D121 |
+| TE50 | capítulo 5, B7 | "O órgão eleitoral" (Califórnia) | "The elections office" | Termo fora do glossário | "Electoral courts" (Justiça Eleitoral) não serve: na Califórnia, quem confere as assinaturas é um órgão administrativo, não um tribunal. Só nesta página | D121 |
+| TE51 | capítulo 5, B9 | "o recall traduz a cidadania ativa" | "the recall embodies active citizenship" | Expressão | "Translates" no sentido de "expressa" não funciona em inglês | D121 |
+| TE52 | capítulo 5, B11 | "a riqueza desequilibra a política" | "wealth skews politics" | Expressão | "Unbalances politics" é estranho; "skews" é desequilibrar a favor de um lado | D121 |
 
 **Explicações não propostas na home.** "Portal de Opinião Pública" e "Fundação Francisco Manuel dos
 Santos" ficam como estão, porque a frase já os apresenta como fonte dos dados. "Título de eleitor"
@@ -1567,3 +1659,8 @@ e Atenas dispensam; o Conselho de Atenas vem do contexto; o algoritmo já vem de
 **Explicações no capítulo 4.** Nenhuma. Freguesia já vem definida no B1; Estatuto da Cidade e plano
 diretor já vêm explicados no B8 ("City Statute", "master plan" e "city council" são do glossário);
 Itália e RGPD ("GDPR") dispensam.
+
+**Explicações no capítulo 5.** Duas, aprovadas pelo autor (D121): "Portugal's parliament" depois da
+Assembly of the Republic (TE43, B1) e "the lower house of Congress" depois da Chamber of Deputies (TE46,
+B3). A Lei de Acesso à Informação já vem explicada no texto ("which allows anyone to request data from
+public authorities"); Califórnia, Suíça, Canadá e Alemanha dispensam.
