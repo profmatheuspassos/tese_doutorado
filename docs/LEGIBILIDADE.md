@@ -375,6 +375,7 @@ para o inglês.
 | Capítulo 2 | 1.850 | 1.776 | 157 | 11,3 | 1,58 | 7,5 | 61,4 | 51 (2,9%) | 2 |
 | Capítulo 3 | 1.861 | 1.678 | 144 | 11,7 | 1,65 | 8,4 | 55,6 | 22 (1,3%) | 4 |
 | Capítulo 4 | 1.928 | 1.856 | 151 | 12,3 | 1,65 | 8,7 | 54,8 | 21 (1,1%) | 3 |
+| Capítulo 5 | 1.921 | 1.825 | 143 | 12,8 | 1,63 | 8,6 | 56,1 | 54 (3,0%) | 2 |
 
 ### Home em inglês (20/11/2026)
 
@@ -486,3 +487,25 @@ them." É idêntica à frase da home (B6), por decisão do autor (D119). Depois 
 **Estimativa do plano x medição:** a estimativa só com a regra de sílabas deu FKGL 8,95 (esperado com
 o CMU, de 8,7 a 8,8) e FRE 52,8 (esperado de 54 a 54,5); a medição ficou dentro e um pouco acima da
 faixa esperada (8,7 e 54,8).
+
+### Capítulo 5 em inglês (21/11/2026)
+
+`src/content/en/capitulo-5.md`, tradução aprovada com TE43 a TE52 e os ajustes do autor no B0 e no
+B11 (D121). **FKGL 8,6**, acima da referência de 8 ou menos, como os capítulos 1, 3 e 4; **FRE 56,1**.
+As frases são as mais longas da versão em inglês até aqui (143 frases, 12,8 palavras por frase), com o
+vocabulário do capítulo (referendum, initiative, participation, legitimacy, representative); o
+português da mesma página tem índice 57,8. O índice é conferência, não meta (D89): o texto aprovado não
+foi simplificado para baixar o número. O português tem 1.800 palavras visíveis; o inglês, 1.921.
+
+**Palavras fora do CMU (sílabas por regra):** 54, 3,0% do texto corrido, todas números (anos,
+percentuais, quantidades), que contam como duas sílabas.
+
+**Frases longas:** nenhuma acima de 25 palavras. A maior tem 25, e são duas: a dos cinco princípios
+(B11), no texto do autor ("An ideal democracy would have five principles: … and equality, including
+economic and social."), e "Adoption would be gradual: …" (B9). No português, a maior também tem 25.
+
+**"The dissertation":** 2 (B5 e B9), as mesmas duas menções de "a tese" no português (D15).
+
+**Plano x medição:** o plano mediu o rascunho na cópia descartável (FKGL 8,6, FRE 56,2, uma frase de
+26 palavras); com os ajustes do autor no B0 e no B11, a medição no plano revisado e no repositório deu
+FKGL 8,6, FRE 56,1, maior frase 25.

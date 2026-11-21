@@ -241,6 +241,9 @@
       "serie": "referendo_pt",
       "frases": [
         "cidadãos podem propor um referendo com {assinaturas_mil} mil assinaturas"
+      ],
+      "frases_en": [
+        "citizens can propose a referendum with {assinaturas_mil},000 signatures"
       ]
     },
     {
@@ -251,6 +254,10 @@
       "frases": [
         "Em Portugal, de {de} a {ate}, houve {total|extenso} referendos: {nacionais|extenso} nacionais",
         "e {locais|extenso} locais. No Brasil"
+      ],
+      "frases_en": [
+        "In Portugal, from {de} to {ate}, there were {total|extenso} referendums: {nacionais|extenso} national",
+        "and {locais|extenso} local. In Brazil"
       ]
     },
     {
@@ -260,6 +267,9 @@
       "serie": "consultas_br",
       "frases": [
         "No Brasil, de {de} a {ate}, houve {total|extenso_f} consultas: {nacionais|extenso_f} nacionais (1993 e 2005) e {locais|extenso_f} locais."
+      ],
+      "frases_en": [
+        "In Brazil, from {de} to {ate}, there were {total|extenso_f} public votes: {nacionais|extenso_f} national (1993 and 2005) and {locais|extenso_f} local."
       ]
     },
     {
@@ -270,6 +280,10 @@
       "frases": [
         "Em Portugal, bastam {assinaturas_mil} mil assinaturas, que podem ser enviadas pela internet.",
         "Em Portugal, de {de} a {ate}, chegaram {total|extenso_f} iniciativas ao Parlamento. {viraram_lei|Extenso_f} viraram lei."
+      ],
+      "frases_en": [
+        "In Portugal, {assinaturas_mil},000 signatures are enough, and they can be sent online.",
+        "In Portugal, from {de} to {ate}, {total|extenso_f} initiatives reached Parliament. {viraram_lei|Extenso_f} became law."
       ]
     },
     {
@@ -280,6 +294,10 @@
       "frases": [
         "No Brasil, é preciso {percentual_eleitorado}% do eleitorado, em pelo menos {estados|extenso} estados. Com base no eleitorado de {ano}, eram {assinaturas} assinaturas, todas em papel",
         "De {de} a {ate}, {leis_federais|extenso_f} leis federais nasceram de projetos populares."
+      ],
+      "frases_en": [
+        "In Brazil, it takes {percentual_eleitorado}% of the electorate, in at least {estados|extenso} states. Based on the {ano} electorate, that meant {assinaturas} signatures, all on paper",
+        "From {de} to {ate}, {leis_federais|extenso_f} federal laws came from bills proposed by citizens."
       ]
     },
     {
@@ -289,6 +307,9 @@
       "serie": "peticoes_assinadas",
       "frases": [
         "passou de {pt.0.valor}%, entre {pt.0.de} e {pt.0.ate}, para {pt.1.valor}% em {pt.1.ano}."
+      ],
+      "frases_en": [
+        "went from {pt.0.valor}%, between {pt.0.de} and {pt.0.ate}, to {pt.1.valor}% in {pt.1.ano}."
       ]
     },
     {
@@ -298,6 +319,9 @@
       "serie": "peticoes_assinadas",
       "frases": [
         "foi de {br.valor}% em {br.ano}."
+      ],
+      "frases_en": [
+        "it was {br.valor}% in {br.ano}."
       ]
     },
     {
@@ -311,6 +335,13 @@
         "| {legislaturas.2} | {valores.2} |",
         "| {legislaturas.3} | {valores.3} |",
         "| {legislaturas.4} | {valores.4} |"
+      ],
+      "frases_en": [
+        "| 2002 to 2005 | {valores.0} |",
+        "| 2005 to 2009 | {valores.1} |",
+        "| 2009 to 2011 (shorter) | {valores.2} |",
+        "| 2011 to 2015 | {valores.3} |",
+        "| 2015 to June 2019 | {valores.4} |"
       ]
     },
     {
@@ -320,6 +351,9 @@
       "serie": "recall_california",
       "frases": [
         "De {de} a {ate}, houve {tentativas} tentativas de recall contra ocupantes de cargos estaduais na Califórnia. Só {votacoes} chegaram às urnas, e {remocoes} tiraram o eleito do cargo."
+      ],
+      "frases_en": [
+        "From {de} to {ate}, there were {tentativas} recall attempts against state officeholders in California. Only {votacoes} made it to the ballot, and {remocoes} removed the official from office."
       ]
     }
   ]
