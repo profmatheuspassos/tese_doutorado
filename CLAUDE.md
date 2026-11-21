@@ -422,13 +422,11 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
 - **Versão em inglês no ar desde 21/11/2026 (D126):** `versao.txt` com `dc44512`; `conferir:publicado`
   passou (510 testes); `en/` e `en/.htaccess` na `publicacao`; a 404 em inglês responde dentro de `/en/`
   (o LiteSpeed respeita o `ErrorDocument` da subpasta); Base CSS sem as cinco regras; `capturas` no ar ok;
-  Lighthouse no ar 98 a 100 nas 14 páginas. Conferência manual no navegador pendente, feita pelo autor.
+  Lighthouse no ar 98 a 100 nas 14 páginas. Conferência manual do autor no navegador feita em 21/11/2026,
+  tudo passou.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request da D126** (registro da versão em inglês no ar) e **conferência
-   manual do autor no navegador**: seletor nos dois sentidos, home em inglês no celular e no
-   computador, as duas 404, link do depósito no "About" e no "Sobre a tese", licença `deed.en` no
-   rodapé em inglês.
+1. **Aprovação e merge do pull request da D126** (registro da versão em inglês no ar).
 2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
