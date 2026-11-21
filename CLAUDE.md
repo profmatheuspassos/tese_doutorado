@@ -412,14 +412,22 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   Lighthouse do About: 100 no celular (pior de 5) e no computador. Com ela, as sete páginas têm tradução.
   Aprovada (D123) e enviada à `main` (PR #30, merge `badb628`); no ar sem nada em inglês (D124:
   `versao.txt` com `badb628`, 314 testes, nenhum `en/` na `publicacao`, CSS sem as cinco regras).
-- **Versão em inglês, Etapa 4 (lançamento):** plano aprovado pelo autor em 21/11/2026, em andamento
-  na branch da sessão.
+- **Versão em inglês, Etapa 4 (lançamento):** plano aprovado pelo autor em 21/11/2026 (D125).
+  `INGLES_PUBLICADO = true`, workflow com um build em PR, `conferir-publicado` e `conferir-publicacao`
+  com as conferências do inglês publicado (D125). Provas: o build de produção do PR é idêntico ao de
+  pré-visualização da `main` (144 de 144, nenhum pacote mudado); o português só ganha o previsto (72 de
+  72 contra o que está no ar); o ensaio da volta (`git revert` do commit da chave) devolve o site no ar
+  byte a byte. Lighthouse 99 a 100 nas 14 páginas. `404-375` antiga mantida. Em pull request, à espera
+  da aprovação do autor.
 
 ## Próximo passo
 
-1. **Etapa 4 (lançamento)**, em andamento, com o plano aprovado em 21/11/2026: PR que muda
-   `INGLES_PUBLICADO` para `true`; depois do merge (D126), `conferir:publicado` nas 14 páginas (com
-   `hreflang`, sitemap, seletor e a 404 em inglês no ar), Lighthouse no ar e link do depósito conferido
-   pelo autor também no "About".
+1. **Aprovação e merge do pull request da Etapa 4 (D125)**; depois do merge, D126 em outra sessão:
+   `versao.txt` e `COMMIT_ESPERADO=<hash completo> NODE_USE_ENV_PROXY=1 npm run conferir:publicado` nas
+   14 páginas (com `hreflang`, sitemap, seletor, as duas 404 e `/en/` herdando HTTPS, barra final e
+   cabeçalhos), `en/` na `publicacao`, Base CSS sem as cinco regras da D115, `capturas` e Lighthouse no
+   ar, e o que o autor confere no navegador (seletor, 404 dos dois idiomas, link do depósito no "About" e
+   no "Sobre a tese", licença `deed.en`). Se a 404 em inglês falhar: registrar (D125). Se `/en/` perder
+   cabeçalhos, HTTPS ou barra final, ou responder 500: voltar atrás (`docs/PUBLICACAO.md`).
 2. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).
