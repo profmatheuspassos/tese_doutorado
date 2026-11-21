@@ -24,6 +24,8 @@ const PT = {
   sobre: {
     tituloAbnt: 'Cidadania Ativa e Governança sob a perspectiva do Direito Eleitoral comparado',
     tituloApa: 'Cidadania ativa e governança sob a perspectiva do direito eleitoral comparado',
+    // Só a página em inglês procura (lang="pt-BR" no nome em português, na ficha).
+    faculdade: 'Faculdade de Direito da Universidade de Lisboa',
   },
 } as const;
 
@@ -45,6 +47,12 @@ const ANCORAS: Record<CodigoIdioma, Parciais> = {
     'capitulo-3': { impossivel: 'impossible' },
     'capitulo-4': { cincoEtapas: 'five stages', daPopulacao: '% of the population', girarAoContrario: 'turn the other way' },
     'capitulo-5': { soCongresso: 'Only the National Congress calls' },
+    // ABNT, APA e BibTeX ficam com o título original (D99): os mesmos trechos do português.
+    sobre: {
+      tituloAbnt: 'Cidadania Ativa e Governança sob a perspectiva do Direito Eleitoral comparado',
+      tituloApa: 'Cidadania ativa e governança sob a perspectiva do direito eleitoral comparado',
+      faculdade: 'Faculdade de Direito da Universidade de Lisboa',
+    },
   },
 };
 

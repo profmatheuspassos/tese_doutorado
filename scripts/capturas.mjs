@@ -287,6 +287,21 @@ const TESTES = {
       return { thead: getComputedStyle(t.querySelector('thead')).display, oculto: t.querySelector('thead').getAttribute('aria-hidden'), chaves: t.querySelectorAll('td[role="rowheader"]').length };
     });
     if (ficha.thead !== 'none' || ficha.oculto !== 'true' || ficha.chaves !== 8) erros.push(`${rotulo}: ficha fora do formato: ${JSON.stringify(ficha)}`);
+    // O que fica em português na página em inglês leva lang="pt-BR" (D88, D98, D99): na ficha, o
+    // título original, numa linha própria antes de "Translation:", e o nome da Faculdade; o ABNT
+    // inteiro; o título original no APA e no BibTeX. Na página em português, nenhum desses lang.
+    const langPt = IDIOMAS[IDIOMA_PADRAO].lang;
+    const marcas = await pagina.evaluate(() => ({
+      pagina: document.documentElement.lang,
+      ficha: [...document.querySelectorAll('table.ficha [lang]')].map((e) => ({ lang: e.getAttribute('lang'), display: getComputedStyle(e).display })),
+      abnt: document.querySelector('#citacao-abnt').getAttribute('lang'),
+      titulos: ['#citacao-apa', '#citacao-bibtex'].map((s) => document.querySelector(`${s} [lang]`)?.getAttribute('lang') ?? null),
+    }));
+    const esperadoMarcas = marcas.pagina === langPt
+      ? { ficha: [], abnt: null, titulos: [null, null] }
+      : { ficha: [{ lang: langPt, display: 'block' }, { lang: langPt, display: 'inline' }], abnt: langPt, titulos: [langPt, langPt] };
+    const { pagina: _p, ...obtidoMarcas } = marcas;
+    if (JSON.stringify(obtidoMarcas) !== JSON.stringify(esperadoMarcas)) erros.push(`${rotulo}: trechos em português sem o lang esperado: ${JSON.stringify(marcas)}`);
     // Como citar (B6): ABNT e APA na fonte do corpo, com negrito e itálico no título; BibTeX
     // monoespaçado (D69). Vale em todos os cenários.
     const fontes = await pagina.evaluate(() => ['abnt', 'apa', 'bibtex'].map((f) => {

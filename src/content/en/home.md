@@ -232,4 +232,4 @@ least heard, they start to take an interest in what belongs to everyone.
 
 This is a version for the general public. The data are those of the original work, defended in
 2022, and have not been updated. To learn how it was done and how to cite it, see
-[About the dissertation](/sobre/).
+[About the dissertation](/en/about/).

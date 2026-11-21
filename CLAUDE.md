@@ -119,7 +119,7 @@ se as 880 notas de rodapé foram distribuídas.
 | `docs/RASTREABILIDADE.md` | Cada bloco do site ligado à seção de origem; dados usados; escolhas de interpretação |
 | `docs/LEGIBILIDADE.md` | Método do índice e resultados por página |
 | `src/content/pt-br/` | Texto reescrito das páginas (Markdown; blocos marcados com `<!-- Bn \| ... -->`) |
-| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; por enquanto, a home e os capítulos 1 a 5, D110, D112, D114, D117, D119 e D121) |
+| `src/content/en/` | Tradução aprovada das páginas em inglês, com os mesmos blocos `Bn` (D85; home, capítulos 1 a 5 e "About", D110, D112, D114, D117, D119, D121 e D123) |
 | `docs/PROMPTS-IMAGENS.md` | Guia de estilo e prompts das imagens ilustrativas (D47) |
 | `docs/PLANO-FASE-4.md` | Plano aprovado da Fase 4: modelo de página, interativos, rótulos T13 a T48, testes, etapas |
 | `docs/PLANO-FASE-5.md` | Plano aprovado da Fase 5 (publicação), com os ajustes da D78 e D79 |
@@ -316,7 +316,7 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   19/11/2026: o `versao.txt` mostra `45fa138` e `conferir:publicado` passou (282 testes).
 - **Versão em inglês, Etapa 1 (documentos):** decisões D85 a D104 registradas, glossário
   (`docs/GLOSSARIO-EN.md`) e plano (`docs/PLANO-INGLES.md`) aprovados pelo autor em 19/11/2026.
-  Enviada à `main` (PR #19, merge `2d01169`). Ponto em aberto: A20 ("Legal and Political Sciences", à espera de confirmação do autor).
+  Enviada à `main` (PR #19, merge `2d01169`). O A20 ("Legal and Political Sciences") foi confirmado pelo autor e encerrado pela D123.
 - **Versão em inglês, Etapa 2a (só refatoração, chave desligada):** `idiomas.mjs`, locale nos
   formatadores, `paginas.ts` com idioma, corpo da home e de "Sobre" como componentes, `ancoras.ts`,
   trava do `dados.json` no `conferir-dados.mjs` (impressão de `b9562f3`, D94) e
@@ -397,19 +397,29 @@ NODE_USE_ENV_PROXY=1 npm run conferir:publicado
   referência de 8, aceito pela D89; FRE 56,1; maior frase 25; "the dissertation" 2 vezes).
   `Capitulo5.astro` com `tituloNaTese`; âncora `Only the National Congress calls`; `frases_en` dos nove
   usos no `dados.json` (impressão igual). Componentes do capítulo 5 sem mudança; larguras sem transbordo
-  nem rolagem. Lighthouse do capítulo 5: 100 no celular (pior de 5) e no computador. Em pull request, à
-  espera da aprovação do autor.
+  nem rolagem. Lighthouse do capítulo 5: 100 no celular (pior de 5) e no computador. Aprovada (D121) e
+  enviada à `main` (PR #29, merge `f7ac84e`); no ar sem nada em inglês (D122: `versao.txt` com
+  `f7ac84e`, 314 testes, nenhum `en/` na `publicacao`, CSS sem as cinco regras).
+
+- **Versão em inglês, Etapa 3, "About":** tradução aprovada no plano, com uma revisão do autor (D123:
+  TE53 a TE58; TE56 "formed his own view"; linha da D103 no fim do B1; ABNT idêntico ao português, APA e
+  BibTeX pela D99). `src/content/en/sobre.md` (500 palavras; FKGL 9,9, acima da referência de 8, aceito
+  pela D89; FRE 47,2; maior frase 24; "the dissertation" 3 no corpo e o h1). `lang="pt-BR"` nos trechos em
+  português da página em inglês (`Sobre.astro`, `envolverTrecho` com atributos em `blocos.ts`, chave
+  `faculdade` em `ancoras.ts`) e teste novo no `scripts/capturas.mjs`. Link do B9 da home em inglês para
+  `/en/about/`. A20 encerrado; glossário com Porto Alegre na seção 9 e a tabela da seção 5 inteira.
+  Lighthouse do About: 100 no celular (pior de 5) e no computador. Com ela, as sete páginas têm tradução.
+  Em pull request, à espera da aprovação do autor.
 
 ## Próximo passo
 
-1. **Aprovação e merge do pull request do capítulo 5 em inglês (D121)**; registrar em
-   `docs/DECISOES.md` como D122 e conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`,
+1. **Aprovação e merge do pull request do "About" em inglês (D123)**; registrar em `docs/DECISOES.md`
+   como D124 e conferir no ar (`versao.txt` com o hash completo em `COMMIT_ESPERADO`,
    `conferir:publicado`, nenhum `en/` na `publicacao`, Base CSS sem as cinco regras da D115).
-2. **"About" em inglês** (`/en/about/`), só depois da aprovação e da confirmação do autor sobre o A20
-   ("Legal and Political Sciences"), numa branch nova a partir da `main` atualizada. Na mesma página,
-   trocar o destino do link do B9 da home em inglês de `/sobre/` para `/en/about/`.
-   **Procedimento de cada página (D115):** a prova final contra a `main` (`comparar-builds`, chave
-   desligada e ligada) roda no **último commit do PR, depois dos commits de documentação**; se algum
-   commit entrar depois dela, a prova roda de novo.
+2. **Etapa 4 (lançamento)**, numa branch nova a partir da `main` atualizada, com plano próprio: PR que
+   muda `INGLES_PUBLICADO` para `true`; depois do merge, `conferir:publicado` nas 14 páginas (com
+   `hreflang`, sitemap, seletor e a 404 em inglês no ar), Lighthouse no ar, link do depósito conferido
+   pelo autor também no "About", `docs/PUBLICACAO.md`, `CLAUDE.md` e uma linha no README só com texto
+   aprovado pelo autor.
 3. **`cap4-abertura`:** aceita, mas pode ser refeita depois de vista na página montada (D81); a troca
    segue `docs/PUBLICACAO.md` (mesmo nome e dimensões, por pull request).

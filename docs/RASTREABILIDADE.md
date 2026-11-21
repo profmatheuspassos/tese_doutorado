@@ -1578,6 +1578,65 @@ do `dados.json` não mudou; o `conferir-dados` confere 30 frases em inglês.
 - Navegação: "Previous" leva ao capítulo 4 em inglês; "Next", em pré-visualização, a "Sobre a tese" em
   português, com `lang` e `hreflang` pt-BR, até "About" ser traduzida.
 
+### About (`src/content/en/sobre.md`)
+
+Tradução aprovada pelo autor em 21/11/2026, no plano da página, com a TE56 revista ("formed his own
+view") (D123). Palavras contadas como na home (texto visível do bloco).
+
+| Bloco en | Título en | Bloco pt | Palavras pt → en | Escolhas de tradução |
+|---|---|---|---|---|
+| B0 | About the dissertation | B0 | 58 → 58 | TE53, TE54 |
+| B1 | What this site is, and what it isn't | B1 | 122 → 139 | TE55, TE56 |
+| B2 | Fact sheet | B2 | 73 → 91 | TE57, TE58 |
+| B3 | How the research was done | B3 | 95 → 95 | TE54, TE56 |
+| B4 | What is left for later | B4 | 58 → 56 | — |
+| B5 | About the numbers | B5 | 33 → 35 | — |
+| B6 | How to cite | B6 | 17 → 18 | — |
+| B7 | Contact | B7 | 8 → 8 | — |
+| **Total** | | | **464 → 500** | |
+
+**Título e rota.** `titulo: "About the dissertation"` e `rota: /en/about/` (glossário, seção 5). Sem
+`titulo_original`, como no português. `<title>`: "About the dissertation · Revitalize, not replace" (T11).
+
+**Linha sobre a tradução com IA (D103).** Texto do autor, não tradução: "This English version was
+translated from the Portuguese with the help of artificial intelligence and reviewed by the author."
+Fecha o segundo parágrafo do B1, depois da linha das ilustrações (D83). O B1 continua com 2 parágrafos e
+2 links nos dois idiomas, então a paridade não precisa de exceção.
+
+**Ficha (B2).** Oito linhas, como no português (o teste da ficha exige 8 chaves), com os valores da seção
+6 do glossário. Na linha "Title", o `.md` traz o título original seguido de "Translation: …", sem
+pontuação entre os dois; o `Sobre.astro` põe o original num `<span class="block" lang="pt-BR">`, e a
+tradução cai na linha de baixo (TE58). Na linha "Institution", o nome em português leva `lang="pt-BR"`.
+"Ano" vira "Year: 2022 (defended on November 18, 2022)", e não um campo "Defense" (TE58).
+
+**Referências (B6).** ABNT idêntico byte a byte ao português, com `lang="pt-BR"` no bloco inteiro; o
+"Acesso em" copiado sai com os meses em português (T48 não traduzido, D99). APA com a tradução do título
+entre colchetes, em sentence case, e "[Doctoral dissertation, Universidade de Lisboa]"; `lang="pt-BR"` no
+título original (o mesmo trecho em itálico). BibTeX com o título original, `lang="pt-BR"` nele, e `type =
+{Doctoral dissertation in Law (Legal and Political Sciences)}` (D99; A20 encerrado pela D123). Nomes de
+instituição dentro do APA e do BibTeX ficam sem `lang`: são nomes próprios exigidos pela norma.
+
+**Observações do About.**
+- Âncoras em inglês (`src/lib/ancoras.ts`): `tituloAbnt` e `tituloApa` iguais às do português (D99) e a
+  chave nova `faculdade`, nos dois idiomas, procurada só na página em inglês.
+- `envolverTrecho` (`src/lib/blocos.ts`) aceita atributos opcionais e não grava classe vazia; as chamadas
+  de antes saem iguais (português idêntico ao da `main` pela prova).
+- Teste novo no `scripts/capturas.mjs` (teste `sobre`): na página em inglês, `lang="pt-BR"` no título
+  original da ficha (em linha própria), no nome da Faculdade, no ABNT e no título do APA e do BibTeX; na
+  página em português, nenhum desses `lang`. O resto do teste já servia aos dois idiomas.
+- "A tese" aparece três vezes no corpo (B1 duas, B5 uma), como no português; com o h1 "About the
+  dissertation", o script de legibilidade conta 4 (máximo 5, D15).
+- Pronomes: o português usa "ele" para o autor (B1); o inglês usa "him", "his" e "he" também onde o
+  português dispensa o pronome (TE56).
+- Frases e termos reaproveitados: "a version for the general public" (glossário; home B9); "University of
+  Lisbon" no texto corrido e "University of Lisbon School of Law" na ficha (D98); "PhD in Law",
+  "Advisor", "Professor Jorge Miranda", "grant", "Legal and Political Sciences" (glossário, seção 6);
+  "accountable" (como a TE34); "direct democracy" e "representative democracies" (glossário).
+- Navegação: "Previous" leva ao capítulo 5 em inglês e o segundo link é "Back to home" (T10). No capítulo
+  5, "Next" passa a "About the dissertation"; no menu e no rodapé de todas as páginas em inglês, o item
+  "Sobre a tese" com `lang="pt-BR"` dá lugar a "About the dissertation". No B9 da home em inglês, o link
+  "About the dissertation" passa a levar a `/en/about/` (antes, `/sobre/`); o texto não muda (D123).
+
 ### Escolhas de tradução
 
 Uma linha por escolha. Tipos: **explicação** (definição curta, sem fato novo), **expressão**
@@ -1638,6 +1697,12 @@ não entra na lista.
 | TE50 | capítulo 5, B7 | "O órgão eleitoral" (Califórnia) | "The elections office" | Termo fora do glossário | "Electoral courts" (Justiça Eleitoral) não serve: na Califórnia, quem confere as assinaturas é um órgão administrativo, não um tribunal. Só nesta página | D121 |
 | TE51 | capítulo 5, B9 | "o recall traduz a cidadania ativa" | "the recall embodies active citizenship" | Expressão | "Translates" no sentido de "expressa" não funciona em inglês | D121 |
 | TE52 | capítulo 5, B11 | "a riqueza desequilibra a política" | "wealth skews politics" | Expressão | "Unbalances politics" é estranho; "skews" é desequilibrar a favor de um lado | D121 |
+| TE53 | About, B0 | "Este site conta […] uma tese" | "This site presents […] a doctoral dissertation" | Expressão | "Tells a dissertation" não existe em inglês; "presents" mantém o sentido sem acrescentar nada | D123 |
+| TE54 | About, B0 e B3 | "em Direito"; "Direito, Ciência Política e Sociologia" | "in Law"; "Law, Political Science, and Sociology" | Termo fora do glossário | O padrão americano poria disciplina em minúscula; a D84 vale para o inglês pela D85, e "PhD in Law" do glossário já usa maiúscula | D123 |
+| TE55 | About, B1 | "ficam de fora as citações" | "the quotations […] are left out" | Termo fora do glossário | "Citations" em inglês acadêmico também quer dizer referência bibliográfica; aqui são os trechos de outros autores | D123 |
+| TE56 | About, B1 e B3 | "revisadas por ele"; "formou a própria leitura"; "Só depois a comparou" | "reviewed by him"; "formed his own view"; "did he compare" | Termo fora do glossário | O português usa "ele" para o autor; o inglês exige o pronome também onde o português o dispensa. "View" (revisão do autor) dá o sentido de interpretação própria | D123 |
+| TE57 | About, B2 | "Ficha" | "Fact sheet" | Termo fora do glossário | Título do bloco; o glossário define os campos, não o título | D123 |
+| TE58 | About, B2 | Ano: "2022 (defesa em 18 de novembro de 2022)"; Título: original + tradução | Year: "2022 (defended on November 18, 2022)"; Title: original numa linha, "Translation: …" na seguinte | Apresentação da ficha | Mantidas as oito linhas do português (Ano, não "Defense"). O `.md` traz o original seguido de "Translation: …"; o componente põe o original numa linha própria, com `lang="pt-BR"`, sem palavra nova nem CSS novo | D123 |
 
 **Explicações não propostas na home.** "Portal de Opinião Pública" e "Fundação Francisco Manuel dos
 Santos" ficam como estão, porque a frase já os apresenta como fonte dos dados. "Título de eleitor"
@@ -1664,3 +1729,6 @@ Itália e RGPD ("GDPR") dispensam.
 Assembly of the Republic (TE43, B1) e "the lower house of Congress" depois da Chamber of Deputies (TE46,
 B3). A Lei de Acesso à Informação já vem explicada no texto ("which allows anyone to request data from
 public authorities"); Califórnia, Suíça, Canadá e Alemanha dispensam.
+
+**Explicações no About.** Nenhuma. CAPES já vem definida no texto aprovado ("a foundation of Brazil's
+Ministry of Education"); ABNT, APA e BibTeX são nomes de formatos, também sem explicação no português.
